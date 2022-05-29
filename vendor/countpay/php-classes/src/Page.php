@@ -13,9 +13,10 @@ class Page {
 		"footer"=>true,
 		"data"=>[]
 	];
-
+    //----------------------------------------------------------------------------------//
 	public function __construct($opts = array(), $tpl_dir = "/views/")
 	{
+		$this->defaults["data"]["session"] = $_SESSION;
 
 		$this->options = array_merge($this->defaults, $opts);
 
@@ -33,17 +34,21 @@ class Page {
 		if ($this->options['data']) $this->setData($this->options['data']);
 
 		// Se o header no index.php for igual true ou padrão carrega o template, se setar no index que é false não carrega
-		if ($this->options['header'] === true) $this->tpl->draw("header", false);
-
+		if ($this->options['header'] === true)
+		{
+			$this->tpl->draw("header", false);
+		}
 	}
-
+    //----------------------------------------------------------------------------------//
 	public function __destruct()
 	{
 		// Se o header no index.php for igual true ou padrão carrega o template, se setar no index que é false não carrega
-		if ($this->options['footer'] === true) $this->tpl->draw("footer", false);
-
+		if ($this->options['footer'] === true)
+		{ 
+			$this->tpl->draw("footer", false);
+		}
 	}
-
+    //----------------------------------------------------------------------------------//
 	private function setData($data = array())
 	{
 
@@ -55,7 +60,7 @@ class Page {
 		}
 
 	}
-
+    //----------------------------------------------------------------------------------//
 	public function setTpl($tplname, $data = array(), $returnHTML = false)
 	{
 

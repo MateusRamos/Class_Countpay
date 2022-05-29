@@ -3,8 +3,6 @@
 use \Countpay\PageAdmin;
 use \Countpay\DB\Sql;
 
-
-
 // ROTA DO INDEX PARA O ADMINISTRADOR
 $app->get('/admin', function() {
 

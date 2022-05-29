@@ -11,14 +11,17 @@ class Model{
 		// descobrir o nome do campo que foi chamado
 		$fieldName = substr($name, 3, strlen($name));// conta a partir da posição 2 ate o final
 		
-		switch ($method) {
-			case 'get':
-					return (isset($this->values[$fieldName])) ? $this->values[$fieldName] : NULL;/* se existe idcategory mostre se não existir retorne nulo*/
-				break;
+		if(in_array($fieldName, $this->fields))
+        {
+			switch ($method) {
+				case 'get':
+						return (isset($this->values[$fieldName])) ? $this->values[$fieldName] : NULL;/* se existe idcategory mostre se não existir retorne nulo*/
+					break;
 
-			case 'set':
-					$this->values[$fieldName] = $args[0];
-				break;		
+				case 'set':
+						$this->values[$fieldName] = $args[0];
+					break;		
+			}
 		}
 	}
 
