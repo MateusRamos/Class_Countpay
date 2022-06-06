@@ -31,7 +31,7 @@ class Carteira extends Model{
 
 	
     //==================================================== CRIAR CARTÃO =====================================================//
-	public static function insertCartao($dadosCartao, $id_usuario, $id_instituicao)
+	public static function criaCartao($dadosCartao, $id_usuario, $id_instituicao)
 	{
 
 		$sql = new Sql();

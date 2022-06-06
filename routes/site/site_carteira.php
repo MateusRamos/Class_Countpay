@@ -53,7 +53,7 @@ $app->post('/cartao/criar', function() {
     // Busca o Id da instituição, se n retorna NULL:
     $id_instituicao = Carteira::buscaInstituicao($_POST);
     
-    Carteira::insertCartao($_POST, $id_usuario, $id_instituicao);
+    Carteira::criaCartao($_POST, $id_usuario, $id_instituicao);
 
     header('Location: /cartao');
     exit; 
