@@ -25,13 +25,15 @@
   <link href="../../res/admin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../../res/admin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
+  <!-- Icones de Bancos Brasileiros -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/matheusmcuba/icones-bancos-brasileiros@1.1/dist/all.css">
+
   <!-- Arquivo CSS do Countpay -->
   <link href="../../res/admin/assets/css/style.css" rel="stylesheet">
 
 </head>
 
 <body>
-
   <!-- ======= Cabeçalho ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -111,7 +113,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="/sair">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sair</span>
               </a>
@@ -145,7 +147,24 @@
 
       <!-- Inicio da Lista do Menu -->
 
-      <!-- Inicio Cadastro -->
+      <!-- Inicio Projeção Futuras -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#projecao" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart-fill"></i><span>Projeções Futuras</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+
+        <ul id="projecao" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="contas.html">
+              <i class="bx bxs-chevron-right"></i><span>Projeção</span>
+            </a>
+          </li>
+        </ul>
+
+      </li>
+      <!-- Fim Projeção Futuras -->
+
+      <!-- Inicio Carteira -->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#carteira" data-bs-toggle="collapse" href="#">
           <i class="bx bxs-wallet"></i><span>Carteira</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -153,20 +172,20 @@
 
         <ul id="carteira" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="contas.html">
+            <a href="/conta">
               <i class="bx bxs-chevron-right"></i><span>Contas</span>
             </a>
           </li>
 
           <li>
-            <a href="cartao.html">
-              <i class="bx bxs-chevron-right"></i><span>Carteira</span>
+            <a href="/cartao">
+              <i class="bx bxs-chevron-right"></i><span>Cartões</span>
             </a>
           </li>
         </ul>
 
       </li>
-      <!-- Fim Lançamentos -->
+      <!-- Fim Carteira -->
 
       <!-- Inicio Lançamentos -->
       <li class="nav-item">
@@ -182,7 +201,7 @@
           </li>
 
           <li>
-            <a href="lancamento_despesa.html">
+            <a href="/lancamento/despesa">
               <i class="bx bxs-chevron-right"></i><span>Despesa</span>
             </a>
           </li>

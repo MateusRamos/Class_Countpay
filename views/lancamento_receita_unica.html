@@ -25,11 +25,6 @@
                       <div class="col-md-7">
                         <form action="/lancamento/receita/unica" method="post" class="row g-4 pt-4 pb-4 d-flex justify-content-center">
 
-                          <div class="col-md-10">
-                            <label for="iduser" class="form-label visually-hidden">ID</label>
-                            <input type="text" class="form-control visually-hidden" id="iduser" name="id_usuario" value="{$usuario.id_usuario}">
-                          </div>
-
                             <div class="col-md-10">
                                 <label for="descricao_receita" class="form-label">Descrição</label>
                                 <input type="text" name="descricao" class="form-control" id="descricao_receita" required>
@@ -43,9 +38,8 @@
                             <div class="col-md-4">
                               <label for="contacartao_receita" class="form-label">Tipo Receita</label>
                                <select class="form-select" name="tipo_receita" id="contacartao_receita">
-                                  {loop="$tipo_receita"}
-                                  <option>{$value.descricao}</option>
-                                  {/loop}
+                                  <option>Receita</option>
+                                  <option>Receita Fixa</option>
                               </select>
                             </div>
 
@@ -59,7 +53,7 @@
                               <label for="conta_usuario" class="form-label">Conta</label>
                               <select class="form-select" name="id_conta" id="conta_usuario">
                                 <option value="">Opção conta não utilizada</option>
-                                  {loop="$conta"}
+                                  {loop="$dados[conta]"}
                                   <option>{$value.apelido}</option>
                                   {/loop}
                               </select>
@@ -70,7 +64,7 @@
                             <label for="cartao_usuario" class="form-label">Cartão</label>
                             <select class="form-select" name="id_cartao" id="cartao_usuario">
                               <option value="">Opção cartão não utilizada</option>
-                              {loop="$cartao"}
+                              {loop="$dados[cartao]"}
                               <option>{$value.apelido}</option>
                               {/loop}
                             </select>
@@ -80,7 +74,7 @@
                             <div class="col-md-10 mb-3">
                                 <label for="categoria_receita" class="form-label">Categoria</label>
                                 <select class="form-select" name="id_categoria" id="contacartao_receita" required>
-                                  {loop="$categoria"}
+                                  {loop="$dados[categoria]"}
                                   <option>{$value.descricao}</option>
                                   {/loop}
                                 </select>

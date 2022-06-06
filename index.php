@@ -17,12 +17,14 @@ require_once("routes\admin\admin-get.php");
 //Require rotas post admin:
 require_once("routes\admin\admin-post.php");
 
-//Require rotas get site:
-require_once("routes\site\site-get.php");
+//Require rotas site - Usuario:
+require_once("routes\site\site_usuario.php");
 
-//Require rotas post site:
-require_once("routes\site\site-post.php");
+//Require rotas site - Carteira:
+require_once("routes\site\site_carteira.php");
 
+//Require rotas site - Lancamento:
+require_once("routes\site\site_lancamento.php");
 
 $app->run();
 

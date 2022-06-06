@@ -15,11 +15,10 @@ use \Countpay\Model\User;
 $app->get('/admin', function() {
 
     $sql = new Sql();
-
     $page = new PageAdmin();
   
     //Verificando se está logado:
-    User::verifyLogin();
+    User::verifyLoginAdmin();
 
     //Puxando os dados do banco para mostrar no Dashboard:
     $usuarioDados = $sql->select("SELECT quantidade_usuario FROM usuario_dados"); 
@@ -69,14 +68,16 @@ $app->get('/admin/login', function() {
 $app->get('/admin/usuario', function() {
 
     $page = new PageAdmin();
+    
+    User::verifyLoginAdmin();
 
     //Puxando os dados dos usuarios do banco de dados:
-    $usuarios = User::loadAllUsers();
+    $usuarios = User::ListaTodosUsuarios();
 
-    //Verificando se está logado:
-    User::verifyLogin();
         
-    $page->setTpl("lista_usuarios", array("usuarios"=>$usuarios));
+    $page->setTpl("lista_usuarios", array(
+        "usuarios"=>$usuarios
+    ));
     
 });
 
@@ -85,25 +86,25 @@ $app->get('/admin/usuario', function() {
 $app->get('/admin/usuario/criar', function() {
 
     $page = new PageAdmin();
-
+    
     //Verificando se está logado:
-    User::verifyLogin();
+    User::verifyLoginAdmin();
 
     $page->setTpl("criarusuario");
         
 });
 
 
-//======================================= Rota para tela de Alteração da dados: ========================================//
+//======================================= Rota para tela de Alteração de dados: ========================================//
 $app->get('/admin/usuario/:id_usuario', function($id_usuario) {
 
     $page = new PageAdmin();
 
     //Verificando se está logado:
-    User::verifyLogin();
+    User::verifyLoginAdmin();
 
     //Carregando as informações do usuario do banco de dados:
-    $usuario = User::loadById($id_usuario);
+    $usuario = User::buscaPorId($id_usuario);
 
     //Colocando os dados coletados no formulário pelo Slim:
     $page->setTpl("alterarusuario", array(
@@ -116,15 +117,12 @@ $app->get('/admin/usuario/:id_usuario', function($id_usuario) {
 //====================================!! Rota para EXCLUIR um usuario cadastrado: !!====================================//
 $app->get('/admin/usuario/:id_usuario/delete', function($id_usuario) {
 
-    $user = new User();
+    User::verifyLoginAdmin();
 
     //Executado a exclusão da row do banco de dados de acordo com o ID selecionado:
-    $user->deleteUser($id_usuario);
+    User::deletaUsuario($id_usuario);
 
-    //Mensagem de Exclusão bem sucedida:
-    $mensagem = "Usuário excluido com sucesso!";
-    $rota = "/admin/usuario";
-    User::mostraMensagem($mensagem, $rota);
+    User::mostraMensagem("Usuário excluido com sucesso!", "/admin/usuario");
 
 });
 
