@@ -27,15 +27,9 @@
                             <form action="/lancamento/despesa/parcelado" method="post" class="row g-4 pt-4 pb-4 d-flex justify-content-center">
 
                                 <div class="col-md-10">
-                                    <label for="iduser" class="form-label visually-hidden">ID</label>
-                                    <input type="text" class="form-control visually-hidden" id="iduser"
-                                        name="id_usuario" value="{$usuario.id_usuario}">
-                                </div>
-
-                                <div class="col-md-10">
                                     <label for="despesa" class="form-label visually-hidden">Tipo Despesa</label>
                                     <input type="text" class="form-control visually-hidden" id="despesa"
-                                        name="tipo_despesa" value="Despesa Parcelada" required>
+                                        name="tipo_lancamento" value="Despesa Parcelada" required>
                                 </div>
 
                                 <div class="col-md-10">
@@ -57,14 +51,14 @@
 
                                 <div class="col-md-5">
                                     <label for="data_despesa_despesa" class="form-label">Data da Despesa</label>
-                                    <input type="date" class="form-control" name="data_despesa"
+                                    <input type="date" class="form-control" name="data_lancamento"
                                         id="data_despesa_despesa">
                                 </div>
 
                                 <div class="col-md-5">
                                     <label for="frequencia_despesa" class="form-label">Frequência</label>
                                     <select class="form-select" name="frequencia" id="frequencia_despesa" required>
-                                        {loop="$frequencia"}
+                                        {loop="$dados['frequencia']"}
                                         <option>{$value.descricao}</option>
                                         {/loop}
                                     </select>
@@ -75,7 +69,7 @@
                                     <label for="contacartao_despesa" class="form-label">Conta</label>
                                     <select class="form-select" name="id_conta" id="contacartao_despesa">
                                         <option value="">Opção conta não utilizada</option>
-                                        {loop="$conta"}
+                                        {loop="$dados['conta']"}
                                         <option>{$value.apelido}</option>
                                         {/loop}
                                     </select>
@@ -85,7 +79,7 @@
                                     <label for="contacartao_despesa" class="form-label">Cartão</label>
                                     <select class="form-select" name="id_cartao" id="contacartao_despesa">
                                         <option value="">Opção cartão não utilizada</option>
-                                        {loop="$cartao"}
+                                        {loop="$dados['cartao']"}
                                         <option>{$value.apelido}</option>
                                         {/loop}
                                     </select>
@@ -94,7 +88,7 @@
                                 <div class="col-md-10 mb-3">
                                     <label for="categoria_despesa" class="form-label">Categoria</label>
                                     <select class="form-select" name="id_categoria" id="categoria_despesa" required>
-                                        {loop="$categoria"}
+                                        {loop="$dados['categoria']"}
                                         <option>{$value.descricao}</option>
                                         {/loop}
                                     </select>

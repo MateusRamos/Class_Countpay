@@ -243,7 +243,6 @@ class Carteira extends Model{
 			return NULL;
 		}
 	
-
 	}
 
 

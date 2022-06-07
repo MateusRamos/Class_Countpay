@@ -153,7 +153,7 @@ class Lancamento extends Model{
         // Contador que soma de 1 em 1 até ser menor que $parcela
         for ($i=1; $i < $parcela+1; $i++) {
 
-            $id_lancamento = Lancamento::criaParcelaReceita($id_usuario, $dados_lancamento, $array_id, $i);
+            $id_lancamento = Lancamento::criaParcela($id_usuario, $dados_lancamento, $array_id, $i);
 
             // quant recebe a quantidade de dias ou mês (depende da seleção do usuário) multiplicada pelo contador
             $tempoDaParcela = $quant * ($i-1);
@@ -210,7 +210,7 @@ class Lancamento extends Model{
 
 	//==================================================== CRIA PARCELA =====================================================//
 	//cria parcela x, com data igual a todas e colocação propria.
-	public static function criaParcelaReceita($id_usuario, $dados_lancamento, $array_id, $i)
+	public static function criaParcela($id_usuario, $dados_lancamento, $array_id, $i)
 	{
 
 		$sql = new Sql();
@@ -221,7 +221,7 @@ class Lancamento extends Model{
 			':DESCRICAO' => $dados_lancamento['descricao'],
 			':VALOR' => $dados_lancamento['valor'],
 			':PARCELA' => $i.' / '.$dados_lancamento['parcela'],
-			':DATA_LANCAMENTO' => $dados_lancamento['data_receita'],
+			':DATA_LANCAMENTO' => $dados_lancamento['data_lancamento'],
 			':FREQUENCIA' => $dados_lancamento['frequencia'],
 			':ID_CONTA' => $array_id['id_conta'],
 			':ID_CARTAO' => $array_id['id_cartao'],

@@ -1,4 +1,4 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Inicio do Conteúdo da Pagina -->
+<!-- Inicio do Conteúdo da Pagina -->
 <main id="main" class="main pb-0">
 
   <!-- Inicio Título da Pagina -->
@@ -27,6 +27,12 @@
               <form action="/lancamento/despesa/unica" method="post" class="row g-4 pt-4 pb-4 d-flex justify-content-center">
 
                 <div class="col-md-10">
+                  <label for="iduser" class="form-label visually-hidden">ID</label>
+                  <input type="text" class="form-control visually-hidden" id="iduser" name="id_usuario"
+                    value="{$usuario.id_usuario}">
+                </div>
+
+                <div class="col-md-10">
                   <label for="descricao_despesa" class="form-label">Descrição</label>
                   <input type="text" name="descricao" class="form-control" id="descricao_despesa" required>
                 </div>
@@ -38,7 +44,7 @@
 
                 <div class="col-md-4">
                   <label for="contacartao_despesa" class="form-label">Tipo Despesa</label>
-                  <select class="form-select" name="tipo_lancamento" id="contacartao_despesa" required>
+                  <select class="form-select" name="tipo_despesa" id="contacartao_despesa" required>
                     <option>Despesa</option>
                     <option>Despesa Fixa</option>
                   </select>
@@ -46,7 +52,7 @@
 
                 <div class="col-md-3">
                   <label for="data_despesa" class="form-label">Data da Despesa</label>
-                  <input type="date" name="data_lancamento" class="form-control" id="data_despesa" required>
+                  <input type="date" name="data_despesa" class="form-control" id="data_despesa" required>
                 </div>
 
 
@@ -54,9 +60,9 @@
                   <label for="conta_usuario" class="form-label">Conta</label>
                   <select class="form-select" name="id_conta" id="conta_usuario">
                     <option value="">Opção conta não utilizada</option>
-                    <?php $counter1=-1;  if( isset($dados['conta']) && ( is_array($dados['conta']) || $dados['conta'] instanceof Traversable ) && sizeof($dados['conta']) ) foreach( $dados['conta'] as $key1 => $value1 ){ $counter1++; ?>
-                    <option><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-                    <?php } ?>
+                    {loop="$conta"}
+                    <option>{$value.apelido}</option>
+                    {/loop}
                   </select>
                 </div>
 
@@ -65,9 +71,9 @@
                   <label for="cartao_usuario" class="form-label">Cartão</label>
                   <select class="form-select" name="id_cartao" id="cartao_usuario">
                     <option value="">Opção cartão não utilizada</option>
-                    <?php $counter1=-1;  if( isset($dados['cartao']) && ( is_array($dados['cartao']) || $dados['cartao'] instanceof Traversable ) && sizeof($dados['cartao']) ) foreach( $dados['cartao'] as $key1 => $value1 ){ $counter1++; ?>
-                    <option><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-                    <?php } ?>
+                    {loop="$cartao"}
+                    <option>{$value.apelido}</option>
+                    {/loop}
                   </select>
                 </div>
 
@@ -75,9 +81,9 @@
                 <div class="col-md-10 mb-3">
                   <label for="categoria_despesa" class="form-label">Categoria</label>
                   <select class="form-select" name="id_categoria" id="contacartao_despesa" required>
-                    <?php $counter1=-1;  if( isset($dados['categoria']) && ( is_array($dados['categoria']) || $dados['categoria'] instanceof Traversable ) && sizeof($dados['categoria']) ) foreach( $dados['categoria'] as $key1 => $value1 ){ $counter1++; ?>
-                    <option><?php echo htmlspecialchars( $value1["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-                    <?php } ?>
+                    {loop="$categoria"}
+                    <option>{$value.descricao}</option>
+                    {/loop}
                   </select>
                 </div>
 

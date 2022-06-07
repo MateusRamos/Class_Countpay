@@ -54,7 +54,7 @@ $app->post('/cartao/criar', function() {
     $id_instituicao = Carteira::buscaInstituicao($_POST);
     
     Carteira::criaCartao($_POST, $id_usuario, $id_instituicao);
-
+    
     header('Location: /cartao');
     exit; 
 

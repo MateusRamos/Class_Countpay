@@ -73,12 +73,12 @@ $app->post('/lancamento/despesa/unica', function() {
     $id_usuario = User::verifyLogin();
 
     $array_id = array(
-        "conta" => buscaConta($_POST['id_conta'], $id_usuario),
-        "cartao" => buscaCartao($_POST['id_cartao'], $id_usuario),
-        'categoria' => buscaCategoria($_POST['id_categoria'])
+        "id_conta" => Carteira::buscaConta($_POST['id_conta'], $id_usuario),
+        "id_cartao" => Carteira::buscaCartao($_POST['id_cartao'], $id_usuario),
+        'id_categoria' => Lancamento::buscaCategoria($_POST['id_categoria'])
     );
 
-    $result = criaLancamentoUnico($dados_lancamento, $array_id, $id_usuario);
+    $result = Lancamento::criaLancamentoUnico($_POST, $array_id, $id_usuario);
 
     if ($result > 0) {
 
@@ -121,23 +121,25 @@ $app->post('/lancamento/despesa/parcelado', function() {
     #$tipo_lancamento = $_POST['tipo_lancamento'];   ///mudar no front
     #$data_lancamento = $_POST['data_lancamento'];   ///mudar no front
 
+    $id_usuario = User::verifyLogin();
+
     // Consulta no banco de dados para a conversão de string recebido do front-end para o ID dos campos selecionados
-    $arrai_id = array (
+    $array_id = array (
         "id_usuario" => $id_usuario,
-        "resultado_conta" => buscaConta($_POST['id_conta'], $id_usuario),
-        "resultado_cartao" => buscaCartao($_POST['id_cartao'], $id_usuario),
-        'resultado_categoria' => buscaCategoria($_POST['id_categoria'])
+        "id_conta" => Carteira::buscaConta($_POST['id_conta'], $id_usuario),
+        "id_cartao" => Carteira::buscaCartao($_POST['id_cartao'], $id_usuario),
+        'id_categoria' => Lancamento::buscaCategoria($_POST['id_categoria'])
     );
 
     // Caso o valor de parcelas seja maior que 1 vai entrar na função
     if ($_POST['parcela'] > 1 ) {
 
         // Valor é dividido pelo numero de parcelas
-        $valor = ($valor / $parcela);
+        $_POST['valor'] = ($_POST['valor'] / $_POST['parcela']);
 
-        Lancamento::analisaFrequencia($_POST);
+        $quant = Lancamento::analisaFrequencia($_POST);
 
-        lancamentoParcelado($_POST, $id_usuario, $array_id, $quant);
+        Lancamento::lancamentoParcelado($_POST, $id_usuario, $array_id, $quant);
 
     } else { 
         
