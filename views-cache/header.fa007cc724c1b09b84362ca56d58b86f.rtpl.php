@@ -6,30 +6,31 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - Admin Countpay</title>
+  <title>Countpay</title>
 
   <!-- Icones utilizado no Projeto -->
-  <link href="../../res/admin/assets/img/favicon.png" rel="icon">
-  <link href="res/admin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../../res/site/assets/img/favicon.png" rel="icon">
+  <link href="../../res/site/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="../../res/admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../res/admin/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../../res/admin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="../../res/admin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="../../res/admin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="../../res/admin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="../../res/admin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link href="../../res/site/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../res/site/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../../res/site/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../../res/site/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="../../res/site/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="../../res/site/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../../res/site/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Icones de Bancos Brasileiros -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/matheusmcuba/icones-bancos-brasileiros@1.1/dist/all.css">
 
   <!-- Arquivo CSS do Countpay -->
-  <link href="../../res/admin/assets/css/style.css" rel="stylesheet">
+  <link href="../../res/site/assets/css/style.css" rel="stylesheet">
+
 
 </head>
 
@@ -41,7 +42,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <!-- Inicio Logo -->
       <a href="/" class="logo d-flex align-items-center">
-        <img src="../../res/admin/assets/img/logo.png" alt="">
+        <img src="../../res/site/assets/img/logo.png" alt="">
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>
@@ -74,7 +75,7 @@
 
           <!-- Inicio Perfil Imagem Icone -->
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="../../res/admin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="../../res/site/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">Lucas Heideric</span>
           </a>
           <!-- Fim Perfil Imagem Icone -->

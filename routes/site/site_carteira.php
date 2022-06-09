@@ -62,7 +62,7 @@ $app->post('/cartao/criar', function() {
 
 
 //-----------------------------------------------  GET - ALTERAR CARTÃO  ------------------------------------------------//
-$app->get('/cartao/:id_usuario', function($id_cartao) {
+$app->get('/cartao/:id_cartao', function($id_cartao) {      
     
     $page = new Page();
 
@@ -77,16 +77,15 @@ $app->get('/cartao/:id_usuario', function($id_cartao) {
         'instituicao'=>$instituicao
     ));  
     
-    
 });
 
 
 //==============================================  POST - ALTERAR CARTÃO  ================================================//
 $app->post('/cartao/alterar', function() {
     
-    $instituicao = Carteira::buscaInstituicao($_POST);
+    $id_instituicao = Carteira::buscaInstituicao($_POST);
 
-    Carteira::alteraCartao($_POST, $instituicao);
+    Carteira::alteraCartao($_POST, $id_instituicao);
 
     User::mostraMensagem('Alteração realizada com sucesso!', '/cartao');
     
@@ -164,7 +163,7 @@ $app->post('/conta/criar', function() {
 
 
 //-------------------------------------------------  GET - ALTERAR CONTA  -----------------------------------------------//
-$app->get('/conta/:id_usuario', function($id_conta) {
+$app->get('/conta/:id_conta', function($id_conta) {
 
     $page = new Page();
 

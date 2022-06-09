@@ -53,7 +53,9 @@ $app->post('/admin/usuario/criar', function() {
 //========================================  Post de alterar usuario do admin  ==========================================//
 $app->post('/admin/usuario/alterar', function() {
 
-    $verificaCad = User::alteraUsuario($_POST);
+    User::verifyLoginAdmin();
+
+    $verificaCad = User::verificaAlteracao($_POST);
 
     if($verificaCad == 1 )
     {

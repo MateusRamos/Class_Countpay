@@ -13,17 +13,6 @@ class Lancamento extends Model{
 	||												    																	 ||
 	//===========================================================|===========================================================*/
 
-	//================================================ Lista tipos de receita ===============================================//
-	public static function listaTipoReceita()
-	{
-
-		$sql = new Sql();
-
-		return $sql->select("SELECT descricao FROM tipo_receita WHERE id_tipo_receita < 3");
-
-	}
-
-
 	//=============================================== Lançamento Unico normal ===============================================//
 	public static function criaLancamentoUnico($dados_lancamento, $array_id, $id_usuario)
 	{
@@ -108,6 +97,16 @@ class Lancamento extends Model{
 	}
 
 
+	//================================================ Lista tipos de receita ===============================================//
+	public static function listaTipoReceita()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT descricao FROM tipo_receita WHERE id_tipo_receita < 3");
+
+	}
+	
 
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
@@ -153,7 +152,7 @@ class Lancamento extends Model{
         // Contador que soma de 1 em 1 até ser menor que $parcela
         for ($i=1; $i < $parcela+1; $i++) {
 
-            $id_lancamento = Lancamento::criaParcela($id_usuario, $dados_lancamento, $array_id, $i);
+            $id_lancamento = Lancamento::criaParcela($dados_lancamento, $array_id, $i);
 
             // quant recebe a quantidade de dias ou mês (depende da seleção do usuário) multiplicada pelo contador
             $tempoDaParcela = $quant * ($i-1);
@@ -210,13 +209,13 @@ class Lancamento extends Model{
 
 	//==================================================== CRIA PARCELA =====================================================//
 	//cria parcela x, com data igual a todas e colocação propria.
-	public static function criaParcela($id_usuario, $dados_lancamento, $array_id, $i)
+	public static function criaParcela($dados_lancamento, $array_id, $i)
 	{
 
 		$sql = new Sql();
 
 		$results = $sql->select("CALL sp_lancamento_parcelado(:ID_USUARIO, :TIPO_LANCAMENTO, :DESCRICAO, :VALOR, :PARCELA, :DATA_LANCAMENTO, :FREQUENCIA, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA)", array(
-			':ID_USUARIO' => $id_usuario,
+			':ID_USUARIO' => $array_id['id_usuario'],
 			':TIPO_LANCAMENTO' => $dados_lancamento['tipo_lancamento'],		//mudar no front
 			':DESCRICAO' => $dados_lancamento['descricao'],
 			':VALOR' => $dados_lancamento['valor'],

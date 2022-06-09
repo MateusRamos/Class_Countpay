@@ -49,7 +49,7 @@ class Carteira extends Model{
 
 
     //=================================================== ALTERA CARTÃO =====================================================//
-	public static function alteraCartao($dadosCartao, $instituicao)
+	public static function alteraCartao($dadosCartao, $id_instituicao)
 	{
 
 		$sql = new Sql();
@@ -60,7 +60,7 @@ class Carteira extends Model{
 			':TIPO_CARTAO'=>$dadosCartao['tipo_cartao'],
 			':VENCE_DIA'=>$dadosCartao['vence_dia'],
 			':LIMITE'=>$dadosCartao['limite'],
-			':ID_INSTITUICAO'=>$instituicao,
+			':ID_INSTITUICAO'=>$id_instituicao,
 		));
 
 	}
@@ -166,14 +166,13 @@ class Carteira extends Model{
 	{
 		$sql = new Sql();
 
-		$cartao = $sql->select(
+		return $sql->select(
 		"SELECT cartao.id_cartao, cartao.apelido, cartao.tipo_cartao, cartao.vence_dia, cartao.limite, instituicao.nome
 		FROM cartao
 		INNER JOIN instituicao ON instituicao.id_instituicao = cartao.id_instituicao AND cartao.id_usuario = :ID_USUARIO", array(
 			":ID_USUARIO"=>$id_usuario
 		));
-		
-		return $cartao;
+	
 	}
 
 
@@ -227,12 +226,12 @@ class Carteira extends Model{
 	//===========================================================|===========================================================*/
 
 	//===================================================== INSTITUIÇÃO =====================================================//
-	public static function buscaInstituicao($dadosCartao)
-	{
+	public static function buscaInstituicao($dados)
+	{	
 		$sql = new Sql();
 
 		$instituicao = $sql->select("SELECT id_instituicao FROM instituicao WHERE nome = :NOME", array(
-			":NOME"=>$dadosCartao['instituicao']
+			":NOME"=>$dados['instituicao']
 		));
 
 		// Verificação se os dados foi recebido, se sim realizar o armazenamento do id selecionado pelo usuário, caso não foi selecionado o campo fica vazio

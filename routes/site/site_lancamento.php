@@ -111,15 +111,11 @@ $app->get('/lancamento/despesa/parcelado', function() {
         "dados"=>$dados
     ));
 
-
 });
 
 
 //================================================  POST - DESPESA PARELADA  ============================================//
 $app->post('/lancamento/despesa/parcelado', function() {
-
-    #$tipo_lancamento = $_POST['tipo_lancamento'];   ///mudar no front
-    #$data_lancamento = $_POST['data_lancamento'];   ///mudar no front
 
     $id_usuario = User::verifyLogin();
 
@@ -182,13 +178,6 @@ $app->get('/lancamento/receita/unica', function() {     //MUDANÇA NO FRONT
         "conta"=> Carteira::listaApelidoConta($id_usuario),
         "cartao"=> Carteira::listaApelidoCartao($id_usuario)
     );
-
-   /*
-    $usuario = $sql->select("SELECT id_usuario FROM usuario WHERE id_usuario = :ID_USUARIO", array(":ID_USUARIO"=>$id_usuario)); 
-    $categoria = $sql->select("SELECT descricao FROM categoria ORDER BY descricao ASC");
-    $conta = $sql->select("SELECT apelido FROM conta WHERE id_usuario = :ID_USUARIO", array(":ID_USUARIO"=>$id_usuario));
-    $cartao = $sql->select("SELECT apelido FROM cartao WHERE id_usuario = :ID_USUARIO", array(":ID_USUARIO"=>$id_usuario));
-    */
 
     $page->setTpl("lancamento_receita_unica", array(
         "dados"=>$dados

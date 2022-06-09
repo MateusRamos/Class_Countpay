@@ -12,14 +12,14 @@ use \Countpay\Model\User;
 
 
 //==============================================  Rota do index do admin:  ==============================================//
-$app->get('/admin', function() {
+$app->get('/admin', function() {   //talvez mudar
 
     $sql = new Sql();
     $page = new PageAdmin();
   
     //Verificando se está logado:
     User::verifyLoginAdmin();
-
+    
     //Puxando os dados do banco para mostrar no Dashboard:
     $usuarioDados = $sql->select("SELECT quantidade_usuario FROM usuario_dados"); 
     $contaDados = $sql->select("SELECT quantidade_conta FROM conta_dados");
@@ -72,7 +72,7 @@ $app->get('/admin/usuario', function() {
     User::verifyLoginAdmin();
 
     //Puxando os dados dos usuarios do banco de dados:
-    $usuarios = User::ListaTodosUsuarios();
+    $usuarios = User::listaTodosUsuarios();
 
         
     $page->setTpl("lista_usuarios", array(

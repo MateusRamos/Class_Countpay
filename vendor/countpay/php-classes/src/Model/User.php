@@ -35,6 +35,8 @@ class User extends Model	{
 		{
 			header('Location: /admin/login');
 			exit;
+		} else {
+			return $_SESSION['usuario'];
 		}
 	}
 
@@ -48,6 +50,7 @@ class User extends Model	{
 		// Se existe algo no array, atribua as variaveis com o resultado dos array na posição.
 		if (!empty($resultado)) 
 		{
+			$id_usuario = $resultado[0]['id_usuario'];
 			$resultado_login = $resultado[0]['login'];
 			$resultado_senha = $resultado[0]['senha']; 
 			$resultado_tipo_usuario = $resultado[0]['id_tipo_usuario'];
@@ -59,7 +62,7 @@ class User extends Model	{
 		if ($resultado_login == $login && $resultado_senha == $senha && $resultado_tipo_usuario == 1) 
 		{
 			// ARMAZENA A SESSÃO SE O LOGIN SER EFETIVADO
-			$_SESSION['admin'] = $resultado_login;
+			$_SESSION['admin'] = $id_usuario;
 			header("Location: /admin");
 			exit;
 
@@ -110,13 +113,12 @@ class User extends Model	{
 	{
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT id_usuario, login, senha, id_tipo_usuario FROM usuario WHERE login = :LOGIN AND senha = :SENHA",
+		return $sql->select("SELECT id_usuario, login, senha, id_tipo_usuario FROM usuario WHERE login = :LOGIN AND senha = :SENHA",
 		array(
 			":LOGIN"=>$login,
 			":SENHA"=>$senha
 		));
 
-		return $results;
 	}
 
 
@@ -140,11 +142,11 @@ class User extends Model	{
 
 
 	//=======================  Função para verificar se foi alterado o imput do cadastro  ==============================//
-	public static function verificaAlteracao($userData)
+	public static function verificaAlteracao($userData) /////erro
 	{
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * FROM usuario WHERE id_usuario != :ID_USUARIO AND (email = :EMAIL OR login = :LOGIN) ", array(
+		$results = $sql->select("SELECT * FROM usuario WHERE id_usuario != :ID_USUARIO AND (email = :EMAIL OR login = :LOGIN)", array(
 			':EMAIL'=>$userData['email'],
 			':LOGIN'=>$userData['login'],
 			':ID_USUARIO'=>$userData['id_usuario']
@@ -178,13 +180,12 @@ class User extends Model	{
 	//===========================================================|===========================================================*/
 
 	//=========================================== Função listar todos os usuarios ===========================================//
-	public static function ListaTodosUsuarios()
+	public static function listaTodosUsuarios()
 	{
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT id_usuario, nome, sobrenome, email, data_nascimento, login FROM usuario ORDER BY id_usuario");
+		return $sql->select("SELECT id_usuario, nome, sobrenome, email, data_nascimento, login FROM usuario ORDER BY id_usuario");
 
-		return $results;
 	}
 
 
@@ -222,7 +223,7 @@ class User extends Model	{
 		$sql = new Sql();
 
 		// PASSANDO OS DADOS COLETADO PARA A STORED PROCEDURE E REALIZANDO A INSERÇÃO NO BANCO DE DADOS
-		$results = $sql->select("CALL sp_usuario_inserir(:NOME, :SOBRENOME, :EMAIL, :DATA_NASCIMENTO, :LOGIN, :SENHA, :ID_TIPO_USUARIO)", array(
+		return $sql->select("CALL sp_usuario_inserir(:NOME, :SOBRENOME, :EMAIL, :DATA_NASCIMENTO, :LOGIN, :SENHA, :ID_TIPO_USUARIO)", array(
 			':NOME'=>$UserDados['nome'],
 			':SOBRENOME'=>$UserDados['sobrenome'],
 			':EMAIL'=>$UserDados['email'],
@@ -231,8 +232,7 @@ class User extends Model	{
 			':SENHA'=>$UserDados['senha'],
 			':ID_TIPO_USUARIO'=> 2
 		));
-
-		return $results;
+		
 	}
 
 
