@@ -1,0 +1,36 @@
+
+Revisão de páginas:
+x   Login
+x   Cadastro
+x   Termos
+    Index
+    Perfil
+    Configurações da conta
+    Suporte Online
+    Contato
+    Projeções
+    Calendário
+    Minhas metas
+    Metas Detalhe
+    Meta - Guardando uma grana
+    Meta - Saindo do aperto
+    Relatórios
+    Contas
+    Criar conta
+    Alterar conta
+    Cartões
+    Criar Cartões
+    Alterar cartões
+    Despesa
+    Despesa única
+    Despesa Parcelada
+    Receita    
+    Receita Única
+    Receita Parcelada
+    Histórico Lancamento
+    Detalhes Receita (tentar separar)
+
+
+Leves:
+Página de erro 404;
+

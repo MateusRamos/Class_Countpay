@@ -1,7 +1,8 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Equipe <strong><span>Countpay</span></strong>
+            <div class="text-lg-center">&copy; Equipe<strong> Countpay 2022</strong></div>
+            <div class="text-lg-center"><small>Website built with NiceAdmin by BootstrapMade with Illustrations by Stories by Freepik.</small></p>
     </div>
   </footer><!-- End Footer -->
 

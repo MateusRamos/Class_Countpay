@@ -47,6 +47,7 @@ $app->post('/admin/usuario/criar', function() {
         User::mostraMensagem('Usuário cadastrado com sucesso!', '/admin/usuario');
         
     }
+
 });
 
 

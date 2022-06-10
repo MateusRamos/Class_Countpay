@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Login</title>
+  <title>Cadastro</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -38,12 +38,11 @@
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <div class="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-              <div class="d-flex justify-content-center py-4">
+              <div class="d-flex justify-content-center py-3">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <img src="../res/admin/assets/img/logo.png" alt="" style="max-height: 85px;
-                  ">
+                  <img src="/res/site/assets/img/logo.png" alt="" style="max-height: 100px;">
                 </a>
               </div><!-- End Logo -->
 
@@ -51,32 +50,61 @@
 
                 <div class="card-body">
 
-                  <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Faça login na sua conta</h5>
-                    <p class="text-center small">Digite seu nome de usuário e senha para entrar</p>
+                  <div class="pt-3 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Crie a sua conta aqui</h5>
                   </div>
 
-                  <form action="/login" method="post" class="row g-3 needs-validation" novalidate>
+                  <form action="/cadastro" method="post" class="row g-3 needs-validation" novalidate>
+                    <div class="col-6">
+                      <label for="nome_usuario" class="form-label">Nome</label>
+                      <input type="text" name="nome" class="form-control" id="nome_usuario" required>
+                      <div class="invalid-feedback">Por favor, digite seu nome!</div>
+                    </div>
 
-                    <div class="col-12">
-                      <label for="yourUsername" class="form-label">Login</label>
+                    <div class="col-6">
+                      <label for="sobrenome_usuario" class="form-label">Sobrenome</label>
+                      <input type="text" name="sobrenome" class="form-control" id="sobrenome_usuario" required>
+                      <div class="invalid-feedback">Por favor, digite seu nome!</div>
+                    </div>
+
+                    <div class="col-8">
+                      <label for="email_usuario" class="form-label">E-mail</label>
                       <div class="input-group has-validation">
-                        <input type="text" name="login" class="form-control" id="yourUsername" required>
-                        <div class="invalid-feedback">Por gentileza, digite o seu usuário.</div>
+                        <input type="email" name="email" class="form-control" id="email_usuario" required>
+                        <div class="invalid-feedback">Por favor, digite um e-mail válido!</div>
                       </div>
                     </div>
 
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Senha</label>
-                      <input type="password" name="senha" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Por gentileza, digite a sua senha.</div>
+                    <div class="col-md-4">
+                      <label for="data_nascimento_usuario" class="form-label">Data de nascimento</label>
+                      <input type="date" name="data_nascimento" class="form-control" id="data_nascimento_usuario" required>
+                      <div class="invalid-feedback">Por favor, digite sua data de nascimento!</div>
                     </div>
 
+                    <div class="col-6">
+                      <label for="login_usuario" class="form-label">Login</label>
+                      <input type="text" name="login" class="form-control" id="login_usuario" required>
+                      <div class="invalid-feedback">Por favor, digite seu login!</div>
+                    </div>
+
+                    <div class="col-6">
+                      <label for="senha_usuario" class="form-label">Senha</label>
+                      <input type="password" name="senha" class="form-control" id="senha_usuario" required>
+                      <div class="invalid-feedback">Por favor, digite sua senha!</div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
+                        <label class="form-check-label" for="acceptTerms">Eu concordo e aceito os <a href="/termos">termos e condições</a></label>
+                        <div class="invalid-feedback">Você deve aceitar os termos e condições para prosseguir!</div>
+                      </div>
+                    </div>
                     <div class="col-12 pt-4">
-                      <button class="btn btn-primary w-100" type="submit">Acessar</button>
+                      <button class="btn btn-primary w-100" type="submit">Criar Conta</button>
                     </div>
                     <div class="col-12 d-flex justify-content-center">
-                      <p class="small mb-0">Não tem conta? <a href="/cadastro">Inscreva-se aqui</a></p>
+                      <p class="small mb-0">Já tem uma conta? <a href="/login">Login</a></p>
                     </div>
                   </form>
 

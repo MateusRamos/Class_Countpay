@@ -34,6 +34,38 @@ $app->post('/login', function() {
     
 });
 
+
+//---------------------------------------------------  GET - CADASTRO  --------------------------------------------------//
+$app->get('/cadastro', function(){
+
+    $page = new Page([
+        "header"=>false,
+        "footer"=>false
+    ]);
+
+    $page->setTpl("cadastro");
+});
+
+
+//====================================================  POST - LOGIN  ===================================================//
+$app->post('/cadastro', function(){
+
+    $existeCadastro = User::verificaDadosCadastro($_POST);
+
+    if($existeCadastro == 0)
+    {
+        User::mostraMensagem('E-mail ou login já cadastrado, tente novamente!', '/cadastro');
+    } else {
+        
+        $dados_usuario = User::cadastraUsuario($_POST);
+
+        $_SESSION['usuario'] = $dados_usuario[0]['id_usuario'];
+        header("Location: /");
+        exit;
+        
+    }
+
+});
 //----------------------------------------------------  GET LOGOUT  -----------------------------------------------------// 
 $app->get('/sair', function() {
 
@@ -62,5 +94,17 @@ $app->get('/', function() {
 
 });
 
+
+//-----------------------------------------------------  GET - Termos S  ------------------------------------------------//
+$app->get('/termos', function() {
+
+    $page = new Page([
+        "header"=>false,
+        "footer"=>false
+    ]);
+
+    $page->setTpl("termos_condicoes");
+
+});
 
 ?>
