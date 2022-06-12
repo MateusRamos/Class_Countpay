@@ -48,7 +48,7 @@ $app->get('/cadastro', function(){
 });
 
 
-//====================================================  POST - LOGIN  ===================================================//
+//==================================================  POST - CADASTRO  ==================================================//
 $app->post('/cadastro', function(){
 
     $existeCadastro = User::verificaDadosCadastro($_POST);
@@ -96,7 +96,7 @@ $app->get('/', function() {
     Lancamento::verificaLancamentoFixo($id_usuario);
 
     $ultimos_lancamentos = Visual::listaUltimosLancamentos($id_usuario);
-   
+
     $page->setTpl("index", array(
         "dados"=>$ultimos_lancamentos
     ));
@@ -116,12 +116,6 @@ $app->get('/termos', function() {
 
 });
 
-
-/*===========================================================|===========================================================\\
-||											    																		 ||
-||										    	        Rotas index                                                      ||
-||												    																	 ||
-//===========================================================|===========================================================*/
 
 //----------------------------------------------------  GET - PERFIL  ---------------------------------------------------//
 $app->get('/perfil', function() {
@@ -157,6 +151,7 @@ $app->get('/mudar_senha', function() {
     $page->setTpl("mudar_senha");
 
 });
+
 
 $app->post('/mudar_senha', function() {
 

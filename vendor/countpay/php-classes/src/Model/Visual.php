@@ -78,16 +78,45 @@ class Visual extends Model	{
 		$results = $sql->select("SELECT descricao_lancamento, tipo_lancamento, valor, data_lancamento FROM lancamento 
 								WHERE fixo = 0 AND id_usuario = :ID_USUARIO AND data_lancamento < current_date()  
 								order by data_lancamento desc limit 6", array(
-								":ID_USUARIO"=>$id_usuario
+									":ID_USUARIO"=>$id_usuario
 								));
-		
-		foreach($results as $key => $value)
+
+		if(count($results) > 0)
 		{
-			$results[$key]['tempo'] = Visual::calculaTempoDia($results[$key]['data_lancamento']);
+			foreach($results as $key => $value)
+			{
+				$results[$key]['tempo'] = Visual::calculaTempoDia($results[$key]['data_lancamento']);
 
-            $results[$key]['cor'] = Visual::setCorLancamento($results[$key]['tipo_lancamento']);
+				$results[$key]['cor'] = Visual::setCorLancamento($results[$key]['tipo_lancamento']);
+			}
+
+			for($i=count($results); $i <= 5; $i++)
+			{
+				$results[$i]["descricao_lancamento"] = "Aguardando Lançamento";
+				$results[$i]["tipo_lancamento"] = "";
+				$results[$i]["valor"] = "";
+				$results[$i]["data_lancamento"] = "";
+				$results[$i]["tempo"] = "";
+				$results[$i]["cor"] = "";
+
+			}
+
 		}
+		else 
+		{
 
+			for($i=0; $i <= 5; $i++)
+			{
+				$results[$i]["descricao_lancamento"] = "Aguardando Lançamento";
+				$results[$i]["tipo_lancamento"] = "";
+				$results[$i]["valor"] = "";
+				$results[$i]["data_lancamento"] = "";
+				$results[$i]["tempo"] = "";
+				$results[$i]["cor"] = "";
+
+			}
+		}
+			
 		return $results;
 
 	}
