@@ -350,51 +350,62 @@
                         <div class="activity">
 
                             <div class="activity-item d-flex">
-                                <div class="activite-label">32 min</div>
-                                <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                                <div class="activite-label"><?php echo htmlspecialchars( $dados["0"]["tempo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
+                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["0"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
-                                    Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
+                                    <a href="#" class="link-dark">
+                                        <b><?php echo htmlspecialchars( $dados["0"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>:</b> <?php echo htmlspecialchars( $dados["0"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $dados["0"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                    </a>
                                 </div>
                             </div><!-- End activity item-->
 
                             <div class="activity-item d-flex">
-                                <div class="activite-label">56 min</div>
-                                <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
+                                <div class="activite-label"><?php echo htmlspecialchars( $dados["1"]["tempo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
+                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["1"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
-                                    Voluptatem blanditiis blanditiis eveniet
+                                    <a href="#" class="link-dark">
+                                        <b><?php echo htmlspecialchars( $dados["1"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>:</b> <?php echo htmlspecialchars( $dados["1"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $dados["1"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                    </a>
                                 </div>
                             </div><!-- End activity item-->
 
                             <div class="activity-item d-flex">
-                                <div class="activite-label">2 hrs</div>
-                                <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
+                                <div class="activite-label"><?php echo htmlspecialchars( $dados["2"]["tempo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
+                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["2"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
-                                    Voluptates corrupti molestias voluptatem
+                                    <a href="#" class="link-dark">
+                                        <b><?php echo htmlspecialchars( $dados["2"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>:</b> <?php echo htmlspecialchars( $dados["2"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $dados["2"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                    </a>
                                 </div>
                             </div><!-- End activity item-->
 
                             <div class="activity-item d-flex">
-                                <div class="activite-label">1 day</div>
-                                <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
+                                <div class="activite-label"><?php echo htmlspecialchars( $dados["3"]["tempo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
+                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["3"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
-                                    Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a>
-                                    tempore
+                                    <a href="#" class="link-dark">
+                                        <b><?php echo htmlspecialchars( $dados["3"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>:</b> <?php echo htmlspecialchars( $dados["3"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $dados["3"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                    </a>
                                 </div>
                             </div><!-- End activity item-->
 
                             <div class="activity-item d-flex">
-                                <div class="activite-label">2 days</div>
-                                <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
+                                <div class="activite-label"><?php echo htmlspecialchars( $dados["4"]["tempo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
+                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["4"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
-                                    Est sit eum reiciendis exercitationem
+                                    <a href="#" class="link-dark">
+                                        <b><?php echo htmlspecialchars( $dados["4"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>:</b> <?php echo htmlspecialchars( $dados["4"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $dados["4"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                    </a>
                                 </div>
                             </div><!-- End activity item-->
 
                             <div class="activity-item d-flex">
-                                <div class="activite-label">4 weeks</div>
-                                <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
+                                <div class="activite-label"><?php echo htmlspecialchars( $dados["5"]["tempo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
+                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["5"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
-                                    Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
+                                    <a href="#" class="link-dark">
+                                        <b><?php echo htmlspecialchars( $dados["5"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>:</b> <?php echo htmlspecialchars( $dados["5"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $dados["5"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                    </a>
                                 </div>
                             </div><!-- End activity item-->
 

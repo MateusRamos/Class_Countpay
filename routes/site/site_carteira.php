@@ -2,6 +2,7 @@
 use \Countpay\Page;
 use \Countpay\DB\Sql;
 use \Countpay\Model\User;
+use \Countpay\Model\Visual;
 use \Countpay\Model\Carteira;
 use \Countpay\Model\Lancamento;
 

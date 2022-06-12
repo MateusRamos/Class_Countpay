@@ -2,6 +2,8 @@
 use \Countpay\Page;
 use \Countpay\DB\Sql;
 use \Countpay\Model\User;
+use \Countpay\Model\Metas;
+use \Countpay\Model\Visual;
 use \Countpay\Model\Carteira;
 use \Countpay\Model\Lancamento;
 
@@ -202,6 +204,7 @@ $app->post('/lancamento/receita/unica', function() {
     $resultado = Lancamento::criaLancamentoUnico($_POST, $array_id, $id_usuario); 
 
     if ($resultado > 0) {
+
         User::mostraMensagem('Lançamento realizado com sucesso!','/lancamento/historico');
     } else {
         User::mostraMensagem('Algo deu errado! Tente novamente...','/lancamento/receita/unica');
@@ -250,7 +253,7 @@ $app->post('/lancamento/receita/parcelado', function() {
         $_POST['valor'] = ($_POST['valor'] / $_POST['parcela']);
 
         $quant = Lancamento::analisaFrequencia($_POST);
-
+        
         Lancamento::lancamentoParcelado($_POST, $id_usuario, $array_id, $quant);
 
     } else { 

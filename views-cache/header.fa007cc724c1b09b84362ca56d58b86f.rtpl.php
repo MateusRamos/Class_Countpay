@@ -101,9 +101,10 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="perfil.html">
+              <a class="dropdown-item d-flex align-items-center" href="/mudar_senha">
                 <i class="bi bi-gear"></i>
-                <span>Configurações da Conta</span>
+
+                <span>Mudar senha</span>
               </a>
             </li>
             <li>
@@ -231,7 +232,7 @@
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           
           <li>
-            <a href="nova_meta.html">
+            <a href="/metas">
               <i class="bx bxs-chevron-right"></i><span>Criar Nova Meta</span>
             </a>
           </li>
@@ -273,7 +274,7 @@
 
       <!-- Inicio Perfil -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="perfil.html">
+        <a class="nav-link collapsed" href="/perfil">
           <i class="bx bxs-id-card"></i>
           <span>Perfil</span>
         </a>

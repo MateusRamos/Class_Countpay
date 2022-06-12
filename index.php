@@ -24,6 +24,9 @@ require_once("routes\site\site_carteira.php");
 //Require rotas site - Lancamento:
 require_once("routes\site\site_lancamento.php");
 
+//Require rotas site - Metas:
+require_once("routes\site\site_meta.php");
+
 $app->run();
 
 ?>

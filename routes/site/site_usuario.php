@@ -2,6 +2,7 @@
 use \Countpay\Page;
 use \Countpay\DB\Sql;
 use \Countpay\Model\User;
+use \Countpay\Model\Visual;
 use \Countpay\Model\Carteira;
 use \Countpay\Model\Lancamento;
 
@@ -88,9 +89,15 @@ $app->get('/', function() {
 
     $page = new Page();
 
-    User::verifyLogin();
+    $id_usuario = User::verifyLogin();
 
-    $page->setTpl("index");
+    Lancamento::verificaLancamentoFixo($id_usuario);
+
+    $ultimos_lancamentos = Visual::listaUltimosLancamentos($id_usuario);
+   
+    $page->setTpl("index", array(
+        "dados"=>$ultimos_lancamentos
+    ));
 
 });
 
@@ -104,6 +111,67 @@ $app->get('/termos', function() {
     ]);
 
     $page->setTpl("termos_condicoes");
+
+});
+
+
+/*===========================================================|===========================================================\\
+||											    																		 ||
+||										    	        Rotas index                                                      ||
+||												    																	 ||
+//===========================================================|===========================================================*/
+
+//----------------------------------------------------  GET - PERFIL  ---------------------------------------------------//
+$app->get('/perfil', function() {
+
+    $page = new Page();
+
+    $id_usuario = User::verifyLogin();
+
+    $dados_perfil = User::carregaDadosPerfil($id_usuario);
+
+    $page->setTpl("perfil", array(
+        "dados"=>$dados_perfil[0]
+    ));
+
+});
+
+
+//===================================================  POST - PERFIL  ===================================================//
+$app->post('/perfil', function() {
+
+    $id_usuario = User::verifyLogin();
+
+
+});
+
+
+//-------------------------------------------------  GET - Mudar Senha  -------------------------------------------------//
+$app->get('/mudar_senha', function() {
+
+    $page = new Page();
+
+    User::verifyLogin();
+
+    $page->setTpl("mudar_senha");
+
+});
+
+$app->post('/mudar_senha', function() {
+
+    $id_usuario = User::verifyLogin();
+
+    $senha_atual = $_POST['senha_atual'];
+    $nova_senha = $_POST['nova_senha'];
+    $confirma_senha = $_POST['confirma_senha'];
+
+    if($nova_senha == $confirma_senha){
+        User::atualizaSenha($id_usuario, $nova_senha, $senha_atual);
+    }else{
+        User::mostraMensagem('As senhas devem coincidir!', '/mudar_senha');
+    }
+
+
 
 });
 

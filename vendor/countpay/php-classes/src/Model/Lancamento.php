@@ -23,11 +23,74 @@ class Lancamento extends Model{
 			':ID_USUARIO'=>$id_usuario,
 			':DESCRICAO'=>$dados_lancamento['descricao'],
 			':VALOR'=>$dados_lancamento['valor'],
-			':TIPO_LANCAMENTO'=>$dados_lancamento['tipo_lancamento'],				//mudar front
-			':DATA_LANCAMENTO'=>$dados_lancamento['data_lancamento'],				//mudar front
+			':TIPO_LANCAMENTO'=>$dados_lancamento['tipo_lancamento'],			
+			':DATA_LANCAMENTO'=>$dados_lancamento['data_lancamento'],			
 			':ID_CONTA'=>$array_id['id_conta'],
 			':ID_CARTAO'=>$array_id['id_cartao'],
 			':ID_CATEGORIA'=>$array_id['id_categoria']
+		));
+
+	}
+
+
+	//================================== verifica a necessidade de lançar lancamentos pendentes =============================//
+	public static function verificaLancamentoFixo($id_usuario)
+	{
+
+		$sql = new Sql();
+		
+		$results = $sql->select("SELECT * FROM lancamento WHERE data_lancamento < current_date() AND fixo = 1");
+
+		if(isset($results))
+		{
+			Lancamento::lancaLancamentoFixo($results);
+		}
+
+	}
+
+
+	//============================================= Percorre os lancamentos pendentes =======================================//
+	public static function lancaLancamentoFixo($lancamentos)
+	{
+
+		foreach($lancamentos as $key => $value)
+		{
+			Lancamento::criaLancamentoFuturo($lancamentos[$key]);
+
+			Lancamento::modificaFixoLancamento($lancamentos[$key]);
+		}
+
+	}
+
+
+	public static function criaLancamentoFuturo($dados_lancamento)
+	{
+
+		$sql = new Sql();
+
+		$sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_cartao, id_categoria, fixo)
+						 VALUES (:DESCRICAO, :TIPO_LANCAMENTO, :VALOR, date_add(:DATA_LANCAMENTO, interval 1 month), :ID_USUARIO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :FIXO)", array(
+							":DESCRICAO"=>$dados_lancamento['descricao_lancamento'],
+							":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
+							":VALOR"=>$dados_lancamento['valor'],
+							":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
+							":ID_USUARIO"=>$dados_lancamento['id_usuario'],
+							":ID_CONTA"=>$dados_lancamento['id_conta'],
+							":ID_CARTAO"=>$dados_lancamento['id_cartao'],
+							":ID_CATEGORIA"=>$dados_lancamento['id_categoria'],
+							":FIXO"=>$dados_lancamento['fixo']
+						 ));
+
+	}
+
+
+	public static function modificaFixoLancamento($dados_lancamento)
+	{
+
+		$sql = new Sql();
+
+		$sql->execQuery("UPDATE lancamento SET fixo = 0 WHERE id_lancamento = :ID_LANCAMENTO", array(
+			":ID_LANCAMENTO"=>$dados_lancamento['id_lancamento']
 		));
 
 	}
@@ -37,7 +100,6 @@ class Lancamento extends Model{
 	||										          FUNÇÕES TRANSFERÊNCIA                                                  ||
 	||												    																	 ||
 	//===========================================================|===========================================================*/
-
 
 
 	/*===========================================================|===========================================================\\
@@ -106,7 +168,7 @@ class Lancamento extends Model{
 		return $sql->select("SELECT descricao FROM tipo_receita WHERE id_tipo_receita < 3");
 
 	}
-	
+
 
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
@@ -216,7 +278,7 @@ class Lancamento extends Model{
 
 		$results = $sql->select("CALL sp_lancamento_parcelado(:ID_USUARIO, :TIPO_LANCAMENTO, :DESCRICAO, :VALOR, :PARCELA, :DATA_LANCAMENTO, :FREQUENCIA, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA)", array(
 			':ID_USUARIO' => $array_id['id_usuario'],
-			':TIPO_LANCAMENTO' => $dados_lancamento['tipo_lancamento'],		//mudar no front
+			':TIPO_LANCAMENTO' => $dados_lancamento['tipo_lancamento'],
 			':DESCRICAO' => $dados_lancamento['descricao'],
 			':VALOR' => $dados_lancamento['valor'],
 			':PARCELA' => $i.' / '.$dados_lancamento['parcela'],

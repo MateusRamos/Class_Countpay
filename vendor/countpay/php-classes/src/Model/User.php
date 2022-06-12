@@ -211,6 +211,22 @@ class User extends Model	{
 	}
 
 
+	//================================== Função para buscar dados do perfil pelo id_usuario =================================//
+	public static function carregaDadosPerfil($id_usuario)
+	{
+
+		$sql = new Sql();
+
+		return $sql->select(
+			"SELECT usuario.nome, usuario.sobrenome, usuario.email, usuario_perfil.* 
+			FROM usuario_perfil 
+			INNER JOIN usuario ON usuario.id_usuario = :ID_USUARIO AND usuario_perfil.id_usuario = :ID_USUARIO", array(
+			":ID_USUARIO"=>$id_usuario
+		));
+		
+	}
+
+
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
 	||										            Funções de Inserção                                                  ||
@@ -262,6 +278,27 @@ class User extends Model	{
 	}
 
 
+	public static function atualizaSenha($id_usuario, $nova_senha, $senha_atual)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT senha FROM usuario WHERE id_usuario = :ID_USUARIO", array(
+			":ID_USUARIO"=>$id_usuario
+		));
+
+		if($senha_atual == $results[0]['senha']){
+			$sql->execQuery("UPDATE usuario SET senha = :SENHA WHERE id_usuario = :ID_USUARIO", array(
+				":ID_USUARIO"=>$id_usuario,
+				":SENHA"=>$nova_senha
+			));
+			User::mostraMensagem('Senha alterada com sucesso!','/');
+		}else{
+			User::mostraMensagem('A senha atual está incorreta!','/mudar_senha');
+		}
+
+	}
+
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
 	||										            Funções de Exclusão                                                  ||
@@ -277,6 +314,10 @@ class User extends Model	{
 			":ID_USUARIO"=>$id_usuario
 		));
 	}
+
+
+
+
 
 	
 }

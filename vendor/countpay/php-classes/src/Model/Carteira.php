@@ -182,14 +182,13 @@ class Carteira extends Model{
 		$sql = new Sql();
 
 		// Select com os campos coletados do frente e verificando se existe no banco de dados
-		$contas = $sql->select( 
+		return $sql->select( 
 			"SELECT conta.id_conta, conta.apelido, instituicao.nome, conta.tipo_conta, conta.saldo
 			FROM conta
 			INNER JOIN instituicao ON instituicao.id_instituicao = conta.id_instituicao AND conta.id_usuario = :ID_USUARIO", array(
 				":ID_USUARIO"=>$id_usuario
 		));
 		
-		return $contas;
 	}
 
 
