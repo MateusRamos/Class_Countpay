@@ -138,6 +138,16 @@ $app->post('/perfil', function() {
 
     $id_usuario = User::verifyLogin();
 
+    $verificando = User::verificaDadosPerfil($id_usuario);
+
+    if($verificando == 0){
+        User::alteraDadoPerfil($id_usuario, $_POST);
+        Visual::mostraMensagem('Perfil de usuario alterado com sucesso!!!!', '/perfil');
+    }else{
+        User::insereDadoPerfil($id_usuario, $_POST);
+        Visual::mostraMensagem('Perfil de usuário criado com sucesso!', '/perfil');
+    }
+
 });
 
 
@@ -170,5 +180,6 @@ $app->post('/mudar_senha', function() {
 
 
 });
+
 
 ?>

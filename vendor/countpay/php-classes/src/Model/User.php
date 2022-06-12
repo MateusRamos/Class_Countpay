@@ -165,6 +165,28 @@ class User extends Model	{
 		}
 	}
 
+	//=======================  Função para verificar se houve alteração nos dados do perfil ==============================//
+
+	public static function verificaDadosPerfil($id_usuario)
+	{
+
+		$sql = new Sql();
+
+		$result = $sql->select("SELECT usuario.nome, usuario.sobrenome, usuario.email, usuario_perfil.* 
+								FROM usuario_perfil 
+								INNER JOIN usuario ON usuario.id_usuario = :ID_USUARIO AND usuario_perfil.id_usuario = :ID_USUARIO", array(
+									":ID_USUARIO"=>$id_usuario
+								));
+		
+		if(count($result) > 0){
+			return 0;
+		}					
+		else{
+			return 1;
+		}
+
+	}
+
 
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
@@ -211,14 +233,74 @@ class User extends Model	{
 
 		$sql = new Sql();
 
-		return $sql->select(
+		$results = $sql->select(
 			"SELECT usuario.nome, usuario.sobrenome, usuario.email, usuario_perfil.* 
 			FROM usuario_perfil 
 			INNER JOIN usuario ON usuario.id_usuario = :ID_USUARIO AND usuario_perfil.id_usuario = :ID_USUARIO", array(
 			":ID_USUARIO"=>$id_usuario
 		));
+		 
+		if(count($results) > 0 ){
+			return $results;
+
+		}
+		else{
+
+			$receber_dados = User::buscaPorId($id_usuario);
+
+			$results[0]["nome"] = $receber_dados['nome'];
+			$results[0]["sobrenome"] = $receber_dados['sobrenome'];
+			$results[0]["email"] = $receber_dados['email'];
+
+			$results[0]["ocupacao"] = '';
+			$results[0]["pais"] = '';
+			$results[0]["cidade"] = '';
+			$results[0]["endereco"] = '';
+			$results[0]["telefone"] = '';
+			$results[0]["sobre_mim"] = '';
+			$results[0]["twitter"] = '';
+			$results[0]["linkedin"] = '';
+			$results[0]["facebook"] = '';
+			$results[0]["instagram"] = '';
+		}
+
+		return $results;
 		
 	}
+
+
+	public static function alteraDadoPerfil($id_usuario, $dado_perfil)
+	{
+
+		$sql = new Sql();
+
+		$sql->execQuery("UPDATE usuario_perfil 
+						SET ocupacao = :OCUPACAO, pais = :PAIS, cidade = :CIDADE, endereco = :ENDERECO, telefone = :TELEFONE, 
+							sobre_mim = :SOBRE_MIM, twitter = :TWITTER, linkedin = :LINKEDIN, facebook = :FACEBOOK, instagram = :INSTAGRAM	
+						WHERE id_usuario = :ID_USUARIO", array(
+							":ID_USUARIO" => $id_usuario,
+							":OCUPACAO" => $dado_perfil["ocupacao"],
+							":PAIS" => $dado_perfil["pais"],
+							":CIDADE" => $dado_perfil["cidade"],
+							":ENDERECO" => $dado_perfil["endereco"],
+							":TELEFONE" => $dado_perfil["telefone"],
+							":SOBRE_MIM" => $dado_perfil["sobre_mim"],
+							":TWITTER" => $dado_perfil["twitter"],
+							":LINKEDIN" => $dado_perfil["linkedin"],
+							":FACEBOOK" => $dado_perfil["facebook"],
+							":INSTAGRAM" => $dado_perfil["instagram"],
+						));
+
+		$sql->execQuery("UPDATE usuario	
+						 SET	nome = :NOME, sobrenome = :SOBRENOME, email = :EMAIL			
+						 WHERE id_usuario = :ID_USUARIO", array(
+							":ID_USUARIO" => $id_usuario,
+							":NOME" => $dado_perfil["nome"],
+							":SOBRENOME" => $dado_perfil["sobrenome"],
+							":EMAIL" => $dado_perfil["email"]
+						 ));
+
+	}	
 
 
 	/*===========================================================|===========================================================\\
@@ -243,6 +325,37 @@ class User extends Model	{
 			':ID_TIPO_USUARIO'=> 2
 		));
 		
+	}
+
+
+	public static function insereDadoPerfil($id_usuario, $dado_perfil)
+	{
+
+		$sql = new Sql();
+		$sql->execQuery("INSERT INTO usuario_perfil (id_usuario, ocupacao, pais, cidade, endereco, telefone, sobre_mim, twitter, linkedin, facebook, instagram)
+						 VALUES (:ID_USUARIO, :OCUPACAO, :PAIS, :CIDADE, :ENDERECO, :TELEFONE, :SOBRE_MIM, :TWITTER, :LINKEDIN, :FACEBOOK, :INSTAGRAM)",array(
+							":ID_USUARIO" => $id_usuario,
+							":OCUPACAO" => $dado_perfil["ocupacao"],
+							":PAIS" => $dado_perfil["pais"],
+							":CIDADE" => $dado_perfil["cidade"],
+							":ENDERECO" => $dado_perfil["endereco"],
+							":TELEFONE" => $dado_perfil["telefone"],
+							":SOBRE_MIM" => $dado_perfil["sobre_mim"],
+							":TWITTER" => $dado_perfil["twitter"],
+							":LINKEDIN" => $dado_perfil["linkedin"],
+							":FACEBOOK" => $dado_perfil["facebook"],
+							":INSTAGRAM" => $dado_perfil["instagram"],
+						 ));
+		
+		$sql->execQuery("UPDATE usuario	
+						 SET	nome = :NOME, sobrenome = :SOBRENOME, email = :EMAIL			
+						 WHERE id_usuario = :ID_USUARIO", array(
+							":ID_USUARIO" => $id_usuario,
+							":NOME" => $dado_perfil["nome"],
+							":SOBRENOME" => $dado_perfil["sobrenome"],
+							":EMAIL" => $dado_perfil["email"]
+						));
+
 	}
 
 
