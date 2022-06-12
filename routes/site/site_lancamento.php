@@ -84,11 +84,11 @@ $app->post('/lancamento/despesa/unica', function() {
 
     if ($result > 0) {
 
-        User::mostraMensagem('Lançamento realizado com sucesso!', '/lancamento/historico');
+        Visual::mostraMensagem('Lançamento realizado com sucesso!', '/lancamento/historico');
 
     } else {
 
-        User::mostraMensagem('Algo deu errado! Tente novamente...', '/lancamento/despesa/unica');
+        Visual::mostraMensagem('Algo deu errado! Tente novamente...', '/lancamento/despesa/unica');
 
     }
 
@@ -145,7 +145,7 @@ $app->post('/lancamento/despesa/parcelado', function() {
 
     }
 
-    User::mostraMensagem('Lançamento realizada com sucesso!','/lancamento/historico');
+    Visual::mostraMensagem('Lançamento realizada com sucesso!','/lancamento/historico');
 
 });
 
@@ -205,9 +205,9 @@ $app->post('/lancamento/receita/unica', function() {
 
     if ($resultado > 0) {
 
-        User::mostraMensagem('Lançamento realizado com sucesso!','/lancamento/historico');
+        Visual::mostraMensagem('Lançamento realizado com sucesso!','/lancamento/historico');
     } else {
-        User::mostraMensagem('Algo deu errado! Tente novamente...','/lancamento/receita/unica');
+        Visual::mostraMensagem('Algo deu errado! Tente novamente...','/lancamento/receita/unica');
     }
 
 });
@@ -264,7 +264,7 @@ $app->post('/lancamento/receita/parcelado', function() {
 
     }
 
-    User::mostraMensagem('Lançamento realizado com sucesso!', '/lancamento/historico');
+    Visual::mostraMensagem('Lançamento realizado com sucesso!', '/lancamento/historico');
 
 });
 

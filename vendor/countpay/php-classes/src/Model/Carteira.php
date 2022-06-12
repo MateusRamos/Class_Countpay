@@ -13,22 +13,6 @@ class Carteira extends Model{
 	||										    	      FUNÇÕES CARTÃO                                                     ||
 	||												    																	 ||
 	//===========================================================|===========================================================*/
-
-    //============================================= CARREGA DADOS PARA O FORM ===============================================//
-    public static function carregaDadosCartao($id_cartao) 
-	{
-        
-        $sql = new Sql();
-
-        $results = $sql->select("SELECT id_cartao, apelido, tipo_cartao, vence_dia, limite, id_instituicao FROM cartao WHERE id_cartao = :ID_CARTAO",
-        array(
-            ":ID_CARTAO"=>$id_cartao
-        ));
-
-        return $results[0];
-
-    }
-
 	
     //==================================================== CRIAR CARTÃO =====================================================//
 	public static function criaCartao($dadosCartao, $id_usuario, $id_instituicao)
@@ -65,6 +49,7 @@ class Carteira extends Model{
 
 	}
 
+
     //=================================================== EXCLUI CARTÃO =====================================================//
 	public static function deletaCartao($id_cartao)
 	{
@@ -75,26 +60,13 @@ class Carteira extends Model{
 	
 	}
 
-
+	
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
 	||										    	       FUNÇÕES CONTA                                                     ||
 	||												    																	 ||
 	//===========================================================|===========================================================*/
 
-    //================================================ CARREGA DADOS PARA O FORM =============================================//
-	public static function carregaDadosConta($id_conta)
-	{
-
-		$sql = new Sql();
-
-		$results = $sql->select("SELECT id_conta, apelido, tipo_conta, saldo, id_instituicao  FROM conta WHERE id_conta = :ID_CONTA",
-		array(
-			":ID_CONTA"=>$id_conta
-		));
-
-		return $results;
-	}
 
 
     //====================================================== CRIAR CONTA =====================================================//
@@ -151,19 +123,10 @@ class Carteira extends Model{
 	||												    																	 ||
 	//===========================================================|===========================================================*/
 
-	//===================================================== INSTITUIÇÃO =====================================================//
-	public static function listaInstituicao()
-	{
-		$sql = new Sql();
-
-		return $sql->select("SELECT nome FROM instituicao ORDER BY id_instituicao ASC, nome ASC");
-
-	}
-
-
 	//======================================================== CARTAO ======================================================//
 	public static function listaCartao($id_usuario)
 	{
+
 		$sql = new Sql();
 
 		return $sql->select(
@@ -179,6 +142,7 @@ class Carteira extends Model{
 	//======================================================== CONTA =======================================================//
 	public static function listaConta($id_usuario)
 	{
+
 		$sql = new Sql();
 
 		// Select com os campos coletados do frente e verificando se existe no banco de dados
@@ -190,7 +154,7 @@ class Carteira extends Model{
 		));
 		
 	}
-
+	
 
 	//================================================ CONTA - APELIDO SELECT ==============================================//
 	public static function listaApelidoCartao($id_usuario)
@@ -217,49 +181,36 @@ class Carteira extends Model{
 
 	}
 
-
-	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										     FUNÇÕES DE CONVERSÃO STRING -> ID                                           ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
-
-	//===================================================== INSTITUIÇÃO =====================================================//
-	public static function buscaInstituicao($dados)
-	{	
-		$sql = new Sql();
-
-		$instituicao = $sql->select("SELECT id_instituicao FROM instituicao WHERE nome = :NOME", array(
-			":NOME"=>$dados['instituicao']
-		));
-
-		// Verificação se os dados foi recebido, se sim realizar o armazenamento do id selecionado pelo usuário, caso não foi selecionado o campo fica vazio
-		if (!empty($instituicao))
-		{
-			return $instituicao[0]['id_instituicao'];
-		} else {
-			return NULL;
-		}
 	
-	}
-
-
-	//======================================================== CONTA =======================================================//
-	public static function buscaConta($apelidoConta, $id_usuario)
+	//===================================================== INSTITUIÇÃO =====================================================//
+	public static function listaInstituicao()
 	{
 
 		$sql = new Sql();
 
-		$id_conta = $sql->select("SELECT id_conta FROM conta WHERE apelido = :APELIDO AND id_usuario = :ID_USUARIO", array (
-		":APELIDO"=>$apelidoConta,
-		':ID_USUARIO'=>$id_usuario
+		return $sql->select("SELECT nome FROM instituicao ORDER BY id_instituicao ASC, nome ASC");
+
+	}
+
+
+	/*===========================================================|===========================================================\\
+	||											    																		 ||
+	||										         FUNÇÕES DE BUSCA/ALTERAÇÃO                                              ||
+	||												    																	 ||
+	//===========================================================|===========================================================*/
+
+	//============================================= CARREGA DADOS PARA O FORM ===============================================//
+	public static function carregaDadosCartao($id_cartao) 
+	{
+		
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT id_cartao, apelido, tipo_cartao, vence_dia, limite, id_instituicao FROM cartao WHERE id_cartao = :ID_CARTAO",
+		array(
+			":ID_CARTAO"=>$id_cartao
 		));
 
-		if (!empty($id_conta)){
-			return $id_conta[0]['id_conta'];
-		} else {
-			return NULL;
-		}	
+		return $results[0];
 
 	}
 
@@ -283,7 +234,69 @@ class Carteira extends Model{
 
 	}
 
+
+	//================================================ CARREGA DADOS PARA O FORM =============================================//
+	public static function carregaDadosConta($id_conta)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT id_conta, apelido, tipo_conta, saldo, id_instituicao  FROM conta WHERE id_conta = :ID_CONTA",
+		array(
+			":ID_CONTA"=>$id_conta
+		));
+
+		return $results;
+
+	}
+
+
+	//======================================================== CONTA =======================================================//
+	public static function buscaConta($apelidoConta, $id_usuario)
+	{
+
+		$sql = new Sql();
+
+		$id_conta = $sql->select("SELECT id_conta FROM conta WHERE apelido = :APELIDO AND id_usuario = :ID_USUARIO", array (
+		":APELIDO"=>$apelidoConta,
+		':ID_USUARIO'=>$id_usuario
+		));
+
+		if (!empty($id_conta)){
+			return $id_conta[0]['id_conta'];
+		} else {
+			return NULL;
+		}	
+
+	}
+
 	
+	//===================================================== INSTITUIÇÃO =====================================================//
+	public static function buscaInstituicao($dados)
+	{	
+		$sql = new Sql();
+
+		$instituicao = $sql->select("SELECT id_instituicao FROM instituicao WHERE nome = :NOME", array(
+			":NOME"=>$dados['instituicao']
+		));
+
+		// Verificação se os dados foi recebido, se sim realizar o armazenamento do id selecionado pelo usuário, caso não foi selecionado o campo fica vazio
+		if (!empty($instituicao))
+		{
+			return $instituicao[0]['id_instituicao'];
+		} else {
+			return NULL;
+		}
+	
+	}
+	
+
+
+
+
+
+
+
 
 }
 ?>

@@ -88,7 +88,7 @@ $app->post('/cartao/alterar', function() {
 
     Carteira::alteraCartao($_POST, $id_instituicao);
 
-    User::mostraMensagem('Alteração realizada com sucesso!', '/cartao');
+    Visual::mostraMensagem('Alteração realizada com sucesso!', '/cartao');
     
 });
 
@@ -100,7 +100,7 @@ $app->get('/cartao/:id_cartao/delete', function($id_cartao) {
 
     Carteira::deletaCartao($id_cartao);
 
-    User::mostraMensagem('Cartão excluído com sucesso!','/conta');
+    Visual::mostraMensagem('Cartão excluído com sucesso!','/conta');
 
 });
 
@@ -189,7 +189,7 @@ $app->post('/conta/alterar', function() {       //Erro front
 
     Carteira::alteraConta($_POST, $instituicao);
 
-    User::mostraMensagem('Alteração realizada com sucesso!', '/conta');
+    Visual::mostraMensagem('Alteração realizada com sucesso!', '/conta');
 
 });
 
@@ -202,7 +202,7 @@ $app->get('/conta/:id_conta/delete', function($id_conta) {
 
     Carteira::deletaConta($id_conta);
 
-    User::mostraMensagem('Conta excluída com sucesso!','/conta');
+    Visual::mostraMensagem('Conta excluída com sucesso!','/conta');
 
 });
 

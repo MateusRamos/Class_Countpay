@@ -9,7 +9,7 @@ class Lancamento extends Model{
 
     /*===========================================================|===========================================================\\
 	||											    																		 ||
-	||										    	     FUNÇÕES LANCAMENTO                                                  ||
+	||										    	   FUNÇÕES LANÇAMENTO ÚNICO                                              ||
 	||												    																	 ||
 	//===========================================================|===========================================================*/
 
@@ -32,6 +32,12 @@ class Lancamento extends Model{
 
 	}
 
+
+    /*===========================================================|===========================================================\\
+	||											    																		 ||
+	||										    	   FUNÇÕES LANÇAMENTO FIXO                                               ||
+	||												    																	 ||
+	//===========================================================|===========================================================*/
 
 	//================================== verifica a necessidade de lançar lancamentos pendentes =============================//
 	public static function verificaLancamentoFixo($id_usuario)
@@ -63,6 +69,7 @@ class Lancamento extends Model{
 	}
 
 
+	//===================================== Cria novo lançamento pendente pra daqui a 1 mês =================================//
 	public static function criaLancamentoFuturo($dados_lancamento)
 	{
 
@@ -84,6 +91,7 @@ class Lancamento extends Model{
 	}
 
 
+	//====================================== Altera fixo = 0 no lançamento fixo observado ===================================//
 	public static function modificaFixoLancamento($dados_lancamento)
 	{
 
@@ -95,112 +103,10 @@ class Lancamento extends Model{
 
 	}
 
-    /*===========================================================|===========================================================\\
+
+   	/*===========================================================|===========================================================\\
 	||											    																		 ||
-	||										          FUNÇÕES TRANSFERÊNCIA                                                  ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
-
-
-	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										    	    FUNÇÕES DE LISTAGEM                                                  ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
-
-	//============================================= Lista todos os lançamentos ==============================================//
-    public static function listaLancamentos($id_usuario)
-    {
-        $sql = new Sql();
-
-        // Select dos dados usado para gerar o histórico de lançamento
-        return $sql->select("SELECT lancamento.descricao_lancamento, lancamento.tipo_lancamento, lancamento.valor, categoria.descricao, lancamento.data_lancamento, IF(conta.apelido <> NULL, NULL, conta.apelido) 'conta', cartao.apelido 'cartao', lancamento.quantidade_parcelas, lancamento.frequencia
-        FROM lancamento															
-        INNER JOIN categoria ON lancamento.id_categoria = categoria.id_categoria AND lancamento.id_usuario = :ID_USUARIO
-        LEFT OUTER JOIN cartao ON lancamento.id_cartao = cartao.id_cartao
-        LEFT OUTER JOIN conta ON lancamento.id_conta = conta.id_conta ORDER BY id_lancamento ASC" ,
-        array(
-            ":ID_USUARIO"=>$id_usuario
-        ));
-    
-    }
-
-
-	//============================================== Lista todas as categorias ==============================================//
-	public static function listaCategoria()				//Talvez esteja errado
-	{
-
-		$sql = new Sql();
-
-		return $sql->select("SELECT descricao FROM categoria ORDER BY descricao ASC");
-
-
-	}
-
-
-	//============================================== Lista todas as categorias ==============================================//
-	public static function listaCategoriaDespesa()
-	{
-		$sql = new Sql();
-
-		return $sql->select("SELECT descricao FROM categoria WHERE id_categoria > 4 ORDER BY id_categoria ASC");
-		
-	}
-
-
-	//============================================= Lista todas as frequencias ==============================================//
-	public static function listaFrequencia()
-	{
-
-		$sql = new Sql();
-
-		return $sql->select("SELECT descricao FROM frequencia");
-
-	}
-
-
-	//================================================ Lista tipos de receita ===============================================//
-	public static function listaTipoReceita()
-	{
-
-		$sql = new Sql();
-
-		return $sql->select("SELECT descricao FROM tipo_receita WHERE id_tipo_receita < 3");
-
-	}
-
-
-	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										    	      FUNÇÕES DE BUSCA                                                   ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
-
-	//============================================= string -> ID | Categoria ==============================================//
-	public static function buscaCategoria($apelidoCategoria)
-	{
-
-		$sql = new Sql();
-
-		$id_categoria =  $sql->select("SELECT id_categoria FROM categoria WHERE descricao = :DESCRICAO", array (
-		":DESCRICAO"=>$apelidoCategoria
-		));
-
-		if (!empty($id_categoria)){
-			return $id_categoria[0]['id_categoria'];
-		} else {
-			return NULL;
-		}
-
-	}
-
-
-
-	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||											    	  SEÇÃO DE FUNÇÕES												     ||
-	||											    			DE															 ||
-	||										    	    LANÇAMENTO PARCELADO                         						 ||
+	||										    	 FUNÇÕES LANÇAMENTO PARCELADO                                            ||
 	||												    																	 ||
 	//===========================================================|===========================================================*/
 
@@ -328,7 +234,101 @@ class Lancamento extends Model{
 	}
 
 
-	//
+    /*===========================================================|===========================================================\\
+	||											    																		 ||
+	||										          FUNÇÕES BUSCA/ALTERAÇÃO                                                ||
+	||												    																	 ||
+	//===========================================================|===========================================================*/
+
+	//============================================= string -> ID | Categoria ==============================================//
+	public static function buscaCategoria($apelidoCategoria)
+	{
+
+		$sql = new Sql();
+
+		$id_categoria =  $sql->select("SELECT id_categoria FROM categoria WHERE descricao = :DESCRICAO", array (
+		":DESCRICAO"=>$apelidoCategoria
+		));
+
+		if (!empty($id_categoria)){
+			return $id_categoria[0]['id_categoria'];
+		} else {
+			return NULL;
+		}
+
+	}
+
+
+	/*===========================================================|===========================================================\\
+	||											    																		 ||
+	||										    	    FUNÇÕES DE LISTAGEM                                                  ||
+	||												    																	 ||
+	//===========================================================|===========================================================*/
+
+	//============================================= Lista todos os lançamentos ==============================================//
+    public static function listaLancamentos($id_usuario)
+    {
+        $sql = new Sql();
+
+        // Select dos dados usado para gerar o histórico de lançamento
+        return $sql->select("SELECT lancamento.descricao_lancamento, lancamento.tipo_lancamento, lancamento.valor, categoria.descricao, lancamento.data_lancamento, IF(conta.apelido <> NULL, NULL, conta.apelido) 'conta', cartao.apelido 'cartao', lancamento.quantidade_parcelas, lancamento.frequencia
+        FROM lancamento															
+        INNER JOIN categoria ON lancamento.id_categoria = categoria.id_categoria AND lancamento.id_usuario = :ID_USUARIO
+        LEFT OUTER JOIN cartao ON lancamento.id_cartao = cartao.id_cartao
+        LEFT OUTER JOIN conta ON lancamento.id_conta = conta.id_conta ORDER BY id_lancamento ASC" ,
+        array(
+            ":ID_USUARIO"=>$id_usuario
+        ));
+    
+    }
+
+
+	//============================================== Lista todas as categorias ==============================================//
+	public static function listaCategoria()				//Talvez esteja errado
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT descricao FROM categoria ORDER BY descricao ASC");
+
+	}
+
+
+	//============================================== Lista todas as categorias ==============================================//
+	public static function listaCategoriaDespesa()
+	{
+		$sql = new Sql();
+
+		return $sql->select("SELECT descricao FROM categoria WHERE id_categoria > 4 ORDER BY id_categoria ASC");
+		
+	}
+
+
+	//============================================= Lista todas as frequencias ==============================================//
+	public static function listaFrequencia()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT descricao FROM frequencia");
+
+	}
+
+
+	//================================================ Lista tipos de receita ===============================================//
+	public static function listaTipoReceita()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT descricao FROM tipo_receita WHERE id_tipo_receita < 3");
+
+	}
+
+
+
+
+
 
 
 

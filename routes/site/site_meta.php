@@ -49,7 +49,7 @@ $app->post('/metas/guardando', function() {
 
     Metas::criaGuardando($_POST, $id_usuario, $id_conta);
 
-    User::mostraMensagem('Meta criada com sucesso!', '/');
+    Visual::mostraMensagem('Meta criada com sucesso!', '/');
 
 });
 

@@ -55,7 +55,7 @@ $app->post('/cadastro', function(){
 
     if($existeCadastro == 0)
     {
-        User::mostraMensagem('E-mail ou login já cadastrado, tente novamente!', '/cadastro');
+        Visual::mostraMensagem('E-mail ou login já cadastrado, tente novamente!', '/cadastro');
     } else {
         
         $dados_usuario = User::cadastraUsuario($_POST);
@@ -67,6 +67,8 @@ $app->post('/cadastro', function(){
     }
 
 });
+
+
 //----------------------------------------------------  GET LOGOUT  -----------------------------------------------------// 
 $app->get('/sair', function() {
 
@@ -142,7 +144,6 @@ $app->post('/perfil', function() {
 
     $id_usuario = User::verifyLogin();
 
-
 });
 
 
@@ -168,7 +169,7 @@ $app->post('/mudar_senha', function() {
     if($nova_senha == $confirma_senha){
         User::atualizaSenha($id_usuario, $nova_senha, $senha_atual);
     }else{
-        User::mostraMensagem('As senhas devem coincidir!', '/mudar_senha');
+        Visual::mostraMensagem('As senhas devem coincidir!', '/mudar_senha');
     }
 
 

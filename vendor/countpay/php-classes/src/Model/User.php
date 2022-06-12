@@ -8,6 +8,78 @@ class User extends Model	{
 
 	Const SESSION = "User";
 
+	/*===========================================================|===========================================================\\
+	||											    																		 ||
+	||										    	     Funções de Login                                                    ||
+	||												    																	 ||
+	//===========================================================|===========================================================*/
+
+	//==============================================  Função para Login Admin  ==============================================//
+	public static function loginAdmin($login, $senha)
+	{
+		
+		$resultado = User::verificaDadosLogin($login, $senha);
+
+		// Se existe algo no array, atribua as variaveis com o resultado dos array na posição.
+		if (!empty($resultado)) 
+		{
+			$id_usuario = $resultado[0]['id_usuario'];
+			$resultado_login = $resultado[0]['login'];
+			$resultado_senha = $resultado[0]['senha']; 
+			$resultado_tipo_usuario = $resultado[0]['id_tipo_usuario'];
+
+		} else {
+			Visual::mostraMensagem('Login ou Senha invalido!', '/admin/login');
+		}
+
+		if ($resultado_login == $login && $resultado_senha == $senha && $resultado_tipo_usuario == 1) 
+		{
+			// ARMAZENA A SESSÃO SE O LOGIN SER EFETIVADO
+			$_SESSION['admin'] = $id_usuario;
+			header("Location: /admin");
+			exit;
+
+		} else {
+			Visual::mostraMensagem('Usuário ou Senha incorreto!', '/admin/login');
+
+		}
+	}
+
+
+	//===========================================  Função para Login user normal  ===========================================//
+	public static function loginNormal($login, $senha)
+	{
+
+		$resultado = User::verificaDadosLogin($login, $senha);
+	
+		// Caso exista algo dentro do array, as variáveis recebe os valores da busca de forma separada e convertida para string
+		if (!empty($resultado)) {
+	
+			$id_usuario = $resultado[0]['id_usuario'];
+			$resultado_login = $resultado[0]['login'];
+			$resultado_senha = $resultado[0]['senha']; 
+			$tipo_usuario = $resultado[0]['id_tipo_usuario'];
+		
+		} else {
+	
+			Visual::mostraMensagem('Usuário ou Senha incorreto!', '/login');
+	
+		}
+	
+		if ($resultado_login == $login && $resultado_senha == $senha && $tipo_usuario == 2) {
+		
+			$_SESSION['usuario'] = $id_usuario;
+			header("Location: /");
+			exit;
+	
+		} else {
+	
+			Visual::mostraMensagem('Usuário ou Senha incorreto!', '/login');
+	
+		}
+
+	}
+
 
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
@@ -38,73 +110,6 @@ class User extends Model	{
 		} else {
 			return $_SESSION['usuario'];
 		}
-	}
-
-
-	//==========================================  Função para pegar dados do login  ==========================================//
-	public static function loginAdmin($login, $senha)
-	{
-		
-		$resultado = User::verificaDadosLogin($login, $senha);
-
-		// Se existe algo no array, atribua as variaveis com o resultado dos array na posição.
-		if (!empty($resultado)) 
-		{
-			$id_usuario = $resultado[0]['id_usuario'];
-			$resultado_login = $resultado[0]['login'];
-			$resultado_senha = $resultado[0]['senha']; 
-			$resultado_tipo_usuario = $resultado[0]['id_tipo_usuario'];
-
-		} else {
-			User::mostraMensagem('Login ou Senha invalido!', '/admin/login');
-		}
-
-		if ($resultado_login == $login && $resultado_senha == $senha && $resultado_tipo_usuario == 1) 
-		{
-			// ARMAZENA A SESSÃO SE O LOGIN SER EFETIVADO
-			$_SESSION['admin'] = $id_usuario;
-			header("Location: /admin");
-			exit;
-
-		} else {
-			User::mostraMensagem('Usuário ou Senha incorreto!', '/admin/login');
-
-		}
-	}
-
-
-	//
-	public static function loginNormal($login, $senha)
-	{
-
-		$resultado = User::verificaDadosLogin($login, $senha);
-	
-		// Caso exista algo dentro do array, as variáveis recebe os valores da busca de forma separada e convertida para string
-		if (!empty($resultado)) {
-	
-			$id_usuario = $resultado[0]['id_usuario'];
-			$resultado_login = $resultado[0]['login'];
-			$resultado_senha = $resultado[0]['senha']; 
-			$tipo_usuario = $resultado[0]['id_tipo_usuario'];
-		
-		} else {
-	
-			User::mostraMensagem('Usuário ou Senha incorreto!', '/login');
-	
-		}
-	
-		if ($resultado_login == $login && $resultado_senha == $senha && $tipo_usuario == 2) {
-		
-			$_SESSION['usuario'] = $id_usuario;
-			header("Location: /");
-			exit;
-	
-		} else {
-	
-			User::mostraMensagem('Usuário ou Senha incorreto!', '/login');
-	
-		}
-
 	}
 
 
@@ -160,18 +165,6 @@ class User extends Model	{
 		}
 	}
 
-	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										    	    Funções de Mensagens                                                 ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
-
-	//============================== Função para mandar uma mensagem para o usuario por pop-up ==============================//
-	public static function mostraMensagem($mensagem, $rota)
-	{
-		echo "<script language='javascript' type='text/javascript'> alert('" .$mensagem. "');window.location.href='" . $rota . "';</script>";
-	}
-
 
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
@@ -182,6 +175,7 @@ class User extends Model	{
 	//=========================================== Função listar todos os usuarios ===========================================//
 	public static function listaTodosUsuarios()
 	{
+
 		$sql = new Sql();
 
 		return $sql->select("SELECT id_usuario, nome, sobrenome, email, data_nascimento, login FROM usuario ORDER BY id_usuario");
@@ -191,7 +185,7 @@ class User extends Model	{
 
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
-	||										    	      Funções de Busca                                                   ||
+	||										    	  Funções de Busca/Alteração                                             ||
 	||												    																	 ||
 	//===========================================================|===========================================================*/
 
@@ -229,7 +223,7 @@ class User extends Model	{
 
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
-	||										            Funções de Inserção                                                  ||
+	||										    	    Funções de Inserção                                                  ||
 	||												    																	 ||
 	//===========================================================|===========================================================*/
 
@@ -252,10 +246,9 @@ class User extends Model	{
 	}
 
 
-
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
-	||										            Funções de Alteração                                                 ||
+	||										    	     Funções de Update                                                   ||
 	||												    																	 ||
 	//===========================================================|===========================================================*/
 
@@ -273,11 +266,12 @@ class User extends Model	{
 			':ID_USUARIO'=>$UserDados['id_usuario']
 		));
 
-		User::mostraMensagem('Usuário alterado com sucesso!','/admin/usuario');
+		Visual::mostraMensagem('Usuário alterado com sucesso!','/admin/usuario');
 		
 	}
 
 
+	//====================================== Função para atualizar a senha do usuário =======================================//
 	public static function atualizaSenha($id_usuario, $nova_senha, $senha_atual)
 	{
 
@@ -292,33 +286,37 @@ class User extends Model	{
 				":ID_USUARIO"=>$id_usuario,
 				":SENHA"=>$nova_senha
 			));
-			User::mostraMensagem('Senha alterada com sucesso!','/');
+			Visual::mostraMensagem('Senha alterada com sucesso!','/');
 		}else{
-			User::mostraMensagem('A senha atual está incorreta!','/mudar_senha');
+			Visual::mostraMensagem('A senha atual está incorreta!','/mudar_senha');
 		}
 
 	}
+	
 
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
-	||										            Funções de Exclusão                                                  ||
+	||										    	     Funções de Delete                                                   ||
 	||												    																	 ||
 	//===========================================================|===========================================================*/
 
 	//================================== Função para deletar o usuario pelo id_usuario ======================================//
 	public static function deletaUsuario($id_usuario)
 	{
+
 		$sql = new sql();
 
 		$sql->execQuery("DELETE FROM usuario WHERE id_usuario = :ID_USUARIO", array(
 			":ID_USUARIO"=>$id_usuario
 		));
+
 	}
 
 
 
 
 
+	
 	
 }
 ?>
