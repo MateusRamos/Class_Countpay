@@ -5,9 +5,9 @@ x   Cadastro
 x   Termos
     Index
     Perfil
-    Configurações da conta
+    Mudar Senha
     Suporte Online
-    Contato
+x   Contato
     Projeções
     Calendário
     Minhas metas
