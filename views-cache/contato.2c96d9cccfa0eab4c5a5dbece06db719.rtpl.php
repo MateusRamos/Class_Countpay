@@ -1,4 +1,4 @@
-<main id="main" class="main">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><main id="main" class="main">
     <div class="pagetitle">
         <h1>Contato</h1>
         <nav>
@@ -66,4 +66,4 @@
             </div>
         </div>
     </section>
-</main>
+</main class="mb-auto">

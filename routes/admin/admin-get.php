@@ -101,13 +101,10 @@ $app->get('/admin/usuario/:id_usuario', function($id_usuario) {
 
     $page = new PageAdmin();
 
-    //Verificando se está logado:
     User::verifyLoginAdmin();
 
-    //Carregando as informações do usuario do banco de dados:
     $usuario = User::buscaPorId($id_usuario);
 
-    //Colocando os dados coletados no formulário pelo Slim:
     $page->setTpl("alterarusuario", array(
         "usuario"=>$usuario
     )); 
@@ -120,10 +117,9 @@ $app->get('/admin/usuario/:id_usuario/delete', function($id_usuario) {
 
     User::verifyLoginAdmin();
 
-    //Executado a exclusão da row do banco de dados de acordo com o ID selecionado:
     User::deletaUsuario($id_usuario);
 
-    User::mostraMensagem("Usuário excluido com sucesso!", "/admin/usuario");
+    Visual::mostraMensagem("Usuário excluido com sucesso!", "/admin/usuario");
 
 });
 
@@ -135,7 +131,7 @@ $app->get('/admin/usuario/:id_usuario/delete', function($id_usuario) {
 //===========================================================|===========================================================*/
 
 //========================================== Rota para criar novas notificações: ========================================//
-$app->get('/notificacoes/criar', function(){
+$app->get('/notificacoes/criar', function() {
     
     $page = new PageAdmin();
 
@@ -146,6 +142,36 @@ $app->get('/notificacoes/criar', function(){
     $page->setTpl("criar_notificacoes", array(
         "dados" => $tipo_notificacoes
     )); 
+
+});
+
+
+/*===========================================================|===========================================================\\
+||																								      					 ||
+||											         Rotas Complementares   	   								         ||
+||																													     ||
+//===========================================================|===========================================================*/
+
+$app->get('/admin/perfil', function () {
+
+    $page = new PageAdmin();
+
+    $id_usuario = User::verifyLoginAdmin();
+
+    $dados_perfil = User::carregaDadosPerfil($id_usuario);
+
+    $page->setTpl("perfil", array(
+        "dados"=>$dados_perfil[0]
+    ));
+
+});
+
+
+$app->get('/admin/contato', function() {
+
+    $page = new PageAdmin();
+
+    $page->setTpl("contato");
 
 });
 

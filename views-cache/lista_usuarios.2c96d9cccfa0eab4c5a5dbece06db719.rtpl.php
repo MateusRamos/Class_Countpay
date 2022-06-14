@@ -1,4 +1,4 @@
- <!-- Inicio do Conteúdo da Pagina -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?> <!-- Inicio do Conteúdo da Pagina -->
  <main id="main" class="main">
 
     <!-- Inicio Título da Pagina -->
@@ -38,20 +38,20 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                {loop="$usuarios"}
+                                <?php $counter1=-1;  if( isset($usuarios) && ( is_array($usuarios) || $usuarios instanceof Traversable ) && sizeof($usuarios) ) foreach( $usuarios as $key1 => $value1 ){ $counter1++; ?>
                                 <tr>
-                                  <td>{$value.id_usuario}</td>
-                                  <td>{$value.nome}</td>
-                                  <td>{$value.sobrenome}</td>
-                                  <td>{$value.email}</td>
-                                  <td>{$value.data_nascimento}</td>
-                                  <td>{$value.login}</td>
+                                  <td><?php echo htmlspecialchars( $value1["id_usuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                  <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                  <td><?php echo htmlspecialchars( $value1["sobrenome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                  <td><?php echo htmlspecialchars( $value1["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                  <td><?php echo htmlspecialchars( $value1["data_nascimento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                  <td><?php echo htmlspecialchars( $value1["login"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                   <td>
-                                      <a href="/admin/usuario/{$value.id_usuario}" class="btn btn-primary btn-sm" style="line-height: 0.5;"><i class="bx bxs-edit"></i></a>
-                                      <a href="/admin/usuario/{$value.id_usuario}/delete" onclick="return ConfirmDelete()" class="btn btn-danger btn-sm" style="line-height: 0.5;"><i class="bx bxs-trash"></i></a>
+                                      <a href="/admin/usuario/<?php echo htmlspecialchars( $value1["id_usuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-sm" style="line-height: 0.5;"><i class="bx bxs-edit"></i></a>
+                                      <a href="/admin/usuario/<?php echo htmlspecialchars( $value1["id_usuario"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return ConfirmDelete()" class="btn btn-danger btn-sm" style="line-height: 0.5;"><i class="bx bxs-trash"></i></a>
                                   </td>
                                 </tr>
-                                {/loop}
+                                <?php } ?>
                               </tbody>
                             </table>
           

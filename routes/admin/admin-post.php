@@ -25,6 +25,30 @@ $app->post('/admin/login', function() {
 
 /*===========================================================|===========================================================\\
 ||											    																		 ||
+||										    	        Rotas Header                                                     ||
+||												    																	 ||
+//===========================================================|===========================================================*/
+
+//===================================================  POST - PERFIL  ===================================================//
+$app->post('/perfil', function() {
+
+    $id_usuario = User::verifyLoginAdmin();
+
+    $verificando = User::verificaDadosPerfil($id_usuario);
+
+    if($verificando == 0){
+        User::alteraDadoPerfil($id_usuario, $_POST);
+        Visual::mostraMensagem('Perfil de usuario alterado com sucesso!!!!', '/admin/perfil');
+    }else{
+        User::insereDadoPerfil($id_usuario, $_POST);
+        Visual::mostraMensagem('Perfil de usuário criado com sucesso!', '/admin/perfil');
+    }
+
+});
+
+
+/*===========================================================|===========================================================\\
+||											    																		 ||
 ||										    	     Rota admin/usuario                                                  ||
 ||												    																	 ||
 //===========================================================|===========================================================*/

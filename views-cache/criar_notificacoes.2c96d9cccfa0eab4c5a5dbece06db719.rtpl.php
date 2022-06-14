@@ -1,0 +1,75 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- Inicio do Conteúdo da Pagina -->
+  <main id="main" class="main pb-0">
+
+    <!-- Inicio Título da Pagina -->
+    <div class="pagetitle">
+      <h1>Envio de Notificações</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+          <li class="breadcrumb-item active"><a href="#">Notificações</a></li>
+          <li class="breadcrumb-item active"><a href="/admin/notificacoes/criar">Criar Notificações</a></li>
+        </ol>
+      </nav>
+    </div>
+    <!-- Fim Título da Pagina -->
+
+    <section class="section" >
+        <div class="row justify-content-center">
+
+          <div class="col-lg-12">
+
+            <div class="card" style="min-height: 63vh;">
+                <div class="card-body d-flex align-items-center">
+                  <div class="col-md-7 pt-4 pb-4">
+
+                    <form action="/admin/notificacoes/criar" method="post" class="row g-2 d-flex justify-content-center">
+                  
+                      <div class="col-md-10">
+                        <label for="titulo_notificacao" class="form-label">Título</label>
+                        <div class="input-group has-validation">
+                          <input type="text" name="titulo" class="form-control" id="titulo_notificacao" required>
+                          <div class="invalid-feedback">É necessário escolher um título!</div>
+                        </div>
+                      </div>
+        
+                      <div class="col-md-10">
+                        <label for="descricao_notificacao" class="form-label">Descrição</label>
+                        <input type="text" name="descricao" class="form-control" id="descricao_notificacao" required>
+                      </div>
+        
+                      <div class="col-md-4">
+                        <label for="tipo_notificacao" class="form-label">Tipo de Notificações</label>
+                        <select class="form-select" name="tipo_notificacao" id="tipo_notificacao" required>
+                            <?php $counter1=-1;  if( isset($dados) && ( is_array($dados) || $dados instanceof Traversable ) && sizeof($dados) ) foreach( $dados as $key1 => $value1 ){ $counter1++; ?>
+                            <option><?php echo htmlspecialchars( $value1["categoria"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                            <?php } ?>
+                        </select>
+                      </div>
+        
+                      <div class="col-md-6">
+                        <label for="email_usuario" class="form-label">Email do usuário</label>
+                        <input type="email" name="email" class="form-control" id="email_usuario">
+                      </div>                       
+                          
+                      <div class="col-3 pt-5">
+                        <a href="/admin"><button class="btn btn-secondary w-100" type="button">Voltar</button></a>
+                      </div>
+                      <div class="col-3 pt-5">
+                        <button class="btn w-100" type="submit" style="background-color: #E54640; color: white">Criar</button>
+                      </div>
+
+                    </form>
+                    
+                  </div>
+                  <div class="col-md-5">
+                    <img src="../../res/admin/assets/img/criar_notificacoes.png" alt="Receita Única" style="max-height: 63vh;">
+                  </div> 
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </section>
+
+  </main><!-- End #main -->
