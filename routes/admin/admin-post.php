@@ -3,6 +3,7 @@
 use \Countpay\PageAdmin;
 use \Countpay\DB\Sql;
 use \Countpay\Model\User;
+use \Countpay\Model\Visual;
 
 
 /*===========================================================|===========================================================\\
@@ -51,7 +52,7 @@ $app->post('/admin/usuario/criar', function() {
 });
 
 
-//========================================  Post de alterar usuario do admin  ==========================================//
+//========================================  Post de alterar usuario do admin  ===========================================//
 $app->post('/admin/usuario/alterar', function() {
 
     User::verifyLoginAdmin();
@@ -70,5 +71,20 @@ $app->post('/admin/usuario/alterar', function() {
     
     
 });
+
+
+//=======================================  Post de alterar criar notificações  ==========================================//
+$app->post('/admin/notificacoes/criar', function() {
+
+    $id_usuario = User::BuscaEmail($_POST);
+    $id_tipo_notificacao = User::BuscaTipoNotificacao($_POST);
+
+    User::criaNotificacao($_POST, $id_usuario, $id_tipo_notificacao);
+
+    Visual::mostraMensagem('Notificação enviada com sucesso!', '/admin');
+
+});
+
+
 
 ?>

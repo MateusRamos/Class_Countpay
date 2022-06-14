@@ -39,6 +39,5 @@ class Metas extends Model{
 
 
 
-
 }
 ?>

@@ -108,7 +108,7 @@ class User extends Model	{
 			header('Location: /admin/login');
 			exit;
 		} else {
-			return $_SESSION['usuario'];
+			return $_SESSION['admin'];
 		}
 	}
 
@@ -127,7 +127,7 @@ class User extends Model	{
 	}
 
 
-	//==================================  Função para verificar se ja tem cadastro  ====================================//
+	//======================================  Função para verificar se ja tem cadastro  =====================================//
 	public static function verificaDadosCadastro($userData)
 	{
 		$sql = new Sql();
@@ -146,7 +146,7 @@ class User extends Model	{
 	}
 
 
-	//=======================  Função para verificar se foi alterado o imput do cadastro  ==============================//
+	//=============================  Função para verificar se foi alterado o imput do cadastro  =============================//
 	public static function verificaAlteracao($userData) /////erro
 	{
 		$sql = new Sql();
@@ -165,7 +165,8 @@ class User extends Model	{
 		}
 	}
 
-	//=======================  Função para verificar se houve alteração nos dados do perfil ==============================//
+
+	//=======================  Função para verificar se houve alteração nos dados do perfil =================================//
 
 	public static function verificaDadosPerfil($id_usuario)
 	{
@@ -426,10 +427,115 @@ class User extends Model	{
 	}
 
 
+	/*===========================================================|===========================================================\\
+	||											    																		 ||
+	||										    	   Funções de Notificação                                                ||
+	||												    																	 ||
+	//===========================================================|===========================================================*/
+
+	//========================================== Função para criar uma notificação ==========================================//
+	public static function criaNotificacao($dados_entrada, $id_usuario, $id_tipo_notificacao)
+	{
+
+		$sql = new Sql();
+
+		$sql->execQuery("INSERT INTO notificacoes (titulo, descricao, id_tipo_notificacoes, id_usuario)
+						 VALUES (:TITULO, :DESCRICAO, :ID_TIPO_NOTIFICACOES, :ID_USUARIO)", array(
+							":TITULO" => $dados_entrada['titulo'],
+							":DESCRICAO" => $dados_entrada['descricao'],
+							":ID_TIPO_NOTIFICACOES" => $id_tipo_notificacao,
+							"ID_USUARIO" => $id_usuario
+						 ));
+
+	}
 
 
+	public static function BuscaEmail($dados_entrada)
+	{
+
+		if($dados_entrada['email'] != NULL)
+		{
+			$sql = new Sql();
+
+			$results =  $sql->select("SELECT id_usuario FROM usuario WHERE email = :EMAIL", array(
+				":EMAIL" => $dados_entrada['email']
+			));
+			
+			if(count($results))
+			{
+				return $results[0]['id_usuario'];
+			}
+			else
+			{
+				Visual::mostraMensagem('Email não encontrado!', '/notificacoes/criar');
+				exit;
+			}
+		}
+		else
+		{
+			return NULL;
+		}
+
+	}
+
+
+	public static function BuscaTipoNotificacao($dados_entrada)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT id_tipo_notificacoes FROM tipo_notificacoes WHERE categoria = :CATEGORIA", array(
+			":CATEGORIA" => $dados_entrada['tipo_notificacao']
+		));
+		
+		return $results[0]['id_tipo_notificacoes'];
+
+	}
 
 	
+	public static function listaTipoNotificacao()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT categoria FROM tipo_notificacoes");
+
+	}
 	
+
+	public static function verificaNotificacoes($id_usuario)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT notificacoes.*, tipo_notificacoes.* 
+								 FROM notificacoes
+								 INNER JOIN tipo_notificacoes 
+								 ON id_usuario = :ID_USUARIO OR id_usuario IS NULL", array(
+			":ID_USUARIO" => $id_usuario
+		));
+
+		if(count($results) == 0)
+		{
+			$results[0]['id_notificacoes'] = "";
+			$results[0]['titulo'] = "";
+			$results[0]['descricao'] = "";
+			$results[0]['id_tipo_notificacoes'] = "";
+			$results[0]['data_emissao'] = "";
+			$results[0]['id_usuario'] = "";
+			$results[0]['categoria'] = "";
+			$results[0]['visto'] = "";
+			$results[0]['icone'] = "";
+
+		}
+
+		return $results;
+
+	}
+
+
+
+
+
 }
 ?>

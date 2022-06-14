@@ -119,11 +119,15 @@ $app->get('/', function() {
     $id_usuario = User::verifyLogin();
 
     Lancamento::verificaLancamentoFixo($id_usuario);
+    $notificacoes = User::verificaNotificacoes($id_usuario);
+    $quant_notificacoes = array("quantidade"=>count($notificacoes));
 
     $ultimos_lancamentos = Visual::listaUltimosLancamentos($id_usuario);
 
     $page->setTpl("index", array(
-        "dados"=>$ultimos_lancamentos
+        "dados"=>$ultimos_lancamentos,
+        "notificacoes" => $notificacoes,
+        "quant_notificacoes" => $quant_notificacoes
     ));
 
 });

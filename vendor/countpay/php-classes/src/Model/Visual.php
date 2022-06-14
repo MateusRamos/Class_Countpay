@@ -63,6 +63,50 @@ class Visual extends Model	{
     }
 
 
+	//==================================== Função para somar os dados x de uma tabela x =====================================//
+	public static function calculaTotalUsuarios()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT COUNT(id_usuario) 'dados' FROM usuario");
+
+	}
+
+
+	//==================================== Função para somar os dados x de uma tabela x =====================================//
+	public static function calculaTotalContas()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT COUNT(id_conta) 'dados' FROM conta");
+
+	}
+	
+
+	//==================================== Função para somar os dados x de uma tabela x =====================================//
+	public static function calculaTotalCartoes()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT COUNT(id_cartao) 'dados' FROM cartao");
+
+	}
+
+
+	//==================================== Função para somar os dados x de uma tabela x =====================================//
+	public static function calculaTotalLancamentos()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT COUNT(id_lancamento) 'dados' FROM lancamento");
+
+	}
+
+	
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
 	||										    	     Funções de Listagem                                                 ||

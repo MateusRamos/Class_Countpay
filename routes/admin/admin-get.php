@@ -2,6 +2,7 @@
 use \Countpay\PageAdmin;
 use \Countpay\DB\Sql;
 use \Countpay\Model\User;
+use \Countpay\Model\Visual;
 
 
 /*===========================================================|===========================================================\\
@@ -21,10 +22,10 @@ $app->get('/admin', function() {   //talvez mudar
     User::verifyLoginAdmin();
     
     //Puxando os dados do banco para mostrar no Dashboard:
-    $usuarioDados = $sql->select("SELECT quantidade_usuario FROM usuario_dados"); 
-    $contaDados = $sql->select("SELECT quantidade_conta FROM conta_dados");
-    $cartaoDados = $sql->select("SELECT quantidade_cartao FROM cartao_dados");
-    $lancamentoDados = $sql->select("SELECT lancamento_total FROM lancamento_dados");
+    $usuarioDados = Visual::calculaTotalUsuarios();
+    $contaDados = Visual::calculaTotalContas();
+    $cartaoDados = Visual::calculaTotalCartoes();
+    $lancamentoDados = Visual::calculaTotalLancamentos();
 
     //Enviando dados do banco para o Dashboard:
     $page->setTpl("index", array(
@@ -125,5 +126,31 @@ $app->get('/admin/usuario/:id_usuario/delete', function($id_usuario) {
     User::mostraMensagem("Usuário excluido com sucesso!", "/admin/usuario");
 
 });
+
+
+/*===========================================================|===========================================================\\
+||																								      					 ||
+||											       Rotas admin/Notificacoes   	   								         ||
+||																													     ||
+//===========================================================|===========================================================*/
+
+//========================================== Rota para criar novas notificações: ========================================//
+$app->get('/notificacoes/criar', function(){
+    
+    $page = new PageAdmin();
+
+    User::verifyLoginAdmin();
+
+    $tipo_notificacoes = User::listaTipoNotificacao();
+
+    $page->setTpl("criar_notificacoes", array(
+        "dados" => $tipo_notificacoes
+    )); 
+
+});
+
+
+
+
 
 ?>
