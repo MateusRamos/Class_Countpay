@@ -5,7 +5,7 @@ use \Countpay\Model;
 use \Countpay\DB\Sql;
 
 
-class Metas extends Model{	
+class Meta extends Model{	
 
     /*===========================================================|===========================================================\\
 	||											    																		 ||
@@ -34,8 +34,24 @@ class Metas extends Model{
     }
 
 
+    //===========================================
+    public static function verificaMeta($dados_lancamento, $array_id, $id_usuario)
+    {
+    }
 
 
+    //===========================================
+    public static function listaMetas($id_usuario)
+    {
+
+        $sql = new Sql();
+
+        $results = $sql->select("SELECT nome FROM meta WHERE id_usuario = :ID_USUARIO AND status = 1", array(
+            ":ID_USUARIO" => $id_usuario
+        ));
+
+        return $results;
+    }
 
 
 

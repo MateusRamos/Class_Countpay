@@ -2,7 +2,7 @@
 use \Countpay\Page;
 use \Countpay\DB\Sql;
 use \Countpay\Model\User;
-use \Countpay\Model\Metas;
+use \Countpay\Model\Meta;
 use \Countpay\Model\Visual;
 use \Countpay\Model\Carteira;
 use \Countpay\Model\Lancamento;
@@ -21,10 +21,8 @@ $app->get('/lancamento/historico', function() {
 
     $id_usuario = User::verifyLogin();
 
-    $resultado = Lancamento::listaLancamentos($id_usuario);
-
     $page->setTpl("historico_lancamento", array(
-        "resultado"=>$resultado
+        "resultado"=>Lancamento::listaLancamentos($id_usuario),
     ));
 
 });
@@ -55,15 +53,11 @@ $app->get('/lancamento/despesa/unica', function() {     //MUDANÇA NO FRONT
 
     $id_usuario = User::verifyLogin();
 
-    $dados = array(
-        "categoria"=>Lancamento::listaCategoria(),
-        "conta"=>Carteira::listaApelidoConta($id_usuario),
-        "cartao"=>Carteira::listaApelidoCartao($id_usuario),
-        "tipo_receita"=>Lancamento::listaTipoReceita()          //???????????????????????????????????????????????//
-    );  
-
     $page->setTpl("lancamento_despesa_unica", array(
-        "dados"=>$dados
+        "categoria"=> Lancamento::listaCategoria(),
+        "conta"=> Carteira::listaApelidoConta($id_usuario),
+        "cartao"=> Carteira::listaApelidoCartao($id_usuario),
+        "meta" => Meta::listaMetas($id_usuario)
     )); 
 
 });
@@ -102,15 +96,11 @@ $app->get('/lancamento/despesa/parcelado', function() {
 
     $id_usuario = User::verifyLogin();
 
-    $dados = array(
+    $page->setTpl("lancamento_despesa_parcelado", array(
         "categoria"=> Lancamento::listaCategoria(),
         "conta"=> Carteira::listaApelidoConta($id_usuario),
         "cartao"=> Carteira::listaApelidoCartao($id_usuario),
         "frequencia"=> Lancamento::listaFrequencia()
-    );
-
-    $page->setTpl("lancamento_despesa_parcelado", array(
-        "dados"=>$dados
     ));
 
 });
@@ -169,24 +159,20 @@ $app->get('/lancamento/receita', function() {
 
 
 //-------------------------------------------------  GET - RECEITA ÚNICA  -----------------------------------------------//
-$app->get('/lancamento/receita/unica', function() {     //MUDANÇA NO FRONT
+$app->get('/lancamento/receita/unica', function() {
 
     $page = new Page();
 
     $id_usuario = User::verifyLogin();
 
-    $dados = array(
+    $page->setTpl("lancamento_receita_unica", array(
         "categoria"=> Lancamento::listaCategoria(),
         "conta"=> Carteira::listaApelidoConta($id_usuario),
-        "cartao"=> Carteira::listaApelidoCartao($id_usuario)
-    );
-
-    $page->setTpl("lancamento_receita_unica", array(
-        "dados"=>$dados
+        "cartao"=> Carteira::listaApelidoCartao($id_usuario),
+        "meta"=> Meta::listaMetas($id_usuario)
     )); 
 
 });
-
 
 
 //================================================  POST - RECEITA ÚNICA  ===============================================//
@@ -220,15 +206,11 @@ $app->get('/lancamento/receita/parcelado', function() {         //MUDANÇA NO FR
 
     $id_usuario = User::verifyLogin();
 
-    $dados = array(
+    $page->setTpl("lancamento_receita_parcelado", array(
         "categoria"=> Lancamento::listaCategoria(),
         "conta"=> Carteira::listaApelidoConta($id_usuario),
         "cartao"=> Carteira::listaApelidoCartao($id_usuario),
         "frequencia"=> Lancamento::listaFrequencia()
-    );
-    
-    $page->setTpl("lancamento_receita_parcelado", array(
-        "dados"=>$dados
     ));
 
 });
@@ -241,6 +223,7 @@ $app->post('/lancamento/receita/parcelado', function() {
 
     //Sql de string para ID:
     $array_id = array(
+        "id_usuario" => $id_usuario,
         "id_conta" => Carteira::buscaConta($_POST['id_conta'], $id_usuario),
         "id_cartao" => Carteira::buscaCartao($_POST['id_cartao'], $id_usuario),
         "id_categoria" => Lancamento::buscaCategoria($_POST['id_categoria'])

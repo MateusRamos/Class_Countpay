@@ -19,7 +19,7 @@ class Lancamento extends Model{
 
 		$sql = new Sql();
 
-		return $sql->select("CALL sp_lancamento_normal(:ID_USUARIO, :DESCRICAO, :VALOR, :TIPO_LANCAMENTO, :DATA_LANCAMENTO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA)", array(
+		$results =  $sql->select("CALL sp_lancamento_normal(:ID_USUARIO, :DESCRICAO, :VALOR, :TIPO_LANCAMENTO, :DATA_LANCAMENTO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA)", array(
 			':ID_USUARIO'=>$id_usuario,
 			':DESCRICAO'=>$dados_lancamento['descricao'],
 			':VALOR'=>$dados_lancamento['valor'],
@@ -30,6 +30,9 @@ class Lancamento extends Model{
 			':ID_CATEGORIA'=>$array_id['id_categoria']
 		));
 
+		Metas::verificaMeta($dados_lancamento, $array_id, $id_usuario);
+
+		return $results;
 	}
 
 
@@ -120,7 +123,7 @@ class Lancamento extends Model{
         // Contador que soma de 1 em 1 até ser menor que $parcela
         for ($i=1; $i < $parcela+1; $i++) {
 
-            $id_lancamento = Lancamento::criaParcela($dados_lancamento, $array_id, $i);
+            $id_lancamento = Lancamento::criaParcela($dados_lancamento, $array_id, $i, $id_usuario);
 
             // quant recebe a quantidade de dias ou mês (depende da seleção do usuário) multiplicada pelo contador
             $tempoDaParcela = $quant * ($i-1);
@@ -177,13 +180,13 @@ class Lancamento extends Model{
 
 	//==================================================== CRIA PARCELA =====================================================//
 	//cria parcela x, com data igual a todas e colocação propria.
-	public static function criaParcela($dados_lancamento, $array_id, $i)
+	public static function criaParcela($dados_lancamento, $array_id, $i, $id_usuario)
 	{
 
 		$sql = new Sql();
 
 		$results = $sql->select("CALL sp_lancamento_parcelado(:ID_USUARIO, :TIPO_LANCAMENTO, :DESCRICAO, :VALOR, :PARCELA, :DATA_LANCAMENTO, :FREQUENCIA, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA)", array(
-			':ID_USUARIO' => $array_id['id_usuario'],
+			':ID_USUARIO' => $id_usuario,
 			':TIPO_LANCAMENTO' => $dados_lancamento['tipo_lancamento'],
 			':DESCRICAO' => $dados_lancamento['descricao'],
 			':VALOR' => $dados_lancamento['valor'],
@@ -271,7 +274,7 @@ class Lancamento extends Model{
         $sql = new Sql();
 
         // Select dos dados usado para gerar o histórico de lançamento
-        return $sql->select("SELECT lancamento.descricao_lancamento, lancamento.tipo_lancamento, lancamento.valor, categoria.descricao, lancamento.data_lancamento, IF(conta.apelido <> NULL, NULL, conta.apelido) 'conta', cartao.apelido 'cartao', lancamento.quantidade_parcelas, lancamento.frequencia
+        $results = $sql->select("SELECT lancamento.descricao_lancamento, lancamento.tipo_lancamento, lancamento.valor, categoria.descricao, lancamento.data_lancamento, IF(conta.apelido <> NULL, NULL, conta.apelido) 'conta', cartao.apelido 'cartao', lancamento.quantidade_parcelas, lancamento.frequencia
         FROM lancamento															
         INNER JOIN categoria ON lancamento.id_categoria = categoria.id_categoria AND lancamento.id_usuario = :ID_USUARIO
         LEFT OUTER JOIN cartao ON lancamento.id_cartao = cartao.id_cartao
@@ -279,7 +282,15 @@ class Lancamento extends Model{
         array(
             ":ID_USUARIO"=>$id_usuario
         ));
-    
+
+		foreach($results as $key => $value)
+		{
+			$data = date("d/m/Y", strtotime($results[$key]["data_lancamento"]));
+			$results[$key]["data_lancamento"] = $data;
+		}
+
+
+		return $results;
     }
 
 

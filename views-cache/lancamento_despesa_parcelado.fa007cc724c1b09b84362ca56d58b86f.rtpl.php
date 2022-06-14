@@ -1,4 +1,4 @@
-<!-- Inicio do Conteúdo da Pagina -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Inicio do Conteúdo da Pagina -->
 <main id="main" class="main pb-0">
 
     <!-- Inicio Título da Pagina -->
@@ -59,9 +59,9 @@
                                 <div class="col-md-4">
                                     <label for="frequencia_despesa" class="form-label">Frequência</label>
                                     <select class="form-select" name="frequencia" id="frequencia_despesa" required>
-                                        {loop="$frequencia"}
-                                        <option>{$value.descricao}</option>
-                                        {/loop}
+                                        <?php $counter1=-1;  if( isset($frequencia) && ( is_array($frequencia) || $frequencia instanceof Traversable ) && sizeof($frequencia) ) foreach( $frequencia as $key1 => $value1 ){ $counter1++; ?>
+                                        <option><?php echo htmlspecialchars( $value1["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
 
@@ -70,9 +70,9 @@
                                     <label for="contacartao_despesa" class="form-label">Conta</label>
                                     <select class="form-select" name="id_conta" id="contacartao_despesa">
                                         <option value="">Conta não utilizada</option>
-                                        {loop="$conta"}
-                                        <option>{$value.apelido}</option>
-                                        {/loop}
+                                        <?php $counter1=-1;  if( isset($conta) && ( is_array($conta) || $conta instanceof Traversable ) && sizeof($conta) ) foreach( $conta as $key1 => $value1 ){ $counter1++; ?>
+                                        <option><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
 
@@ -80,36 +80,39 @@
                                     <label for="contacartao_despesa" class="form-label">Cartão</label>
                                     <select class="form-select" name="id_cartao" id="contacartao_despesa">
                                         <option value="">Cartão não utilizada</option>
-                                        {loop="$cartao"}
-                                        <option>{$value.apelido}</option>
-                                        {/loop}
+                                        <?php $counter1=-1;  if( isset($cartao) && ( is_array($cartao) || $cartao instanceof Traversable ) && sizeof($cartao) ) foreach( $cartao as $key1 => $value1 ){ $counter1++; ?>
+                                        <option><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
 
                                 <div class="col-md-5 mb-3">
                                     <label for="categoria_despesa" class="form-label">Categoria</label>
                                     <select class="form-select" name="id_categoria" id="categoria_despesa" required>
-                                        {loop="$categoria"}
-                                        <option>{$value.descricao}</option>
-                                        {/loop}
+                                        <?php $counter1=-1;  if( isset($categoria) && ( is_array($categoria) || $categoria instanceof Traversable ) && sizeof($categoria) ) foreach( $categoria as $key1 => $value1 ){ $counter1++; ?>
+                                        <option><?php echo htmlspecialchars( $value1["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
+
                                                             
                                 <div class="col-md-5 mb-3">
                                     <label for="meta_receita" class="form-label">Meta</label>
                                     <select class="form-select" name="nome_meta" id="meta_receita">
                                     <option value="">Nenhuma meta</option>
-                                    {loop="$meta"}
-                                    <option>{$value.nome}</option>
-                                    {/loop}
+                                    <?php $counter1=-1;  if( isset($meta) && ( is_array($meta) || $meta instanceof Traversable ) && sizeof($meta) ) foreach( $meta as $key1 => $value1 ){ $counter1++; ?>
+                                    <option><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                    <?php } ?>
                                     </select>
                                 </div>
+
 
                                 <div class="col-md-9 d-flex justify-content-center">
                                     <button type="button" class="btn btn-secondary me-1">Cancelar</button>
                                     <button type="submit" class="btn btn-success"
                                     style="background-color: #E54640; border-color: #E54640;">Salvar Despesa</button>
                                 </div>
+
 
                             </form>
 

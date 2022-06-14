@@ -201,7 +201,15 @@ class User extends Model	{
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT id_usuario, nome, sobrenome, email, data_nascimento, login FROM usuario ORDER BY id_usuario");
+		$results = $sql->select("SELECT id_usuario, nome, sobrenome, email, data_nascimento, login FROM usuario ORDER BY id_usuario");
+
+		foreach($results as $key => $value)
+		{
+			$data = date("d/m/Y", strtotime($results[$key]["data_nascimento"]));
+			$results[$key]["data_nascimento"] = $data;
+		}
+
+		return $results;
 
 	}
 
