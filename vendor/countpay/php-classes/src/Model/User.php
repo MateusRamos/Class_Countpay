@@ -270,38 +270,6 @@ class User extends Model	{
 	}
 
 
-	public static function alteraDadoPerfil($id_usuario, $dado_perfil)
-	{
-
-		$sql = new Sql();
-
-		$sql->execQuery("UPDATE usuario_perfil 
-						SET ocupacao = :OCUPACAO, pais = :PAIS, cidade = :CIDADE, endereco = :ENDERECO, telefone = :TELEFONE, 
-							sobre_mim = :SOBRE_MIM, twitter = :TWITTER, linkedin = :LINKEDIN, facebook = :FACEBOOK, instagram = :INSTAGRAM	
-						WHERE id_usuario = :ID_USUARIO", array(
-							":ID_USUARIO" => $id_usuario,
-							":OCUPACAO" => $dado_perfil["ocupacao"],
-							":PAIS" => $dado_perfil["pais"],
-							":CIDADE" => $dado_perfil["cidade"],
-							":ENDERECO" => $dado_perfil["endereco"],
-							":TELEFONE" => $dado_perfil["telefone"],
-							":SOBRE_MIM" => $dado_perfil["sobre_mim"],
-							":TWITTER" => $dado_perfil["twitter"],
-							":LINKEDIN" => $dado_perfil["linkedin"],
-							":FACEBOOK" => $dado_perfil["facebook"],
-							":INSTAGRAM" => $dado_perfil["instagram"],
-						));
-
-		$sql->execQuery("UPDATE usuario	
-						 SET	nome = :NOME, sobrenome = :SOBRENOME, email = :EMAIL			
-						 WHERE id_usuario = :ID_USUARIO", array(
-							":ID_USUARIO" => $id_usuario,
-							":NOME" => $dado_perfil["nome"],
-							":SOBRENOME" => $dado_perfil["sobrenome"],
-							":EMAIL" => $dado_perfil["email"]
-						 ));
-
-	}	
 
 
 	/*===========================================================|===========================================================\\
@@ -408,6 +376,41 @@ class User extends Model	{
 	}
 	
 
+	//==================================== Função para atualizar dados perfil do usuário ====================================//
+	public static function alteraDadoPerfil($id_usuario, $dado_perfil)
+	{
+
+		$sql = new Sql();
+
+		$sql->execQuery("UPDATE usuario_perfil 
+						SET ocupacao = :OCUPACAO, pais = :PAIS, cidade = :CIDADE, endereco = :ENDERECO, telefone = :TELEFONE, 
+							sobre_mim = :SOBRE_MIM, twitter = :TWITTER, linkedin = :LINKEDIN, facebook = :FACEBOOK, instagram = :INSTAGRAM	
+						WHERE id_usuario = :ID_USUARIO", array(
+							":ID_USUARIO" => $id_usuario,
+							":OCUPACAO" => $dado_perfil["ocupacao"],
+							":PAIS" => $dado_perfil["pais"],
+							":CIDADE" => $dado_perfil["cidade"],
+							":ENDERECO" => $dado_perfil["endereco"],
+							":TELEFONE" => $dado_perfil["telefone"],
+							":SOBRE_MIM" => $dado_perfil["sobre_mim"],
+							":TWITTER" => $dado_perfil["twitter"],
+							":LINKEDIN" => $dado_perfil["linkedin"],
+							":FACEBOOK" => $dado_perfil["facebook"],
+							":INSTAGRAM" => $dado_perfil["instagram"],
+						));
+
+		$sql->execQuery("UPDATE usuario	
+						 SET	nome = :NOME, sobrenome = :SOBRENOME, email = :EMAIL			
+						 WHERE id_usuario = :ID_USUARIO", array(
+							":ID_USUARIO" => $id_usuario,
+							":NOME" => $dado_perfil["nome"],
+							":SOBRENOME" => $dado_perfil["sobrenome"],
+							":EMAIL" => $dado_perfil["email"]
+						 ));
+
+	}	
+
+
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
 	||										    	     Funções de Delete                                                   ||
@@ -450,6 +453,7 @@ class User extends Model	{
 	}
 
 
+	//========================================= Função Buscar id_usuario pelo email =========================================//
 	public static function BuscaEmail($dados_entrada)
 	{
 
@@ -479,6 +483,7 @@ class User extends Model	{
 	}
 
 
+	//===================================== Função Buscar id_tipo_notificacao pela categoria ================================//
 	public static function BuscaTipoNotificacao($dados_entrada)
 	{
 
@@ -493,6 +498,7 @@ class User extends Model	{
 	}
 
 	
+	//===================================== Função para listar todos os tipos de notificação ================================//
 	public static function listaTipoNotificacao()
 	{
 
@@ -503,6 +509,7 @@ class User extends Model	{
 	}
 	
 
+	//==================================== Função para verificar se existe alguma notificação ===============================//
 	public static function verificaNotificacoes($id_usuario)
 	{
 
