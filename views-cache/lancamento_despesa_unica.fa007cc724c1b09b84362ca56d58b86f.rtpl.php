@@ -78,8 +78,8 @@
                 </div>
 
                 <div class="col-md-5 mb-3">
-                  <label for="categoria_despesa" class="form-label">Categoria</label>
-                  <select class="form-select" name="id_categoria" id="contacartao_despesa" required>
+                  <label for="meta_despesa" class="form-label">Meta</label>
+                  <select class="form-select" name="meta_nome" id="meta_despesa">
                     <?php $counter1=-1;  if( isset($meta) && ( is_array($meta) || $meta instanceof Traversable ) && sizeof($meta) ) foreach( $meta as $key1 => $value1 ){ $counter1++; ?>
                     <option><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                     <?php } ?>

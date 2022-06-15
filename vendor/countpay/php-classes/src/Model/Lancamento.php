@@ -30,7 +30,7 @@ class Lancamento extends Model{
 			':ID_CATEGORIA'=>$array_id['id_categoria']
 		));
 
-		Metas::verificaMeta($dados_lancamento, $array_id, $id_usuario);
+		Meta::analisaMeta($dados_lancamento, $array_id, $id_usuario);
 
 		return $results;
 	}

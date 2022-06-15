@@ -47,7 +47,7 @@ $app->post('/metas/guardando', function() {
 
     $id_conta = Carteira::buscaConta($apelidoConta, $id_usuario);
 
-    Metas::criaGuardando($_POST, $id_usuario, $id_conta);
+    Meta::criaGuardando($_POST, $id_usuario, $id_conta);
 
     Visual::mostraMensagem('Meta criada com sucesso!', '/');
 

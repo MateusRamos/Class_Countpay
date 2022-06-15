@@ -81,7 +81,7 @@
 
                             <div class="col-md-5 mb-3">
                               <label for="meta_receita" class="form-label">Meta</label>
-                              <select class="form-select" name="nome_meta" id="meta_receita" required>
+                              <select class="form-select" name="nome_meta" id="meta_receita">
                                 <option value="">Nenhuma meta</option>
                                 <?php $counter1=-1;  if( isset($meta) && ( is_array($meta) || $meta instanceof Traversable ) && sizeof($meta) ) foreach( $meta as $key1 => $value1 ){ $counter1++; ?>
                                 <option><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>

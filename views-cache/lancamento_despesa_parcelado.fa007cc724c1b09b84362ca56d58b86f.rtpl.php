@@ -94,7 +94,6 @@
                                         <?php } ?>
                                     </select>
                                 </div>
-
                                                             
                                 <div class="col-md-5 mb-3">
                                     <label for="meta_receita" class="form-label">Meta</label>
@@ -106,13 +105,11 @@
                                     </select>
                                 </div>
 
-
                                 <div class="col-md-9 d-flex justify-content-center">
                                     <button type="button" class="btn btn-secondary me-1">Cancelar</button>
                                     <button type="submit" class="btn btn-success"
                                     style="background-color: #E54640; border-color: #E54640;">Salvar Despesa</button>
                                 </div>
-
 
                             </form>
 
