@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MariaDB dump 10.19  Distrib 10.4.22-MariaDB, for Win64 (AMD64)
 --
 -- Host: 127.0.0.1    Database: countpay
 -- ------------------------------------------------------
--- Server version	5.5.5-10.4.24-MariaDB
+-- Server version	10.4.22-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -33,9 +33,9 @@ CREATE TABLE `cartao` (
   PRIMARY KEY (`id_cartao`),
   KEY `cartao_ibfk_1` (`id_usuario`),
   KEY `cartao_ibfk_2` (`id_instituicao`),
-  CONSTRAINT `cartao_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`ID_USUARIO`),
-  CONSTRAINT `cartao_ibfk_2` FOREIGN KEY (`id_instituicao`) REFERENCES `instituicao` (`ID_INSTITUICAO`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  CONSTRAINT `cartao_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  CONSTRAINT `cartao_ibfk_2` FOREIGN KEY (`id_instituicao`) REFERENCES `instituicao` (`id_instituicao`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,80 +44,8 @@ CREATE TABLE `cartao` (
 
 LOCK TABLES `cartao` WRITE;
 /*!40000 ALTER TABLE `cartao` DISABLE KEYS */;
-INSERT INTO `cartao` VALUES (1,'Cartão Nubank','Crédito',15,2000.00,1,260),(2,'Cartão Itau','Debito',10,1500.00,2,341),(3,'Cartão Next','Crédito',15,1000.00,2,260),(4,'Cartão Picpay','Crédito',10,500.00,143,380);
+INSERT INTO `cartao` VALUES (1,'Cartão Nubank','Cartão',5,7100.00,100,260),(2,'Cartão Inter','Cartão',5,2000.00,100,77),(3,'Cartão Santander','Cartão',5,2000.00,100,33),(4,'Cartão Caixa','Débito',5,0.00,100,104);
 /*!40000 ALTER TABLE `cartao` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `countpay`.`contador_cartao` AFTER INSERT ON `cartao` FOR EACH ROW
-BEGIN
-DECLARE contador INT;
-	SET contador = (SELECT COUNT(id_cartao) FROM cartao);
-    
-    UPDATE cartao_dados
-    SET quantidade_cartao = contador
-    WHERE id_cartao_dados = 1;
-
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `countpay`.`delete_cartao` AFTER DELETE ON `cartao` FOR EACH ROW
-BEGIN
-DECLARE contador INT;
-	SET contador = (SELECT COUNT(id_cartao) FROM cartao);
-    
-    UPDATE cartao_dados
-    SET quantidade_cartao = contador
-    WHERE id_cartao_dados = 1;
-
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-
---
--- Table structure for table `cartao_dados`
---
-
-DROP TABLE IF EXISTS `cartao_dados`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cartao_dados` (
-  `id_cartao_dados` int(11) NOT NULL,
-  `quantidade_cartao` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_cartao_dados`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cartao_dados`
---
-
-LOCK TABLES `cartao_dados` WRITE;
-/*!40000 ALTER TABLE `cartao_dados` DISABLE KEYS */;
-INSERT INTO `cartao_dados` VALUES (1,4);
-/*!40000 ALTER TABLE `cartao_dados` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -131,7 +59,7 @@ CREATE TABLE `categoria` (
   `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
   `descricao` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +68,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` VALUES (1,'Salário'),(2,'Emprestimo'),(3,'Shopping'),(4,'Alimentação'),(5,'Energia'),(6,'Lazer'),(7,'Horas Extra'),(8,'Internet'),(9,'Outros');
+INSERT INTO `categoria` VALUES (1,'Salário'),(2,'Empréstimos'),(3,'Investimentos'),(4,'Outras Receitas'),(5,'Alimentação'),(6,'Assinatura e Serviços'),(7,'Bares'),(8,'Restaurantes'),(9,'Casa'),(10,'Compras'),(11,'Cuidados Pessoais'),(12,'Dívidas'),(13,'Empréstimos'),(14,'Educação'),(15,'Familía'),(16,'Impostos'),(17,'Taxas'),(18,'Investimentos'),(19,'Lazer e Hobbies'),(20,'Mercado'),(21,'Pets'),(22,'Presentes'),(23,'Doações'),(24,'Roupas'),(25,'Saúde'),(26,'Trabalho'),(27,'Transporte'),(28,'Viagem'),(29,'Operação Bancária'),(30,'Outras Despesas');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,9 +89,9 @@ CREATE TABLE `conta` (
   PRIMARY KEY (`id_conta`),
   KEY `conta_ibfk_1` (`id_usuario`),
   KEY `conta_ibfk_2` (`id_instituicao`),
-  CONSTRAINT `conta_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`ID_USUARIO`),
-  CONSTRAINT `conta_ibfk_2` FOREIGN KEY (`id_instituicao`) REFERENCES `instituicao` (`ID_INSTITUICAO`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  CONSTRAINT `conta_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  CONSTRAINT `conta_ibfk_2` FOREIGN KEY (`id_instituicao`) REFERENCES `instituicao` (`id_instituicao`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,79 +100,8 @@ CREATE TABLE `conta` (
 
 LOCK TABLES `conta` WRITE;
 /*!40000 ALTER TABLE `conta` DISABLE KEYS */;
-INSERT INTO `conta` VALUES (1,'Conta Nubank','Conta Corrente',5000.00,1,260),(2,'Conta Inter','Conta Corrente',4500.00,2,77),(3,'Conta Santander','Cartao',1500.00,2,260),(4,'Conta Master','Conta',100.00,143,260);
+INSERT INTO `conta` VALUES (1,'Conta Nubank','Conta Digital',0.00,100,260),(2,'Conta Inter','Conta Corrente',0.00,100,77),(3,'Conta Santander','Conta Corrente',0.00,100,33),(4,'Conta Itaú','Conta Itaú',0.00,100,341),(5,'Carteira','Carteira Física',0.00,100,1000),(20,'conta 1','Conta Poupança',1200.00,143,125),(21,'Conta 2','Carteira Física',6000.00,143,340),(22,'conta 3','Conta Corrente',1500.00,143,336);
 /*!40000 ALTER TABLE `conta` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `countpay`.`contador_contas` AFTER INSERT ON `conta` FOR EACH ROW
-BEGIN
-DECLARE contador INT;
-	SET contador = (SELECT COUNT(id_conta) FROM conta);
-    
-    UPDATE conta_dados
-    SET quantidade_conta = contador
-    WHERE id_conta_dados = 1;
-
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `countpay`.`delete_conta` AFTER DELETE ON `conta` FOR EACH ROW
-BEGIN
-DECLARE contador INT;
-	SET contador = (SELECT COUNT(id_conta) FROM conta);
-    
-    UPDATE conta_dados
-    SET quantidade_conta = contador
-    WHERE id_conta_dados = 1;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-
---
--- Table structure for table `conta_dados`
---
-
-DROP TABLE IF EXISTS `conta_dados`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `conta_dados` (
-  `id_conta_dados` int(11) NOT NULL,
-  `quantidade_conta` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id_conta_dados`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `conta_dados`
---
-
-LOCK TABLES `conta_dados` WRITE;
-/*!40000 ALTER TABLE `conta_dados` DISABLE KEYS */;
-INSERT INTO `conta_dados` VALUES (1,'4');
-/*!40000 ALTER TABLE `conta_dados` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -293,7 +150,7 @@ CREATE TABLE `instituicao` (
 
 LOCK TABLES `instituicao` WRITE;
 /*!40000 ALTER TABLE `instituicao` DISABLE KEYS */;
-INSERT INTO `instituicao` VALUES (1,'Banco do Brasil'),(33,'Banco Santander'),(77,'Banco Inter'),(93,'Pelocred'),(104,'Caixa Econômica Federal'),(121,'Agibank'),(125,'Banco Genial'),(197,'Stone Pagamentos'),(212,'Banco Original'),(218,'BS2'),(237,'Banco Bradesco'),(260,'Nubank'),(280,'Meupag!'),(290,'Pagseguro'),(323,'Mercado Pago'),(335,'Banco Digio'),(336,'C6 Bank'),(340,'Superdigital'),(341,'Banco Itaú'),(356,'Banco Real'),(380,'PicPay'),(389,'Banco Mercantil do Brasil S.A'),(396,'Hub Pagamentos'),(399,'HSBC Bank Brasil'),(401,'Iugu'),(422,'Banco Safra'),(450,'Fitbank'),(453,'Banco Rural'),(633,'Banco Rendimento'),(652,'Itaú Unibanco Holding'),(654,'Banco Digi+'),(735,'Neon'),(745,'Banco Citibank');
+INSERT INTO `instituicao` VALUES (1,'Banco do Brasil'),(33,'Banco Santander'),(77,'Banco Inter'),(93,'Pelocred'),(104,'Caixa Econômica Federal'),(121,'Agibank'),(125,'Banco Genial'),(197,'Stone Pagamentos'),(212,'Banco Original'),(218,'BS2'),(237,'Banco Bradesco'),(260,'Nubank'),(280,'Meupag!'),(290,'Pagseguro'),(323,'Mercado Pago'),(335,'Banco Digio'),(336,'C6 Bank'),(340,'Superdigital'),(341,'Banco Itaú'),(356,'Banco Real'),(380,'PicPay'),(389,'Banco Mercantil do Brasil S.A'),(396,'Hub Pagamentos'),(399,'HSBC Bank Brasil'),(401,'Iugu'),(422,'Banco Safra'),(450,'Fitbank'),(453,'Banco Rural'),(633,'Banco Rendimento'),(652,'Itaú Unibanco Holding'),(654,'Banco Digi+'),(735,'Neon'),(745,'Banco Citibank'),(1000,'Outros');
 /*!40000 ALTER TABLE `instituicao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -316,6 +173,7 @@ CREATE TABLE `lancamento` (
   `id_categoria` int(11) DEFAULT NULL,
   `quantidade_parcelas` varchar(30) DEFAULT NULL,
   `frequencia` varchar(120) DEFAULT NULL,
+  `fixo` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_lancamento`),
   KEY `usuario` (`id_usuario`),
   KEY `conta` (`id_conta`),
@@ -325,7 +183,7 @@ CREATE TABLE `lancamento` (
   CONSTRAINT `categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`),
   CONSTRAINT `conta` FOREIGN KEY (`id_conta`) REFERENCES `conta` (`id_conta`),
   CONSTRAINT `usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=15983 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16899 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -334,103 +192,8 @@ CREATE TABLE `lancamento` (
 
 LOCK TABLES `lancamento` WRITE;
 /*!40000 ALTER TABLE `lancamento` DISABLE KEYS */;
-INSERT INTO `lancamento` VALUES (15977,'Empréstimo c/ Juros ','Receita Parcelada',300.00,'2022-05-26',143,4,4,2,'1 / 5','Mensalmente'),(15978,'Empréstimo c/ Juros ','Receita Parcelada',300.00,'2022-06-26',143,4,4,2,'2 / 5','Mensalmente'),(15979,'Empréstimo c/ Juros ','Receita Parcelada',300.00,'2022-07-26',143,4,4,2,'3 / 5','Mensalmente'),(15980,'Empréstimo c/ Juros ','Receita Parcelada',300.00,'2022-08-26',143,4,4,2,'4 / 5','Mensalmente'),(15981,'Empréstimo c/ Juros ','Receita Parcelada',300.00,'2022-09-26',143,4,4,2,'5 / 5','Mensalmente'),(15982,'Teste','Receita',50.00,'2022-05-27',143,4,NULL,4,NULL,NULL);
+INSERT INTO `lancamento` VALUES (16874,'Alexandre','Despesa Fixa',50.00,'2022-06-05',100,2,NULL,5,NULL,NULL,0),(16875,'chama1','Despesa Fixa',50.00,'2022-05-08',143,2,NULL,5,NULL,NULL,0),(16876,'chama2','Receita Fixa',50.00,'2022-06-09',143,2,NULL,5,NULL,NULL,0),(16877,'Alexandre','Receita Fixa',50.00,'2022-06-04',NULL,2,NULL,5,NULL,NULL,0),(16878,'asa','Receita',50.00,'2022-06-04',100,NULL,1,29,NULL,NULL,0),(16884,'chama1','Receita Fixa',50.00,'2022-06-10',143,2,NULL,5,NULL,NULL,0),(16886,'chama2','Despesa Fixa',50.00,'2022-06-07',143,2,NULL,5,NULL,NULL,0),(16887,'chama2','Receita Fixa',50.00,'2022-03-15',143,2,NULL,5,NULL,NULL,0),(16888,'chama2','Despesa Fixa',50.00,'2022-01-02',143,2,NULL,5,NULL,NULL,0),(16889,'Alexandre','Despesa Fixa',50.00,'2022-07-05',100,2,NULL,5,NULL,NULL,1),(16890,'Teste','Despesa Parcelada',500.00,'2022-06-14',143,21,NULL,5,'1 / 2','Quinzenalmente',NULL),(16891,'Teste','Despesa Parcelada',500.00,'2022-06-29',143,21,NULL,5,'2 / 2','Quinzenalmente',NULL),(16892,'Perdemos o controle','Receita Parcelada',500.00,'2022-06-14',143,21,NULL,5,'1 / 2','Trimestral',NULL),(16893,'Perdemos o controle','Receita Parcelada',500.00,'2022-09-14',143,21,NULL,5,'2 / 2','Trimestral',NULL),(16894,'Perdemos o controle','Receita',70.00,'2022-06-14',143,21,NULL,5,NULL,NULL,NULL),(16895,'Perdemos o controle','Receita',70.00,'2022-06-14',143,21,NULL,5,NULL,NULL,NULL),(16896,'aaaaassdawdwdwd','Receita',3001.00,'2022-06-14',143,21,NULL,5,NULL,NULL,NULL),(16897,'ehwtj','Receita',5000.00,'2022-06-14',143,21,NULL,5,NULL,NULL,NULL),(16898,'fhg','Receita',5000.00,'2022-06-14',143,22,NULL,5,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `lancamento` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `countpay`.`lancamento_valor` AFTER INSERT ON `lancamento` FOR EACH ROW
-BEGIN
-DECLARE contador INT;
-	SET contador = (SELECT SUM(valor) FROM lancamento);
-    
-    UPDATE lancamento_dados
-    SET lancamento_total = contador
-    WHERE id_lancamento_dados = 1;
-
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `countpay`.`update_lancamento` AFTER UPDATE ON `lancamento` FOR EACH ROW
-BEGIN
-DECLARE contador INT;
-	SET contador = (SELECT SUM(valor) FROM lancamento);
-    
-    UPDATE lancamento_dados
-    SET lancamento_total = contador
-    WHERE id_lancamento_dados = 1;
-
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `countpay`.`delete_lancamento` AFTER DELETE ON `lancamento` FOR EACH ROW
-BEGIN
-DECLARE contador INT;
-	SET contador = (SELECT SUM(valor) FROM lancamento);
-    
-    UPDATE lancamento_dados
-    SET lancamento_total = contador
-    WHERE id_lancamento_dados = 1;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-
---
--- Table structure for table `lancamento_dados`
---
-
-DROP TABLE IF EXISTS `lancamento_dados`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `lancamento_dados` (
-  `id_lancamento_dados` int(11) NOT NULL,
-  `lancamento_total` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id_lancamento_dados`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `lancamento_dados`
---
-
-LOCK TABLES `lancamento_dados` WRITE;
-/*!40000 ALTER TABLE `lancamento_dados` DISABLE KEYS */;
-INSERT INTO `lancamento_dados` VALUES (1,1550.00);
-/*!40000 ALTER TABLE `lancamento_dados` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -443,17 +206,21 @@ DROP TABLE IF EXISTS `meta`;
 CREATE TABLE `meta` (
   `id_meta` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(256) NOT NULL,
-  `objetivo` varchar(256) DEFAULT NULL,
-  `valor` decimal(10,2) NOT NULL,
-  `data_inicial` date DEFAULT NULL,
-  `data_final` date DEFAULT NULL,
-  `notificacoes` varchar(126) DEFAULT NULL,
-  `descricao` varchar(500) DEFAULT NULL,
+  `objetivo` varchar(256) NOT NULL,
+  `valor` decimal(11,2) NOT NULL,
+  `valor_atual` int(11) DEFAULT NULL,
+  `data_inicial` date NOT NULL,
+  `data_final` date NOT NULL,
+  `id_categoria` int(11) DEFAULT NULL,
+  `status` varchar(48) NOT NULL,
   `id_conta` int(11) DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_meta`),
   KEY `id_conta` (`id_conta`),
-  CONSTRAINT `meta_ibfk_1` FOREIGN KEY (`id_conta`) REFERENCES `conta` (`id_conta`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `id_usuario` (`id_usuario`),
+  CONSTRAINT `meta_ibfk_1` FOREIGN KEY (`id_conta`) REFERENCES `conta` (`id_conta`),
+  CONSTRAINT `meta_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -462,7 +229,66 @@ CREATE TABLE `meta` (
 
 LOCK TABLES `meta` WRITE;
 /*!40000 ALTER TABLE `meta` DISABLE KEYS */;
+INSERT INTO `meta` VALUES (1,'comprar geladeira','comprar uma brasthemp',5000.00,NULL,'2022-06-10','2023-06-10',NULL,'concluido',21,143),(2,'Comprar Celular','Comprar um iphone',3000.00,500,'2022-05-14','2022-12-25',NULL,'ativo',22,143),(4,'teste','Comprar um dildo',50.00,NULL,'2022-06-14','2022-06-29',NULL,'pausado',21,143),(5,'aaaaaaa','aasaasdada',60.00,NULL,'2022-06-09','2022-06-14',NULL,'ativo',21,143),(6,'dafa','sdfasfas',100.00,NULL,'2022-04-02','2022-09-06',NULL,'pausado',22,143);
 /*!40000 ALTER TABLE `meta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notificacoes`
+--
+
+DROP TABLE IF EXISTS `notificacoes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notificacoes` (
+  `id_notificacoes` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(64) NOT NULL,
+  `descricao` varchar(256) DEFAULT NULL,
+  `id_tipo_notificacoes` int(11) NOT NULL,
+  `data_emissao` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id_usuario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_notificacoes`),
+  KEY `id_usuario` (`id_usuario`),
+  KEY `notificacoes_ibfk_2` (`id_tipo_notificacoes`),
+  CONSTRAINT `notificacoes_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  CONSTRAINT `notificacoes_ibfk_2` FOREIGN KEY (`id_tipo_notificacoes`) REFERENCES `tipo_notificacoes` (`id_tipo_notificacoes`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notificacoes`
+--
+
+LOCK TABLES `notificacoes` WRITE;
+/*!40000 ALTER TABLE `notificacoes` DISABLE KEYS */;
+INSERT INTO `notificacoes` VALUES (1,'Alerta de furto','Perdemos o controle',1,'2022-06-14 00:43:45',2),(2,'Foi pra merda','Perdemos o controle',1,'2022-06-14 00:44:47',NULL),(3,'Titu','Fudeo',1,'2022-06-14 00:45:27',NULL);
+/*!40000 ALTER TABLE `notificacoes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tipo_notificacoes`
+--
+
+DROP TABLE IF EXISTS `tipo_notificacoes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tipo_notificacoes` (
+  `id_tipo_notificacoes` int(11) NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(100) NOT NULL,
+  `visto` int(11) DEFAULT NULL,
+  `icone` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id_tipo_notificacoes`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipo_notificacoes`
+--
+
+LOCK TABLES `tipo_notificacoes` WRITE;
+/*!40000 ALTER TABLE `tipo_notificacoes` DISABLE KEYS */;
+INSERT INTO `tipo_notificacoes` VALUES (1,'Atenção',NULL,'bi bi-exclamation-circle text-warning\n');
+/*!40000 ALTER TABLE `tipo_notificacoes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -532,7 +358,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`id_usuario`),
   KEY `usuario_ibfk_1` (`id_tipo_usuario`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_tipo_usuario`) REFERENCES `tipo_usuario` (`id_tipo_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -541,85 +367,113 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Lucas','Heideric','lucas@countpay.com.br','2000-07-24','theheideric','123456',1),(2,'Mateus','Ramos','mateus@countpay.com.br','2001-08-25','theramos','123456',1),(3,'Raphael','Rocha','raphel@gmail.com','1993-06-06','Mateuzin','Mateuzão',2),(4,'Alexandre','Galhardo 2','alexandre@countpay.com.br','1999-05-05','xande','123456',1),(143,'usuario','usuario','usuario@gmail.com','2022-05-19','usuario','usuario',2);
+INSERT INTO `usuario` VALUES (1,'Lucas','Heideric','lucas@countpay.com.br','2000-07-24','theheideric','123456',1),(2,'Mateus','Ramos','mateus@countpay.com.br','2001-08-25','theramos','123456',1),(3,'Raphael','Rocha','raphel@gmail.com','1993-06-06','Mateuzin','Mateuzão',2),(4,'Alexandre','Galhardo 2','alexandre@countpay.com.br','1999-05-05','xande','123456',1),(100,'Lucas','da Rocha Heideric','lucasheideric@Countpay.com.br','2000-07-24','lucas','123456',2),(143,'Alexandre','da Silva Pinto','AlexPinto@Countpay.com.br','2022-05-19','usuario','123',2);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `countpay`.`contador_usuarios` AFTER INSERT ON `usuario` FOR EACH ROW
-BEGIN
-
-DECLARE contador INT;
-	SET contador = (SELECT COUNT(id_usuario) FROM usuario);
-    
-    UPDATE usuario_dados
-    SET quantidade_usuario = contador
-    WHERE id_usuario_dados = 1;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `countpay`.`delete_usuarios` AFTER DELETE ON `usuario` FOR EACH ROW
-BEGIN
-
-DECLARE contador INT;
-	SET contador = (SELECT COUNT(id_usuario) FROM usuario);
-    
-    UPDATE usuario_dados
-    SET quantidade_usuario = contador
-    WHERE id_usuario_dados = 1;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
--- Table structure for table `usuario_dados`
+-- Table structure for table `usuario_perfil`
 --
 
-DROP TABLE IF EXISTS `usuario_dados`;
+DROP TABLE IF EXISTS `usuario_perfil`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usuario_dados` (
-  `id_usuario_dados` int(11) NOT NULL AUTO_INCREMENT,
-  `quantidade_usuario` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_usuario_dados`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE `usuario_perfil` (
+  `id_usuario` int(11) DEFAULT NULL,
+  `ocupacao` varchar(64) DEFAULT NULL,
+  `pais` varchar(24) DEFAULT NULL,
+  `cidade` varchar(32) DEFAULT NULL,
+  `endereco` varchar(128) DEFAULT NULL,
+  `telefone` varchar(16) DEFAULT NULL,
+  `sobre_mim` tinytext DEFAULT NULL,
+  `twitter` varchar(128) DEFAULT NULL,
+  `linkedin` varchar(128) DEFAULT NULL,
+  `facebook` varchar(128) DEFAULT NULL,
+  `instagram` varchar(128) DEFAULT NULL,
+  KEY `id_usuario` (`id_usuario`),
+  CONSTRAINT `usuario_perfil_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuario_dados`
+-- Dumping data for table `usuario_perfil`
 --
 
-LOCK TABLES `usuario_dados` WRITE;
-/*!40000 ALTER TABLE `usuario_dados` DISABLE KEYS */;
-INSERT INTO `usuario_dados` VALUES (1,5);
-/*!40000 ALTER TABLE `usuario_dados` ENABLE KEYS */;
+LOCK TABLES `usuario_perfil` WRITE;
+/*!40000 ALTER TABLE `usuario_perfil` DISABLE KEYS */;
+INSERT INTO `usuario_perfil` VALUES (NULL,'Estudante','Brasil','Birigui','Abla, blblb','(15) 1234-1234','lalalalalalalalalalalalaaaaaaaaaaaaaaaaa','https://www.udemy.com/','https://www.notion.so/pt-br','http://atomurl.net/math/','https://bootstrapmade.com/demo/NiceAdmin/'),(143,'Faxineiro','Brasil','Pau Grande','Rua Miracemo de Moraes','(11) 91232-9093','Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus.','https://facebook.com/#','https://twitter.com/#','https://instagram.com/#','https://linkedin.com/#'),(100,'CEO Countpay','Brasil','Birigui','Rua Tiradentes, 597s','(18) 99716-9693','Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.','https://twitter.com/#','https://linkedin.com/#','https://facebook.com/#','https://instagram.com/#'),(2,'Estudante','Brasil','Cambuci','Rj194 km-0','(22) 98832-2285','SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS','https://ead2.iff.edu.br/','https://kultivi.com/','https://www.notion.so/','https://graphviz.org/');
+/*!40000 ALTER TABLE `usuario_perfil` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'countpay'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `sp_cartao_inserir` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_cartao_inserir`(
+
+	papelido VARCHAR(100),
+    ptipo_cartao VARCHAR(45),
+    pvence_dia INT,
+    plimite DECIMAL(10,2),
+    pid_usuario INT,
+    pid_instituicao INT
+
+)
+BEGIN
+
+	INSERT INTO cartao (apelido, tipo_cartao, vence_dia, limite, id_usuario, id_instituicao) VALUES 
+					   (papelido, ptipo_cartao, pvence_dia, plimite, pid_usuario, pid_instituicao);
+                       
+                       SELECT * FROM cartao WHERE id_cartao = LAST_INSERT_ID();
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_conta_inserir` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_conta_inserir`(
+
+	papelido VARCHAR(100),
+    ptipo_conta VARCHAR(35),
+    psaldo DECIMAL(10,2),
+    pid_usuario INT,
+    pid_instituicao INT
+    
+
+)
+BEGIN
+
+	INSERT INTO conta (apelido, tipo_conta, saldo, id_usuario, id_instituicao) VALUES
+					  (papelido, ptipo_conta, psaldo, pid_usuario, pid_instituicao);
+                      
+                      SELECT * FROM conta WHERE id_conta = LAST_INSERT_ID();
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_lancamento_normal` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -692,6 +546,79 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_lancamento_transferencia` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_lancamento_transferencia`(
+
+	papelido VARCHAR(50),
+    ptipo_lancamento VARCHAR(50),
+    pvalor DECIMAL(10,2),
+    pdata_lancamento DATE,
+    pid_usuario INT,
+    pid_conta INT,
+    pid_categoria INT
+    
+    
+)
+BEGIN
+
+	INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_categoria) VALUES
+						  (papelido, ptipo_lancamento, pvalor, pdata_lancamento, pid_usuario, pid_conta, pid_categoria);
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_usuario_atualizar` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuario_atualizar`(
+pid_usuario INT,
+pnome VARCHAR(100),
+psobrenome VARCHAR(100),
+pemail VARCHAR(200),
+pdata_nascimento DATE,
+plogin VARCHAR(100),
+psenha VARCHAR(500)
+
+)
+BEGIN
+
+	UPDATE usuario
+    SET
+    nome = pnome,
+    sobrenome = psobrenome,
+    email = pemail,
+    data_nascimento = pdata_nascimento,
+    login = plogin
+    
+    WHERE id_usuario = pid_usuario;
+    
+    SELECT * FROM usuario WHERE id_usuario = pid_usuario;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_usuario_inserir` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -735,4 +662,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-27 20:27:28
+-- Dump completed on 2022-06-15 11:31:06
