@@ -27,6 +27,9 @@ require_once("routes\site\site_lancamento.php");
 //Require rotas site - Metas:
 require_once("routes\site\site_meta.php");
 
+//Require rotas site - Projeções:
+require_once("routes\site\site_projecoes.php");
+
 $app->run();
 
 ?>
