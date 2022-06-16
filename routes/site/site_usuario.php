@@ -119,6 +119,8 @@ $app->get('/', function() {
     $id_usuario = User::verifyLogin();
 
     Lancamento::verificaLancamentoFixo($id_usuario);
+
+    
     $notificacoes = User::verificaNotificacoes($id_usuario);
     $quant_notificacoes = array("quantidade"=>count($notificacoes));
 

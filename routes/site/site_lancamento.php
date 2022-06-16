@@ -74,7 +74,15 @@ $app->post('/lancamento/despesa/unica', function() {
         'id_categoria' => Lancamento::buscaCategoria($_POST['id_categoria'])
     );
 
-    $result = Lancamento::criaLancamentoUnico($_POST, $array_id, $id_usuario);
+    if( Visual::verificaVencimento($_POST['data_lancamento']) == "amanha" )
+    {
+        $resultado = Lancamento::criaLancamentoUnicoFuturo($_POST, $array_id, $id_usuario);
+    }
+    else
+    {
+        $resultado = Lancamento::criaLancamentoUnico($_POST, $array_id, $id_usuario); 
+    }
+
 
     if ($result > 0) {
 
@@ -187,7 +195,15 @@ $app->post('/lancamento/receita/unica', function() {
         "id_categoria" => Lancamento::buscaCategoria($_POST['id_categoria'])
     );
 
-    $resultado = Lancamento::criaLancamentoUnico($_POST, $array_id, $id_usuario); 
+    if( Visual::verificaVencimento($_POST['data_lancamento']) == "amanha" )
+    {
+        $resultado = Lancamento::criaLancamentoUnicoFuturo($_POST, $array_id, $id_usuario);
+    }
+    else
+    {
+        $resultado = Lancamento::criaLancamentoUnico($_POST, $array_id, $id_usuario); 
+    }
+
 
     if ($resultado > 0) {
 

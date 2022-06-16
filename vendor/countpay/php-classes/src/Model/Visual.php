@@ -13,6 +13,28 @@ class Visual extends Model	{
 	||												    							 										 ||
 	//===========================================================|===========================================================*/
 
+	public static function verificaVencimento($data)
+	{
+
+		$hoje = strtotime(date("Y-m-d"));
+		$data_int = strtotime($data);
+		
+		if ($data_int < $hoje)
+		{
+			return "ontem";
+		} 
+		elseif($data_int > $hoje)
+		{
+			return "amanha";
+		}
+		else
+		{
+			return "hoje";
+		}
+
+	}
+	
+
 	//=============================== Função para calcular o tempo de certa data até hoje ===================================//
 
 	public static function calculaTempoDia($data)
@@ -120,7 +142,7 @@ class Visual extends Model	{
 		$sql = new Sql();
 
 		$results = $sql->select("SELECT descricao_lancamento, tipo_lancamento, valor, data_lancamento FROM lancamento 
-								WHERE fixo = 0 AND id_usuario = :ID_USUARIO AND data_lancamento < current_date()  
+								WHERE status_lancamento = 0 AND id_usuario = :ID_USUARIO AND data_lancamento < current_date()  
 								order by data_lancamento desc limit 6", array(
 									":ID_USUARIO"=>$id_usuario
 								));

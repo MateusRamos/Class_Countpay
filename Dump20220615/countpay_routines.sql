@@ -91,9 +91,9 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -106,14 +106,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_lancamento_normal`(
     pdata_lancamento DATE,
     pid_conta INT,
     pid_cartao INT,
-    pid_categoria INT
+    pid_categoria INT,
+    pstatus_lancamento INT
     
     
 )
 BEGIN
 
-	INSERT INTO lancamento (id_usuario, descricao_lancamento, valor, tipo_lancamento, data_lancamento, id_conta, id_cartao, id_categoria) VALUES
-						   (pid_usuario, pdescricao_lancamento, pvalor, ptipo_lancamento, pdata_lancamento, pid_conta, pid_cartao, pid_categoria);
+	INSERT INTO lancamento (id_usuario, descricao_lancamento, valor, tipo_lancamento, data_lancamento, id_conta, id_cartao, id_categoria, status_lancamento) VALUES
+						   (pid_usuario, pdescricao_lancamento, pvalor, ptipo_lancamento, pdata_lancamento, pid_conta, pid_cartao, pid_categoria, pstatus_lancamento);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -124,9 +125,9 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -141,15 +142,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_lancamento_parcelado`(
     pfrequencia VARCHAR(100),
     pid_conta INT,
     pid_cartao INT,
-    pid_categoria INT
-    
-    
+    pid_categoria INT,
+    pstatus_lancamento INT  
 
 )
 BEGIN
 
-	INSERT INTO lancamento (id_usuario, tipo_lancamento, descricao_lancamento, valor, quantidade_parcelas, data_lancamento, frequencia, id_conta, id_cartao, id_categoria) VALUES
-						   (pid_usuario, ptipo_lancamento, pdescricao_lancamento, pvalor, pparcela, pdata_lancamento, pfrequencia, pid_conta, pid_cartao, pid_categoria);
+	INSERT INTO lancamento (id_usuario, tipo_lancamento, descricao_lancamento, valor, quantidade_parcelas, data_lancamento, frequencia, id_conta, id_cartao, id_categoria, status_lancamento) VALUES
+						   (pid_usuario, ptipo_lancamento, pdescricao_lancamento, pvalor, pparcela, pdata_lancamento, pfrequencia, pid_conta, pid_cartao, pid_categoria, pstatus_lancamento);
                            
 	SELECT id_lancamento FROM lancamento WHERE id_lancamento = LAST_INSERT_ID();
 
@@ -274,4 +274,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-15 11:41:45
+-- Dump completed on 2022-06-15 23:02:18

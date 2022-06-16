@@ -19,7 +19,7 @@ class Lancamento extends Model{
 
 		$sql = new Sql();
 
-		$results =  $sql->select("CALL sp_lancamento_normal(:ID_USUARIO, :DESCRICAO, :VALOR, :TIPO_LANCAMENTO, :DATA_LANCAMENTO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA)", array(
+		$results =  $sql->select("CALL sp_lancamento_normal(:ID_USUARIO, :DESCRICAO, :VALOR, :TIPO_LANCAMENTO, :DATA_LANCAMENTO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :STATUS_LANCAMENTO)", array(
 			':ID_USUARIO'=>$id_usuario,
 			':DESCRICAO'=>$dados_lancamento['descricao'],
 			':VALOR'=>$dados_lancamento['valor'],
@@ -27,12 +27,36 @@ class Lancamento extends Model{
 			':DATA_LANCAMENTO'=>$dados_lancamento['data_lancamento'],			
 			':ID_CONTA'=>$array_id['id_conta'],
 			':ID_CARTAO'=>$array_id['id_cartao'],
-			':ID_CATEGORIA'=>$array_id['id_categoria']
+			':ID_CATEGORIA'=>$array_id['id_categoria'],
+			':STATUS_LANCAMENTO'=>0
 		));
+
+		Carteira::atualizaSaldoConta($dados_lancamento, $array_id);
 
 		Meta::analisaMeta($dados_lancamento, $array_id, $id_usuario);
 
 		return $results;
+	}
+
+
+	//=============================================== Lançamento Unico Futuro ===============================================//
+	public static function criaLancamentoUnicoFuturo($dados_lancamento, $array_id, $id_usuario)
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("CALL sp_lancamento_normal(:ID_USUARIO, :DESCRICAO, :VALOR, :TIPO_LANCAMENTO, :DATA_LANCAMENTO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :STATUS_LANCAMENTO)", array(
+			':ID_USUARIO'=>$id_usuario,
+			':DESCRICAO'=>$dados_lancamento['descricao'],
+			':VALOR'=>$dados_lancamento['valor'],
+			':TIPO_LANCAMENTO'=>$dados_lancamento['tipo_lancamento'],			
+			':DATA_LANCAMENTO'=>$dados_lancamento['data_lancamento'],			
+			':ID_CONTA'=>$array_id['id_conta'],
+			':ID_CARTAO'=>$array_id['id_cartao'],
+			':ID_CATEGORIA'=>$array_id['id_categoria'],
+			":STATUS_LANCAMENTO"=>2
+		));
+
 	}
 
 
@@ -48,7 +72,7 @@ class Lancamento extends Model{
 
 		$sql = new Sql();
 		
-		$results = $sql->select("SELECT * FROM lancamento WHERE data_lancamento < current_date() AND fixo = 1");
+		$results = $sql->select("SELECT * FROM lancamento WHERE data_lancamento <= current_date() AND status_lancamento = 1");
 
 		if(isset($results))
 		{
@@ -66,7 +90,7 @@ class Lancamento extends Model{
 		{
 			Lancamento::criaLancamentoFuturo($lancamentos[$key]);
 
-			Lancamento::modificaFixoLancamento($lancamentos[$key]);
+			Lancamento::modificaStatusLancado($lancamentos[$key]);
 		}
 
 	}
@@ -78,8 +102,8 @@ class Lancamento extends Model{
 
 		$sql = new Sql();
 
-		$sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_cartao, id_categoria, fixo)
-						 VALUES (:DESCRICAO, :TIPO_LANCAMENTO, :VALOR, date_add(:DATA_LANCAMENTO, interval 1 month), :ID_USUARIO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :FIXO)", array(
+		$sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_cartao, id_categoria, status_lancamento)
+						 VALUES (:DESCRICAO, :TIPO_LANCAMENTO, :VALOR, date_add(:DATA_LANCAMENTO, interval 1 month), :ID_USUARIO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :STATUS_LANCAMENTO)", array(
 							":DESCRICAO"=>$dados_lancamento['descricao_lancamento'],
 							":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
 							":VALOR"=>$dados_lancamento['valor'],
@@ -88,21 +112,32 @@ class Lancamento extends Model{
 							":ID_CONTA"=>$dados_lancamento['id_conta'],
 							":ID_CARTAO"=>$dados_lancamento['id_cartao'],
 							":ID_CATEGORIA"=>$dados_lancamento['id_categoria'],
-							":FIXO"=>$dados_lancamento['fixo']
+							":STATUS_LANCAMENTO"=>$dados_lancamento['status_lancamento']
 						 ));
 
 	}
 
 
-	//====================================== Altera fixo = 0 no lançamento fixo observado ===================================//
-	public static function modificaFixoLancamento($dados_lancamento)
+	//====================================== Altera status = 0 no lançamento fixo observado ===================================//
+	public static function modificaStatusLancado($dados_lancamento)
 	{
 
 		$sql = new Sql();
 
-		$sql->execQuery("UPDATE lancamento SET fixo = 0 WHERE id_lancamento = :ID_LANCAMENTO", array(
+		$sql->execQuery("UPDATE lancamento SET status_lancamento = 0 WHERE id_lancamento = :ID_LANCAMENTO", array(
 			":ID_LANCAMENTO"=>$dados_lancamento['id_lancamento']
 		));
+
+
+		$id_usuario = $dados_lancamento['id_usuario'];
+		$array_id = array(
+			"id_conta"=>$dados_lancamento['id_conta'],
+			"id_cartao"=>$dados_lancamento['id_cartao'],
+			"id_categoria"=>$dados_lancamento['id_categoria']
+		);
+
+		Carteira::atualizaSaldoConta($dados_lancamento, $array_id);
+		Meta::analisaMeta($dados_lancamento, $array_id, $id_usuario);
 
 	}
 

@@ -34,7 +34,7 @@ CREATE TABLE `lancamento` (
   `id_categoria` int(11) DEFAULT NULL,
   `quantidade_parcelas` varchar(30) DEFAULT NULL,
   `frequencia` varchar(120) DEFAULT NULL,
-  `fixo` int(11) DEFAULT NULL,
+  `status_lancamento` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_lancamento`),
   KEY `usuario` (`id_usuario`),
   KEY `conta` (`id_conta`),
@@ -44,7 +44,7 @@ CREATE TABLE `lancamento` (
   CONSTRAINT `categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`),
   CONSTRAINT `conta` FOREIGN KEY (`id_conta`) REFERENCES `conta` (`id_conta`),
   CONSTRAINT `usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=16899 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16920 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +53,7 @@ CREATE TABLE `lancamento` (
 
 LOCK TABLES `lancamento` WRITE;
 /*!40000 ALTER TABLE `lancamento` DISABLE KEYS */;
-INSERT INTO `lancamento` VALUES (16874,'Alexandre','Despesa Fixa',50.00,'2022-06-05',100,2,NULL,5,NULL,NULL,0),(16875,'chama1','Despesa Fixa',50.00,'2022-05-08',143,2,NULL,5,NULL,NULL,0),(16876,'chama2','Receita Fixa',50.00,'2022-06-09',143,2,NULL,5,NULL,NULL,0),(16877,'Alexandre','Receita Fixa',50.00,'2022-06-04',NULL,2,NULL,5,NULL,NULL,0),(16878,'asa','Receita',50.00,'2022-06-04',100,NULL,1,29,NULL,NULL,0),(16884,'chama1','Receita Fixa',50.00,'2022-06-10',143,2,NULL,5,NULL,NULL,0),(16886,'chama2','Despesa Fixa',50.00,'2022-06-07',143,2,NULL,5,NULL,NULL,0),(16887,'chama2','Receita Fixa',50.00,'2022-03-15',143,2,NULL,5,NULL,NULL,0),(16888,'chama2','Despesa Fixa',50.00,'2022-01-02',143,2,NULL,5,NULL,NULL,0),(16889,'Alexandre','Despesa Fixa',50.00,'2022-07-05',100,2,NULL,5,NULL,NULL,1),(16890,'Teste','Despesa Parcelada',500.00,'2022-06-14',143,21,NULL,5,'1 / 2','Quinzenalmente',NULL),(16891,'Teste','Despesa Parcelada',500.00,'2022-06-29',143,21,NULL,5,'2 / 2','Quinzenalmente',NULL),(16892,'Perdemos o controle','Receita Parcelada',500.00,'2022-06-14',143,21,NULL,5,'1 / 2','Trimestral',NULL),(16893,'Perdemos o controle','Receita Parcelada',500.00,'2022-09-14',143,21,NULL,5,'2 / 2','Trimestral',NULL),(16894,'Perdemos o controle','Receita',70.00,'2022-06-14',143,21,NULL,5,NULL,NULL,NULL),(16895,'Perdemos o controle','Receita',70.00,'2022-06-14',143,21,NULL,5,NULL,NULL,NULL),(16896,'aaaaassdawdwdwd','Receita',3001.00,'2022-06-14',143,21,NULL,5,NULL,NULL,NULL),(16897,'ehwtj','Receita',5000.00,'2022-06-14',143,21,NULL,5,NULL,NULL,NULL),(16898,'fhg','Receita',5000.00,'2022-06-14',143,22,NULL,5,NULL,NULL,NULL);
+INSERT INTO `lancamento` VALUES (16906,'Teste','Receita',123.00,'2022-06-15',143,21,NULL,5,NULL,NULL,0),(16907,'fasdfasd','Receita',1200.00,'2022-06-16',143,21,NULL,5,NULL,NULL,0),(16908,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16909,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16910,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16911,'asdad','Receita',1000.00,'2022-06-15',143,21,NULL,5,NULL,NULL,0),(16912,'asdasda','Receita',1640.00,'2022-06-15',143,21,NULL,5,NULL,NULL,0),(16913,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16914,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16915,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16916,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16917,'Teste','Despesa',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16918,'Teste','Despesa',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16919,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1);
 /*!40000 ALTER TABLE `lancamento` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -66,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-15 11:41:44
+-- Dump completed on 2022-06-15 23:02:16

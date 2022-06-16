@@ -117,6 +117,35 @@ class Carteira extends Model{
 	}
 
 
+	public static function atualizaSaldoConta($dados_lancamento, $array_id)
+	{
+		$sql = new Sql();
+		
+		$tipo_lancamento = substr($dados_lancamento['tipo_lancamento'], 0, 7);
+
+		if($tipo_lancamento == "Receita" && isset($array_id['id_conta']))
+		{
+
+			$sql->execQuery("UPDATE conta SET saldo = ( (SELECT saldo FROM conta WHERE id_conta = :ID_CONTA) + :ENTRADA ) WHERE id_conta = :ID_CONTA", array(
+				":ID_CONTA" => $array_id['id_conta'],
+				":ENTRADA" => $dados_lancamento['valor']
+			));
+
+		}
+		else if ($tipo_lancamento == "Despesa" && isset($array_id['id_conta']))
+		{
+			$entrada = $dados_lancamento['valor'] * -1;
+			
+			$sql->execQuery("UPDATE conta SET saldo = ( (SELECT saldo FROM conta WHERE id_conta = :ID_CONTA) + :ENTRADA ) WHERE id_conta = :ID_CONTA", array(
+				":ID_CONTA" => $array_id['id_conta'],
+				":ENTRADA" => $entrada
+			));
+
+		}
+		
+	}
+
+
 	/*===========================================================|===========================================================\\
 	||											    																		 ||
 	||										    	    FUNÇÕES DE LISTAGEM                                                  ||

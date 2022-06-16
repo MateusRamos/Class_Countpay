@@ -48,7 +48,7 @@ CREATE TABLE `meta` (
 
 LOCK TABLES `meta` WRITE;
 /*!40000 ALTER TABLE `meta` DISABLE KEYS */;
-INSERT INTO `meta` VALUES (1,'comprar geladeira','comprar uma brasthemp',5000.00,NULL,'2022-06-10','2023-06-10',NULL,'concluido',21,143),(2,'Comprar Celular','Comprar um iphone',3000.00,500,'2022-05-14','2022-12-25',NULL,'ativo',22,143),(4,'teste','Comprar um dildo',50.00,NULL,'2022-06-14','2022-06-29',NULL,'pausado',21,143),(5,'aaaaaaa','aasaasdada',60.00,NULL,'2022-06-09','2022-06-14',NULL,'ativo',21,143),(6,'dafa','sdfasfas',100.00,NULL,'2022-04-02','2022-09-06',NULL,'pausado',22,143);
+INSERT INTO `meta` VALUES (1,'comprar geladeira','comprar uma brasthemp',5000.00,NULL,'2022-06-10','2023-06-10',NULL,'ativo',21,143),(2,'Comprar Celular','Comprar um iphone',3000.00,500,'2022-05-14','2022-12-25',NULL,'pausado',22,143),(4,'teste','Comprar um dildo',50.00,NULL,'2022-06-14','2022-06-29',NULL,'pausado',21,143),(5,'aaaaaaa','aasaasdada',60.00,NULL,'2022-06-09','2022-06-14',NULL,'concluido',21,143),(6,'dafa','sdfasfas',100.00,NULL,'2022-04-02','2022-09-06',NULL,'pausado',22,143);
 /*!40000 ALTER TABLE `meta` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-15 11:41:45
+-- Dump completed on 2022-06-15 23:02:16
