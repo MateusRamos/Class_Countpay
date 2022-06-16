@@ -19,7 +19,9 @@ use \Countpay\Model\Lancamento;
 $app->get('/projecao', function() {
 
 // Utiliza a classe Page que busca templates dentro da pasta Views 
-$page = new Page();
+$page = new Page([
+    "header"=>true,
+    "footer"=>true]);
 
 // Busca o template informado entre () dentro da pasta views, caso tenha ela setTPL que é para exibir
 $page->setTpl("projecoes_futuras");
