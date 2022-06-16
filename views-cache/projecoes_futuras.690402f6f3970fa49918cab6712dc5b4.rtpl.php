@@ -29,12 +29,15 @@
                                         <div class="swiper mySwiper container">
                                             <div class="swiper-wrapper content">
 
-
                                                 <div class="swiper-slide card bg-light">
                                                     <div class="card-content">
                                                     
+                                                        <div class="media-icons">
+                                                            <i class="fab fa-facebook"></i>
+                                                            <i class="fab fa-twitter"></i>
+                                                            <i class="fab fa-github"></i>
+                                                        </div>
 
-                                                        
                                                         <div class="name-profession text-white">
                                                             <span class="name">Janeiro</span>
                                                             <span class="profession">Mês Atual</span>
@@ -46,113 +49,15 @@
 
                                                         <div class="button">
                                                             <button class="aboutMe">Lançamentos</button>
+                                                            <button class="hireMe">Metas</button>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="swiper-slide card bg-light">
-                                                    <div class="card-content">
-                                                    
-
-                                                        
-                                                        <div class="name-profession text-white">
-                                                            <span class="name">Janeiro</span>
-                                                            <span class="profession">Mês Atual</span>
-                                                        </div>
-
-                                                        <div class="rating pt-5">
-                                                            <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
-                                                        </div>
-
-                                                        <div class="button">
-                                                            <button class="aboutMe">Lançamentos</button>
-                                                        </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="swiper-slide card bg-light">
-                                                    <div class="card-content">
-                                                    
-
-                                                        
-                                                        <div class="name-profession text-white">
-                                                            <span class="name">Janeiro</span>
-                                                            <span class="profession">Mês Atual</span>
-                                                        </div>
-
-                                                        <div class="rating pt-5">
-                                                            <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
-                                                        </div>
-
-                                                        <div class="button">
-                                                            <button class="aboutMe">Lançamentos</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="swiper-slide card bg-light">
-                                                    <div class="card-content">
-                                                    
-
-                                                        
-                                                        <div class="name-profession text-white">
-                                                            <span class="name">Janeiro</span>
-                                                            <span class="profession">Mês Atual</span>
-                                                        </div>
-
-                                                        <div class="rating pt-5">
-                                                            <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
-                                                        </div>
-
-                                                        <div class="button">
-                                                            <button class="aboutMe">Lançamentos</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="swiper-slide card bg-light">
-                                                    <div class="card-content">
-                                                    
-
-                                                        
-                                                        <div class="name-profession text-white">
-                                                            <span class="name">Janeiro</span>
-                                                            <span class="profession">Mês Atual</span>
-                                                        </div>
-
-                                                        <div class="rating pt-5">
-                                                            <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
-                                                        </div>
-
-                                                        <div class="button">
-                                                            <button class="aboutMe">Lançamentos</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="swiper-slide card bg-light">
-                                                    <div class="card-content">
-                                                    
-
-                                                        
-                                                        <div class="name-profession text-white">
-                                                            <span class="name">Janeiro</span>
-                                                            <span class="profession">Mês Atual</span>
-                                                        </div>
-
-                                                        <div class="rating pt-5">
-                                                            <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
-                                                        </div>
-
-                                                        <div class="button">
-                                                            <button class="aboutMe">Lançamentos</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
 
                                             </div>
-
                                         </div>
 
                                         <div class="swiper-button-next"></div>
