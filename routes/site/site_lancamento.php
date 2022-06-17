@@ -73,7 +73,7 @@ $app->post('/lancamento/despesa/unica', function() {
         "id_cartao" => Carteira::buscaCartao($_POST['id_cartao'], $id_usuario),
         'id_categoria' => Lancamento::buscaCategoria($_POST['id_categoria'])
     );
-
+    
     if( Visual::verificaVencimento($_POST['data_lancamento']) == "amanha" )
     {
         $resultado = Lancamento::criaLancamentoUnicoFuturo($_POST, $array_id, $id_usuario);

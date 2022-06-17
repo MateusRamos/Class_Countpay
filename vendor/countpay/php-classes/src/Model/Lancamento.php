@@ -28,7 +28,7 @@ class Lancamento extends Model{
 			':ID_CONTA'=>$array_id['id_conta'],
 			':ID_CARTAO'=>$array_id['id_cartao'],
 			':ID_CATEGORIA'=>$array_id['id_categoria'],
-			':STATUS_LANCAMENTO'=>0
+			':STATUS_LANCAMENTO'=> 0
 		));
 
 		Carteira::atualizaSaldoConta($dados_lancamento, $array_id);
