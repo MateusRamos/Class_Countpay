@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -31,15 +31,6 @@
 
   <!-- Arquivo CSS do Countpay -->
   <link href="../../res/site/assets/css/style.css" rel="stylesheet">
-
-      <!-- Arquivo CSS do Countpay -->
-      <link href="../res/site/assets/css/style2.css" rel="stylesheet">
-
-      <!-- ===== Link Swiper's CSS ===== -->
-      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  
-      <!-- ===== Fontawesome CDN Link ===== -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
 
 </head>

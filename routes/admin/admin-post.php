@@ -30,7 +30,9 @@ $app->post('/admin/login', function() {
 //===========================================================|===========================================================*/
 
 //===================================================  POST - PERFIL  ===================================================//
-$app->post('/perfil', function() {
+
+
+ $app->post('/admin/perfil', function() {
 
     $id_usuario = User::verifyLoginAdmin();
 
@@ -44,7 +46,7 @@ $app->post('/perfil', function() {
         Visual::mostraMensagem('Perfil de usuário criado com sucesso!', '/admin/perfil');
     }
 
-});
+}); 
 
 
 /*===========================================================|===========================================================\\
@@ -64,12 +66,12 @@ $app->post('/admin/usuario/criar', function() {
 
     if($existeCadastro == 0)
     {
-        User::mostraMensagem('E-mail ou login já cadastrado, tente novamente!', '/admin/usuario/criar');
+        Visual::mostraMensagem('E-mail ou login já cadastrado, tente novamente!', '/admin/usuario/criar');
     } else {
         
         User::cadastraUsuario($_POST);
         
-        User::mostraMensagem('Usuário cadastrado com sucesso!', '/admin/usuario');
+        Visual::mostraMensagem('Usuário cadastrado com sucesso!', '/admin/usuario');
         
     }
 
@@ -87,10 +89,10 @@ $app->post('/admin/usuario/alterar', function() {
     {
         User::alteraUsuario($_POST);
 
-        User::mostraMensagem('Usuário alterado com sucesso!','/admin/usuario');
+        Visual::mostraMensagem('Usuário alterado com sucesso!','/admin/usuario');
 
     } else {
-        User::mostraMensagem('E-mail ou login já cadastrados!', '/admin/usuario');
+        Visual::mostraMensagem('E-mail ou login já cadastrados!', '/admin/usuario');
     }
     
     

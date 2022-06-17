@@ -53,7 +53,15 @@ $app->post('/metas/guardando', function() {
 
 });
 
+$app->get('/minhasmetas', function() {
 
+    $page = new Page();
+
+    User::verifyLogin();
+
+    $page->setTpl("minhas_metas");
+
+});
 
 
 

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Login - Administrador</title>
+  <title>Login</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,7 +28,6 @@
 
   <!-- Template Main CSS File -->
   <link href="../res/admin/assets/css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -53,11 +52,11 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Painel do Administrador</h5>
+                    <h5 class="card-title text-center pb-0 fs-4">Faça login na sua conta</h5>
                     <p class="text-center small">Digite seu nome de usuário e senha para entrar</p>
                   </div>
 
-                  <form aciton="/admin/login" method="post" class="row g-3 needs-validation" novalidate>
+                  <form action="/login" method="post" class="row g-3 needs-validation" novalidate>
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Login</label>
@@ -72,11 +71,12 @@
                       <input type="password" name="senha" class="form-control" id="yourPassword" required>
                       <div class="invalid-feedback">Por gentileza, digite a sua senha.</div>
                     </div>
+
                     <div class="col-12 pt-4">
                       <button class="btn btn-primary w-100" type="submit">Acessar</button>
                     </div>
                     <div class="col-12 d-flex justify-content-center">
-                      <p class="small mb-0">Não tem conta? <a href="registrar.html">Inscreva-se aqui</a></p>
+                      <p class="small mb-0">Não tem conta? <a href="/cadastro">Inscreva-se aqui</a></p>
                     </div>
                   </form>
 

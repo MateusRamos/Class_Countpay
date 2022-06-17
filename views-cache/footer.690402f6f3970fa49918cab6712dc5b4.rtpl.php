@@ -1,4 +1,4 @@
-  <!-- ======= Footer ======= -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- ======= Footer ======= -->
   <footer id="footer" class="footer pb-0">
     <div class="copyright">
       <div class="text-lg-center">&copy; Equipe<strong> Countpay 2022</strong></div>

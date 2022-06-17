@@ -1,4 +1,4 @@
-  <!-- ======= Footer ======= -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- ======= Footer ======= -->
   <footer id="footer" class="footer pb-0">
     <div class="copyright">
       <div class="text-lg-center">&copy; Equipe<strong> Countpay 2022</strong></div>
@@ -27,28 +27,6 @@
 
   <script type="text/javascript">
     $("#telefone, #celular").mask("(00) 00000-0000");
-  </script>
-
-  <!-- Swiper JS -->
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Initialize Swiper -->
-  <script>
-      var swiper = new Swiper(".mySwiper", {
-          slidesPerView: 4,
-          spaceBetween: 30,
-          slidesPerGroup: 1,
-          loop: true,
-          loopFillGroupWithBlank: true,
-          pagination: {
-              el: ".swiper-pagination",
-              clickable: true,
-          },
-          navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-          },
-      });
   </script>
 
   </body>
