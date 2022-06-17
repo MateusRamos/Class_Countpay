@@ -6,9 +6,9 @@
 
 
 
-	fixo:
+	Status:
 	0 = Ja lançou
-	1 = Lançamento fixo esperando ser lançado (cria cópia com +1 mes, update fixo = 0)
+	1 = Lançamento fixo esperando ser lançado (cria cópia com +1 mes, update status = 0)
 	2 = Lançamento único esperando ser lançado (update fixo = 0)
 	3 = Lançamento parcelado esperando ser lançado (cria lancamento pra daqui a x dias/meses & com +1 de parcela, update fixo = 0 \/
 		3 -> se parcela do lançamento sendo atualizado = (parcelas_totais-1) proxima parcela recebe fixo = 2
