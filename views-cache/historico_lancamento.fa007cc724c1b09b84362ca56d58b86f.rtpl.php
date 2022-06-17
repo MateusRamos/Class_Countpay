@@ -93,7 +93,7 @@
                                   <td><?php echo htmlspecialchars( $value1["data_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                   <td><?php echo htmlspecialchars( $value1["conta"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                   <td><?php echo htmlspecialchars( $value1["cartao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                  <td><?php echo htmlspecialchars( $value1["quantidade_parcelas"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                  <td><?php echo htmlspecialchars( $value1["parcela_atual"], ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $value1["parcela_total"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                   <td><?php echo htmlspecialchars( $value1["frequencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                 </tr>
                                 <?php } ?>

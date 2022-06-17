@@ -153,7 +153,7 @@ $app->post('/lancamento/despesa/parcelado', function() {
 ||										    	        Rotas RECEITA                                                    ||
 ||												    																	 ||
 //===========================================================|===========================================================*/
-
+/*
 //----------------------------------------------------  GET - RECEITA  --------------------------------------------------//
 $app->get('/lancamento/receita', function() {
 
@@ -266,5 +266,5 @@ $app->post('/lancamento/receita/parcelado', function() {
     Visual::mostraMensagem('Lançamento realizado com sucesso!', '/lancamento/historico');
 
 });
-
+*/
 ?>

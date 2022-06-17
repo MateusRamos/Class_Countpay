@@ -309,7 +309,7 @@ class Lancamento extends Model{
         $sql = new Sql();
 
         // Select dos dados usado para gerar o histórico de lançamento
-        $results = $sql->select("SELECT lancamento.descricao_lancamento, lancamento.tipo_lancamento, lancamento.valor, categoria.descricao, lancamento.data_lancamento, IF(conta.apelido <> NULL, NULL, conta.apelido) 'conta', cartao.apelido 'cartao', lancamento.quantidade_parcelas, lancamento.frequencia
+        $results = $sql->select("SELECT lancamento.descricao_lancamento, lancamento.tipo_lancamento, lancamento.valor, categoria.descricao, lancamento.data_lancamento, IF(conta.apelido <> NULL, NULL, conta.apelido) 'conta', cartao.apelido 'cartao', lancamento.parcela_total, lancamento.parcela_atual, lancamento.frequencia
         FROM lancamento															
         INNER JOIN categoria ON lancamento.id_categoria = categoria.id_categoria AND lancamento.id_usuario = :ID_USUARIO
         LEFT OUTER JOIN cartao ON lancamento.id_cartao = cartao.id_cartao
@@ -335,7 +335,7 @@ class Lancamento extends Model{
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT descricao FROM categoria ORDER BY descricao ASC");
+		return $sql->select("SELECT descricao, id_categoria FROM categoria ORDER BY descricao ASC");
 
 	}
 
@@ -356,7 +356,7 @@ class Lancamento extends Model{
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT descricao FROM frequencia");
+		return $sql->select("SELECT descricao, id_frequencia FROM frequencia");
 
 	}
 

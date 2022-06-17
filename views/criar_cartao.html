@@ -44,7 +44,7 @@
                             <div class="col-md-5">
                                 <label for="vence_dia" class="form-label">Vence dia</label>
                                 <select class="form-select" name="vence_dia" id="vence_dia" required>
-                                  <option>1</option>
+                                  <option">1</option>
                                   <option>2</option>
                                   <option>3</option>
                                   <option>4</option>
@@ -85,24 +85,22 @@
 
                             <div class="col-md-5">
                                 <label for="instituicao" class="form-label">Instituição Financeira</label>
-
                                 <select class="form-select" name="instituicao" id="instituicao" required>
                                     {loop="$instituicao"}
-                                    <option>{$value.nome}</option>
+                                    <option value="{$value.id_instituicao}">{$value.nome}</option>
                                     {/loop}
-                                </select>
-
+                                </select> 
                             </div>
 
                             <div class="col-md-9 d-flex justify-content-center pt-3">
                               <a href="/conta" type="button" class="btn btn-secondary me-1">Voltar</a>
-                              <button type="submit" class="btn btn-primary">Cadastrar Conta</button>
+                              <button type="submit" class="btn btn-primary">Cadastrar Cartão</button>
                             </div>
                         </form>
                       </div>   
 
                     <div class="col-md-5">
-                        <img src="../res/site/assets/img/cartao.png" alt="Conta" style="max-height: 60vh;">
+                        <img src="../res/site/assets/img/cartao.png" alt="cartao" style="max-height: 60vh;">
                     </div> 
 
                     </div>
@@ -110,5 +108,7 @@
             </div>
         </div>
     </section>
+
+
 
   </main><!-- End #main -->

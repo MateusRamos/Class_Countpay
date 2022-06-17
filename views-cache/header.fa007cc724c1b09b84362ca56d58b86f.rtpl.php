@@ -24,12 +24,22 @@
   <link href="../../res/site/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="../../res/site/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../../res/site/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  
 
   <!-- Icones de Bancos Brasileiros -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/matheusmcuba/icones-bancos-brasileiros@1.1/dist/all.css">
 
   <!-- Arquivo CSS do Countpay -->
   <link href="../../res/site/assets/css/style.css" rel="stylesheet">
+
+      <!-- Arquivo CSS do Countpay -->
+      <link href="../res/site/assets/css/style2.css" rel="stylesheet">
+
+      <!-- ===== Link Swiper's CSS ===== -->
+      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  
+      <!-- ===== Fontawesome CDN Link ===== -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
 
 </head>
@@ -119,23 +129,14 @@
 
           <!-- Inicio Perfil Imagem Icone -->
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="../../res/site/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Lucas Heideric</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">Configurações</span>
           </a>
           <!-- Fim Perfil Imagem Icone -->
 
           <!-- Inicio Informações do Perfil -->
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>Lucas Heideric</h6>
-              <span>CEO Countpay</span>
-            </li>
             <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="perfil.html">
+              <a class="dropdown-item d-flex align-items-center" href="/perfil">
                 <i class="bi bi-person"></i>
                 <span>Meu Perfil</span>
               </a>
@@ -201,7 +202,7 @@
 
         <ul id="projecao" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="contas.html">
+            <a href="/projecao">
               <i class="bx bxs-chevron-right"></i><span>Projeção</span>
             </a>
           </li>
@@ -282,7 +283,7 @@
           </li>
 
           <li>
-            <a href="minhas_metas.html">
+            <a href="/minhasmetas">
               <i class="bx bxs-chevron-right"></i><span>Minhas Metas</span>
             </a>
           </li>

@@ -63,7 +63,7 @@ class Meta extends Model{
                 Meta::analisaMeta2($array_id);
 
             }else{
-                Meta::ativaProximaMeta();
+                Meta::ativaProximaMeta($array_id['id_conta']);
             }
 
         }

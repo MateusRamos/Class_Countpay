@@ -37,7 +37,7 @@
                             <div class="col-md-4">
                               <label for="contacartao_receita" class="form-label">Tipo Receita</label>
                                <select class="form-select" name="tipo_lancamento" id="contacartao_receita">
-                                  <option>Receita</option>
+                                  <option>Receita Única</option>
                                   <option>Receita Fixa</option>
                               </select>
                             </div>
@@ -53,7 +53,7 @@
                               <select class="form-select" name="id_conta" id="conta_usuario">
                                 <option value="">conta não utilizada</option>
                                   <?php $counter1=-1;  if( isset($conta) && ( is_array($conta) || $conta instanceof Traversable ) && sizeof($conta) ) foreach( $conta as $key1 => $value1 ){ $counter1++; ?>
-                                  <option><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                  <option value="<?php echo htmlspecialchars( $value1["id_conta"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                                   <?php } ?>
                               </select>
                           </div>
@@ -64,7 +64,7 @@
                             <select class="form-select" name="id_cartao" id="cartao_usuario">
                               <option value="">cartão não utilizada</option>
                               <?php $counter1=-1;  if( isset($cartao) && ( is_array($cartao) || $cartao instanceof Traversable ) && sizeof($cartao) ) foreach( $cartao as $key1 => $value1 ){ $counter1++; ?>
-                              <option><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                              <option value="<?php echo htmlspecialchars( $value1["id_cartao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                               <?php } ?>
                             </select>
                         </div>
@@ -74,20 +74,10 @@
                                 <label for="categoria_receita" class="form-label">Categoria</label>
                                 <select class="form-select" name="id_categoria" id="contacartao_receita" required>
                                   <?php $counter1=-1;  if( isset($categoria) && ( is_array($categoria) || $categoria instanceof Traversable ) && sizeof($categoria) ) foreach( $categoria as $key1 => $value1 ){ $counter1++; ?>
-                                  <option><?php echo htmlspecialchars( $value1["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                  <option value="<?php echo htmlspecialchars( $value1["id_categoria"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["descricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                                   <?php } ?>
                                 </select>
                             </div>
-
-                            <div class="col-md-5 mb-3">
-                              <label for="meta_receita" class="form-label">Meta</label>
-                              <select class="form-select" name="nome_meta" id="meta_receita">
-                                <option value="">Nenhuma meta</option>
-                                <?php $counter1=-1;  if( isset($meta) && ( is_array($meta) || $meta instanceof Traversable ) && sizeof($meta) ) foreach( $meta as $key1 => $value1 ){ $counter1++; ?>
-                                <option><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-                                <?php } ?>
-                              </select>
-                          </div>
 
                             <div class="col-md-9 d-flex justify-content-center">
                               <button type="button" class="btn btn-secondary me-1">Cancelar</button>

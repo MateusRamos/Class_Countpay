@@ -51,11 +51,8 @@ $app->post('/cartao/criar', function() {
 
     $id_usuario = User::verifyLogin();
 
-    // Busca o Id da instituição, se n retorna NULL:
-    $id_instituicao = Carteira::buscaInstituicao($_POST);
-    
-    Carteira::criaCartao($_POST, $id_usuario, $id_instituicao);
-    
+    Carteira::criaCartao($_POST, $id_usuario);
+
     header('Location: /cartao');
     exit; 
 

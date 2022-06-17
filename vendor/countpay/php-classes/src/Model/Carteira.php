@@ -15,18 +15,18 @@ class Carteira extends Model{
 	//===========================================================|===========================================================*/
 	
     //==================================================== CRIAR CARTÃO =====================================================//
-	public static function criaCartao($dadosCartao, $id_usuario, $id_instituicao)
+	public static function criaCartao($dados_catao, $id_usuario)
 	{
 
 		$sql = new Sql();
 
 		$resultado = $sql->select("CALL sp_cartao_inserir(:APELIDO, :TIPO_CARTAO, :VENCE_DIA, :LIMITE, :ID_USUARIO, :ID_INSTITUICAO)", array(
-			':APELIDO'=>$dadosCartao['apelido'],
-			':TIPO_CARTAO'=>$dadosCartao['tipo_cartao'],
-			':VENCE_DIA'=>$dadosCartao['vence_dia'],
-			':LIMITE'=>$dadosCartao['limite'],
+			':APELIDO'=>$dados_catao['apelido'],
+			':TIPO_CARTAO'=>$dados_catao['tipo_cartao'],
+			':VENCE_DIA'=>$dados_catao['vence_dia'],
+			':LIMITE'=>$dados_catao['limite'],
 			':ID_USUARIO'=>$id_usuario,
-			':ID_INSTITUICAO'=>$id_instituicao
+			':ID_INSTITUICAO'=>$dados_catao['instituicao']
 		));
 
 	}
@@ -191,7 +191,7 @@ class Carteira extends Model{
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT apelido FROM cartao WHERE id_usuario = :ID_USUARIO", array(
+		return $sql->select("SELECT apelido, id_cartao FROM cartao WHERE id_usuario = :ID_USUARIO", array(
 			":ID_USUARIO"=>$id_usuario
 		));
 
@@ -204,20 +204,20 @@ class Carteira extends Model{
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT apelido FROM conta WHERE id_usuario = :ID_USUARIO", array(
+		return $sql->select("SELECT apelido, id_conta FROM conta WHERE id_usuario = :ID_USUARIO", array(
 			":ID_USUARIO"=>$id_usuario
 		));
 
 	}
 
 	
-	//===================================================== INSTITUIÇÃO =====================================================//
+	//****************************************** */ INSTITUIÇÃO **************************************************************
 	public static function listaInstituicao()
 	{
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT nome FROM instituicao ORDER BY id_instituicao ASC, nome ASC");
+		return $sql->select("SELECT nome, id_instituicao FROM instituicao ORDER BY id_instituicao ASC, nome ASC");
 
 	}
 

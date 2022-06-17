@@ -1,9 +1,10 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- ======= Footer ======= -->
   <footer id="footer" class="footer pb-0">
     <div class="copyright">
-            <div class="text-lg-center">&copy; Equipe<strong> Countpay 2022</strong></div>
-            <div class="text-lg-center"><small>Website built with NiceAdmin by BootstrapMade with Illustrations by Stories by Freepik.</small></p>
-    </div>
+      <div class="text-lg-center">&copy; Equipe<strong> Countpay 2022</strong></div>
+      <div class="text-lg-center"><small>Website built with NiceAdmin by BootstrapMade with Illustrations by Stories by
+          Freepik.</small></p>
+      </div>
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
@@ -21,6 +22,35 @@
   <!-- Template Main JS File -->
   <script src="../res/site/assets/js/main.js"></script>
 
-</body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
-</html>
+  <script type="text/javascript">
+    $("#telefone, #celular").mask("(00) 00000-0000");
+  </script>
+
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+      var swiper = new Swiper(".mySwiper", {
+          slidesPerView: 4,
+          spaceBetween: 30,
+          slidesPerGroup: 1,
+          loop: true,
+          loopFillGroupWithBlank: true,
+          pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+          },
+          navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+          },
+      });
+  </script>
+
+  </body>
+
+  </html>
