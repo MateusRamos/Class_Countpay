@@ -70,9 +70,6 @@ $app->post('/lancamento/receita/unica', function() {
 
 
 
-
-
-
 //-----------------------------------------------  GET - RECEITA PARCELADA  ---------------------------------------------//
 $app->get('/lancamento/receita/parcelado', function() {         //MUDANÇA NO FRONT
 

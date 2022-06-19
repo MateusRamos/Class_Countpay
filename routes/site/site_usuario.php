@@ -5,6 +5,7 @@ use \Countpay\Model\User;
 use \Countpay\Model\Visual;
 use \Countpay\Model\Carteira;
 use \Countpay\Model\Lancamento;
+use \Countpay\Model\LancamentoAux;
 
 /*===========================================================|===========================================================\\
 ||											    																		 ||
@@ -118,9 +119,12 @@ $app->get('/', function() {
 
     $id_usuario = User::verifyLogin();
 
-    Lancamento::verificaLancamentoFixo($id_usuario);
-
     
+    LancamentoAux::verificaLancamentoFixo($id_usuario); // Status = 1
+    LancamentoAux::verificaLancamentoUnicoFuturo($id_usuario);  // Status = 2
+    LancamentoAux::verificaLancamentoParceladoFuturo($id_usuario);  // Status = 3
+
+
     $notificacoes = User::verificaNotificacoes($id_usuario);
     $quant_notificacoes = array("quantidade"=>count($notificacoes));
 

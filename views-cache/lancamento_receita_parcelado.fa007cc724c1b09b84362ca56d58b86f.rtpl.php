@@ -32,7 +32,7 @@
 
                             <div class="col-md-10">
                                 <label for="descricao_receita" class="form-label">Descrição</label>
-                                <input type="text" class="form-control" name="descricao" id="descricao_receita">
+                                <input type="text" class="form-control" name="descricao_lancamento" id="descricao_receita">
                             </div>
 
                             <div class="col-md-5">

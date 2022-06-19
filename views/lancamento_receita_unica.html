@@ -26,7 +26,7 @@
 
                             <div class="col-md-10">
                                 <label for="descricao_receita" class="form-label">Descrição</label>
-                                <input type="text" name="descricao" class="form-control" id="descricao_receita" required>
+                                <input type="text" name="descricao_lancamento" class="form-control" id="descricao_receita" required>
                             </div>
 
                             <div class="col-md-3">

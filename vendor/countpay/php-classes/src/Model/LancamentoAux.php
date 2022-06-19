@@ -35,7 +35,7 @@ class LancamentoAux extends Model{
 
         $sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_cartao, id_categoria, status_lancamento)
                          VALUES (:DESCRICAO_LANCAMENTO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :STATUS_LANCAMENTO)", array(
-                            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao'],
+                            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao_lancamento'],
                             ":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
                             ":VALOR"=>$dados_lancamento['valor'],
                             ":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
@@ -58,7 +58,7 @@ class LancamentoAux extends Model{
 
         $sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_cartao, id_categoria, status_lancamento)
                          VALUES (:DESCRICAO_LANCAMENTO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :STATUS_LANCAMENTO)", array(
-                            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao'],
+                            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao_lancamento'],
                             ":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
                             ":VALOR"=>$dados_lancamento['valor'],
                             ":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
@@ -116,7 +116,7 @@ class LancamentoAux extends Model{
 
         $sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_cartao, id_categoria, status_lancamento)
                          VALUES (:DESCRICAO_LANCAMENTO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :STATUS_LANCAMENTO)", array(
-                            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao'],
+                            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao_lancamento'],
                             ":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
                             ":VALOR"=>$dados_lancamento['valor'],
                             ":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
@@ -139,7 +139,7 @@ class LancamentoAux extends Model{
 
 		$sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_cartao, id_categoria, status_lancamento)
 						 VALUES (:DESCRICAO, :TIPO_LANCAMENTO, :VALOR, date_add(:DATA_LANCAMENTO, interval 1 month), :ID_USUARIO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :STATUS_LANCAMENTO)", array(
-							":DESCRICAO"=>$dados_lancamento['descricao'],
+							":DESCRICAO"=>$dados_lancamento['descricao_lancamento'],
 							":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
 							":VALOR"=>$dados_lancamento['valor'],
 							":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
@@ -161,7 +161,7 @@ class LancamentoAux extends Model{
     //Lançamento Parcelado:
     public static function iniciaLancamentoParcelado($dados_lancamento, $id_usuario)
     {
-        $dados_lancamento['valor'] = $dados_lancamento['valor'] / $dados_lancamento['parcela'];
+        $dados_lancamento['valor'] = $dados_lancamento['valor'] / $dados_lancamento['parcela_total'];
 
         $result_verificacao = Visual::verificaVencimento($dados_lancamento['data_lancamento']);
 
@@ -197,7 +197,7 @@ class LancamentoAux extends Model{
 
         $sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_cartao, id_categoria, parcela_total, parcela_atual, frequencia, status_lancamento)
                          VALUES (:DESCRICAO_LANCAMENTO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :PARCELA_TOTAL, :PARCELA_ATUAL, :FREQUENCIA, :STATUS_LANCAMENTO)", array(
-                            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao'],
+                            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao_lancamento'],
                             ":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
                             ":VALOR"=>$dados_lancamento['valor'],
                             ":DATA_LANCAMENTO"=>$data_lancamento,
@@ -221,7 +221,7 @@ class LancamentoAux extends Model{
 
         $sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_cartao, id_categoria, parcela_total, parcela_atual, frequencia, status_lancamento)
                          VALUES (:DESCRICAO_LANCAMENTO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :PARCELA_TOTAL, :PARCELA_ATUAL, :FREQUENCIA, :STATUS_LANCAMENTO)", array(
-                            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao'],
+                            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao_lancamento'],
                             ":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
                             ":VALOR"=>$dados_lancamento['valor'],
                             ":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
@@ -230,7 +230,7 @@ class LancamentoAux extends Model{
                             ":ID_CARTAO"=>$dados_lancamento['id_cartao'],
                             ":ID_CATEGORIA"=>$dados_lancamento['id_categoria'],
                             ":PARCELA_ATUAL"=>1,
-                            ":PARCELA_TOTAL"=>$dados_lancamento['parcela'],
+                            ":PARCELA_TOTAL"=>$dados_lancamento['parcela_total'],
                             ":FREQUENCIA"=>$dados_lancamento['frequencia'],
                             ":STATUS_LANCAMENTO"=>0
                         ));
@@ -250,24 +250,25 @@ class LancamentoAux extends Model{
     public static function criaSegundaParcela($dados_lancamento, $id_usuario)
     {
 
-        $parcela_atual = 2;
+        $dados_lancamento['parcela_atual'] = 2;
+        $dados_lancamento['status_lancamento'] = 3;
 
-        $frequencia = LancamentoAux::analisaFrequencia($dados_lancamento, $parcela_atual);
+        $frequencia = LancamentoAux::analisaFrequencia($dados_lancamento);
 
         if($frequencia['frequencia'] == "dias")
         {
-            LancamentoAux::criaParcelaFuturaDias($dados_lancamento, $id_usuario, $parcela_atual, $frequencia);
+            LancamentoAux::criaParcelaFuturaDias($dados_lancamento, $id_usuario, $frequencia);
         }
         else
         {
-            LancamentoAux::criaParcelaFuturaMeses($dados_lancamento, $id_usuario, $parcela_atual, $frequencia);
+            LancamentoAux::criaParcelaFuturaMeses($dados_lancamento, $id_usuario, $frequencia);
         }
 
 
     }
 
 
-    public static function analisaFrequencia($dados_lancamento, $parcela_atual)
+    public static function analisaFrequencia($dados_lancamento)
     {
 
         $sql = new Sql();
@@ -301,7 +302,7 @@ class LancamentoAux extends Model{
     }
     
 
-    public static function criaParcelaFuturaDias($dados_lancamento, $id_usuario, $parcela_atual, $frequencia)
+    public static function criaParcelaFuturaDias($dados_lancamento, $id_usuario, $frequencia)
     {
         
         $sql = new Sql();
@@ -309,23 +310,23 @@ class LancamentoAux extends Model{
         $sql->execQuery("CALL sp_lancamento_parcelado_dias(:ID_USUARIO, :TIPO_LANCAMENTO, :DESCRICAO_LANCAMENTO, :VALOR, :PARCELA_ATUAL, :PARCELA_TOTAL, :DATA_LANCAMENTO, :FREQUENCIA, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :STATUS_LANCAMENTO, :INTERVALO)", array(
             ":ID_USUARIO"=>$id_usuario,
             ":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
-            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao'],
+            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao_lancamento'],
             ":VALOR"=>$dados_lancamento['valor'],
-            ":PARCELA_ATUAL"=>$parcela_atual,
-            ":PARCELA_TOTAL"=>$dados_lancamento['parcela'],
+            ":PARCELA_ATUAL"=>$dados_lancamento['parcela_atual'],
+            ":PARCELA_TOTAL"=>$dados_lancamento['parcela_total'],
             ":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
             ":FREQUENCIA"=>$dados_lancamento['frequencia'],
             ":ID_CONTA"=>$dados_lancamento['id_conta'],
             ":ID_CARTAO"=>$dados_lancamento['id_cartao'],
             ":ID_CATEGORIA"=>$dados_lancamento['id_categoria'],
-            ":STATUS_LANCAMENTO"=>3,
+            ":STATUS_LANCAMENTO"=>$dados_lancamento['status_lancamento'],
             ":INTERVALO"=>$frequencia['dias']
             ));
 
     }
 
 
-    public static function criaParcelaFuturaMeses($dados_lancamento, $id_usuario, $parcela_atual, $frequencia)
+    public static function criaParcelaFuturaMeses($dados_lancamento, $id_usuario, $frequencia)
     {
         
         $sql = new Sql();
@@ -333,16 +334,16 @@ class LancamentoAux extends Model{
         $sql->execQuery("CALL sp_lancamento_parcelado_meses(:ID_USUARIO, :TIPO_LANCAMENTO, :DESCRICAO_LANCAMENTO, :VALOR, :PARCELA_ATUAL, :PARCELA_TOTAL, :DATA_LANCAMENTO, :FREQUENCIA, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :STATUS_LANCAMENTO, :INTERVALO)", array(
             ":ID_USUARIO"=>$id_usuario,
             ":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
-            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao'],
+            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao_lancamento'],
             ":VALOR"=>$dados_lancamento['valor'],
-            ":PARCELA_ATUAL"=>$parcela_atual,
-            ":PARCELA_TOTAL"=>$dados_lancamento['parcela'],
+            ":PARCELA_ATUAL"=>$dados_lancamento['parcela_atual'],
+            ":PARCELA_TOTAL"=>$dados_lancamento['parcela_total'],
             ":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
             ":FREQUENCIA"=>$dados_lancamento['frequencia'],
             ":ID_CONTA"=>$dados_lancamento['id_conta'],
             ":ID_CARTAO"=>$dados_lancamento['id_cartao'],
             ":ID_CATEGORIA"=>$dados_lancamento['id_categoria'],
-            ":STATUS_LANCAMENTO"=>3,
+            ":STATUS_LANCAMENTO"=>$dados_lancamento['status_lancamento'],
             ":INTERVALO"=>$frequencia['mes']
             ));
 
@@ -350,6 +351,152 @@ class LancamentoAux extends Model{
     }
 
 
+
+
+
+    //Verificações-----------------------------------------------------------------------------------------------
+    public static function atualizaStatusLancamento($dados_lancamento, $id_usuario)
+    {
+
+        $sql = new Sql();
+
+        $sql->execQuery("UPDATE lancamento SET status_lancamento = 0 WHERE id_lancamento = :ID_LANCAMENTO", array(
+            ":ID_LANCAMENTO"=>$dados_lancamento['id_lancamento']
+        ));
+
+        $array_id = array(
+            "id_conta"=>$dados_lancamento['id_conta'],
+            "id_cartao"=>$dados_lancamento['id_cartao'],
+            "id_categoria"=>$dados_lancamento['id_categoria']
+        );
+
+        Carteira::atualizaSaldoConta($dados_lancamento, $array_id);
+        Meta::analisaMeta($dados_lancamento, $array_id, $id_usuario);
+
+    }
+
+
+
+    //Lançamento Único Futuro:
+    public static function verificaLancamentoUnicoFuturo($id_usuario)
+    {
+
+        $sql = new Sql();
+
+        $lancamentos = $sql->select("SELECT * FROM lancamento WHERE data_lancamento <= current_date() AND status_lancamento = 2 AND id_usuario = :ID_USUARIO", array(
+            ":ID_USUARIO"=>$id_usuario
+        ));
+
+        foreach($lancamentos as $key => $value)
+        {
+            LancamentoAux::atualizaStatusLancamento($lancamentos[$key], $id_usuario);
+        }
+
+    }
+
+
+
+
+
+    //Lançamento Fixo:
+    public static function verificaLancamentoFixo($id_usuario)
+    {
+
+        $sql = new Sql();
+
+        $lancamentos = $sql->select("SELECT * FROM lancamento WHERE data_lancamento <= current_date() AND status_lancamento = 1 AND id_usuario = :ID_USUARIO", array(
+            ":ID_USUARIO"=>$id_usuario
+        ));
+
+        foreach($lancamentos as $key => $value)
+        {
+            LancamentoAux::criaLancamentoFixoFuturo($lancamentos[$key], $id_usuario);
+
+            LancamentoAux::atualizaStatusLancamento($lancamentos[$key], $id_usuario);
+        }
+
+    }
+
+
+
+
+
+    //Lançamento Parcelado Futuro:
+    public static function verificaLancamentoParceladoFuturo($id_usuario)
+    {
+
+        $sql = new Sql();
+
+        $lancamentos = $sql->select("SELECT * FROM lancamento WHERE data_lancamento <= current_date() AND status_lancamento = 3 AND id_usuario = :ID_USUARIO", array(
+            ":ID_USUARIO"=>$id_usuario
+        ));
+
+        foreach($lancamentos as $key => $value)
+        {
+            LancamentoAux::criaLancamentoParceladoFuturo($lancamentos[$key], $id_usuario);
+
+            LancamentoAux::atualizaStatusLancamento($lancamentos[$key], $id_usuario);
+        }
+
+    }
+
+
+    public static function criaLancamentoParceladoFuturo($dados_lancamento, $id_usuario)
+    {
+        $dados_lancamento['parcela_atual'] = $dados_lancamento['parcela_atual'] + 1;
+
+        $frequencia = LancamentoAux::analisaFrequencia($dados_lancamento);
+
+        $entrada = LancamentoAux::analisaParcela($dados_lancamento);
+        
+        if($entrada == "normal")
+        {
+            $dados_lancamento['status_lancamento'] = 3;
+            
+            if($frequencia['frequencia'] == "dias")
+            {
+                LancamentoAux::criaParcelaFuturaDias($dados_lancamento, $id_usuario, $frequencia);
+            }
+            else
+            {
+                LancamentoAux::criaParcelaFuturaMeses($dados_lancamento, $id_usuario, $frequencia);
+            }
+
+        }
+        else
+        {
+            $dados_lancamento['status_lancamento'] = 2;
+
+            
+            if($frequencia['frequencia'] == "dias")
+            {
+                LancamentoAux::criaParcelaFuturaDias($dados_lancamento, $id_usuario, $frequencia);
+            }
+            else
+            {
+                LancamentoAux::criaParcelaFuturaMeses($dados_lancamento, $id_usuario, $frequencia);
+            }
+        }
+
+    }
+
+
+    public static function analisaParcela($dados_lancamento)
+    {
+
+        $parcela_atual = $dados_lancamento['parcela_atual'];
+        $parcela_total = $dados_lancamento['parcela_total'];
+
+        if(($parcela_total - $parcela_atual) > 0)
+        {
+            return "normal";
+        }
+        else
+        {
+            return "penultima";
+        }
+
+    }
 
 
 
