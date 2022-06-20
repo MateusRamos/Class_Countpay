@@ -14,12 +14,12 @@ class Meta extends Model{
 	//===========================================================|===========================================================*/
 
 	//============================================= CRIA - GUARDANDO UMA GRANA ==============================================//
-    public static function criaGuardando($dados_meta, $id_usuario, $id_conta)
+    public static function criaGuardando($dados_meta, $id_usuario)
     {
 
         $sql = new Sql();
 
-        $verificacao = Meta::verificaMetaAtiva($id_conta);
+        $verificacao = Meta::verificaMetaAtiva($dados_meta['id_conta']);
 
         if($verificacao == 0)
         {
@@ -37,7 +37,7 @@ class Meta extends Model{
                             ":DATA_INICIAL"=>$dados_meta['data_inicial'],
                             ":DATA_FINAL"=>$dados_meta['data_final'],
                             ":STATUS"=> $status,
-                            ":ID_CONTA"=>$id_conta,
+                            ":ID_CONTA"=>$dados_meta['id_conta'],
                             ":ID_USUARIO"=>$id_usuario
                          ));
 

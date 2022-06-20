@@ -56,9 +56,9 @@
 
             <div class="col-md-5"> 
               <label for="conta_meta" class="form-label">Conta</label> 
-              <select id="conta_meta" class="form-select" name="conta" required>
+              <select id="conta_meta" class="form-select" name="id_conta" required>
                 <?php $counter1=-1;  if( isset($conta) && ( is_array($conta) || $conta instanceof Traversable ) && sizeof($conta) ) foreach( $conta as $key1 => $value1 ){ $counter1++; ?>
-                  <option><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                  <option value="<?php echo htmlspecialchars( $value1["id_conta"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                 <?php } ?>
               </select>
             </div>

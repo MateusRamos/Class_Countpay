@@ -15,36 +15,36 @@ class Carteira extends Model{
 	//===========================================================|===========================================================*/
 	
     //==================================================== CRIAR CARTÃO =====================================================//
-	public static function criaCartao($dados_catao, $id_usuario)
+	public static function criaCartao($dados_cartao, $id_usuario)
 	{
 
 		$sql = new Sql();
 
 		$resultado = $sql->select("CALL sp_cartao_inserir(:APELIDO, :TIPO_CARTAO, :VENCE_DIA, :LIMITE, :ID_USUARIO, :ID_INSTITUICAO)", array(
-			':APELIDO'=>$dados_catao['apelido'],
-			':TIPO_CARTAO'=>$dados_catao['tipo_cartao'],
-			':VENCE_DIA'=>$dados_catao['vence_dia'],
-			':LIMITE'=>$dados_catao['limite'],
+			':APELIDO'=>$dados_cartao['apelido'],
+			':TIPO_CARTAO'=>$dados_cartao['tipo_cartao'],
+			':VENCE_DIA'=>$dados_cartao['vence_dia'],
+			':LIMITE'=>$dados_cartao['limite'],
 			':ID_USUARIO'=>$id_usuario,
-			':ID_INSTITUICAO'=>$dados_catao['instituicao']
+			':ID_INSTITUICAO'=>$dados_cartao['id_instituicao']
 		));
 
 	}
 
 
     //=================================================== ALTERA CARTÃO =====================================================//
-	public static function alteraCartao($dadosCartao, $id_instituicao)
+	public static function alteraCartao($dados_cartao)
 	{
 
 		$sql = new Sql();
 
 		$sql->execQuery("UPDATE cartao SET apelido = :APELIDO, tipo_cartao = :TIPO_CARTAO, vence_dia = :VENCE_DIA, limite = :LIMITE, id_instituicao = :ID_INSTITUICAO WHERE id_cartao = :ID_CARTAO", array(
-			':ID_CARTAO'=>$dadosCartao['id_cartao'],
-			':APELIDO'=>$dadosCartao['apelido'],
-			':TIPO_CARTAO'=>$dadosCartao['tipo_cartao'],
-			':VENCE_DIA'=>$dadosCartao['vence_dia'],
-			':LIMITE'=>$dadosCartao['limite'],
-			':ID_INSTITUICAO'=>$id_instituicao,
+			':ID_CARTAO'=>$dados_cartaos['id_cartao'],
+			':APELIDO'=>$dados_cartao['apelido'],
+			':TIPO_CARTAO'=>$dados_cartao['tipo_cartao'],
+			':VENCE_DIA'=>$dados_cartao['vence_dia'],
+			':LIMITE'=>$dados_cartao['limite'],
+			':ID_INSTITUICAO'=>$dados_cartao['id_instituicao'],
 		));
 
 	}
@@ -53,6 +53,8 @@ class Carteira extends Model{
     //=================================================== EXCLUI CARTÃO =====================================================//
 	public static function deletaCartao($id_cartao)
 	{
+
+		$sql = new Sql();
 
 		$sql->execQuery("DELETE FROM cartao WHERE id_cartao = :ID_CARTAO", array(
 			':ID_CARTAO'=>$id_cartao
@@ -70,35 +72,35 @@ class Carteira extends Model{
 
 
     //====================================================== CRIAR CONTA =====================================================//
-	public static function criaConta($dadosConta, $instituicao, $id_usuario)
+	public static function criaConta($dados_conta, $id_usuario)
 	{	
 
 		$sql = new Sql();
 		
 		return $sql->select("CALL sp_conta_inserir(:APELIDO, :TIPO_CONTA, :SALDO, :ID_USUARIO, :ID_INSTITUICAO)", array(
-			':APELIDO'=>$dadosConta['apelido'],
-			':TIPO_CONTA'=>$dadosConta['tipo_conta'],
-			':SALDO'=>$dadosConta['valor'],
+			':APELIDO'=>$dados_conta['apelido'],
+			':TIPO_CONTA'=>$dados_conta['tipo_conta'],
+			':SALDO'=>$dados_conta['valor'],
 			':ID_USUARIO'=>$id_usuario,
-			':ID_INSTITUICAO'=>$instituicao
+			':ID_INSTITUICAO'=>$dados_conta['id_instituicao']
 		));
 
 	}
 
 
     //===================================================== ALTERAR CONTA ====================================================//
-	public static function alteraConta($dadosConta, $instituicao)
+	public static function alteraConta($dados_conta, $instituicao)
 	{
 
 		$sql = new Sql();
 
 		$sql->execQuery("UPDATE conta SET apelido = :APELIDO, tipo_conta = :TIPO_CONTA, saldo = :SALDO, id_instituicao = :ID_INSTITUICAO WHERE id_conta = :ID_CONTA", array(
 
-			':ID_CONTA'=>$dadosConta['id_conta'],
-			':APELIDO'=>$dadosConta['apelido'],
-			':TIPO_CONTA'=>$dadosConta['tipo_conta'],
-			':SALDO'=>$dadosConta['valor'],
-			':ID_INSTITUICAO'=>$instituicao,
+			':ID_CONTA'=>$dados_conta['id_conta'],
+			':APELIDO'=>$dados_conta['apelido'],
+			':TIPO_CONTA'=>$dados_conta['tipo_conta'],
+			':SALDO'=>$dados_conta['valor'],
+			':ID_INSTITUICAO'=>$dados_conta['id_instituicao'],
 			
 		));
 
@@ -119,6 +121,7 @@ class Carteira extends Model{
 
 	public static function atualizaSaldoConta($dados_lancamento, $array_id)
 	{
+		
 		$sql = new Sql();
 		
 		$tipo_lancamento = substr($dados_lancamento['tipo_lancamento'], 0, 7);
@@ -211,7 +214,7 @@ class Carteira extends Model{
 	}
 
 	
-	//****************************************** */ INSTITUIÇÃO **************************************************************
+	//Lista todas as instituições para select do front;
 	public static function listaInstituicao()
 	{
 
@@ -245,7 +248,7 @@ class Carteira extends Model{
 
 
 	//======================================================== CARTAO ======================================================//
-	public static function buscaCartao($apelidoCartao, $id_usuario)
+	/*public static function buscaCartao($apelidoCartao, $id_usuario)
 	{
 
 		$sql = new Sql();
@@ -261,7 +264,7 @@ class Carteira extends Model{
 			return NULL;
 		}
 
-	}
+	}*/
 
 
 	//================================================ CARREGA DADOS PARA O FORM =============================================//
@@ -281,7 +284,7 @@ class Carteira extends Model{
 
 
 	//======================================================== CONTA =======================================================//
-	public static function buscaConta($apelidoConta, $id_usuario)
+	/*public static function buscaConta($apelidoConta, $id_usuario)
 	{
 
 		$sql = new Sql();
@@ -297,11 +300,11 @@ class Carteira extends Model{
 			return NULL;
 		}	
 
-	}
+	}*/
 
 	
 	//===================================================== INSTITUIÇÃO =====================================================//
-	public static function buscaInstituicao($dados)
+	/*public static function buscaInstituicao($dados)
 	{	
 		$sql = new Sql();
 
@@ -317,7 +320,7 @@ class Carteira extends Model{
 			return NULL;
 		}
 	
-	}
+	}*/
 	
 
 

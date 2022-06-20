@@ -81,9 +81,7 @@ $app->get('/cartao/:id_cartao', function($id_cartao) {
 //==============================================  POST - ALTERAR CARTÃO  ================================================//
 $app->post('/cartao/alterar', function() {
     
-    $id_instituicao = Carteira::buscaInstituicao($_POST);
-
-    Carteira::alteraCartao($_POST, $id_instituicao);
+    Carteira::alteraCartao($_POST);
 
     Visual::mostraMensagem('Alteração realizada com sucesso!', '/cartao');
     
@@ -93,11 +91,19 @@ $app->post('/cartao/alterar', function() {
 //-----------------------------------------------  GET - EXCLUIR CARTÃO  ------------------------------------------------//
 $app->get('/cartao/:id_cartao/delete', function($id_cartao) {
 
-    User::verifyLogin();
+    $id_usuario = User::verifyLogin();
 
-    Carteira::deletaCartao($id_cartao);
+    $verificacao = User::verifyDeleteCartao($id_usuario, $id_cartao);
 
-    Visual::mostraMensagem('Cartão excluído com sucesso!','/conta');
+    if($verificacao == 1)
+    {
+        Carteira::deletaCartao($id_cartao);
+        Visual::mostraMensagem('Cartão excluído com sucesso!','/cartao');
+    }
+    else
+    {
+        Visual::mostraMensagem('Esse cartão não pertence a este usuário!','/cartao');
+    }
 
 });
 
@@ -147,10 +153,7 @@ $app->post('/conta/criar', function() {
 
     $id_usuario = User::verifyLogin();
 
-    // Select id da instituição do usuario pelo nome do select.
-    $instituicao = Carteira::buscaInstituicao($_POST);
-    
-    $resultado = Carteira::criaConta($_POST, $instituicao, $id_usuario);
+    $resultado = Carteira::criaConta($_POST, $id_usuario);
 
     header('Location: /conta');
     exit;
@@ -193,13 +196,19 @@ $app->post('/conta/alterar', function() {       //Erro front
 //-------------------------------------------------  GET - EXCLUIR CONTA  -----------------------------------------------//
 $app->get('/conta/:id_conta/delete', function($id_conta) {
 
-    $sql = new Sql();
-    
-    User::verifyLogin();
+    $id_usuario = User::verifyLogin();
 
-    Carteira::deletaConta($id_conta);
+    $verificacao = User::verifyDeleteCartao($id_usuario, $id_conta);
 
-    Visual::mostraMensagem('Conta excluída com sucesso!','/conta');
+    if($verificacao == 1)
+    {
+        Carteira::deletaConta($id_conta);
+        Visual::mostraMensagem('Conta excluída com sucesso!','/conta');
+    }
+    else
+    {
+        Visual::mostraMensagem('Essa conta não pertence a este usuário!','/conta');
+    }
 
 });
 

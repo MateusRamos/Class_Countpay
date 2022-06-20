@@ -56,10 +56,10 @@
                             <div class="col-md-10">
                                 <label for="instituicao" class="form-label">Instituição Financeira</label>
 
-                                <select class="form-select" name="instituicao" id="instituicao" required>
+                                <select class="form-select" name="id_instituicao" id="instituicao" required>
                                     <option value="" selected disabled>Selecione</option>
                                     {loop="$instituicao"}
-                                    <option>{$value.nome}</option>
+                                    <option value="{$value.id_instituicao}">{$value.nome}</option>
                                     {/loop}
                                 </select>
 

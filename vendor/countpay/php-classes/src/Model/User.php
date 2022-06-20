@@ -166,8 +166,6 @@ class User extends Model	{
 	}
 
 
-	//=======================  Função para verificar se houve alteração nos dados do perfil =================================//
-
 	public static function verificaDadosPerfil($id_usuario)
 	{
 
@@ -187,6 +185,50 @@ class User extends Model	{
 		}
 
 	}
+
+
+	public static function verifyDeleteCartao($id_usuario, $id_cartao)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM cartao WHERE id_usuario = :ID_USUARIO AND id_cartao = :ID_CARTAO", array(
+			"ID_USUARIO"=>$id_usuario,
+			":ID_CARTAO"=>$id_cartao
+		));
+
+		if(count($results) > 0)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+
+	}
+
+	public static function verifyDeleteConta($id_usuario, $id_conta)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM conta WHERE id_usuario = :ID_USUARIO AND id_cartao = :ID_CONTA", array(
+			"ID_USUARIO"=>$id_usuario,
+			":ID_CONTA"=>$id_conta
+		));
+
+		if(count($results) > 0)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+
+	}
+	
 
 
 	/*===========================================================|===========================================================\\

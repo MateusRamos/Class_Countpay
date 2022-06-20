@@ -47,7 +47,7 @@
                                         <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td>
                                             <a href="/cartao/<?php echo htmlspecialchars( $value1["id_cartao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-sm" style="line-height: 0.5;"><i class="bx bxs-edit"></i></a>
-                                            <a href="/cartao/<?php echo htmlspecialchars( $value1["id_cartao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" class="btn btn-danger btn-sm" style="line-height: 0.5;"><i class="bx bxs-trash"></i></a>
+                                            <a href="/cartao/<?php echo htmlspecialchars( $value1["id_cartao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return ConfirmDelete()" class="btn btn-danger btn-sm" style="line-height: 0.5;"><i class="bx bxs-trash"></i></a>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -78,3 +78,15 @@
     </section>
 
 </main><!-- End #main -->
+
+<script>
+    function ConfirmDelete() {
+      var result = prompt("Digite 'deletar' para confirmar exclusão");
+  
+      if (result == "deletar") {
+       return true;
+      } else {
+       return false;
+      }
+    }
+  </script>

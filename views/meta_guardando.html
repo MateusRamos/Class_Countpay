@@ -56,9 +56,9 @@
 
             <div class="col-md-5"> 
               <label for="conta_meta" class="form-label">Conta</label> 
-              <select id="conta_meta" class="form-select" name="conta" required>
+              <select id="conta_meta" class="form-select" name="id_conta" required>
                 {loop="$conta"}
-                  <option>{$value.apelido}</option>
+                  <option value="{$value.id_conta}">{$value.apelido}</option>
                 {/loop}
               </select>
             </div>

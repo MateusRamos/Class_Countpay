@@ -47,7 +47,7 @@
                                         <td>{$value.nome}</td>
                                         <td>
                                             <a href="/cartao/{$value.id_cartao}" class="btn btn-primary btn-sm" style="line-height: 0.5;"><i class="bx bxs-edit"></i></a>
-                                            <a href="/cartao/{$value.id_cartao}/delete" class="btn btn-danger btn-sm" style="line-height: 0.5;"><i class="bx bxs-trash"></i></a>
+                                            <a href="/cartao/{$value.id_cartao}/delete" onclick="return ConfirmDelete()" class="btn btn-danger btn-sm" style="line-height: 0.5;"><i class="bx bxs-trash"></i></a>
                                         </td>
                                     </tr>
                                     {/loop}
@@ -78,3 +78,15 @@
     </section>
 
 </main><!-- End #main -->
+
+<script>
+    function ConfirmDelete() {
+      var result = prompt("Digite 'deletar' para confirmar exclusão");
+  
+      if (result == "deletar") {
+       return true;
+      } else {
+       return false;
+      }
+    }
+  </script>
