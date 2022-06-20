@@ -42,7 +42,7 @@
 
                             <div class="col-md-5" style="margin-top: auto;">
                                 <label for="parcelas_receita" class="form-label">Parcelas</label>
-                                <input type="number" placeholder="Lançar com divisão em pelo menos 2x" class="form-control" name="parcela" id="parcelas_receita">
+                                <input type="number" placeholder="Lançar com divisão em pelo menos 2x" class="form-control" name="parcela_total" id="parcelas_receita">
                             </div>
 
                             <div class="col-md-5">

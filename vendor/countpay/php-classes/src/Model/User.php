@@ -305,7 +305,7 @@ class User extends Model	{
 	}
 
 
-	public static function insereDadoPerfil($id_usuario, $dado_perfil)
+	public static function insereDadosPerfil($id_usuario, $dado_perfil)
 	{
 
 		$sql = new Sql();
@@ -385,7 +385,7 @@ class User extends Model	{
 	
 
 	//==================================== Função para atualizar dados perfil do usuário ====================================//
-	public static function alteraDadoPerfil($id_usuario, $dado_perfil)
+	public static function alteraDadosPerfil($id_usuario, $dado_perfil)
 	{
 
 		$sql = new Sql();

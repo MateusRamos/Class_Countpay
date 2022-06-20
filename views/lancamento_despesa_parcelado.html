@@ -60,7 +60,7 @@
                                     <label for="frequencia_despesa" class="form-label">Frequência</label>
                                     <select class="form-select" name="frequencia" id="frequencia_despesa" required>
                                         {loop="$frequencia"}
-                                        <option>{$value.descricao}</option>
+                                        <option value="{$value.id_frequencia}">{$value.descricao}</option>
                                         {/loop}
                                     </select>
                                 </div>
@@ -71,7 +71,7 @@
                                     <select class="form-select" name="id_conta" id="contacartao_despesa">
                                         <option value="">Conta não utilizada</option>
                                         {loop="$conta"}
-                                        <option>{$value.apelido}</option>
+                                        <option value="{$value.id_conta}">{$value.apelido}</option>
                                         {/loop}
                                     </select>
                                 </div>
@@ -81,7 +81,7 @@
                                     <select class="form-select" name="id_cartao" id="contacartao_despesa">
                                         <option value="">Cartão não utilizada</option>
                                         {loop="$cartao"}
-                                        <option>{$value.apelido}</option>
+                                        <option value="{$value.id_cartao}">{$value.apelido}</option>
                                         {/loop}
                                     </select>
                                 </div>
@@ -90,18 +90,8 @@
                                     <label for="categoria_despesa" class="form-label">Categoria</label>
                                     <select class="form-select" name="id_categoria" id="categoria_despesa" required>
                                         {loop="$categoria"}
-                                        <option>{$value.descricao}</option>
+                                        <option  value="{$value.id_categoria}">{$value.descricao}</option>
                                         {/loop}
-                                    </select>
-                                </div>
-                                                            
-                                <div class="col-md-5 mb-3">
-                                    <label for="meta_receita" class="form-label">Meta</label>
-                                    <select class="form-select" name="nome_meta" id="meta_receita">
-                                    <option value="">Nenhuma meta</option>
-                                    {loop="$meta"}
-                                    <option>{$value.nome}</option>
-                                    {/loop}
                                     </select>
                                 </div>
 

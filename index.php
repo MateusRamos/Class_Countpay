@@ -31,9 +31,6 @@ require_once("routes\site\site_meta.php");
 require_once("routes\site\site_projecoes.php");
 
 
-//require rora aux, excluir dps:
-require_once("routes\site\site_lancamento_aux.php");
-
 $app->run();
 
 ?>

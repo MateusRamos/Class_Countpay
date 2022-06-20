@@ -56,8 +56,7 @@ $app->get('/lancamento/despesa/unica', function() {     //MUDANÇA NO FRONT
     $page->setTpl("lancamento_despesa_unica", array(
         "categoria"=> Lancamento::listaCategoria(),
         "conta"=> Carteira::listaApelidoConta($id_usuario),
-        "cartao"=> Carteira::listaApelidoCartao($id_usuario),
-        "meta" => Meta::listaMetas($id_usuario)
+        "cartao"=> Carteira::listaApelidoCartao($id_usuario)
     )); 
 
 });
@@ -68,30 +67,27 @@ $app->post('/lancamento/despesa/unica', function() {
 
     $id_usuario = User::verifyLogin();
 
-    $array_id = array(
-        "id_conta" => Carteira::buscaConta($_POST['id_conta'], $id_usuario),
-        "id_cartao" => Carteira::buscaCartao($_POST['id_cartao'], $id_usuario),
-        'id_categoria' => Lancamento::buscaCategoria($_POST['id_categoria'])
-    );
-    
-    if( Visual::verificaVencimento($_POST['data_lancamento']) == "amanha" )
-    {
-        $resultado = Lancamento::criaLancamentoUnicoFuturo($_POST, $array_id, $id_usuario);
+    $tipo_lancamento = substr($_POST['tipo_lancamento'], 8, 13);
+
+
+    if($_POST['id_cartao'] == "")
+    { 
+        $_POST['id_cartao'] = NULL; 
     }
-    else
-    {
-        $resultado = Lancamento::criaLancamentoUnico($_POST, $array_id, $id_usuario); 
+
+    if($_POST['id_conta'] == "")
+    { 
+        $_POST['id_conta'] = NULL; 
     }
 
 
-    if ($result > 0) {
-
-        Visual::mostraMensagem('Lançamento realizado com sucesso!', '/lancamento/historico');
-
-    } else {
-
-        Visual::mostraMensagem('Algo deu errado! Tente novamente...', '/lancamento/despesa/unica');
-
+    if($tipo_lancamento == "Única")
+    {
+        Lancamento::iniciaLancamentoUnico($_POST, $id_usuario);
+    }
+    else if($tipo_lancamento == "Fixa")
+    {
+        Lancamento::iniciaLancamentoFixo($_POST, $id_usuario);
     }
 
 });
@@ -119,31 +115,29 @@ $app->post('/lancamento/despesa/parcelado', function() {
 
     $id_usuario = User::verifyLogin();
 
-    // Consulta no banco de dados para a conversão de string recebido do front-end para o ID dos campos selecionados
-    $array_id = array (
-        "id_usuario" => $id_usuario,
-        "id_conta" => Carteira::buscaConta($_POST['id_conta'], $id_usuario),
-        "id_cartao" => Carteira::buscaCartao($_POST['id_cartao'], $id_usuario),
-        'id_categoria' => Lancamento::buscaCategoria($_POST['id_categoria'])
-    );
-
-    // Caso o valor de parcelas seja maior que 1 vai entrar na função
-    if ($_POST['parcela'] > 1 ) {
-
-        // Valor é dividido pelo numero de parcelas
-        $_POST['valor'] = ($_POST['valor'] / $_POST['parcela']);
-
-        $quant = Lancamento::analisaFrequencia($_POST);
-
-        Lancamento::lancamentoParcelado($_POST, $id_usuario, $array_id, $quant);
-
-    } else { 
-        
-        Lancamento::criaLancamentoUnico($_POST, $array_id, $id_usuario);
-
+    
+    if($_POST['id_cartao'] == "")
+    { 
+        $_POST['id_cartao'] = NULL; 
     }
 
-    Visual::mostraMensagem('Lançamento realizada com sucesso!','/lancamento/historico');
+    if($_POST['id_conta'] == "")
+    { 
+        $_POST['id_conta'] = NULL; 
+    }
+
+
+    if ($_POST['parcela_total'] <= 1 )
+    {
+        $_POST['tipo_lancamento'] = "Receita Única";
+
+        Lancamento::iniciaLancamentoUnico($_POST, $id_usuario);
+
+    } 
+    else 
+    { 
+        Lancamento::iniciaLancamentoParcelado($_POST, $id_usuario);
+    }
 
 });
 
@@ -153,7 +147,7 @@ $app->post('/lancamento/despesa/parcelado', function() {
 ||										    	        Rotas RECEITA                                                    ||
 ||												    																	 ||
 //===========================================================|===========================================================*/
-/*
+
 //----------------------------------------------------  GET - RECEITA  --------------------------------------------------//
 $app->get('/lancamento/receita', function() {
 
@@ -177,7 +171,6 @@ $app->get('/lancamento/receita/unica', function() {
         "categoria"=> Lancamento::listaCategoria(),
         "conta"=> Carteira::listaApelidoConta($id_usuario),
         "cartao"=> Carteira::listaApelidoCartao($id_usuario),
-        "meta"=> Meta::listaMetas($id_usuario)
     )); 
 
 });
@@ -188,28 +181,27 @@ $app->post('/lancamento/receita/unica', function() {
 
     $id_usuario = User::verifyLogin();
 
-    //Sql de string para ID:
-    $array_id = array(
-        "id_conta" => Carteira::buscaConta($_POST['id_conta'], $id_usuario),
-        "id_cartao" => Carteira::buscaCartao($_POST['id_cartao'], $id_usuario),
-        "id_categoria" => Lancamento::buscaCategoria($_POST['id_categoria'])
-    );
+    $tipo_lancamento = substr($_POST['tipo_lancamento'], 8, 13);
 
-    if( Visual::verificaVencimento($_POST['data_lancamento']) == "amanha" )
-    {
-        $resultado = Lancamento::criaLancamentoUnicoFuturo($_POST, $array_id, $id_usuario);
+
+    if($_POST['id_cartao'] == "")
+    { 
+        $_POST['id_cartao'] = NULL; 
     }
-    else
-    {
-        $resultado = Lancamento::criaLancamentoUnico($_POST, $array_id, $id_usuario); 
+
+    if($_POST['id_conta'] == "")
+    { 
+        $_POST['id_conta'] = NULL; 
     }
 
 
-    if ($resultado > 0) {
-
-        Visual::mostraMensagem('Lançamento realizado com sucesso!','/lancamento/historico');
-    } else {
-        Visual::mostraMensagem('Algo deu errado! Tente novamente...','/lancamento/receita/unica');
+    if($tipo_lancamento == "Única")
+    {
+        Lancamento::iniciaLancamentoUnico($_POST, $id_usuario);
+    }
+    else if($tipo_lancamento == "Fixa")
+    {
+        Lancamento::iniciaLancamentoFixo($_POST, $id_usuario);
     }
 
 });
@@ -237,34 +229,31 @@ $app->post('/lancamento/receita/parcelado', function() {
 
     $id_usuario = User::verifyLogin();
 
-    //Sql de string para ID:
-    $array_id = array(
-        "id_usuario" => $id_usuario,
-        "id_conta" => Carteira::buscaConta($_POST['id_conta'], $id_usuario),
-        "id_cartao" => Carteira::buscaCartao($_POST['id_cartao'], $id_usuario),
-        "id_categoria" => Lancamento::buscaCategoria($_POST['id_categoria'])
-    );
-
-    // Caso o valor de parcelas seja maior que 1 vai entrar na função
-    if ($_POST['parcela'] > 1 ) {
-
-        // Valor é dividido pelo numero de parcelas
-        $_POST['valor'] = ($_POST['valor'] / $_POST['parcela']);
-
-        $quant = Lancamento::analisaFrequencia($_POST);
-        
-        Lancamento::lancamentoParcelado($_POST, $id_usuario, $array_id, $quant);
-
-    } else { 
-
-        $_POST['tipo_receita'] = "Receita";
-
-        Lancamento::criaReceitaUnica($_POST, $array_id, $id_usuario);
-
+    
+    if($_POST['id_cartao'] == "")
+    { 
+        $_POST['id_cartao'] = NULL; 
     }
 
-    Visual::mostraMensagem('Lançamento realizado com sucesso!', '/lancamento/historico');
+    if($_POST['id_conta'] == "")
+    { 
+        $_POST['id_conta'] = NULL; 
+    }
+
+
+    if ($_POST['parcela_total'] <= 1 )
+    {
+        $_POST['tipo_lancamento'] = "Receita Única";
+
+        Lancamento::iniciaLancamentoUnico($_POST, $id_usuario);
+
+    } 
+    else 
+    { 
+        Lancamento::iniciaLancamentoParcelado($_POST, $id_usuario);
+    }
+
 
 });
-*/
+
 ?>

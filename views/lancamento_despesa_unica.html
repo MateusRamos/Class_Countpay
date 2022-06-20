@@ -38,7 +38,7 @@
                 <div class="col-md-4">
                   <label for="contacartao_despesa" class="form-label">Tipo Despesa</label>
                   <select class="form-select" name="tipo_lancamento" id="contacartao_despesa" required>
-                    <option>Despesa</option>
+                    <option>Despesa Única</option>
                     <option>Despesa Fixa</option>
                   </select>
                 </div>
@@ -53,7 +53,7 @@
                   <select class="form-select" name="id_conta" id="conta_usuario">
                     <option value="">Opção conta não utilizada</option>
                     {loop="$conta"}
-                    <option>{$value.apelido}</option>
+                    <option  value="{$value.id_conta}">{$value.apelido}</option>
                     {/loop}
                   </select>
                 </div>
@@ -63,7 +63,7 @@
                   <select class="form-select" name="id_cartao" id="cartao_usuario">
                     <option value="">Opção cartão não utilizada</option>
                     {loop="$cartao"}
-                    <option>{$value.apelido}</option>
+                    <option value="{$value.id_cartao}">{$value.apelido}</option>
                     {/loop}
                   </select>
                 </div>
@@ -72,19 +72,11 @@
                   <label for="categoria_despesa" class="form-label">Categoria</label>
                   <select class="form-select" name="id_categoria" id="contacartao_despesa" required>
                     {loop="$categoria"}
-                    <option>{$value.descricao}</option>
+                    <option value="{$value.id_categoria}">{$value.descricao}</option>
                     {/loop}
                   </select>
                 </div>
 
-                <div class="col-md-5 mb-3">
-                  <label for="meta_despesa" class="form-label">Meta</label>
-                  <select class="form-select" name="meta_nome" id="meta_despesa">
-                    {loop="$meta"}
-                    <option>{$value.nome}</option>
-                    {/loop}
-                  </select>
-                </div>
 
                 <div class="col-md-9 d-flex justify-content-center">
                   <button type="button" class="btn btn-secondary me-1">Cancelar</button>

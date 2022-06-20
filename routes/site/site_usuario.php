@@ -5,7 +5,6 @@ use \Countpay\Model\User;
 use \Countpay\Model\Visual;
 use \Countpay\Model\Carteira;
 use \Countpay\Model\Lancamento;
-use \Countpay\Model\LancamentoAux;
 
 /*===========================================================|===========================================================\\
 ||											    																		 ||
@@ -120,9 +119,9 @@ $app->get('/', function() {
     $id_usuario = User::verifyLogin();
 
     
-    LancamentoAux::verificaLancamentoFixo($id_usuario); // Status = 1
-    LancamentoAux::verificaLancamentoUnicoFuturo($id_usuario);  // Status = 2
-    LancamentoAux::verificaLancamentoParceladoFuturo($id_usuario);  // Status = 3
+    Lancamento::verificaLancamentoFixo($id_usuario); // Status = 1
+    Lancamento::verificaLancamentoUnicoFuturo($id_usuario);  // Status = 2
+    Lancamento::verificaLancamentoParceladoFuturo($id_usuario);  // Status = 3
 
 
     $notificacoes = User::verificaNotificacoes($id_usuario);
@@ -171,7 +170,7 @@ $app->post('/perfil', function() {
     $verificando = User::verificaDadosPerfil($id_usuario);
 
     if($verificando == 0){
-        User::alteraDadoPerfil($id_usuario, $_POST);
+        User::alteraDadosPerfil($id_usuario, $_POST);
         Visual::mostraMensagem('Perfil de usuario alterado com sucesso!!!!', '/perfil');
     }else{
         User::insereDadoPerfil($id_usuario, $_POST);
