@@ -443,14 +443,13 @@ class LancamentoAux extends Model{
 
     public static function criaLancamentoParceladoFuturo($dados_lancamento, $id_usuario)
     {
-        $dados_lancamento['parcela_atual'] = $dados_lancamento['parcela_atual'] + 1;
-
-        $frequencia = LancamentoAux::analisaFrequencia($dados_lancamento);
-
-        $entrada = LancamentoAux::analisaParcela($dados_lancamento);
-        
-        if($entrada == "normal")
+        if($dados_lancamento['parcela_atual'] != $dados_lancamento['parcela_total'])
         {
+
+            $dados_lancamento['parcela_atual'] = $dados_lancamento['parcela_atual'] + 1;
+
+            $frequencia = LancamentoAux::analisaFrequencia($dados_lancamento);
+
             $dados_lancamento['status_lancamento'] = 3;
             
             if($frequencia['frequencia'] == "dias")
@@ -463,39 +462,6 @@ class LancamentoAux extends Model{
             }
 
         }
-        else
-        {
-            $dados_lancamento['status_lancamento'] = 2;
-
-            
-            if($frequencia['frequencia'] == "dias")
-            {
-                LancamentoAux::criaParcelaFuturaDias($dados_lancamento, $id_usuario, $frequencia);
-            }
-            else
-            {
-                LancamentoAux::criaParcelaFuturaMeses($dados_lancamento, $id_usuario, $frequencia);
-            }
-        }
-
-    }
-
-
-    public static function analisaParcela($dados_lancamento)
-    {
-
-        $parcela_atual = $dados_lancamento['parcela_atual'];
-        $parcela_total = $dados_lancamento['parcela_total'];
-
-        if(($parcela_total - $parcela_atual) > 0)
-        {
-            return "normal";
-        }
-        else
-        {
-            return "penultima";
-        }
-
     }
 
 

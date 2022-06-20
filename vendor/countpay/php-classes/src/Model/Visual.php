@@ -142,7 +142,7 @@ class Visual extends Model	{
 		$sql = new Sql();
 
 		$results = $sql->select("SELECT descricao_lancamento, tipo_lancamento, valor, data_lancamento FROM lancamento 
-								WHERE status_lancamento = 0 AND id_usuario = :ID_USUARIO AND data_lancamento < current_date()  
+								WHERE status_lancamento = 0 AND id_usuario = :ID_USUARIO AND data_lancamento <= current_date()  
 								order by data_lancamento desc limit 6", array(
 									":ID_USUARIO"=>$id_usuario
 								));
