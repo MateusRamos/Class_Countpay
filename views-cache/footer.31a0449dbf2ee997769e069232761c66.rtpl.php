@@ -29,6 +29,34 @@
     $("#telefone, #celular").mask("(00) 00000-0000");
   </script>
 
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+      var swiper = new Swiper(".mySwiper", {
+          slidesPerView: 3,
+          spaceBetween: 25,
+          slidesPerGroup: 1,
+          loop: false,
+          loopFillGroupWithBlank: true,
+          navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+          }
+      });
+  </script>
+
+  <script>
+
+    function mostrar_modal() {
+        let el = document.getElementById('minha_caixa');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+  </script>
+
   </body>
 
   </html>
