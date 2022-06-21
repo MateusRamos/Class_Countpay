@@ -154,11 +154,14 @@ class Visual extends Model	{
 				$results[$key]['tempo'] = Visual::calculaTempoDia($results[$key]['data_lancamento']);
 
 				$results[$key]['cor'] = Visual::setCorLancamento($results[$key]['tipo_lancamento']);
+
+				$results[$key]['tipo_lancamento'] = $results[$key]['tipo_lancamento'] . " :";
+				$results[$key]['descricao_lancamento'] = $results[$key]['descricao_lancamento'] . " - ";
 			}
 
 			for($i=count($results); $i <= 5; $i++)
 			{
-				$results[$i]["descricao_lancamento"] = "Aguardando Lançamento";
+				$results[$i]["descricao_lancamento"] = "Aguardando Lançamento...";
 				$results[$i]["tipo_lancamento"] = "";
 				$results[$i]["valor"] = "";
 				$results[$i]["data_lancamento"] = "";
@@ -199,8 +202,6 @@ class Visual extends Model	{
 	{
 		echo "<script language='javascript' type='text/javascript'> alert('" .$mensagem. "');window.location.href='" . $rota . "';</script>";
 	}
-
-
 
 
 

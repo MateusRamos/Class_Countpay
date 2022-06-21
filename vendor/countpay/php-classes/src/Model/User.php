@@ -208,6 +208,7 @@ class User extends Model	{
 
 	}
 
+	
 	public static function verifyDeleteConta($id_usuario, $id_conta)
 	{
 

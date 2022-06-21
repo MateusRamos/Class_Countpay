@@ -122,17 +122,11 @@ $app->get('/', function() {
     Lancamento::verificaLancamentoFixo($id_usuario); // Status = 1
     Lancamento::verificaLancamentoUnicoFuturo($id_usuario);  // Status = 2
     Lancamento::verificaLancamentoParceladoFuturo($id_usuario);  // Status = 3
-
-
-    $notificacoes = User::verificaNotificacoes($id_usuario);
-    $quant_notificacoes = array("quantidade"=>count($notificacoes));
-
+    
     $ultimos_lancamentos = Visual::listaUltimosLancamentos($id_usuario);
 
     $page->setTpl("index", array(
         "dados"=>$ultimos_lancamentos,
-        "notificacoes" => $notificacoes,
-        "quant_notificacoes" => $quant_notificacoes
     ));
 
 });

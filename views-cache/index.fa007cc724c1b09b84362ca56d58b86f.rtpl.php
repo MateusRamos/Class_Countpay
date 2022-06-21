@@ -194,7 +194,7 @@
                                 <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["0"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
                                     <a href="#" class="link-dark">
-                                        <b><?php echo htmlspecialchars( $dados["0"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>:</b> <?php echo htmlspecialchars( $dados["0"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $dados["0"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                        <b><?php echo htmlspecialchars( $dados["0"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> <?php echo htmlspecialchars( $dados["0"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $dados["0"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                     </a>
                                 </div>
                             </div><!-- End activity item-->
@@ -204,7 +204,7 @@
                                 <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["1"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
                                     <a href="#" class="link-dark">
-                                        <b><?php echo htmlspecialchars( $dados["1"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>:</b> <?php echo htmlspecialchars( $dados["1"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $dados["1"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                        <b><?php echo htmlspecialchars( $dados["1"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> <?php echo htmlspecialchars( $dados["1"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $dados["1"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                     </a>
                                 </div>
                             </div><!-- End activity item-->
@@ -214,7 +214,7 @@
                                 <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["2"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
                                     <a href="#" class="link-dark">
-                                        <b><?php echo htmlspecialchars( $dados["2"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>:</b> <?php echo htmlspecialchars( $dados["2"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $dados["2"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                        <b><?php echo htmlspecialchars( $dados["2"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> <?php echo htmlspecialchars( $dados["2"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $dados["2"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                     </a>
                                 </div>
                             </div><!-- End activity item-->
@@ -224,7 +224,7 @@
                                 <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["3"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
                                     <a href="#" class="link-dark">
-                                        <b><?php echo htmlspecialchars( $dados["3"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>:</b> <?php echo htmlspecialchars( $dados["3"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $dados["3"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                        <b><?php echo htmlspecialchars( $dados["3"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> <?php echo htmlspecialchars( $dados["3"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $dados["3"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                     </a>
                                 </div>
                             </div><!-- End activity item-->
@@ -234,7 +234,7 @@
                                 <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["4"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
                                     <a href="#" class="link-dark">
-                                        <b><?php echo htmlspecialchars( $dados["4"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>:</b> <?php echo htmlspecialchars( $dados["4"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $dados["4"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                        <b><?php echo htmlspecialchars( $dados["4"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> <?php echo htmlspecialchars( $dados["4"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $dados["4"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                     </a>
                                 </div>
                             </div><!-- End activity item-->
@@ -244,7 +244,7 @@
                                 <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["5"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
                                     <a href="#" class="link-dark">
-                                        <b><?php echo htmlspecialchars( $dados["5"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?>:</b> <?php echo htmlspecialchars( $dados["5"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $dados["5"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                        <b><?php echo htmlspecialchars( $dados["5"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> <?php echo htmlspecialchars( $dados["5"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $dados["5"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                     </a>
                                 </div>
                             </div><!-- End activity item-->
@@ -253,7 +253,18 @@
 
                     </div>
                 </div><!-- End Recent Activity -->
+
+
+
+
+                
+
+
             </div>
+
+
+
+            
                 
 
         </div>
