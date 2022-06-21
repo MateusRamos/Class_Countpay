@@ -40,9 +40,9 @@
         
                       <div class="col-md-4">
                         <label for="tipo_notificacao" class="form-label">Tipo de Notificações</label>
-                        <select class="form-select" name="tipo_notificacao" id="tipo_notificacao" required>
+                        <select class="form-select" name="id_tipo_notificacoes" id="tipo_notificacao" required>
                             <?php $counter1=-1;  if( isset($dados) && ( is_array($dados) || $dados instanceof Traversable ) && sizeof($dados) ) foreach( $dados as $key1 => $value1 ){ $counter1++; ?>
-                            <option><?php echo htmlspecialchars( $value1["categoria"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                            <option value="<?php echo htmlspecialchars( $value1["id_tipo_notificacoes"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["categoria"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                             <?php } ?>
                         </select>
                       </div>

@@ -40,9 +40,9 @@
         
                       <div class="col-md-4">
                         <label for="tipo_notificacao" class="form-label">Tipo de Notificações</label>
-                        <select class="form-select" name="tipo_notificacao" id="tipo_notificacao" required>
+                        <select class="form-select" name="id_tipo_notificacoes" id="tipo_notificacao" required>
                             {loop="$dados"}
-                            <option>{$value.categoria}</option>
+                            <option value="{$value.id_tipo_notificacoes}">{$value.categoria}</option>
                             {/loop}
                         </select>
                       </div>

@@ -72,14 +72,7 @@
                       <input type="password" name="senha" class="form-control" id="yourPassword" required>
                       <div class="invalid-feedback">Por gentileza, digite a sua senha.</div>
                     </div>
-
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">Lembrar conta</label>
-                      </div>
-                    </div>
-                    <div class="col-12">
+                    <div class="col-12 pt-4">
                       <button class="btn btn-primary w-100" type="submit">Acessar</button>
                     </div>
                     <div class="col-12 d-flex justify-content-center">

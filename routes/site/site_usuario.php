@@ -59,14 +59,15 @@ $app->post('/cadastro', function(){
 
     $existeCadastro = User::verificaDadosCadastro($_POST);
 
-    if($existeCadastro == 0)
+    if($existeCadastro == 1)
     {
         Visual::mostraMensagem('E-mail ou login já cadastrado, tente novamente!', '/cadastro');
+
     } else {
         
         $dados_usuario = User::cadastraUsuario($_POST);
 
-        $_SESSION['usuario'] = $dados_usuario[0]['id_usuario'];
+        $_SESSION['usuario'] = $dados_usuario['id_usuario'];
         header("Location: /");
         exit;
         
@@ -163,11 +164,11 @@ $app->post('/perfil', function() {
 
     $verificando = User::verificaDadosPerfil($id_usuario);
 
-    if($verificando == 0){
+    if($verificando == 1){
         User::alteraDadosPerfil($id_usuario, $_POST);
         Visual::mostraMensagem('Perfil de usuario alterado com sucesso!!!!', '/perfil');
     }else{
-        User::insereDadoPerfil($id_usuario, $_POST);
+        User::insereDadosPerfil($id_usuario, $_POST);
         Visual::mostraMensagem('Perfil de usuário criado com sucesso!', '/perfil');
     }
 

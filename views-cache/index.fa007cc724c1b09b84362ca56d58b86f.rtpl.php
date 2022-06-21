@@ -253,18 +253,7 @@
 
                     </div>
                 </div><!-- End Recent Activity -->
-
-
-
-
-                
-
-
             </div>
-
-
-
-            
                 
 
         </div>

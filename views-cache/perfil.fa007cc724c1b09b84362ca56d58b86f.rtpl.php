@@ -103,91 +103,92 @@
                     <div class="row mb-3">
                       <label for="usuario_nome" class="col-md-4 col-lg-3 col-form-label">Nome</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="nome" type="text" class="form-control" id="usuario_nome" value="Lucas">
+                        <input name="nome" type="text" class="form-control" id="usuario_nome" value="<?php echo htmlspecialchars( $dados["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="usuario_sobrenome" class="col-md-4 col-lg-3 col-form-label">Sobrenome</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="sobrenome" type="text" class="form-control" id="usuario_sobrenome" value="da Rocha Heideric">
+                        <input name="sobrenome" type="text" class="form-control" id="usuario_sobrenome" value="<?php echo htmlspecialchars( $dados["sobrenome"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="usuario_sobre_mim" class="col-md-4 col-lg-3 col-form-label">Sobre mim</label>
                       <div class="col-md-8 col-lg-9">
-                        <textarea name="sobre_mim" class="form-control" id="usuario_sobre_mim" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                        <textarea name="sobre_mim" class="form-control" id="usuario_sobre_mim" style="height: 100px"></textarea>
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="usuario_ocupacao" class="col-md-4 col-lg-3 col-form-label">Ocupação</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="ocupacao" type="text" class="form-control" id="usuario_ocupacao" value="CEO Countpay">
+                        <input name="ocupacao" type="text" class="form-control" id="usuario_ocupacao" value="<?php echo htmlspecialchars( $dados["ocupacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="usuario_pais" class="col-md-4 col-lg-3 col-form-label">País</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="pais" type="text" class="form-control" id="usuario_pais" value="Brasil">
+                        <input name="pais" type="text" class="form-control" id="usuario_pais" value="<?php echo htmlspecialchars( $dados["pais"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                       </div>
                     </div>
                     
                     <div class="row mb-3">
                       <label for="usuario_cidade" class="col-md-4 col-lg-3 col-form-label">Cidade</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="cidade" type="text" class="form-control" id="usuario_cidade" value="Birigui">
+                        <input name="cidade" type="text" class="form-control" id="usuario_cidade" value="<?php echo htmlspecialchars( $dados["cidade"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="usuario_endereco" class="col-md-4 col-lg-3 col-form-label">Endereço</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="endereco" type="text" class="form-control" id="usuario_endereco" value="Rua Tiradentes, 597s">
+                        <input name="endereco" type="text" class="form-control" id="usuario_endereco" value="<?php echo htmlspecialchars( $dados["endereco"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="usuario_telefone" class="col-md-4 col-lg-3 col-form-label">Telefone</label>
+                      <label for="telefone" class="col-md-4 col-lg-3 col-form-label">Telefone</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="telefone" type="text" class="form-control" id="usuario_telefone" value="(18) 99716-9693">
+
+                        <input name="telefone" type="text" class="form-control" id="telefone">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="usuario_email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="usuario_email" value="lucasheideric@Countpay.com.br">
+                        <input name="email" type="email" class="form-control" id="usuario_email" value="<?php echo htmlspecialchars( $dados["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="usuario_twitter" class="col-md-4 col-lg-3 col-form-label">Twitter</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="twitter" type="text" class="form-control" id="usuario_twitter" value="https://twitter.com/#">
+                        <input name="twitter" type="text" class="form-control" id="usuario_twitter" value="<?php echo htmlspecialchars( $dados["twitter"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="usuario_facebook" class="col-md-4 col-lg-3 col-form-label">Facebook</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="facebook" type="text" class="form-control" id="usuario_facebook" value="https://facebook.com/#">
+                        <input name="facebook" type="text" class="form-control" id="usuario_facebook" value="<?php echo htmlspecialchars( $dados["facebook"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="usuario_instagram" class="col-md-4 col-lg-3 col-form-label">Instagram</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="instagram" type="text" class="form-control" id="usuario_instagram" value="https://instagram.com/#">
+                        <input name="instagram" type="text" class="form-control" id="usuario_instagram" value="<?php echo htmlspecialchars( $dados["instagram"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="usuario_linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="linkedin" type="text" class="form-control" id="usuario_linkedin" value="https://linkedin.com/#">
+                        <input name="linkedin" type="text" class="form-control" id="usuario_linkedin" value="<?php echo htmlspecialchars( $dados["linkedin"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                       </div>
                     </div>
 

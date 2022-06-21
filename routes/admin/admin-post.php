@@ -101,9 +101,8 @@ $app->post('/admin/usuario/alterar', function() {
 $app->post('/admin/notificacoes/criar', function() {
 
     $id_usuario = User::BuscaEmail($_POST);
-    $id_tipo_notificacao = User::BuscaTipoNotificacao($_POST);
 
-    User::criaNotificacao($_POST, $id_usuario, $id_tipo_notificacao);
+    User::criaNotificacao($_POST, $id_usuario);
 
     Visual::mostraMensagem('Notificação enviada com sucesso!', '/admin');
 
