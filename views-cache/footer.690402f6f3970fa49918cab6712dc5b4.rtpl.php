@@ -35,21 +35,34 @@
   <!-- Initialize Swiper -->
   <script>
       var swiper = new Swiper(".mySwiper", {
-          slidesPerView: 4,
-          spaceBetween: 30,
+          slidesPerView: 3,
+          spaceBetween: 25,
           slidesPerGroup: 1,
-          loop: true,
+          loop: false,
           loopFillGroupWithBlank: true,
-          pagination: {
-              el: ".swiper-pagination",
-              clickable: true,
-          },
           navigation: {
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
-          },
+          }
       });
   </script>
+
+  <script>
+    function mostrar_modal() {
+        let el = document.getElementById('minha_caixa');
+        let minha_modal = new bootstrap.Modal(el);
+        minha_modal.show();
+    }
+
+    function fechar() {
+      let modal = document.querySelector('.modal')
+
+      modal.style.display = 'none';
+      $(".modal-backdrop").css("display","none");
+    }
+
+  </script>
+  
 
   </body>
 
