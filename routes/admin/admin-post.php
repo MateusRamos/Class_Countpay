@@ -34,13 +34,24 @@ $app->post('/admin/login', function() {
     $id_usuario = User::verifyLoginAdmin();
 
     $verificando = User::verificaDadosPerfil($id_usuario);
+    $verificaCad = User::verificaAlteracao($_POST);
 
-    if($verificando == 0){
-        User::alteraDadoPerfil($id_usuario, $_POST);
-        Visual::mostraMensagem('Perfil de usuario alterado com sucesso!!!!', '/admin/perfil');
-    }else{
-        User::insereDadoPerfil($id_usuario, $_POST);
-        Visual::mostraMensagem('Perfil de usuário criado com sucesso!', '/admin/perfil');
+    if($verificaCad == 0)
+    {
+        if($verificando == 1)
+        {
+            User::alteraDadosPerfil($id_usuario, $_POST);
+            Visual::mostraMensagem('Perfil de usuario alterado com sucesso!', '/admin/perfil');
+        }
+        else
+        {
+            User::insereDadosPerfil($id_usuario, $_POST);
+            Visual::mostraMensagem('Perfil de usuário criado com sucesso!', '/admin/perfil');
+        }
+    }
+    else
+    {
+        
     }
 
 }); 
@@ -55,13 +66,11 @@ $app->post('/admin/login', function() {
 //==========================================  Post de criar usuario do admin  ===========================================//
 $app->post('/admin/usuario/criar', function() {
     
-    $page = new PageAdmin();
-
     User::verifyLoginAdmin();
 
     $existeCadastro = User::verificaDadosCadastro($_POST); //$email, $login
 
-    if($existeCadastro == 0)
+    if($existeCadastro == 1)
     {
         Visual::mostraMensagem('E-mail ou login já cadastrado, tente novamente!', '/admin/usuario/criar');
     } else {
@@ -82,7 +91,7 @@ $app->post('/admin/usuario/alterar', function() {
 
     $verificaCad = User::verificaAlteracao($_POST);
 
-    if($verificaCad == 1 )
+    if($verificaCad == 0)
     {
         User::alteraUsuario($_POST);
 
@@ -96,8 +105,16 @@ $app->post('/admin/usuario/alterar', function() {
 });
 
 
+/*===========================================================|===========================================================\\
+||											    																		 ||
+||										    	   Rota admin/notificacoes                                               ||
+||												    																	 ||
+//===========================================================|===========================================================*/
+
 //=======================================  Post de alterar criar notificações  ==========================================//
 $app->post('/admin/notificacoes/criar', function() {
+
+    User::verifyLoginAdmin();
 
     $id_usuario = User::BuscaEmail($_POST);
 
