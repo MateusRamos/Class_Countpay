@@ -27,7 +27,6 @@
                             <table class="table table-hover datatable">
                                 <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
                                         <th scope="col">Descrição da Cartão</th>
                                         <th scope="col">Tipo Cartão</th>
                                         <th scope="col">Vence dia</th>
@@ -39,7 +38,6 @@
                                 <tbody>
                                     <?php $counter1=-1;  if( isset($cartao) && ( is_array($cartao) || $cartao instanceof Traversable ) && sizeof($cartao) ) foreach( $cartao as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <td><?php echo htmlspecialchars( $value1["id_cartao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["tipo_cartao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["vence_dia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
@@ -47,7 +45,7 @@
                                         <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td>
                                             <a href="/cartao/<?php echo htmlspecialchars( $value1["id_cartao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn btn-primary btn-sm" style="line-height: 0.5;"><i class="bx bxs-edit"></i></a>
-                                            <a href="/cartao/<?php echo htmlspecialchars( $value1["id_cartao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" class="btn btn-danger btn-sm" style="line-height: 0.5;"><i class="bx bxs-trash"></i></a>
+                                            <a href="/cartao/<?php echo htmlspecialchars( $value1["id_cartao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return ConfirmDelete()" class="btn btn-danger btn-sm" style="line-height: 0.5;"><i class="bx bxs-trash"></i></a>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -78,3 +76,15 @@
     </section>
 
 </main><!-- End #main -->
+
+<script>
+    function ConfirmDelete() {
+      var result = prompt("Digite 'deletar' para confirmar exclusão");
+  
+      if (result == "deletar") {
+       return true;
+      } else {
+       return false;
+      }
+    }
+  </script>
