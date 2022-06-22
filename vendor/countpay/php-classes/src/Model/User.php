@@ -2,9 +2,8 @@
 namespace Countpay\Model;
 
 use \Countpay\DB\Sql;
-use \Countpay\Model;
 
-class User extends Model	{
+class User {
 
 	Const SESSION = "User";
 

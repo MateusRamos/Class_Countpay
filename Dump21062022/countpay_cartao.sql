@@ -16,40 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `meta`
+-- Table structure for table `cartao`
 --
 
-DROP TABLE IF EXISTS `meta`;
+DROP TABLE IF EXISTS `cartao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `meta` (
-  `id_meta` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(256) NOT NULL,
-  `objetivo` varchar(256) NOT NULL,
-  `valor` decimal(11,2) NOT NULL,
-  `valor_atual` int(11) DEFAULT NULL,
-  `data_inicial` date NOT NULL,
-  `data_final` date NOT NULL,
-  `id_categoria` int(11) DEFAULT NULL,
-  `status` varchar(48) NOT NULL,
-  `id_conta` int(11) DEFAULT NULL,
+CREATE TABLE `cartao` (
+  `id_cartao` int(11) NOT NULL AUTO_INCREMENT,
+  `apelido` varchar(64) NOT NULL,
+  `tipo_cartao` varchar(64) NOT NULL,
+  `vence_dia` int(2) DEFAULT NULL,
+  `limite` decimal(8,2) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_meta`),
-  KEY `id_conta` (`id_conta`),
-  KEY `id_usuario` (`id_usuario`),
-  CONSTRAINT `meta_ibfk_1` FOREIGN KEY (`id_conta`) REFERENCES `conta` (`id_conta`),
-  CONSTRAINT `meta_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `id_instituicao` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_cartao`),
+  KEY `cartao_ibfk_1` (`id_usuario`),
+  KEY `cartao_ibfk_2` (`id_instituicao`),
+  CONSTRAINT `cartao_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  CONSTRAINT `cartao_ibfk_2` FOREIGN KEY (`id_instituicao`) REFERENCES `instituicao` (`id_instituicao`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `meta`
+-- Dumping data for table `cartao`
 --
 
-LOCK TABLES `meta` WRITE;
-/*!40000 ALTER TABLE `meta` DISABLE KEYS */;
-INSERT INTO `meta` VALUES (1,'comprar geladeira','comprar uma brasthemp',5000.00,NULL,'2022-06-10','2023-06-10',NULL,'ativo',21,143),(2,'Comprar Celular','Comprar um iphone',3000.00,500,'2022-05-14','2022-12-25',NULL,'pausado',22,143),(4,'teste','Comprar um dildo',50.00,NULL,'2022-06-14','2022-06-29',NULL,'pausado',21,143),(5,'aaaaaaa','aasaasdada',60.00,NULL,'2022-06-09','2022-06-14',NULL,'concluido',21,143),(6,'dafa','sdfasfas',100.00,NULL,'2022-04-02','2022-09-06',NULL,'pausado',22,143);
-/*!40000 ALTER TABLE `meta` ENABLE KEYS */;
+LOCK TABLES `cartao` WRITE;
+/*!40000 ALTER TABLE `cartao` DISABLE KEYS */;
+INSERT INTO `cartao` VALUES (1,'Cartão Nubank','Cartão',5,7100.00,100,260),(2,'Cartão Inter','Cartão',5,2000.00,100,77),(3,'Cartão Santander','Cartão',5,2000.00,100,33),(4,'Cartão Caixa','Débito',5,0.00,100,104),(12,'cartao tsssss','Cartão',9,6000.00,143,NULL),(14,'asdasda','Cartão',15,1500.00,143,1);
+/*!40000 ALTER TABLE `cartao` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -61,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-15 23:02:16
+-- Dump completed on 2022-06-21 21:36:04

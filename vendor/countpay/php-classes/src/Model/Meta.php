@@ -1,19 +1,35 @@
 <?php 
 namespace Countpay\Model;
 
-use \Countpay\Model;
 use \Countpay\DB\Sql;
 
 
-class Meta extends Model{	
+class Meta {	
 
-    /*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										        FUNÇÕES GUARDANDO UMA GRANA                                              ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
+	#                                                  ╔══════════════════════╗
+	#									 	           ║     MINHAS METAS     ║
+	#                                                  ╚══════════════════════╝
 
-	//============================================= CRIA - GUARDANDO UMA GRANA ==============================================//
+    //Lista todas as metas ativas do usuario;
+    public static function listaMetas($id_usuario)
+    {
+
+        $sql = new Sql();
+
+        $results = $sql->select("SELECT nome FROM meta WHERE id_usuario = :ID_USUARIO AND status = 1", array(
+            ":ID_USUARIO" => $id_usuario
+        ));
+
+        return $results;
+
+    }
+
+
+	#                                                  ╔═══════════════════════╗
+	#									 	           ║  GUARDANDO UMA GRANA  ║
+	#                                                  ╚═══════════════════════╝
+
+	//Insere uma nova meta com os dados do front;
     public static function criaGuardando($dados_meta, $id_usuario)
     {
 
@@ -24,7 +40,8 @@ class Meta extends Model{
         if($verificacao == 0)
         {
             $status = "pausado";
-        } else 
+        } 
+        else 
         {
             $status = "ativo";
         }
@@ -44,11 +61,30 @@ class Meta extends Model{
     }
 
 
-    //===========================================
-    public static function analisaMeta($dados_lancamento, $array_id, $id_usuario)
+    //Verifica se o usuário tem alguma meta ativa;
+    public static function verificaMetaAtiva($id_conta)
     {
 
         $sql = new Sql();
+
+        $results = $sql->select("SELECT id_meta FROM meta WHERE status = 'ativo' AND id_conta = :ID_CONTA", array(
+            ":ID_CONTA" => $id_conta
+        ));
+
+        if(count($results) > 0){
+            return 0;
+        } 
+        else
+        {
+            return 1;
+        }
+
+    }
+
+
+    //Analisa se a meta ativa foi concluida;
+    public static function analisaMeta($dados_lancamento, $array_id)
+    {
 
         $tipo_lancamento = substr($dados_lancamento['tipo_lancamento'], 0, 7);
 
@@ -59,10 +95,10 @@ class Meta extends Model{
 
             if($verificacao == 0)
             {
-
                 Meta::analisaMeta2($array_id);
-
-            }else{
+            }
+            else
+            {
                 Meta::ativaProximaMeta($array_id['id_conta']);
             }
 
@@ -71,6 +107,7 @@ class Meta extends Model{
     }
 
 
+    //Função de sequencia da função analisaMeta;
     public static function analisaMeta2($array_id)
     {
 
@@ -96,6 +133,7 @@ class Meta extends Model{
     }
 
 
+    //Ativa meta pausada, caso haja necessidade;
     public static function ativaProximaMeta($id_conta)
     {
 
@@ -107,42 +145,6 @@ class Meta extends Model{
                                 ":ID_CONTA" => $id_conta
                             ));
 
-    }
-
-
-    public static function verificaMetaAtiva($id_conta)
-    {
-
-        $sql = new Sql();
-
-        $results = $sql->select("SELECT id_meta FROM meta WHERE status = 'ativo' AND id_conta = :ID_CONTA", array(
-            ":ID_CONTA" => $id_conta
-        ));
-
-        if(count($results) > 0){
-
-            return 0;
-
-        } else{
-
-            return 1;
-
-        }
-
-    }
-
-
-    //===========================================
-    public static function listaMetas($id_usuario)
-    {
-
-        $sql = new Sql();
-
-        $results = $sql->select("SELECT nome FROM meta WHERE id_usuario = :ID_USUARIO AND status = 1", array(
-            ":ID_USUARIO" => $id_usuario
-        ));
-
-        return $results;
     }
 
 

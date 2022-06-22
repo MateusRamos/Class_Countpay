@@ -16,27 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `instituicao`
+-- Table structure for table `frequencia`
 --
 
-DROP TABLE IF EXISTS `instituicao`;
+DROP TABLE IF EXISTS `frequencia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `instituicao` (
-  `id_instituicao` int(11) NOT NULL,
-  `nome` varchar(120) DEFAULT NULL,
-  PRIMARY KEY (`id_instituicao`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `frequencia` (
+  `id_frequencia` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(100) DEFAULT NULL,
+  `dias` int(11) DEFAULT NULL,
+  `mes` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_frequencia`)
+) ENGINE=InnoDB AUTO_INCREMENT=367 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `instituicao`
+-- Dumping data for table `frequencia`
 --
 
-LOCK TABLES `instituicao` WRITE;
-/*!40000 ALTER TABLE `instituicao` DISABLE KEYS */;
-INSERT INTO `instituicao` VALUES (1,'Banco do Brasil'),(33,'Banco Santander'),(77,'Banco Inter'),(93,'Pelocred'),(104,'Caixa Econômica Federal'),(121,'Agibank'),(125,'Banco Genial'),(197,'Stone Pagamentos'),(212,'Banco Original'),(218,'BS2'),(237,'Banco Bradesco'),(260,'Nubank'),(280,'Meupag!'),(290,'Pagseguro'),(323,'Mercado Pago'),(335,'Banco Digio'),(336,'C6 Bank'),(340,'Superdigital'),(341,'Banco Itaú'),(356,'Banco Real'),(380,'PicPay'),(389,'Banco Mercantil do Brasil S.A'),(396,'Hub Pagamentos'),(399,'HSBC Bank Brasil'),(401,'Iugu'),(422,'Banco Safra'),(450,'Fitbank'),(453,'Banco Rural'),(633,'Banco Rendimento'),(652,'Itaú Unibanco Holding'),(654,'Banco Digi+'),(735,'Neon'),(745,'Banco Citibank'),(1000,'Outros');
-/*!40000 ALTER TABLE `instituicao` ENABLE KEYS */;
+LOCK TABLES `frequencia` WRITE;
+/*!40000 ALTER TABLE `frequencia` DISABLE KEYS */;
+INSERT INTO `frequencia` VALUES (1,'Semanalmente',7,NULL),(2,'Quinzenalmente',15,NULL),(3,'Mensalmente',30,1),(4,'Bimestral',60,2),(5,'Trimestral',90,3),(6,'Semestral',180,6),(7,'Anualmente',365,12);
+/*!40000 ALTER TABLE `frequencia` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-15 23:02:16
+-- Dump completed on 2022-06-21 21:36:05

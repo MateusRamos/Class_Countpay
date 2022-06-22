@@ -16,29 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tipo_notificacoes`
+-- Table structure for table `categoria`
 --
 
-DROP TABLE IF EXISTS `tipo_notificacoes`;
+DROP TABLE IF EXISTS `categoria`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipo_notificacoes` (
-  `id_tipo_notificacoes` int(11) NOT NULL AUTO_INCREMENT,
-  `categoria` varchar(100) NOT NULL,
-  `visto` int(11) DEFAULT NULL,
-  `icone` varchar(256) DEFAULT NULL,
-  PRIMARY KEY (`id_tipo_notificacoes`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE `categoria` (
+  `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`id_categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tipo_notificacoes`
+-- Dumping data for table `categoria`
 --
 
-LOCK TABLES `tipo_notificacoes` WRITE;
-/*!40000 ALTER TABLE `tipo_notificacoes` DISABLE KEYS */;
-INSERT INTO `tipo_notificacoes` VALUES (1,'Atenção',NULL,'bi bi-exclamation-circle text-warning\n');
-/*!40000 ALTER TABLE `tipo_notificacoes` ENABLE KEYS */;
+LOCK TABLES `categoria` WRITE;
+/*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
+INSERT INTO `categoria` VALUES (1,'Salário'),(2,'Empréstimos'),(3,'Investimentos'),(4,'Outras Receitas'),(5,'Alimentação'),(6,'Assinatura e Serviços'),(7,'Bares'),(8,'Restaurantes'),(9,'Casa'),(10,'Compras'),(11,'Cuidados Pessoais'),(12,'Dívidas'),(13,'Empréstimos'),(14,'Educação'),(15,'Familía'),(16,'Impostos'),(17,'Taxas'),(18,'Investimentos'),(19,'Lazer e Hobbies'),(20,'Mercado'),(21,'Pets'),(22,'Presentes'),(23,'Doações'),(24,'Roupas'),(25,'Saúde'),(26,'Trabalho'),(27,'Transporte'),(28,'Viagem'),(29,'Operação Bancária'),(30,'Outras Despesas');
+/*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-15 23:02:17
+-- Dump completed on 2022-06-21 21:36:04

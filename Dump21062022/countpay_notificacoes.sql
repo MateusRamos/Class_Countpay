@@ -16,35 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `conta`
+-- Table structure for table `notificacoes`
 --
 
-DROP TABLE IF EXISTS `conta`;
+DROP TABLE IF EXISTS `notificacoes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `conta` (
-  `id_conta` int(11) NOT NULL AUTO_INCREMENT,
-  `apelido` varchar(64) NOT NULL,
-  `tipo_conta` varchar(64) NOT NULL,
-  `saldo` decimal(10,2) DEFAULT NULL,
+CREATE TABLE `notificacoes` (
+  `id_notificacoes` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(64) NOT NULL,
+  `descricao` varchar(256) DEFAULT NULL,
+  `id_tipo_notificacoes` int(11) NOT NULL,
+  `data_emissao` timestamp NOT NULL DEFAULT current_timestamp(),
   `id_usuario` int(11) DEFAULT NULL,
-  `id_instituicao` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_conta`),
-  KEY `conta_ibfk_1` (`id_usuario`),
-  KEY `conta_ibfk_2` (`id_instituicao`),
-  CONSTRAINT `conta_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
-  CONSTRAINT `conta_ibfk_2` FOREIGN KEY (`id_instituicao`) REFERENCES `instituicao` (`id_instituicao`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id_notificacoes`),
+  KEY `id_usuario` (`id_usuario`),
+  KEY `notificacoes_ibfk_2` (`id_tipo_notificacoes`),
+  CONSTRAINT `notificacoes_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  CONSTRAINT `notificacoes_ibfk_2` FOREIGN KEY (`id_tipo_notificacoes`) REFERENCES `tipo_notificacoes` (`id_tipo_notificacoes`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `conta`
+-- Dumping data for table `notificacoes`
 --
 
-LOCK TABLES `conta` WRITE;
-/*!40000 ALTER TABLE `conta` DISABLE KEYS */;
-INSERT INTO `conta` VALUES (1,'Conta Nubank','Conta Digital',0.00,100,260),(2,'Conta Inter','Conta Corrente',0.00,100,77),(3,'Conta Santander','Conta Corrente',0.00,100,33),(4,'Conta Itaú','Conta Itaú',0.00,100,341),(5,'Carteira','Carteira Física',0.00,100,1000),(20,'conta 1','Conta Poupança',1200.00,143,125),(21,'Conta 2','Carteira Física',0.00,143,340),(22,'conta 3','Conta Corrente',3000.00,143,336);
-/*!40000 ALTER TABLE `conta` ENABLE KEYS */;
+LOCK TABLES `notificacoes` WRITE;
+/*!40000 ALTER TABLE `notificacoes` DISABLE KEYS */;
+INSERT INTO `notificacoes` VALUES (1,'Alerta de furto','Perdemos o controle',1,'2022-06-14 00:43:45',143),(2,'Foi pra merda','Perdemos o controle',1,'2022-06-14 00:44:47',NULL),(3,'Titu','Fudeo',1,'2022-06-14 00:45:27',NULL),(4,'rapariga','asdasdasda',1,'2022-06-21 20:20:24',143);
+/*!40000 ALTER TABLE `notificacoes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-15 23:02:17
+-- Dump completed on 2022-06-21 21:36:06

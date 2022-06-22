@@ -85,7 +85,7 @@
 
                             <div class="col-md-5">
                                 <label for="instituicao" class="form-label">Instituição Financeira</label>
-                                <select class="form-select" name="instituicao" id="instituicao" required>
+                                <select class="form-select" name="id_instituicao" id="instituicao" required>
                                     <?php $counter1=-1;  if( isset($instituicao) && ( is_array($instituicao) || $instituicao instanceof Traversable ) && sizeof($instituicao) ) foreach( $instituicao as $key1 => $value1 ){ $counter1++; ?>
                                     <option value="<?php echo htmlspecialchars( $value1["id_instituicao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                                     <?php } ?>

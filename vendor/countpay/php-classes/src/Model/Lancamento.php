@@ -2,16 +2,13 @@
 namespace Countpay\Model;
 
 use \Countpay\DB\Sql;
-use \Countpay\Model;
 
 
-class Lancamento extends Model{	
+class Lancamento {	
 
-    /*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										    	   FUNÇÕES LANÇAMENTO ÚNICO                                              ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
+	#                                                  ╔══════════════════════════╗
+	#									 	           ║     LANÇAMENTO ÚNICO     ║
+	#                                                  ╚══════════════════════════╝
 
 	//Corpo de criação de lançamento único;
 	public static function iniciaLancamentoUnico($dados_lancamento, $id_usuario)
@@ -89,11 +86,9 @@ class Lancamento extends Model{
 	}
 
 
-    /*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										    	   FUNÇÕES LANÇAMENTO FIXO                                               ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
+	#                                                  ╔═════════════════════════╗
+	#									 	           ║     LANÇAMENTO FIXO     ║
+	#                                                  ╚═════════════════════════╝
 
 	//Corpo de criação de lançamento fixo;
 	public static function iniciaLancamentoFixo($dados_lancamento, $id_usuario)
@@ -164,12 +159,9 @@ class Lancamento extends Model{
     }
 
 
-
-   	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										    	 FUNÇÕES LANÇAMENTO PARCELADO                                            ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
+	#                                                  ╔══════════════════════════════╗
+	#									 	           ║     LANÇAMENTO PARCELADO     ║
+	#                                                  ╚══════════════════════════════╝
 
 	//Corpo de criação de lançamento parcelado;
 	public static function iniciaLancamentoParcelado($dados_lancamento, $id_usuario)
@@ -370,11 +362,9 @@ class Lancamento extends Model{
     }
 
 
-    /*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										           FUNÇÕES DE VERIFICAÇÃO                                                ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
+	#                                                  ╔═══════════════════════════╗
+	#									 	           ║     VERIFICAÇÃO GERAL     ║
+	#                                                  ╚═══════════════════════════╝
 
 	//Atualiza status do lançamento analisado para 0;
 	public static function atualizaStatusLancamento($dados_lancamento, $id_usuario)
@@ -398,6 +388,10 @@ class Lancamento extends Model{
     }
 
 
+	#                                                  ╔══════════════════════════════════════╗
+	#									 	           ║     VERIFICAÇÃO LANÇAMENTO ÚNICO     ║
+	#                                                  ╚══════════════════════════════════════╝
+
 	//Verificação de lançamentos únicos futuros;
 	public static function verificaLancamentoUnicoFuturo($id_usuario)
 	{
@@ -415,6 +409,10 @@ class Lancamento extends Model{
 
 	}
 	
+
+	#                                                  ╔═════════════════════════════════════╗
+	#									 	           ║     VERIFICAÇÃO LANÇAMENTO FIXO     ║
+	#                                                  ╚═════════════════════════════════════╝
 
 	//Verificação de lançamentos fixos;
 	public static function verificaLancamentoFixo($id_usuario)
@@ -435,6 +433,10 @@ class Lancamento extends Model{
 
 	}
 
+
+    #                                                  ╔══════════════════════════════════════════╗
+	#									 	           ║     VERIFICAÇÃO LANÇAMENTO PARCELADO     ║
+	#                                                  ╚══════════════════════════════════════════╝
 
 	//Verificação de lançamentos parcelados futuros;
 	public static function verificaLancamentoParceladoFuturo($id_usuario)
@@ -481,11 +483,9 @@ class Lancamento extends Model{
 	}
 
 
-	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										    	    FUNÇÕES DE LISTAGEM                                                  ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
+	#                                                  ╔═════════════════════════════╗
+	#									 	           ║     FUNÇÕES DE LISTAGEM     ║
+	#                                                  ╚═════════════════════════════╝
 
 	//Lista todos lançamentos para o histórico de lançamentos;
     public static function listaLancamentos($id_usuario)
@@ -541,17 +541,6 @@ class Lancamento extends Model{
 		return $sql->select("SELECT descricao, id_frequencia FROM frequencia");
 
 	}
-
-
-	//================================================ Lista tipos de receita ===============================================//
-	/*public static function listaTipoReceita()
-	{
-
-		$sql = new Sql();
-
-		return $sql->select("SELECT descricao FROM tipo_receita WHERE id_tipo_receita < 3");
-
-	}*/
 
 
 

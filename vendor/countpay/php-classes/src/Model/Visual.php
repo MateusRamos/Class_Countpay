@@ -2,17 +2,26 @@
 namespace Countpay\Model;
 
 use \Countpay\DB\Sql;
-use \Countpay\Model;
 
-class Visual extends Model	{
+class Visual {
 
 
-	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										    	     Funções de Calculo                                                  ||
-	||												    							 										 ||
-	//===========================================================|===========================================================*/
+	#                                                  ╔═══════════════════╗
+	#									 	           ║  CALCULO DE DATA  ║
+	#                                                  ╚═══════════════════╝
 
+	//Retorna uma mensagem escolhida e manda o usuário para uma rota escolhida;
+	public static function mostraMensagem($mensagem, $rota)
+	{
+		echo "<script language='javascript' type='text/javascript'> alert('" .$mensagem. "');window.location.href='" . $rota . "';</script>";
+	}
+
+
+	#                                                  ╔═══════════════════╗
+	#									 	           ║  CALCULO DE DATA  ║
+	#                                                  ╚═══════════════════╝
+
+	//Verifica se uma data qualquer é hoje, ja passou ou ainda vai chegar;
 	public static function verificaVencimento($data)
 	{
 
@@ -35,8 +44,7 @@ class Visual extends Model	{
 	}
 	
 
-	//=============================== Função para calcular o tempo de certa data até hoje ===================================//
-
+	//Retorna o tempo em "hoje", "x dias", "x meses" ou "x anos";
 	public static function calculaTempoDia($data)
 	{
 
@@ -65,7 +73,11 @@ class Visual extends Model	{
 	}
 
 
-    //=============================== Função para mudar a cor de acordo com o tipo do lancamento ============================//
+	#                                                  ╔═══════════════════╗
+	#									 	           ║  CALCULO DE COR   ║
+	#                                                  ╚═══════════════════╝
+
+    //Retorna verde, vermelho ou azul dependendo do tipo de lançamento;
     public static function setCorLancamento($tipo_lancamento)
     {
         $results = substr($tipo_lancamento, 0, 7);
@@ -85,7 +97,11 @@ class Visual extends Model	{
     }
 
 
-	//==================================== Função para somar os dados x de uma tabela x =====================================//
+	#                                                  ╔═════════════════════╗
+	#									 	           ║  CALCULO DE DADOS   ║
+	#                                                  ╚═════════════════════╝
+
+	//Retorna o total de usuários do sistema (normais e adm);
 	public static function calculaTotalUsuarios()
 	{
 
@@ -96,18 +112,7 @@ class Visual extends Model	{
 	}
 
 
-	//==================================== Função para somar os dados x de uma tabela x =====================================//
-	public static function calculaTotalContas()
-	{
-
-		$sql = new Sql();
-
-		return $sql->select("SELECT COUNT(id_conta) 'dados' FROM conta");
-
-	}
-	
-
-	//==================================== Função para somar os dados x de uma tabela x =====================================//
+	//Retorna o total de cartões cadastrados no sistema;
 	public static function calculaTotalCartoes()
 	{
 
@@ -116,9 +121,20 @@ class Visual extends Model	{
 		return $sql->select("SELECT COUNT(id_cartao) 'dados' FROM cartao");
 
 	}
+	
+
+	//Retorna o total de contas cadastradas no sistema;
+	public static function calculaTotalContas()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT COUNT(id_conta) 'dados' FROM conta");
+
+	}
 
 
-	//==================================== Função para somar os dados x de uma tabela x =====================================//
+	//Retorna o total de lançamentos já feitos no sistema;
 	public static function calculaTotalLancamentos()
 	{
 
@@ -128,14 +144,11 @@ class Visual extends Model	{
 
 	}
 
-	
-	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										    	     Funções de Listagem                                                 ||
-	||												    							 										 ||
-	//===========================================================|===========================================================*/
+	#                                                  ╔══════════════════════╗
+	#									 	           ║  LISTAGEM DE DADOS   ║
+	#                                                  ╚══════════════════════╝
 	    
-    //=========================================== Função listar todos os usuarios ===========================================//
+    //Lista os ultimos 6 lançamentos do usuário, status = 0;
 	public static function listaUltimosLancamentos($id_usuario)
 	{
 
@@ -189,23 +202,6 @@ class Visual extends Model	{
 		return $results;
 
 	}
-
-
-	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										    	    Funções de Mensagens                                                 ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
-
-	//============================== Função para mandar uma mensagem para o usuario por pop-up ==============================//
-	public static function mostraMensagem($mensagem, $rota)
-	{
-		echo "<script language='javascript' type='text/javascript'> alert('" .$mensagem. "');window.location.href='" . $rota . "';</script>";
-	}
-
-
-
-
 
 }
 ?>

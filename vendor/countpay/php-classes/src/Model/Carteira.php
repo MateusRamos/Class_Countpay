@@ -2,122 +2,12 @@
 namespace Countpay\Model;
 
 use \Countpay\DB\Sql;
-use \Countpay\Model;
 
+class Carteira {
 
-
-class Carteira extends Model{
-
-	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										    	      FUNÇÕES CARTÃO                                                     ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
-	
-    //==================================================== CRIAR CARTÃO =====================================================//
-	public static function criaCartao($dados_cartao, $id_usuario)
-	{
-
-		$sql = new Sql();
-
-		$resultado = $sql->select("CALL sp_cartao_inserir(:APELIDO, :TIPO_CARTAO, :VENCE_DIA, :LIMITE, :ID_USUARIO, :ID_INSTITUICAO)", array(
-			':APELIDO'=>$dados_cartao['apelido'],
-			':TIPO_CARTAO'=>$dados_cartao['tipo_cartao'],
-			':VENCE_DIA'=>$dados_cartao['vence_dia'],
-			':LIMITE'=>$dados_cartao['limite'],
-			':ID_USUARIO'=>$id_usuario,
-			':ID_INSTITUICAO'=>$dados_cartao['id_instituicao']
-		));
-
-	}
-
-
-    //=================================================== ALTERA CARTÃO =====================================================//
-	public static function alteraCartao($dados_cartao)
-	{
-
-		$sql = new Sql();
-
-		$sql->execQuery("UPDATE cartao SET apelido = :APELIDO, tipo_cartao = :TIPO_CARTAO, vence_dia = :VENCE_DIA, limite = :LIMITE, id_instituicao = :ID_INSTITUICAO WHERE id_cartao = :ID_CARTAO", array(
-			':ID_CARTAO'=>$dados_cartaos['id_cartao'],
-			':APELIDO'=>$dados_cartao['apelido'],
-			':TIPO_CARTAO'=>$dados_cartao['tipo_cartao'],
-			':VENCE_DIA'=>$dados_cartao['vence_dia'],
-			':LIMITE'=>$dados_cartao['limite'],
-			':ID_INSTITUICAO'=>$dados_cartao['id_instituicao'],
-		));
-
-	}
-
-
-    //=================================================== EXCLUI CARTÃO =====================================================//
-	public static function deletaCartao($id_cartao)
-	{
-
-		$sql = new Sql();
-
-		$sql->execQuery("DELETE FROM cartao WHERE id_cartao = :ID_CARTAO", array(
-			':ID_CARTAO'=>$id_cartao
-		));
-	
-	}
-
-	
-	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										    	       FUNÇÕES CONTA                                                     ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
-
-
-
-    //====================================================== CRIAR CONTA =====================================================//
-	public static function criaConta($dados_conta, $id_usuario)
-	{	
-
-		$sql = new Sql();
-		
-		return $sql->select("CALL sp_conta_inserir(:APELIDO, :TIPO_CONTA, :SALDO, :ID_USUARIO, :ID_INSTITUICAO)", array(
-			':APELIDO'=>$dados_conta['apelido'],
-			':TIPO_CONTA'=>$dados_conta['tipo_conta'],
-			':SALDO'=>$dados_conta['valor'],
-			':ID_USUARIO'=>$id_usuario,
-			':ID_INSTITUICAO'=>$dados_conta['id_instituicao']
-		));
-
-	}
-
-
-    //===================================================== ALTERAR CONTA ====================================================//
-	public static function alteraConta($dados_conta, $instituicao)
-	{
-
-		$sql = new Sql();
-
-		$sql->execQuery("UPDATE conta SET apelido = :APELIDO, tipo_conta = :TIPO_CONTA, saldo = :SALDO, id_instituicao = :ID_INSTITUICAO WHERE id_conta = :ID_CONTA", array(
-
-			':ID_CONTA'=>$dados_conta['id_conta'],
-			':APELIDO'=>$dados_conta['apelido'],
-			':TIPO_CONTA'=>$dados_conta['tipo_conta'],
-			':SALDO'=>$dados_conta['valor'],
-			':ID_INSTITUICAO'=>$dados_conta['id_instituicao'],
-			
-		));
-
-	}
-
-
-    //===================================================== EXCLUI CONTA =====================================================//
-	public static function deletaConta($id_conta)
-	{
-		$sql = new Sql();
-
-		$sql->execQuery("DELETE FROM conta WHERE id_conta = :ID_CONTA", array(
-			':ID_CONTA'=>$id_conta
-		));
-	
-	}
-
+	#                                                  ╔═══════════════════════╗
+	#									 	           ║     	 GERAL         ║
+	#                                                  ╚═══════════════════════╝
 
 	public static function atualizaSaldoConta($dados_lancamento, $array_id)
 	{
@@ -149,13 +39,148 @@ class Carteira extends Model{
 	}
 
 
-	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										    	    FUNÇÕES DE LISTAGEM                                                  ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
+	#                                                  ╔══════════════════════╗
+	#									 	           ║     	CARTÃO        ║
+	#                                                  ╚══════════════════════╝
+	
+    //Cria cartão com dados do front;
+	public static function criaCartao($dados_cartao, $id_usuario)
+	{
 
-	//======================================================== CARTAO ======================================================//
+		$sql = new Sql();
+
+		$sql->select("CALL sp_cartao_inserir(:APELIDO, :TIPO_CARTAO, :VENCE_DIA, :LIMITE, :ID_USUARIO, :ID_INSTITUICAO)", array(
+			':APELIDO'=>$dados_cartao['apelido'],
+			':TIPO_CARTAO'=>$dados_cartao['tipo_cartao'],
+			':VENCE_DIA'=>$dados_cartao['vence_dia'],
+			':LIMITE'=>$dados_cartao['limite'],
+			':ID_USUARIO'=>$id_usuario,
+			':ID_INSTITUICAO'=>$dados_cartao['id_instituicao']
+		));
+
+	}
+
+
+	//Carrega dados do cartão para o front do alterar cartão;
+	public static function carregaDadosCartao($id_cartao) 
+	{
+		
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT id_cartao, apelido, tipo_cartao, vence_dia, limite, id_instituicao FROM cartao WHERE id_cartao = :ID_CARTAO",
+		array(
+			":ID_CARTAO"=>$id_cartao
+		));
+
+		return $results[0];
+
+	}
+
+
+    //Altera cartão com dados do front;
+	public static function alteraCartao($dados_cartao)
+	{
+
+		$sql = new Sql();
+
+		$sql->execQuery("UPDATE cartao SET apelido = :APELIDO, tipo_cartao = :TIPO_CARTAO, vence_dia = :VENCE_DIA, limite = :LIMITE, id_instituicao = :ID_INSTITUICAO WHERE id_cartao = :ID_CARTAO", array(
+			':ID_CARTAO'=>$dados_cartao['id_cartao'],
+			':APELIDO'=>$dados_cartao['apelido'],
+			':TIPO_CARTAO'=>$dados_cartao['tipo_cartao'],
+			':VENCE_DIA'=>$dados_cartao['vence_dia'],
+			':LIMITE'=>$dados_cartao['limite'],
+			':ID_INSTITUICAO'=>$dados_cartao['id_instituicao'],
+		));
+
+	}
+
+
+    //Deleta cartão pelo id_cartao;
+	public static function deletaCartao($id_cartao)
+	{
+
+		$sql = new Sql();
+
+		$sql->execQuery("DELETE FROM cartao WHERE id_cartao = :ID_CARTAO", array(
+			':ID_CARTAO'=>$id_cartao
+		));
+	
+	}
+
+	
+	#                                                  ╔═══════════════════════╗
+	#									 	           ║     	 CONTA         ║
+	#                                                  ╚═══════════════════════╝
+
+    //Cria conta com dados do front;
+	public static function criaConta($dados_conta, $id_usuario)
+	{	
+
+		$sql = new Sql();
+		
+		return $sql->select("CALL sp_conta_inserir(:APELIDO, :TIPO_CONTA, :SALDO, :ID_USUARIO, :ID_INSTITUICAO)", array(
+			':APELIDO'=>$dados_conta['apelido'],
+			':TIPO_CONTA'=>$dados_conta['tipo_conta'],
+			':SALDO'=>$dados_conta['valor'],
+			':ID_USUARIO'=>$id_usuario,
+			':ID_INSTITUICAO'=>$dados_conta['id_instituicao']
+		));
+
+	}
+
+	
+	//Carrega dados do cartão para o front do alterar cartão;
+	public static function carregaDadosConta($id_conta)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT id_conta, apelido, tipo_conta, saldo, id_instituicao  FROM conta WHERE id_conta = :ID_CONTA",
+		array(
+			":ID_CONTA"=>$id_conta
+		));
+
+		return $results;
+
+	}
+
+
+    //Altera conta com dados do front;
+	public static function alteraConta($dados_conta, $instituicao)
+	{
+
+		$sql = new Sql();
+
+		$sql->execQuery("UPDATE conta SET apelido = :APELIDO, tipo_conta = :TIPO_CONTA, saldo = :SALDO, id_instituicao = :ID_INSTITUICAO WHERE id_conta = :ID_CONTA", array(
+
+			':ID_CONTA'=>$dados_conta['id_conta'],
+			':APELIDO'=>$dados_conta['apelido'],
+			':TIPO_CONTA'=>$dados_conta['tipo_conta'],
+			':SALDO'=>$dados_conta['valor'],
+			':ID_INSTITUICAO'=>$dados_conta['id_instituicao'],
+			
+		));
+
+	}
+
+
+    //Delete conta pelo id_conta;
+	public static function deletaConta($id_conta)
+	{
+		$sql = new Sql();
+
+		$sql->execQuery("DELETE FROM conta WHERE id_conta = :ID_CONTA", array(
+			':ID_CONTA'=>$id_conta
+		));
+	
+	}
+
+
+	#                                                  ╔═══════════════════════════════════╗
+	#									 	           ║     	  LISTA PARA SELECT        ║
+	#                                                  ╚═══════════════════════════════════╝
+
+	//Lista todos os cartões do usuário, para tabela de contas;
 	public static function listaCartao($id_usuario)
 	{
 
@@ -171,7 +196,7 @@ class Carteira extends Model{
 	}
 
 
-	//======================================================== CONTA =======================================================//
+	//Lista todas as contas do usuário, para tabela de contas;
 	public static function listaConta($id_usuario)
 	{
 
@@ -188,7 +213,7 @@ class Carteira extends Model{
 	}
 	
 
-	//================================================ CONTA - APELIDO SELECT ==============================================//
+	//Lista todos os cartões do usuário, para selects;
 	public static function listaApelidoCartao($id_usuario)
 	{
 
@@ -201,7 +226,7 @@ class Carteira extends Model{
 	}
 
 	
-	//================================================ CARTAO - APELIDO SELECT =============================================//
+	//Lista todas as contas do usuário, para selects;
 	public static function listaApelidoConta($id_usuario)
 	{
 
@@ -223,111 +248,6 @@ class Carteira extends Model{
 		return $sql->select("SELECT nome, id_instituicao FROM instituicao ORDER BY id_instituicao ASC, nome ASC");
 
 	}
-
-
-	/*===========================================================|===========================================================\\
-	||											    																		 ||
-	||										         FUNÇÕES DE BUSCA/ALTERAÇÃO                                              ||
-	||												    																	 ||
-	//===========================================================|===========================================================*/
-
-	//============================================= CARREGA DADOS PARA O FORM ===============================================//
-	public static function carregaDadosCartao($id_cartao) 
-	{
-		
-		$sql = new Sql();
-
-		$results = $sql->select("SELECT id_cartao, apelido, tipo_cartao, vence_dia, limite, id_instituicao FROM cartao WHERE id_cartao = :ID_CARTAO",
-		array(
-			":ID_CARTAO"=>$id_cartao
-		));
-
-		return $results[0];
-
-	}
-
-
-	//======================================================== CARTAO ======================================================//
-	/*public static function buscaCartao($apelidoCartao, $id_usuario)
-	{
-
-		$sql = new Sql();
-
-		$id_cartao =  $sql->select("SELECT id_cartao FROM cartao WHERE apelido = :APELIDO AND id_usuario = :ID_USUARIO", array (
-		":APELIDO"=>$apelidoCartao,
-		':ID_USUARIO'=>$id_usuario
-		));
-
-		if (!empty($id_cartao)){
-			return $id_cartao[0]['id_cartao'];
-		} else {
-			return NULL;
-		}
-
-	}*/
-
-
-	//================================================ CARREGA DADOS PARA O FORM =============================================//
-	public static function carregaDadosConta($id_conta)
-	{
-
-		$sql = new Sql();
-
-		$results = $sql->select("SELECT id_conta, apelido, tipo_conta, saldo, id_instituicao  FROM conta WHERE id_conta = :ID_CONTA",
-		array(
-			":ID_CONTA"=>$id_conta
-		));
-
-		return $results;
-
-	}
-
-
-	//======================================================== CONTA =======================================================//
-	/*public static function buscaConta($apelidoConta, $id_usuario)
-	{
-
-		$sql = new Sql();
-
-		$id_conta = $sql->select("SELECT id_conta FROM conta WHERE apelido = :APELIDO AND id_usuario = :ID_USUARIO", array (
-		":APELIDO"=>$apelidoConta,
-		':ID_USUARIO'=>$id_usuario
-		));
-
-		if (!empty($id_conta)){
-			return $id_conta[0]['id_conta'];
-		} else {
-			return NULL;
-		}	
-
-	}*/
-
-	
-	//===================================================== INSTITUIÇÃO =====================================================//
-	/*public static function buscaInstituicao($dados)
-	{	
-		$sql = new Sql();
-
-		$instituicao = $sql->select("SELECT id_instituicao FROM instituicao WHERE nome = :NOME", array(
-			":NOME"=>$dados['instituicao']
-		));
-
-		// Verificação se os dados foi recebido, se sim realizar o armazenamento do id selecionado pelo usuário, caso não foi selecionado o campo fica vazio
-		if (!empty($instituicao))
-		{
-			return $instituicao[0]['id_instituicao'];
-		} else {
-			return NULL;
-		}
-	
-	}*/
-	
-
-
-
-
-
-
 
 
 }

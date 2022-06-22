@@ -32,7 +32,8 @@ CREATE TABLE `lancamento` (
   `id_conta` int(11) DEFAULT NULL,
   `id_cartao` int(11) DEFAULT NULL,
   `id_categoria` int(11) DEFAULT NULL,
-  `quantidade_parcelas` varchar(30) DEFAULT NULL,
+  `parcela_atual` int(11) DEFAULT NULL,
+  `parcela_total` int(11) DEFAULT NULL,
   `frequencia` varchar(120) DEFAULT NULL,
   `status_lancamento` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_lancamento`),
@@ -44,7 +45,7 @@ CREATE TABLE `lancamento` (
   CONSTRAINT `categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`),
   CONSTRAINT `conta` FOREIGN KEY (`id_conta`) REFERENCES `conta` (`id_conta`),
   CONSTRAINT `usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=16920 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17033 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +54,7 @@ CREATE TABLE `lancamento` (
 
 LOCK TABLES `lancamento` WRITE;
 /*!40000 ALTER TABLE `lancamento` DISABLE KEYS */;
-INSERT INTO `lancamento` VALUES (16906,'Teste','Receita',123.00,'2022-06-15',143,21,NULL,5,NULL,NULL,0),(16907,'fasdfasd','Receita',1200.00,'2022-06-16',143,21,NULL,5,NULL,NULL,0),(16908,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16909,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16910,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16911,'asdad','Receita',1000.00,'2022-06-15',143,21,NULL,5,NULL,NULL,0),(16912,'asdasda','Receita',1640.00,'2022-06-15',143,21,NULL,5,NULL,NULL,0),(16913,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16914,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16915,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16916,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16917,'Teste','Despesa',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16918,'Teste','Despesa',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1),(16919,'Teste','Receita',123.00,'2022-07-15',143,21,NULL,5,NULL,NULL,1);
+INSERT INTO `lancamento` VALUES (17032,'Compra coxinha','Receita Única',1500.00,'2022-06-20',143,21,NULL,5,NULL,NULL,NULL,0);
 /*!40000 ALTER TABLE `lancamento` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -66,4 +67,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-15 23:02:16
+-- Dump completed on 2022-06-21 21:36:04

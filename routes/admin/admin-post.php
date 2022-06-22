@@ -1,7 +1,6 @@
 <?php
 
 use \Countpay\PageAdmin;
-use \Countpay\DB\Sql;
 use \Countpay\Model\User;
 use \Countpay\Model\Visual;
 
