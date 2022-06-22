@@ -325,42 +325,45 @@
                                             <form>
 
                                                 <div class="form-group row">
-                                                  <label for="staticEmail" class="col-md-4 col-form-label">Receita:</label>
+                                                  <label for="staticEmail" class="col-md-4 col-form-label"><i class="bx bxs-dollar-circle text-success"></i> Receita:</label>
                                                   <div class="col-md-8">
                                                     <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="R$150,00">
                                                   </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label for="staticEmail" class="col-md-4 col-form-label">Despesa:</label>
+                                                    <label for="staticEmail" class="col-md-4 col-form-label"><i class="bx bxs-dollar-circle text-danger"></i> Despesa:</label>
                                                     <div class="col-md-8">
                                                       <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="R$150,00">
                                                     </div>
                                                 </div>
 
+
                                                 <div class="form-group row">
-                                                    <label for="staticEmail" class="col-md-4 col-form-label">Meta:</label>
+                                                    <label for="staticEmail" class="col-md-4 col-form-label"><i class="ri-exchange-funds-line text-warning"></i> Meta:</label>
                                                     <div class="col-md-8">
                                                       <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="R$150,00">
                                                     </div>
                                                 </div>
 
+
                                                 <div class="form-group row">
-                                                    <label for="staticEmail" class="col-md-4 col-form-label">Cartão:</label>
+                                                    <label for="staticEmail" class="col-md-4 col-form-label"><i class="bi bi-credit-card-fill text-primary"></i> Cartão:</label>
                                                     <div class="col-md-8">
                                                       <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="R$150,00">
                                                     </div>
                                                 </div>
 
+
                                                 <div class="form-group row">
-                                                    <label for="staticEmail" class="col-md-4 col-form-label">Data Inicial:</label>
+                                                    <label for="staticEmail" class="col-md-4 col-form-label"><i class="ri-calendar-event-fill text-secondary"></i> Data Inicial:</label>
                                                     <div class="col-md-8">
                                                       <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="01/01/2022">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label for="staticEmail" class="col-md-4 col-form-label">Data Final:</label>
+                                                    <label for="staticEmail" class="col-md-4 col-form-label"><i class="ri-calendar-event-fill text-secondary"></i> Data Final:</label>
                                                     <div class="col-md-8">
                                                       <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="31/01/2022">
                                                     </div>
@@ -372,8 +375,8 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
+                                            <button type="button" id="closemodal" onclick="fechar()" class="btn btn-secondary"
+                                            data-dismiss="modal">Sair</button>
                                         </div>
                                     </div>
                                 </div>
