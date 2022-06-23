@@ -24,6 +24,10 @@
   <link href="../../res/site/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="../../res/site/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../../res/site/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@500&display=swap" rel="stylesheet">
   
 
   <!-- Icones de Bancos Brasileiros -->

@@ -47,23 +47,6 @@
       });
   </script>
 
-  <script>
-    function mostrar_modal() {
-        let el = document.getElementById('minha_caixa');
-        let minha_modal = new bootstrap.Modal(el);
-        minha_modal.show();
-    }
-
-    function fechar() {
-      let modal = document.querySelector('.modal')
-
-      modal.style.display = 'none';
-      $(".modal-backdrop").css("display","none");
-    }
-
-  </script>
-  
-
   </body>
 
   </html>
