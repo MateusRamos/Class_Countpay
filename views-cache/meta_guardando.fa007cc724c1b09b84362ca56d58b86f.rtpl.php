@@ -63,19 +63,6 @@
               </select>
             </div>
 
-            <!--Box Notificações
-            <div class="col-md-5"> 
-              <label for="notifica_meta" class="form-label">Notificações</label> 
-              <select id="notifica_meta" class="form-select">
-                <option></option>
-                <option>Semanalmente</option>
-                <option>Quinzenalmente</option>
-                <option>Mensalmente</option>
-                <option>Somente ao atingir a meta</option>
-              </select>
-            </div>-->
-
-            <!--Box Botões-->
             <div class="text-center"> 
               <button type="reset"class="btn btn-sm btn-light">Limpar</button>
               <button type="submit" class="btn btn-success" style="background-color:#26A234;font-weight: 650;">⠀Criar⠀</button> 
@@ -84,7 +71,7 @@
           </div>
 
           <div class="col-md-12 d-flex flex-row-reverse">
-            <img src="../res/site/assets/img/guardando_background.png" alt="Guardando uma grana" style="max-height: 66vh;">
+            <img src="../../res/site/assets/img/guardando_background.png" alt="Guardando uma grana" style="max-height: 66vh;">
           </div>
         
         </div>

@@ -34,7 +34,6 @@
                                   <th scope="col">Data de Nascimento</th>
                                   <th scope="col">Login</th>
                                   <th scope="col">Ações</th>
-
                                 </tr>
                               </thead>
                               <tbody>

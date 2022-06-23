@@ -25,7 +25,9 @@ class User {
 		if(count($results) > 0)
 		{
 			return 1;
-		} else {
+		} 
+		else
+		{
 			return 0;
 		}
 
@@ -85,7 +87,7 @@ class User {
 			exit;
 
 		} else {
-			Visual::mostraMensagem('Usuário ou Senha incorreto!', '/admin/login');
+			Visual::mostraMensagem('Login ou Senha incorreto!', '/admin/login');
 
 		}
 
@@ -165,6 +167,7 @@ class User {
 	//Verifica se o admin está logado & retorna o id_usuario;
 	public static function verifyLoginAdmin()
 	{
+		
 		if (!isset($_SESSION['admin']))
 		{
 			header('Location: /admin/login');
@@ -174,6 +177,7 @@ class User {
 		{
 			return $_SESSION['admin'];
 		}
+
 	}
 
 
@@ -316,8 +320,8 @@ class User {
 		$sql = new Sql();
 	
 		$results = $sql->select("SELECT * FROM usuario WHERE id_usuario = :ID_USUARIO;", array(
-			":ID_USUARIO"=>$id_usuario
-		));
+									":ID_USUARIO"=>$id_usuario
+								));
 		
 
 		if(isset($results[0]))
@@ -499,11 +503,11 @@ class User {
 
 		if(count($results) > 0)
 		{
-			return 0;
+			return 1;
 		} 
 		else
 		{
-			return 1;
+			return 0;
 		}
 
 	}
@@ -512,6 +516,7 @@ class User {
 	//Faz o update dos dados do usuário com dados do front;
 	public static function alteraUsuario($dados_usuario)
 	{
+
 		$sql = new Sql();
 
 		$sql->execQuery("UPDATE usuario SET nome = :NOME, sobrenome = :SOBRENOME, email = :EMAIL, data_nascimento = :DATA_NASCIMENTO, login = :LOGIN WHERE id_usuario = :ID_USUARIO", array(
@@ -523,8 +528,6 @@ class User {
 			':ID_USUARIO'=>$dados_usuario['id_usuario']
 		));
 
-		Visual::mostraMensagem('Usuário alterado com sucesso!','/admin/usuario');
-		
 	}
 
 
@@ -586,8 +589,8 @@ class User {
 			$sql = new Sql();
 
 			$results =  $sql->select("SELECT id_usuario FROM usuario WHERE email = :EMAIL", array(
-				":EMAIL" => $dados_notificação['email']
-			));
+										":EMAIL" => $dados_notificação['email']
+									));
 			
 			if(count($results))
 			{

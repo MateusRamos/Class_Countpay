@@ -13,21 +13,17 @@ use \Countpay\Model\Visual;
 
 
 //==============================================  Rota do index do admin:  ==============================================//
-$app->get('/admin', function() {   //talvez mudar
+$app->get('/admin', function() { 
 
-    $sql = new Sql();
     $page = new PageAdmin();
   
-    //Verificando se está logado:
     User::verifyLoginAdmin();
     
-    //Puxando os dados do banco para mostrar no Dashboard:
     $usuarioDados = Visual::calculaTotalUsuarios();
     $contaDados = Visual::calculaTotalContas();
     $cartaoDados = Visual::calculaTotalCartoes();
     $lancamentoDados = Visual::calculaTotalLancamentos();
 
-    //Enviando dados do banco para o Dashboard:
     $page->setTpl("index", array(
         "usuarioDados"=>$usuarioDados[0],
         "contaDados"=>$contaDados[0],
@@ -105,7 +101,6 @@ $app->get('/admin/usuario/criar', function() {
 
     $page = new PageAdmin();
     
-    //Verificando se está logado:
     User::verifyLoginAdmin();
 
     $page->setTpl("criarusuario");

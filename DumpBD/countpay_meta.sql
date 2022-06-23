@@ -34,6 +34,7 @@ CREATE TABLE `meta` (
   `status` varchar(48) NOT NULL,
   `id_conta` int(11) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
+  `tipo_meta` varchar(56) DEFAULT NULL,
   PRIMARY KEY (`id_meta`),
   KEY `id_conta` (`id_conta`),
   KEY `id_usuario` (`id_usuario`),
@@ -48,7 +49,7 @@ CREATE TABLE `meta` (
 
 LOCK TABLES `meta` WRITE;
 /*!40000 ALTER TABLE `meta` DISABLE KEYS */;
-INSERT INTO `meta` VALUES (1,'comprar geladeira','comprar uma brasthemp',5000.00,NULL,'2022-06-10','2023-06-10',NULL,'concluido',21,143),(2,'Comprar Celular','Comprar um iphone',3000.00,500,'2022-05-14','2022-12-25',NULL,'concluido',22,143),(4,'teste','Comprar um dildo',50.00,NULL,'2022-06-14','2022-06-29',NULL,'concluido',21,143),(5,'aaaaaaa','aasaasdada',60.00,NULL,'2022-06-09','2022-06-14',NULL,'concluido',21,143),(6,'dafa','sdfasfas',100.00,NULL,'2022-04-02','2022-09-06',NULL,'concluido',22,143),(7,'Meta 1','comprar 1 carro',60000.00,NULL,'2022-06-20','2024-10-20',NULL,'ativo',21,143);
+INSERT INTO `meta` VALUES (1,'comprar geladeira','comprar uma brasthemp',5000.00,NULL,'2022-06-10','2023-06-10',NULL,'concluido',21,143,'guardando'),(2,'Comprar Celular','Comprar um iphone',3000.00,500,'2022-05-14','2022-12-25',NULL,'concluido',22,143,'guardando'),(4,'teste','Comprar um dildo',50.00,NULL,'2022-06-14','2022-06-29',NULL,'concluido',21,143,'guardando'),(5,'aaaaaaa','aasaasdada',60.00,NULL,'2022-06-09','2022-06-14',NULL,'concluido',21,143,'guardando'),(6,'dafa','sdfasfas',100.00,NULL,'2022-04-02','2022-09-06',NULL,'concluido',22,143,'guardando'),(7,'Meta 1','comprar 1 carro',60000.00,NULL,'2022-06-20','2024-10-20',NULL,'ativo',21,143,'saindo');
 /*!40000 ALTER TABLE `meta` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-21 21:36:06
+-- Dump completed on 2022-06-23 12:28:07

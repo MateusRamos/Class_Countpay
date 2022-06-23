@@ -45,7 +45,7 @@ CREATE TABLE `usuario_perfil` (
 
 LOCK TABLES `usuario_perfil` WRITE;
 /*!40000 ALTER TABLE `usuario_perfil` DISABLE KEYS */;
-INSERT INTO `usuario_perfil` VALUES (NULL,'Estudante','Brasil','Birigui','Abla, blblb','(15) 1234-1234','lalalalalalalalalalalalaaaaaaaaaaaaaaaaa','https://www.udemy.com/','https://www.notion.so/pt-br','http://atomurl.net/math/','https://bootstrapmade.com/demo/NiceAdmin/'),(143,'Faxineiro','Brasil','Pau Grande','Rua Miracemo de Moraes','(11) 91232-9093','Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus.','https://facebook.com/#','https://twitter.com/#','https://instagram.com/#','https://linkedin.com/#'),(100,'CEO Countpay','Brasil','Birigui','Rua Tiradentes, 597s','(18) 99716-9693','Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.','https://twitter.com/#','https://linkedin.com/#','https://facebook.com/#','https://instagram.com/#'),(2,'Estudante','Brasil','Cambuci','Rj194 km-0','(22) 98832-2285','SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS','https://ead2.iff.edu.br/','https://kultivi.com/','https://www.notion.so/','https://graphviz.org/'),(NULL,'','','','','','','','','',''),(0,' ',' ',' ',' ','',' ',' ',' ',' ',' ');
+INSERT INTO `usuario_perfil` VALUES (143,'Faxineiro','Brasil','Pau Grande','Rua Miracemo de Moraes','(11) 91232-9093','Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus.','https://facebook.com/#','https://twitter.com/#','https://instagram.com/#','https://linkedin.com/#'),(2,'Estudante','Brasil','Cambuci','Rj194 km-0','(22) 98832-2285','SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS','https://ead2.iff.edu.br/','https://kultivi.com/','https://www.notion.so/','https://graphviz.org/'),(NULL,'','','','','','','','','',''),(0,' ',' ',' ',' ','',' ',' ',' ',' ',' ');
 /*!40000 ALTER TABLE `usuario_perfil` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-21 21:36:05
+-- Dump completed on 2022-06-23 12:28:05

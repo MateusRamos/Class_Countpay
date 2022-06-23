@@ -24,42 +24,43 @@
           <div class="col-md-8" style="position: absolute;">
           <!-- Início do Fomrulário -->
           <form action="/metas/guardando" method="post" class="row g-3 pt-5">
+
             <!-- Box Nome -->
             <div class="col-md-7"> 
               <label for="nome_meta" class="form-label">Nome</label>
-              <input type="text" class="form-control" id="nome_meta" name="nome" required>
+              <input type="text" class="form-control" id="nome_meta" name="nome" value="{$meta.nome}" required>
             </div>
 
             <!-- Box Objetivo -->
             <div class="col-md-5"> 
               <label for="objetivo_meta" class="form-label">Objetivo</label>
-              <input type="text" class="form-control" id="objetivo_meta" name="objetivo" required>
+              <input type="text" class="form-control" id="objetivo_meta" name="objetivo" value="{$meta.objetivo}" required>
             </div>
 
             <!-- Box Valor -->
             <div class="col-md-4"> 
               <label for="valor_meta" class="form-label">Valor</label>
-              <input type="number" class="form-control" id="valor_meta" placeholder="R$" name="valor" required>
+              <input type="number" class="form-control" id="valor_meta" placeholder="R$" name="valor" value="{$meta.valor}" required>
             </div>
 
             <!--Box data inicial-->
             <div class="col-md-3">
               <label for="data_inicial" class="form-label">Data de início</label>
-              <input type="date" class="form-control" id="data_inicial" name="data_inicial" required>
+              <input type="date" class="form-control" id="data_inicial" name="data_inicial" value="{$meta.data_inicial}" required>
             </div>
 
             <!--Box data final-->
             <div class="col-md-3">
               <label for="data_final" class="form-label">Data final</label>
-              <input type="date" class="form-control" id="data_final" name="data_final" required>
+              <input type="date" class="form-control" id="data_final" name="data_final" value="{$meta.data_final}" required>
             </div>
 
             <div class="col-md-5"> 
               <label for="conta_meta" class="form-label">Conta</label> 
               <select id="conta_meta" class="form-select" name="id_conta" required>
-                {loop="$conta"}
-                  <option value="{$value.id_conta}">{$value.apelido}</option>
-                {/loop}
+              {loop="$conta"}
+                <option {$value.id_conta}>{$value.apelido}</option>
+              {/loop}
               </select>
             </div>
 
@@ -71,7 +72,7 @@
           </div>
 
           <div class="col-md-12 d-flex flex-row-reverse">
-            <img src="../res/site/assets/img/guardando_background.png" alt="Guardando uma grana" style="max-height: 66vh;">
+            <img src="../../res/site/assets/img/guardando_background.png" alt="Guardando uma grana" style="max-height: 66vh;">
           </div>
         
         </div>

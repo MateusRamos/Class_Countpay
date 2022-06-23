@@ -98,7 +98,7 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form action="/perfil" method="post">
+                  <form action="/admin/perfil" method="post">
 
                     <div class="row mb-3">
                       <label for="usuario_nome" class="col-md-4 col-lg-3 col-form-label">Nome</label>
@@ -150,9 +150,10 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="usuario_telefone" class="col-md-4 col-lg-3 col-form-label">Telefone</label>
+                      <label for="telefone" class="col-md-4 col-lg-3 col-form-label">Telefone</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="telefone" type="text" class="form-control" id="usuario_telefone" value="<?php echo htmlspecialchars( $dados["telefone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                        <input name="telefone" type="text" class="form-control" id="telefone" value="<?php echo htmlspecialchars( $dados["telefone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                       </div>
                     </div>
 
