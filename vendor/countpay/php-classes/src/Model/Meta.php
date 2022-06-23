@@ -16,9 +16,21 @@ class Meta {
 
         $sql = new Sql();
 
-        $results = $sql->select("SELECT nome FROM meta WHERE id_usuario = :ID_USUARIO AND status = 1", array(
+        $results = $sql->select("SELECT * FROM meta WHERE id_usuario = :ID_USUARIO", array(
             ":ID_USUARIO" => $id_usuario
         ));
+
+        foreach($results as $key => $value)
+        {
+            if($results[$key]['tipo_meta'] == "guardando")
+            {
+                $results[$key]['caminho'] = "/guardando/".$results[$key]['id_meta'];
+            } 
+            else if($results[$key]['tipo_meta'] == "saindo")
+            {
+                $results[$key]['caminho'] = "/aperto/".$results[$key]['id_meta'];
+            }
+        }
 
         return $results;
 
@@ -147,6 +159,19 @@ class Meta {
 
     }
 
+
+    public static function BuscaDadosMeta($id_meta)
+    {
+
+        $sql = new Sql();
+                
+        return  $sql->select("SELECT meta.*, conta.apelido 
+                             FROM meta 
+                             INNER JOIN conta ON meta.id_conta = conta.id_conta AND id_meta = :ID_META", array(
+            ":ID_META"=>$id_meta
+        ));
+
+    }
 
 
 }

@@ -16,35 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `conta`
+-- Table structure for table `cartao`
 --
 
-DROP TABLE IF EXISTS `conta`;
+DROP TABLE IF EXISTS `cartao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `conta` (
-  `id_conta` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cartao` (
+  `id_cartao` int(11) NOT NULL AUTO_INCREMENT,
   `apelido` varchar(64) NOT NULL,
-  `tipo_conta` varchar(64) NOT NULL,
-  `saldo` decimal(10,2) DEFAULT NULL,
+  `tipo_cartao` varchar(64) NOT NULL,
+  `vence_dia` int(2) DEFAULT NULL,
+  `limite` decimal(8,2) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   `id_instituicao` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_conta`),
-  KEY `conta_ibfk_1` (`id_usuario`),
-  KEY `conta_ibfk_2` (`id_instituicao`),
-  CONSTRAINT `conta_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
-  CONSTRAINT `conta_ibfk_2` FOREIGN KEY (`id_instituicao`) REFERENCES `instituicao` (`id_instituicao`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id_cartao`),
+  KEY `cartao_ibfk_1` (`id_usuario`),
+  KEY `cartao_ibfk_2` (`id_instituicao`),
+  CONSTRAINT `cartao_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  CONSTRAINT `cartao_ibfk_2` FOREIGN KEY (`id_instituicao`) REFERENCES `instituicao` (`id_instituicao`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `conta`
+-- Dumping data for table `cartao`
 --
 
-LOCK TABLES `conta` WRITE;
-/*!40000 ALTER TABLE `conta` DISABLE KEYS */;
-INSERT INTO `conta` VALUES (1,'Conta Nubank','Conta Digital',0.00,100,260),(2,'Conta Inter','Conta Corrente',0.00,100,77),(3,'Conta Santander','Conta Corrente',0.00,100,33),(4,'Conta Itaú','Conta Itaú',0.00,100,341),(5,'Carteira','Carteira Física',0.00,100,1000),(20,'conta 1','Conta Poupança',47200.00,143,125),(21,'Conta 2','Carteira Física',890.00,143,340),(22,'conta 3','Conta Corrente',12600.00,143,336);
-/*!40000 ALTER TABLE `conta` ENABLE KEYS */;
+LOCK TABLES `cartao` WRITE;
+/*!40000 ALTER TABLE `cartao` DISABLE KEYS */;
+INSERT INTO `cartao` VALUES (1,'Cartão Nubank','Cartão',5,7100.00,100,260),(2,'Cartão Inter','Cartão',5,2000.00,100,77),(3,'Cartão Santander','Cartão',5,2000.00,100,33),(4,'Cartão Caixa','Débito',5,0.00,100,104),(12,'cartao tsssss','Cartão',9,6000.00,143,NULL),(14,'asdasda','Cartão',15,1500.00,143,1);
+/*!40000 ALTER TABLE `cartao` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-21 21:36:06
+-- Dump completed on 2022-06-23 12:28:06

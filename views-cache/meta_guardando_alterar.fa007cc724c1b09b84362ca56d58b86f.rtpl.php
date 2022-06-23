@@ -1,4 +1,4 @@
-
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
   <!-- Inicio do Conteúdo da Pagina -->
   <main id="main" class="main pb-0">
 
@@ -24,42 +24,43 @@
           <div class="col-md-8" style="position: absolute;">
           <!-- Início do Fomrulário -->
           <form action="/metas/guardando" method="post" class="row g-3 pt-5">
+
             <!-- Box Nome -->
             <div class="col-md-7"> 
               <label for="nome_meta" class="form-label">Nome</label>
-              <input type="text" class="form-control" id="nome_meta" name="nome" required>
+              <input type="text" class="form-control" id="nome_meta" name="nome" value="<?php echo htmlspecialchars( $meta["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
             </div>
 
             <!-- Box Objetivo -->
             <div class="col-md-5"> 
               <label for="objetivo_meta" class="form-label">Objetivo</label>
-              <input type="text" class="form-control" id="objetivo_meta" name="objetivo" required>
+              <input type="text" class="form-control" id="objetivo_meta" name="objetivo" value="<?php echo htmlspecialchars( $meta["objetivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
             </div>
 
             <!-- Box Valor -->
             <div class="col-md-4"> 
               <label for="valor_meta" class="form-label">Valor</label>
-              <input type="number" class="form-control" id="valor_meta" placeholder="R$" name="valor" required>
+              <input type="number" class="form-control" id="valor_meta" placeholder="R$" name="valor" value="<?php echo htmlspecialchars( $meta["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
             </div>
 
             <!--Box data inicial-->
             <div class="col-md-3">
               <label for="data_inicial" class="form-label">Data de início</label>
-              <input type="date" class="form-control" id="data_inicial" name="data_inicial" required>
+              <input type="date" class="form-control" id="data_inicial" name="data_inicial" value="<?php echo htmlspecialchars( $meta["data_inicial"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
             </div>
 
             <!--Box data final-->
             <div class="col-md-3">
               <label for="data_final" class="form-label">Data final</label>
-              <input type="date" class="form-control" id="data_final" name="data_final" required>
+              <input type="date" class="form-control" id="data_final" name="data_final" value="<?php echo htmlspecialchars( $meta["data_final"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
             </div>
 
             <div class="col-md-5"> 
               <label for="conta_meta" class="form-label">Conta</label> 
               <select id="conta_meta" class="form-select" name="id_conta" required>
-                {loop="$conta"}
-                  <option value="{$value.id_conta}">{$value.apelido}</option>
-                {/loop}
+              <?php $counter1=-1;  if( isset($conta) && ( is_array($conta) || $conta instanceof Traversable ) && sizeof($conta) ) foreach( $conta as $key1 => $value1 ){ $counter1++; ?>
+                <option <?php echo htmlspecialchars( $value1["id_conta"], ENT_COMPAT, 'UTF-8', FALSE ); ?>><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+              <?php } ?>
               </select>
             </div>
 
@@ -71,7 +72,7 @@
           </div>
 
           <div class="col-md-12 d-flex flex-row-reverse">
-            <img src="../res/site/assets/img/guardando_background.png" alt="Guardando uma grana" style="max-height: 66vh;">
+            <img src="../../res/site/assets/img/guardando_background.png" alt="Guardando uma grana" style="max-height: 66vh;">
           </div>
         
         </div>

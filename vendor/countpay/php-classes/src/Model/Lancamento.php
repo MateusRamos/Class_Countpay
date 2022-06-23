@@ -517,7 +517,7 @@ class Lancamento {
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT id_categoria, descricao, id_categoria FROM categoria ORDER BY descricao ASC");
+		return $sql->select("SELECT descricao, id_categoria FROM categoria ORDER BY descricao ASC");
 
 	}
 

@@ -16,29 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tipo_notificacoes`
+-- Table structure for table `tipo_usuario`
 --
 
-DROP TABLE IF EXISTS `tipo_notificacoes`;
+DROP TABLE IF EXISTS `tipo_usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipo_notificacoes` (
-  `id_tipo_notificacoes` int(11) NOT NULL AUTO_INCREMENT,
-  `categoria` varchar(100) NOT NULL,
-  `visto` int(11) DEFAULT NULL,
-  `icone` varchar(256) DEFAULT NULL,
-  PRIMARY KEY (`id_tipo_notificacoes`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE `tipo_usuario` (
+  `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(16) DEFAULT NULL,
+  PRIMARY KEY (`id_tipo_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tipo_notificacoes`
+-- Dumping data for table `tipo_usuario`
 --
 
-LOCK TABLES `tipo_notificacoes` WRITE;
-/*!40000 ALTER TABLE `tipo_notificacoes` DISABLE KEYS */;
-INSERT INTO `tipo_notificacoes` VALUES (1,'Atenção',NULL,'bi bi-exclamation-circle text-warning\n');
-/*!40000 ALTER TABLE `tipo_notificacoes` ENABLE KEYS */;
+LOCK TABLES `tipo_usuario` WRITE;
+/*!40000 ALTER TABLE `tipo_usuario` DISABLE KEYS */;
+INSERT INTO `tipo_usuario` VALUES (1,'Administrador'),(2,'Usuario');
+/*!40000 ALTER TABLE `tipo_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-21 21:36:03
+-- Dump completed on 2022-06-23 12:28:06

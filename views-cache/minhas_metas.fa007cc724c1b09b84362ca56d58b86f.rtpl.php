@@ -1,4 +1,4 @@
-<!-- Inicio do Conteúdo da Pagina -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Inicio do Conteúdo da Pagina -->
 <main id="main" class="main">
 
     <!-- Inicio Título da Pagina -->
@@ -35,19 +35,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {loop="$metas"}
-                                    <tr class="clickable" onclick="window.location='/metas{$value.caminho}'">
-                                        <td>{$value.nome}</td>
-                                        <td>{$value.objetivo}</td>
-                                        <td>{$value.valor}</td>
-                                        <td  class="text-capitalize" >{$value.status}</td>
+                                    <?php $counter1=-1;  if( isset($metas) && ( is_array($metas) || $metas instanceof Traversable ) && sizeof($metas) ) foreach( $metas as $key1 => $value1 ){ $counter1++; ?>
+                                    <tr class="clickable" onclick="window.location='/metas<?php echo htmlspecialchars( $value1["caminho"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'">
+                                        <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["objetivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td  class="text-capitalize" ><?php echo htmlspecialchars( $value1["status"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td style="width:20vh">
                                             <a href="#" class="btn btn-success" style="line-height: 0.5;background-color: #26A234;"><i class="bx bx-play-circle"></i></a>
                                             <a href="#" class="btn btn-info text-light" style="line-height: 0.5;background-color: #0AA8D0;"><i class="bx bx-pause-circle"></i></a>
                                             <a href="#" onclick="return ConfirmDelete()" class="btn btn-danger" style="line-height: 0.5; background-color: #E54640;"><i class="bx bxs-trash"></i></a>
                                         </td>
                                     </tr>
-                                    {/loop}
+                                    <?php } ?>
                                 </tbody>
                             </table>
 

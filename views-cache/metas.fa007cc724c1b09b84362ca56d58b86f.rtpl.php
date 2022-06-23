@@ -17,7 +17,7 @@
                     </a>
                 </div>
                 <div class="card info-card revenue-card me-3 d-flex align-items-center">
-                    <a href="meta_aperto.html" class="mt-5">
+                    <a href="metas/aperto" class="mt-5">
                     <div class="card-body d-flex align-items-center">
                         <div class="col-md-12 mx-3">
                             <img src="../res/site/assets/img/aperto.png" alt="Guardando uma grana" style="max-height: 55vh;">

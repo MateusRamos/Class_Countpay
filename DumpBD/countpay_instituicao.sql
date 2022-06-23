@@ -16,36 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cartao`
+-- Table structure for table `instituicao`
 --
 
-DROP TABLE IF EXISTS `cartao`;
+DROP TABLE IF EXISTS `instituicao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cartao` (
-  `id_cartao` int(11) NOT NULL AUTO_INCREMENT,
-  `apelido` varchar(64) NOT NULL,
-  `tipo_cartao` varchar(64) NOT NULL,
-  `vence_dia` int(2) DEFAULT NULL,
-  `limite` decimal(8,2) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `id_instituicao` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_cartao`),
-  KEY `cartao_ibfk_1` (`id_usuario`),
-  KEY `cartao_ibfk_2` (`id_instituicao`),
-  CONSTRAINT `cartao_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
-  CONSTRAINT `cartao_ibfk_2` FOREIGN KEY (`id_instituicao`) REFERENCES `instituicao` (`id_instituicao`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+CREATE TABLE `instituicao` (
+  `id_instituicao` int(11) NOT NULL,
+  `nome` varchar(120) DEFAULT NULL,
+  PRIMARY KEY (`id_instituicao`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cartao`
+-- Dumping data for table `instituicao`
 --
 
-LOCK TABLES `cartao` WRITE;
-/*!40000 ALTER TABLE `cartao` DISABLE KEYS */;
-INSERT INTO `cartao` VALUES (1,'Cartão Nubank','Cartão',5,7100.00,100,260),(2,'Cartão Inter','Cartão',5,2000.00,100,77),(3,'Cartão Santander','Cartão',5,2000.00,100,33),(4,'Cartão Caixa','Débito',5,0.00,100,104),(12,'cartao tsssss','Cartão',9,6000.00,143,NULL),(14,'asdasda','Cartão',15,1500.00,143,1);
-/*!40000 ALTER TABLE `cartao` ENABLE KEYS */;
+LOCK TABLES `instituicao` WRITE;
+/*!40000 ALTER TABLE `instituicao` DISABLE KEYS */;
+INSERT INTO `instituicao` VALUES (1,'Banco do Brasil'),(33,'Banco Santander'),(77,'Banco Inter'),(93,'Pelocred'),(104,'Caixa Econômica Federal'),(121,'Agibank'),(125,'Banco Genial'),(197,'Stone Pagamentos'),(212,'Banco Original'),(218,'BS2'),(237,'Banco Bradesco'),(260,'Nubank'),(280,'Meupag!'),(290,'Pagseguro'),(323,'Mercado Pago'),(335,'Banco Digio'),(336,'C6 Bank'),(340,'Superdigital'),(341,'Banco Itaú'),(356,'Banco Real'),(380,'PicPay'),(389,'Banco Mercantil do Brasil S.A'),(396,'Hub Pagamentos'),(399,'HSBC Bank Brasil'),(401,'Iugu'),(422,'Banco Safra'),(450,'Fitbank'),(453,'Banco Rural'),(633,'Banco Rendimento'),(652,'Itaú Unibanco Holding'),(654,'Banco Digi+'),(735,'Neon'),(745,'Banco Citibank'),(1000,'Outros');
+/*!40000 ALTER TABLE `instituicao` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-21 21:36:04
+-- Dump completed on 2022-06-23 12:28:06
