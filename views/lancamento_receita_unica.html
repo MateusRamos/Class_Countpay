@@ -51,7 +51,7 @@
                             <div class="col-md-5">
                               <label for="conta_usuario" class="form-label">Conta</label>
                               <select class="form-select" name="id_conta" id="conta_usuario">
-                                <option value="">conta não utilizada</option>
+                                <option value="">Conta não utilizada</option>
                                   {loop="$conta"}
                                   <option value="{$value.id_conta}">{$value.apelido}</option>
                                   {/loop}
@@ -62,7 +62,7 @@
                           <div class="col-md-5">
                             <label for="cartao_usuario" class="form-label">Cartão</label>
                             <select class="form-select" name="id_cartao" id="cartao_usuario">
-                              <option value="">cartão não utilizada</option>
+                              <option value="">Cartão não utilizada</option>
                               {loop="$cartao"}
                               <option value="{$value.id_cartao}">{$value.apelido}</option>
                               {/loop}
@@ -70,7 +70,7 @@
                         </div>
 
 
-                            <div class="col-md-5 mb-3">
+                            <div class="col-md-10 mb-3">
                                 <label for="categoria_receita" class="form-label">Categoria</label>
                                 <select class="form-select" name="id_categoria" id="contacartao_receita" required>
                                   {loop="$categoria"}

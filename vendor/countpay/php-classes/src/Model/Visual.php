@@ -101,6 +101,31 @@ class Visual {
 	#									 	           ║  CALCULO DE DADOS   ║
 	#                                                  ╚═════════════════════╝
 
+	//Retorna o total de valor (receita) do usuário;
+	public static function calculaReceitaUsuario($id_usuario)
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT SUM(valor) 'receita' FROM lancamento WHERE id_usuario = :ID_USUARIO AND tipo_lancamento LIKE '%Receita%' ", array(
+			":ID_USUARIO"=>$id_usuario
+		));
+
+	}
+
+	//Retorna o total de valor (despesa) do usuário;
+	public static function calculaDespesaUsuario($id_usuario)
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT SUM(valor) 'despesa' FROM lancamento WHERE id_usuario = :ID_USUARIO AND tipo_lancamento LIKE '%Despesa%' ", array(
+			":ID_USUARIO"=>$id_usuario
+		));
+
+	}
+
+
 	//Retorna o total de usuários do sistema (normais e adm);
 	public static function calculaTotalUsuarios()
 	{

@@ -121,11 +121,17 @@ $app->get('/', function() {
     Lancamento::verificaLancamentoFixo($id_usuario); // Status = 1
     Lancamento::verificaLancamentoUnicoFuturo($id_usuario);  // Status = 2
     Lancamento::verificaLancamentoParceladoFuturo($id_usuario);  // Status = 3
-    
     $ultimos_lancamentos = Visual::listaUltimosLancamentos($id_usuario);
+
+
+    $receitaUsuario = Visual::calculaReceitaUsuario($id_usuario);
+    $despesaUsuario = Visual::calculaDespesaUsuario($id_usuario);
+
 
     $page->setTpl("index", array(
         "dados"=>$ultimos_lancamentos,
+        "receita"=>$receitaUsuario,
+        "despesa"=>$despesaUsuario
     ));
 
 });

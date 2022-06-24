@@ -258,7 +258,7 @@
           </li>
 
           <li>
-            <a href="lancamento_transferencia.html">
+            <a href="/lancamento/transferencia">
               <i class="bx bxs-chevron-right"></i><span>Transferência</span>
             </a>
           </li>
