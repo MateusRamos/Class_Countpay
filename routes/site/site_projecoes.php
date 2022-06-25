@@ -5,6 +5,7 @@ use \Countpay\Model\Visual;
 use \Countpay\Model\Carteira;
 use \Countpay\Model\Lancamento;
 use \Countpay\Model\Projecoes;
+use \Countpay\DB\Sql;
 
 
 /*===========================================================|===========================================================\\
@@ -17,13 +18,18 @@ use \Countpay\Model\Projecoes;
 
 $app->get('/projecao', function() {
 
- 
-$page = new Page([
-    "header"=>true,
-    "footer"=>false]);
+    $page = new Page([
+        "header"=>true,
+        "footer"=>false
+    ]);
 
+    $id_usuario = User::verifyLogin();
 
-$page->setTpl("projecoes_futuras");
+    $dados = Projecoes::coletaDadosMes($id_usuario);
+
+    $page->setTpl("projecoes_futuras", array(
+        "dados"=>$dados
+    ));
 
 
 });

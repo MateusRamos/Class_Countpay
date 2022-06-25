@@ -51,7 +51,7 @@
                             <div class="col-md-5">
                               <label for="conta_usuario" class="form-label">Conta</label>
                               <select class="form-select" name="id_conta" id="conta_usuario">
-                                <option value="">conta não utilizada</option>
+                                <option value="">Conta não utilizada</option>
                                   <?php $counter1=-1;  if( isset($conta) && ( is_array($conta) || $conta instanceof Traversable ) && sizeof($conta) ) foreach( $conta as $key1 => $value1 ){ $counter1++; ?>
                                   <option value="<?php echo htmlspecialchars( $value1["id_conta"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                                   <?php } ?>
@@ -62,7 +62,7 @@
                           <div class="col-md-5">
                             <label for="cartao_usuario" class="form-label">Cartão</label>
                             <select class="form-select" name="id_cartao" id="cartao_usuario">
-                              <option value="">cartão não utilizada</option>
+                              <option value="">Cartão não utilizada</option>
                               <?php $counter1=-1;  if( isset($cartao) && ( is_array($cartao) || $cartao instanceof Traversable ) && sizeof($cartao) ) foreach( $cartao as $key1 => $value1 ){ $counter1++; ?>
                               <option value="<?php echo htmlspecialchars( $value1["id_cartao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                               <?php } ?>
@@ -70,7 +70,7 @@
                         </div>
 
 
-                            <div class="col-md-5 mb-3">
+                            <div class="col-md-10 mb-3">
                                 <label for="categoria_receita" class="form-label">Categoria</label>
                                 <select class="form-select" name="id_categoria" id="contacartao_receita" required>
                                   <?php $counter1=-1;  if( isset($categoria) && ( is_array($categoria) || $categoria instanceof Traversable ) && sizeof($categoria) ) foreach( $categoria as $key1 => $value1 ){ $counter1++; ?>

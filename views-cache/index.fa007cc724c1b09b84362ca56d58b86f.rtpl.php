@@ -35,7 +35,7 @@
                                         </div>
                                     </a>
                                     <div class="ps-3">
-                                        <h6>+R$1.450,00</h6>
+                                        <h6>+R$<?php echo htmlspecialchars( $receita["0"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h6>
                                         <span class="text-muted small pt-2 ps-1">Entrada atual</span>
 
                                     </div>
@@ -61,7 +61,7 @@
                                         </div>
                                     </a>
                                     <div class="ps-3">
-                                        <h6>-R$1.450,00</h6>
+                                        <h6>-R$<?php echo htmlspecialchars( $despesa["0"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h6>
                                         <span class="text-muted small pt-2 ps-1">Saída atual</span>
 
                                     </div>
@@ -105,71 +105,78 @@
                         <div class="card">
 
                             <div class="card-body">
-                                <h5 class="card-title">Reports <span>/Today</span></h5>
+                                <h5 class="card-title">Lançamentos Receita x Despesa<span> 2022</span></h5>
 
-                                <!-- Line Chart -->
-                                <div id="reportsChart"></div>
-
-                                <script>
-                                    document.addEventListener("DOMContentLoaded", () => {
-                                        new ApexCharts(document.querySelector("#reportsChart"), {
-                                            series: [{
-                                                name: 'Sales',
-                                                data: [31, 40, 28, 51, 42, 82, 56],
-                                            }, {
-                                                name: 'Revenue',
-                                                data: [11, 32, 45, 32, 34, 52, 41]
-                                            }, {
-                                                name: 'Customers',
-                                                data: [15, 11, 32, 18, 9, 24, 11]
-                                            }],
-                                            chart: {
-                                                height: 350,
-                                                type: 'area',
-                                                toolbar: {
-                                                    show: false
+                                <div id="columnChart">
+                                    <script>
+                                        document.addEventListener("DOMContentLoaded", () => {
+                                            new ApexCharts(document.querySelector("#columnChart"), {
+                                                series: [{
+                                                    name: 'Receitas',
+                                                    data: [<?php echo htmlspecialchars( $receita["0"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, 55, 57, 56, 61, 58, 63, 60, 66,
+                                                        50,
+                                                        80, 50
+                                                    ]
+                                                }, {
+                                                    name: 'Despesas',
+                                                    data: [<?php echo htmlspecialchars( $despesa["0"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, 85, 101, 98, 87, 105, 91, 114,
+                                                        94,
+                                                        80, 100, 98
+                                                    ]
+                                                }, ],
+                                                chart: {
+                                                    type: 'bar',
+                                                    height: 350,
                                                 },
-                                            },
-                                            markers: {
-                                                size: 4
-                                            },
-                                            colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                                            fill: {
-                                                type: "gradient",
-                                                gradient: {
-                                                    shadeIntensity: 1,
-                                                    opacityFrom: 0.3,
-                                                    opacityTo: 0.4,
-                                                    stops: [0, 90, 100]
-                                                }
-                                            },
-                                            dataLabels: {
-                                                enabled: false
-                                            },
-                                            stroke: {
-                                                curve: 'smooth',
-                                                width: 2
-                                            },
-                                            xaxis: {
-                                                type: 'datetime',
-                                                categories: ["2018-09-19T00:00:00.000Z",
-                                                    "2018-09-19T01:30:00.000Z",
-                                                    "2018-09-19T02:30:00.000Z",
-                                                    "2018-09-19T03:30:00.000Z",
-                                                    "2018-09-19T04:30:00.000Z",
-                                                    "2018-09-19T05:30:00.000Z",
-                                                    "2018-09-19T06:30:00.000Z"
-                                                ]
-                                            },
-                                            tooltip: {
-                                                x: {
-                                                    format: 'dd/MM/yy HH:mm'
+                                                plotOptions: {
+                                                    bar: {
+                                                        horizontal: false,
+                                                        columnWidth: '80%',
+                                                        endingShape: 'rounded'
+                                                    },
                                                 },
-                                            }
-                                        }).render();
-                                    });
-                                </script>
-                                <!-- End Line Chart -->
+                                                dataLabels: {
+                                                    enabled: true
+                                                },
+                                                stroke: {
+                                                    show: true,
+                                                    width: 2,
+                                                    colors: ['transparent']
+                                                },
+                                                xaxis: {
+                                                    categories: ['Janeiro', 'Fevereiro', 'Março',
+                                                        'Abril',
+                                                        'Maio', 'Junho', 'Julho',
+                                                        'Agosto',
+                                                        'Setembro', 'Outubro', 'Novembro',
+                                                        'Dezembro'
+                                                    ],
+                                                },
+                                                yaxis: {
+                                                    title: {
+                                                        text: 'R$ (reais)'
+                                                    }
+                                                },
+                                                dataLabels: {
+                                                    style: {
+                                                        colors: ['#FFFFFF']
+                                                    }
+                                                },
+                                                fill: {
+                                                    opacity: 1
+                                                },
+                                                tooltip: {
+                                                    y: {
+                                                        formatter: function (val) {
+                                                            return "R$ " + val + " reais"
+                                                        }
+                                                    }
+                                                },
+                                                colors: ['#26A234', '#E54640']
+                                            }).render();
+                                        });
+                                    </script>
+                                </div>
 
                             </div>
 
