@@ -376,14 +376,8 @@ class Lancamento {
             ":ID_LANCAMENTO"=>$dados_lancamento['id_lancamento']
         ));
 
-        $array_id = array(
-            "id_conta"=>$dados_lancamento['id_conta'],
-            "id_cartao"=>$dados_lancamento['id_cartao'],
-            "id_categoria"=>$dados_lancamento['id_categoria']
-        );
-
-        Carteira::atualizaSaldoConta($dados_lancamento, $array_id);
-        Meta::analisaMeta($dados_lancamento, $array_id, $id_usuario);
+        Carteira::atualizaSaldoConta($dados_lancamento);
+        Meta::analisaMeta($dados_lancamento, $id_usuario);
 
     }
 

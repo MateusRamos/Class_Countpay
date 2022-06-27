@@ -9,28 +9,28 @@ class Carteira {
 	#									 	           ║     	 GERAL         ║
 	#                                                  ╚═══════════════════════╝
 
-	public static function atualizaSaldoConta($dados_lancamento, $array_id)
+	public static function atualizaSaldoConta($dados_lancamento)
 	{
 		
 		$sql = new Sql();
 		
 		$tipo_lancamento = substr($dados_lancamento['tipo_lancamento'], 0, 7);
 
-		if($tipo_lancamento == "Receita" && isset($array_id['id_conta']))
+		if($tipo_lancamento == "Receita" && isset($dados_lancamento['id_conta']))
 		{
 
 			$sql->execQuery("UPDATE conta SET saldo = ( (SELECT saldo FROM conta WHERE id_conta = :ID_CONTA) + :ENTRADA ) WHERE id_conta = :ID_CONTA", array(
-				":ID_CONTA" => $array_id['id_conta'],
+				":ID_CONTA" => $dados_lancamento['id_conta'],
 				":ENTRADA" => $dados_lancamento['valor']
 			));
 
 		}
-		else if ($tipo_lancamento == "Despesa" && isset($array_id['id_conta']))
+		else if ($tipo_lancamento == "Despesa" && isset($dados_lancamento['id_conta']))
 		{
 			$entrada = $dados_lancamento['valor'] * -1;
 			
 			$sql->execQuery("UPDATE conta SET saldo = ( (SELECT saldo FROM conta WHERE id_conta = :ID_CONTA) + :ENTRADA ) WHERE id_conta = :ID_CONTA", array(
-				":ID_CONTA" => $array_id['id_conta'],
+				":ID_CONTA" => $dados_lancamento['id_conta'],
 				":ENTRADA" => $entrada
 			));
 
@@ -146,19 +146,17 @@ class Carteira {
 
 
     //Altera conta com dados do front;
-	public static function alteraConta($dados_conta, $instituicao)
+	public static function alteraConta($dados_conta)
 	{
 
 		$sql = new Sql();
 
 		$sql->execQuery("UPDATE conta SET apelido = :APELIDO, tipo_conta = :TIPO_CONTA, saldo = :SALDO, id_instituicao = :ID_INSTITUICAO WHERE id_conta = :ID_CONTA", array(
-
 			':ID_CONTA'=>$dados_conta['id_conta'],
 			':APELIDO'=>$dados_conta['apelido'],
 			':TIPO_CONTA'=>$dados_conta['tipo_conta'],
 			':SALDO'=>$dados_conta['valor'],
 			':ID_INSTITUICAO'=>$dados_conta['id_instituicao'],
-			
 		));
 
 	}

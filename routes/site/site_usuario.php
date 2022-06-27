@@ -123,7 +123,6 @@ $app->get('/', function() {
     Lancamento::verificaLancamentoParceladoFuturo($id_usuario);  // Status = 3
     $ultimos_lancamentos = Visual::listaUltimosLancamentos($id_usuario);
 
-
     $receitaUsuario = Visual::calculaReceitaUsuario($id_usuario);
     $despesaUsuario = Visual::calculaDespesaUsuario($id_usuario);
 

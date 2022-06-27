@@ -63,6 +63,16 @@
               </select>
             </div>
 
+            <div class="col-md-5">
+            <div class="form-check form-switch"> 
+              <input class="form-check-input" name="valor_atual" type="checkbox" id="switch_saldo_atual"> 
+              <label class="form-check-label" for="switch_saldo_atuals">Usar saldo atual da conta?</label>
+            </div>
+          </div>
+
+
+
+
             <div class="text-center"> 
               <button type="reset"class="btn btn-sm btn-light">Limpar</button>
               <button type="submit" class="btn btn-success" style="background-color:#26A234;font-weight: 650;">⠀Criar⠀</button> 
@@ -71,7 +81,7 @@
           </div>
 
           <div class="col-md-12 d-flex flex-row-reverse">
-            <img src="../../res/site/assets/img/guardando_background.png" alt="Guardando uma grana" style="max-height: 66vh;">
+            <img src="../res/site/assets/img/guardando_background.png" alt="Guardando uma grana" style="max-height: 66vh;">
           </div>
         
         </div>
