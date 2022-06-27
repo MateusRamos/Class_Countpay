@@ -4,13 +4,11 @@
 
     <!-- Inicio Título da Pagina -->
     <div class="pagetitle">
-        <h1>Guardando uma Grana</h1>
+        <h1>Criar Nova Meta</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-            <li class="breadcrumb-item active"><a href="index.html">Dashboard</a></li>
-            <li class="breadcrumb-item active"><a href="nova_meta.html">Cirar nova Meta</a></li>
-            <li class="breadcrumb-item active">Guardando uma grana</li>
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item active">Criar Nova Meta</li>
           </ol>
         </nav>
       </div>
@@ -21,17 +19,17 @@
       <div class="card">
         <div class="card-body pb-0" style="max-height: 66vh;">
           
-          <div class="col-md-8" style="position: absolute;">
+          <div class="col-md-7" style="position: absolute;">
           <!-- Início do Fomrulário -->
-          <form action="/metas/guardando" method="post" class="row g-3 pt-5">
+          <form action="/metas/criar" method="post" class="row g-3 pt-5 d-flex justify-content-center">
             <!-- Box Nome -->
-            <div class="col-md-7"> 
+            <div class="col-md-10"> 
               <label for="nome_meta" class="form-label">Nome</label>
               <input type="text" class="form-control" id="nome_meta" name="nome" required>
             </div>
 
             <!-- Box Objetivo -->
-            <div class="col-md-5"> 
+            <div class="col-md-6"> 
               <label for="objetivo_meta" class="form-label">Objetivo</label>
               <input type="text" class="form-control" id="objetivo_meta" name="objetivo" required>
             </div>
@@ -54,7 +52,7 @@
               <input type="date" class="form-control" id="data_final" name="data_final" required>
             </div>
 
-            <div class="col-md-5"> 
+            <div class="col-md-4"> 
               <label for="conta_meta" class="form-label">Conta</label> 
               <select id="conta_meta" class="form-select" name="id_conta" required>
                 <?php $counter1=-1;  if( isset($conta) && ( is_array($conta) || $conta instanceof Traversable ) && sizeof($conta) ) foreach( $conta as $key1 => $value1 ){ $counter1++; ?>
@@ -63,17 +61,15 @@
               </select>
             </div>
 
-            <div class="col-md-5">
-            <div class="form-check form-switch"> 
-              <input class="form-check-input" name="valor_atual" type="checkbox" id="switch_saldo_atual"> 
-              <label class="form-check-label" for="switch_saldo_atuals">Usar saldo atual da conta?</label>
+
+
+            <div class="col-md-12 pt-4 d-flex justify-content-center">
+              <div class="form-check form-switch"> 
+                <input class="form-check-input" name="valor_atual" type="checkbox" id="switch_saldo_atual"> 
+                <label class="form-check-label" for="switch_saldo_atuals">Usar saldo atual da conta?</label>
+              </div>
             </div>
-          </div>
-
-
-
-
-            <div class="text-center"> 
+            <div class="text-center pt-3"> 
               <button type="reset"class="btn btn-sm btn-light">Limpar</button>
               <button type="submit" class="btn btn-success" style="background-color:#26A234;font-weight: 650;">⠀Criar⠀</button> 
             </div>
@@ -81,7 +77,7 @@
           </div>
 
           <div class="col-md-12 d-flex flex-row-reverse">
-            <img src="../res/site/assets/img/guardando_background.png" alt="Guardando uma grana" style="max-height: 66vh;">
+            <img src="../res/site/assets/img/guardando.png" alt="Guardando uma grana" style="max-height: 66vh;">
           </div>
         
         </div>

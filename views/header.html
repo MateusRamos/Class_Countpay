@@ -281,7 +281,7 @@
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           
           <li>
-            <a href="/metas">
+            <a href="/metas/criar">
               <i class="bx bxs-chevron-right"></i><span>Criar Nova Meta</span>
             </a>
           </li>

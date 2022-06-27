@@ -29,24 +29,13 @@ $app->get('/minhasmetas', function() {
 });
 
 
-$app->get('/metas', function() {
-
-    $page = new Page();
-
-    User::verifyLogin();
-
-    $page->setTpl("metas");
-
-});
-
-
 /*===========================================================|===========================================================\\
 ||											    																		 ||
 ||										    	      Rotas Guardando                                                    ||
 ||												    																	 ||
 //===========================================================|===========================================================*/
 
-$app->get('/metas/guardando', function() {
+$app->get('/metas/criar', function() {
 
     $page = new Page();
 
@@ -61,7 +50,7 @@ $app->get('/metas/guardando', function() {
 });
 
 
-$app->post('/metas/guardando', function() {
+$app->post('/metas/criar', function() {
 
     $id_usuario = User::verifyLogin();
 
@@ -72,7 +61,7 @@ $app->post('/metas/guardando', function() {
 });
 
 
-$app->get('/metas/guardando/:id_meta', function($id_meta) {
+$app->get('/metas/:id_meta', function($id_meta) {
 
     $page = new Page();
 
@@ -102,39 +91,11 @@ $app->get('/metas/guardando/:id_meta', function($id_meta) {
 });
 
 
-/*===========================================================|===========================================================\\
-||											    																		 ||
-||										    	       Rotas Aperto                                                      ||
-||												    																	 ||
-//===========================================================|===========================================================*/
+$app->post('/metas/alterar', function() {
 
-$app->get('/metas/aperto', function() {
+    $id_usuario = User::verifyLogin();
 
-    $page = new Page();
-
-    User::verifyLogin();
-
-    $categorias = Lancamento::listaCategoriaDespesa();
-
-    $page->setTpl("meta_aperto", array(
-        "categorias"=>$categorias
-    ));
-
-});
-
-
-$app->get('metas/aperto/:id_meta', function($id_meta) {
-
-    $page = new Page();
-
-    User::verifyLogin();
-
-    $dados = Meta::BuscaDadosMeta($id_meta);
-
-    $page->setTpl("meta_aperto_alterar", array(
-        'dados'=>$dados
-    ));
-
+    Meta::alteraGuardandoUmaGrana($_POST, $id_usuario);
 
 });
 

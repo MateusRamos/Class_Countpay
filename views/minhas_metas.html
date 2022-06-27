@@ -36,12 +36,12 @@
                                 </thead>
                                 <tbody>
                                     {loop="$metas"}
-                                    <tr class="clickable" onclick="window.location='/metas{$value.caminho}'">
+                                    <tr class="clickable" onclick="window.location='/metas/{$value.id_meta}'">
                                         <td>{$value.nome}</td>
                                         <td>{$value.objetivo}</td>
                                         <td>{$value.valor}</td>
                                         <td  class="text-capitalize" >{$value.status}</td>
-                                        <td style="width:20vh">
+                                        <td style="width:25vh">
                                             <a href="#" class="btn btn-success" style="line-height: 0.5;background-color: #26A234;"><i class="bx bx-play-circle"></i></a>
                                             <a href="#" class="btn btn-info text-light" style="line-height: 0.5;background-color: #0AA8D0;"><i class="bx bx-pause-circle"></i></a>
                                             <a href="#" onclick="return ConfirmDelete()" class="btn btn-danger" style="line-height: 0.5; background-color: #E54640;"><i class="bx bxs-trash"></i></a>
@@ -53,7 +53,7 @@
 
                             <div class="text-center pt-3">
                                 <a href="/" type="button" class="btn btn-secondary me-1">Voltar</a>
-                                <a href="/metas" type="button" class="btn btn-info text-light" style="background-color: #0AA8D0;">Cria Nova Meta</a>
+                                <a href="/metas/criar" type="button" class="btn btn-info text-light" style="background-color: #0AA8D0;">Cria Nova Meta</a>
                             </div>
 
                         </div>

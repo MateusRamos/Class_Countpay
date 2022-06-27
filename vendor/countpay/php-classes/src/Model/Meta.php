@@ -16,23 +16,9 @@ class Meta {
 
         $sql = new Sql();
 
-        $results = $sql->select("SELECT * FROM meta WHERE id_usuario = :ID_USUARIO", array(
+        return $sql->select("SELECT * FROM meta WHERE id_usuario = :ID_USUARIO", array(
             ":ID_USUARIO" => $id_usuario
         ));
-
-        foreach($results as $key => $value)
-        {
-            if($results[$key]['tipo_meta'] == "guardando")
-            {
-                $results[$key]['caminho'] = "/guardando/".$results[$key]['id_meta'];
-            } 
-            else if($results[$key]['tipo_meta'] == "saindo")
-            {
-                $results[$key]['caminho'] = "/aperto/".$results[$key]['id_meta'];
-            }
-        }
-
-        return $results;
 
     }
 
@@ -72,8 +58,8 @@ class Meta {
         }
 
 
-        $sql->execQuery("INSERT INTO meta (nome, objetivo, valor, valor_atual, data_inicial, data_final, status, id_conta, id_usuario) 
-                         VALUES (:NOME, :OBJETIVO, :VALOR, :VALOR_ATUAL, :DATA_INICIAL, :DATA_FINAL, :STATUS, :ID_CONTA, :ID_USUARIO)", array(
+        $sql->execQuery("INSERT INTO meta (nome, objetivo, valor, valor_atual, data_inicial, data_final, status, id_conta, id_usuario, tipo_meta) 
+                         VALUES (:NOME, :OBJETIVO, :VALOR, :VALOR_ATUAL, :DATA_INICIAL, :DATA_FINAL, :STATUS, :ID_CONTA, :ID_USUARIO,:TIPO_META)", array(
                             ":NOME"=>$dados_meta['nome'],
                             ":OBJETIVO"=>$dados_meta['objetivo'],
                             ":VALOR"=>$dados_meta['valor'],
@@ -82,7 +68,8 @@ class Meta {
                             ":DATA_FINAL"=>$dados_meta['data_final'],
                             ":STATUS"=> $status,
                             ":ID_CONTA"=>$dados_meta['id_conta'],
-                            ":ID_USUARIO"=>$id_usuario
+                            ":ID_USUARIO"=>$id_usuario,
+                            ":TIPO_META"=>"guardando"
                          ));
 
     }
@@ -94,7 +81,7 @@ class Meta {
 
         $sql = new Sql();
 
-        $results = $sql->select("SELECT id_meta FROM meta WHERE status = 'ativo' AND id_conta = :ID_CONTA", array(
+        $results = $sql->select("SELECT id_meta FROM meta WHERE status = 'ativo' AND id_conta = :ID_CONTA AND tipo_lancamento = 'guardando'", array(
             ":ID_CONTA" => $id_conta
         ));
 
@@ -155,7 +142,7 @@ class Meta {
 
         $resultado = $sql->select("SELECT meta.id_meta, meta.valor, meta.valor_atual, conta.saldo FROM meta 
                                    INNER JOIN conta ON meta.id_conta = conta.id_conta 
-                                   AND status = 'ativo' AND meta.id_conta = :ID_CONTA", array(
+                                   AND status = 'ativo' AND meta.id_conta = :ID_CONTA AND tipo_meta = 'guardando'", array(
                                      ":ID_CONTA" => $dados_lancamento['id_conta']
                                    ));
 
@@ -187,10 +174,10 @@ class Meta {
 
         $sql->execQuery("UPDATE meta SET status = 'ativo' AND valor_atual = :VALOR_ATUAL
                          WHERE status = 'pausado' AND data_inicial = (SELECT data_inicial FROM meta 
-                            WHERE status = 'pausado' AND id_conta = :ID_CONTA ORDER BY data_inicial ASC limit 1) AND id_conta = :ID_CONTA", array(
-                                ":ID_CONTA" => $id_conta,
-                                ":VALOR_ATUAL"=> $valor_atual[0]['saldo']
-                            ));
+                        WHERE status = 'pausado' AND id_conta = :ID_CONTA ORDER BY data_inicial ASC limit 1) AND id_conta = :ID_CONTA AND tipo_meta = 'guardando'", array(
+                            ":ID_CONTA" => $id_conta,
+                            ":VALOR_ATUAL"=> $valor_atual[0]['saldo']
+                        ));
 
     }
 
@@ -214,7 +201,7 @@ class Meta {
 
         $sql = new Sql();
 
-        $dados_meta = $sql->select("SELECT id_meta, valor_atual FROM meta WHERE status = 'ativo' AND id_conta = :ID_CONTA", array(
+        $dados_meta = $sql->select("SELECT id_meta, valor_atual FROM meta WHERE status = 'ativo' AND id_conta = :ID_CONTA AND tipo_meta = 'guardando'", array(
             ":ID_CONTA"=>$dados_lancamento['id_conta']
         ));
         
@@ -234,6 +221,37 @@ class Meta {
         ));
 
     }
+
+
+    public static function alteraGuardandoUmaGrana($dados_meta)
+    {
+
+        $sql = new Sql();
+
+        if(isset($dados_meta['valo_atual']))
+        {
+            $valor_atual = $sql->select("SELECT saldo FROM conta WHERE id_conta = :ID_CONTA", array(
+                ":ID_CONTA"=>$dados_meta['id_conta']
+            ));
+        }
+        else
+        {
+            $valor_atual = NULL;
+        }
+
+
+        $sql->execQuery("UPDATE meta SET nome = :NOME, objetivo = :OBJETIVO, valor = :VALOR, valor_atual = :VALOR_ATUAL, data_inicial = :DATA_INICIAL, data_final = :DATA_FINAL, id_conta = :ID_CONTA", array(
+            ":NOME"=>$dados_meta['nome'],
+            ":OBJETIVO"=>$dados_meta['objetivo'],
+            ":VALOR"=>$dados_meta['valor'],
+            ":VALOR_ATUAL"=>$valor_atual,
+            ":DATA_INICIAL"=>$dados_meta['data_inicial'],
+            ":DATA_FINAL"=>$dados_meta['data_final'],
+            ":ID_CONTA"=>$dados_meta['id_conta']
+        ));
+
+    }
+    
 
 }
 ?>
