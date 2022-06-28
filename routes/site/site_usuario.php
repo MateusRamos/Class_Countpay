@@ -60,8 +60,9 @@ $app->post('/cadastro', function(){
     if($existeCadastro == 1)
     {
         Visual::mostraMensagem('E-mail ou login já cadastrado, tente novamente!', '/cadastro');
-
-    } else {
+    } 
+    else
+    {
         
         $dados_usuario = User::cadastraUsuario($_POST);
 
@@ -117,12 +118,11 @@ $app->get('/', function() {
 
     $id_usuario = User::verifyLogin();
 
-    
     Lancamento::verificaLancamentoFixo($id_usuario); // Status = 1
     Lancamento::verificaLancamentoUnicoFuturo($id_usuario);  // Status = 2
-    Lancamento::verificaLancamentoParceladoFuturo($id_usuario);  // Status = 3
-    $ultimos_lancamentos = Visual::listaUltimosLancamentos($id_usuario);
 
+
+    $ultimos_lancamentos = Visual::listaUltimosLancamentos($id_usuario);
     $receitaUsuario = Visual::calculaReceitaUsuario($id_usuario);
     $despesaUsuario = Visual::calculaDespesaUsuario($id_usuario);
 

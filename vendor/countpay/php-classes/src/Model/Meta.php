@@ -81,7 +81,7 @@ class Meta {
 
         $sql = new Sql();
 
-        $results = $sql->select("SELECT id_meta FROM meta WHERE status = 'ativo' AND id_conta = :ID_CONTA AND tipo_lancamento = 'guardando'", array(
+        $results = $sql->select("SELECT id_meta FROM meta WHERE status = 'ativo' AND id_conta = :ID_CONTA", array(
             ":ID_CONTA" => $id_conta
         ));
 

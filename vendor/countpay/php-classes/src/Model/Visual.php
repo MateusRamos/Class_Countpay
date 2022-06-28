@@ -185,7 +185,7 @@ class Visual {
 									":ID_USUARIO"=>$id_usuario
 								));
 
-		if(count($results) > 0)
+		if(count($results) > 0)	
 		{
 			foreach($results as $key => $value)
 			{
@@ -214,7 +214,7 @@ class Visual {
 
 			for($i=0; $i <= 5; $i++)
 			{
-				$results[$i]["descricao_lancamento"] = "Aguardando Lançamento";
+				$results[$i]["descricao_lancamento"] = "Aguardando Lançamento...";
 				$results[$i]["tipo_lancamento"] = "";
 				$results[$i]["valor"] = "";
 				$results[$i]["data_lancamento"] = "";

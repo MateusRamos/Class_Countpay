@@ -1,6 +1,7 @@
 <?php
 use \Countpay\Page;
 use \Countpay\Model\User;
+use \Countpay\Model\Visual;
 use \Countpay\Model\Carteira;
 use \Countpay\Model\Lancamento;
 
@@ -225,7 +226,6 @@ $app->get('/lancamento/receita/parcelado', function() {         //MUDANÇA NO FR
 $app->post('/lancamento/receita/parcelado', function() {
 
     $id_usuario = User::verifyLogin();
-
     
     if($_POST['id_cartao'] == "")
     { 
@@ -237,18 +237,23 @@ $app->post('/lancamento/receita/parcelado', function() {
         $_POST['id_conta'] = NULL; 
     }
 
+    // Caso o valor de parcelas seja maior que 1 vai entrar na função
+    if ($_POST['parcela_total'] > 1 ) {
 
-    if ($_POST['parcela_total'] <= 1 )
-    {
-        $_POST['tipo_lancamento'] = "Receita Única";
+        // Valor é dividido pelo numero de parcelas
+        $_POST['valor'] = ($_POST['valor'] / $_POST['parcela_total']);
+
+        $quant = Lancamento::analisaFrequencia($_POST);
+
+        Lancamento::lancamentoParcelado($_POST, $id_usuario, $quant);
+
+    } else { 
 
         Lancamento::iniciaLancamentoUnico($_POST, $id_usuario);
 
-    } 
-    else 
-    { 
-        Lancamento::iniciaLancamentoParcelado($_POST, $id_usuario);
     }
+
+    Visual::mostraMensagem('Lançamento realizada com sucesso!','/lancamento/historico');
 
 
 });

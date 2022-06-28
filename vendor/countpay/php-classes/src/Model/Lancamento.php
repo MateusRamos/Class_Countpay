@@ -163,204 +163,118 @@ class Lancamento {
 	#									 	           ║     LANÇAMENTO PARCELADO     ║
 	#                                                  ╚══════════════════════════════╝
 
-	//Corpo de criação de lançamento parcelado;
-	public static function iniciaLancamentoParcelado($dados_lancamento, $id_usuario)
-    {
-        $dados_lancamento['valor'] = $dados_lancamento['valor'] / $dados_lancamento['parcela_total'];
+   	//============================================= CORPO DO LANÇAMENTO PARCELADO ===========================================//
+	public static function lancamentoParcelado($dados_lancamento, $id_usuario, $quant)
+	{
+		$frequencia = $dados_lancamento['frequencia'];
+		$parcela = $dados_lancamento['parcela_total'];
 
-        $result_verificacao = Visual::verificaVencimento($dados_lancamento['data_lancamento']);
+        for ($i=1; $i < $parcela+1; $i++) {
 
-        if($result_verificacao == "amanha")
-        {
+            $id_lancamento = Lancamento::criaParcela($dados_lancamento, $i, $id_usuario);
 
-            $dados_lancamento['parcela_atual'] = 1;
+            $tempoDaParcela = $quant * ($i-1);
 
-            Lancamento::criaPrimeiraParcelaFutura($dados_lancamento, $id_usuario);
+            if ($frequencia == 'Semanalmente' || $frequencia == 'Quinzenalmente')
+            {
+                Lancamento::alteraParcelaDia($id_lancamento, $tempoDaParcela);
 
-            Visual::mostraMensagem('Lançamento criado com sucesso!', '/lancamento/historico');
+            } else {
+                Lancamento::alteraParcelaMes($id_lancamento, $tempoDaParcela);
 
-        }
-        else
-        {
-
-            Lancamento::criaPrimeiraParcela($dados_lancamento, $id_usuario);
-
-            Lancamento::criaSegundaParcela($dados_lancamento, $id_usuario);
-
-            Visual::mostraMensagem('Lançamento criado com sucesso!', '/lancamento/historico');
-            
+            }
         }
 
+	}
 
-    }
+	
+	//============================================ ANALISA FREQUENCIA PARA DIA/MES ==========================================//
+	public static function analisaFrequencia($dados_lancamento)
+	{
 
+		$sql = new Sql();
+		$frequencia = $dados_lancamento['frequencia'];
 
-	//Cria primeira parcela futura, status_lancamento = 3;
-    public static function criaPrimeiraParcelaFutura($dados_lancamento, $id_usuario)
-    {
+		if ($frequencia == 'Semanalmente' || $frequencia == 'Quinzenalmente')
+		{
 
-        $sql = new Sql();
+			$quantidade = $sql->select("SELECT dias FROM frequencia WHERE descricao = :FREQUENCIA", array(
+				':FREQUENCIA'=>$frequencia
+			));
 
-        $sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_cartao, id_categoria, parcela_total, parcela_atual, frequencia, status_lancamento)
-                         VALUES (:DESCRICAO_LANCAMENTO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :PARCELA_TOTAL, :PARCELA_ATUAL, :FREQUENCIA, :STATUS_LANCAMENTO)", array(
-                            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao_lancamento'],
-                            ":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
-                            ":VALOR"=>$dados_lancamento['valor'],
-                            ":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
-                            ":ID_USUARIO"=>$id_usuario,
-                            ":ID_CONTA"=>$dados_lancamento['id_conta'],
-                            ":ID_CARTAO"=>$dados_lancamento['id_cartao'],
-                            ":ID_CATEGORIA"=>$dados_lancamento['id_categoria'],
-                            ":PARCELA_ATUAL"=>$dados_lancamento['parcela_atual'],
-                            ":PARCELA_TOTAL"=>$dados_lancamento['parcela_total'],
-                            ":FREQUENCIA"=>$dados_lancamento['frequencia'],
-                            ":STATUS_LANCAMENTO"=>3
-                        ));
+			return $quantidade[0]['dias'];
 
-    }
+		} else {
 
+			$quantidade = $sql->select("SELECT mes FROM frequencia WHERE descricao = :FREQUENCIA", array(
+				':FREQUENCIA'=>$frequencia
+			));
 
-	//Cria primeira parcela normal, status_lancamento = 0;
-    public static function criaPrimeiraParcela($dados_lancamento, $id_usuario)
-    {
+			return $quantidade[0]['mes'];
 
-        $sql = new Sql();
+		}
 
-        $sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_cartao, id_categoria, parcela_total, parcela_atual, frequencia, status_lancamento)
-                         VALUES (:DESCRICAO_LANCAMENTO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :PARCELA_TOTAL, :PARCELA_ATUAL, :FREQUENCIA, :STATUS_LANCAMENTO)", array(
-                            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao_lancamento'],
-                            ":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
-                            ":VALOR"=>$dados_lancamento['valor'],
-                            ":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
-                            ":ID_USUARIO"=>$id_usuario,
-                            ":ID_CONTA"=>$dados_lancamento['id_conta'],
-                            ":ID_CARTAO"=>$dados_lancamento['id_cartao'],
-                            ":ID_CATEGORIA"=>$dados_lancamento['id_categoria'],
-                            ":PARCELA_ATUAL"=>1,
-                            ":PARCELA_TOTAL"=>$dados_lancamento['parcela_total'],
-                            ":FREQUENCIA"=>$dados_lancamento['frequencia'],
-                            ":STATUS_LANCAMENTO"=>0
-                        ));
-
-        $array_id = array(
-            "id_conta"=>$dados_lancamento['id_conta'],
-            "id_cartao"=>$dados_lancamento['id_cartao'],
-            "id_categoria"=>$dados_lancamento['id_categoria']
-        );
-
-        Carteira::atualizaSaldoConta($dados_lancamento, $array_id);
-        Meta::analisaMeta($dados_lancamento, $array_id, $id_usuario);
-
-    }
+	}
 
 
-	//Cria segunda parcela futura, status_lancamento = 3;
-    public static function criaSegundaParcela($dados_lancamento, $id_usuario)
-    {
+	//==================================================== CRIA PARCELA =====================================================//
+	//cria parcela x, com data igual a todas e colocação propria.
+	public static function criaParcela($dados_lancamento, $i, $id_usuario)
+	{
 
-        $dados_lancamento['parcela_atual'] = 2;
-        $dados_lancamento['status_lancamento'] = 3;
+		$sql = new Sql();
 
-        $frequencia = Lancamento::analisaFrequencia($dados_lancamento);
+		$results = $sql->select("CALL sp_lancamento_parcelado(:ID_USUARIO, :TIPO_LANCAMENTO, :DESCRICAO, :VALOR, :PARCELA, :PARCELA_ATUAL, :DATA_LANCAMENTO, :FREQUENCIA, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :STATUS)", array(
+			':ID_USUARIO' => $id_usuario,
+			':TIPO_LANCAMENTO' => $dados_lancamento['tipo_lancamento'],
+			':DESCRICAO' => $dados_lancamento['descricao_lancamento'],
+			':VALOR' => $dados_lancamento['valor'],
+			':PARCELA' =>$dados_lancamento['parcela_total'],
+            ':PARCELA_ATUAL'=>$i,
+			':DATA_LANCAMENTO' => $dados_lancamento['data_lancamento'],
+			':FREQUENCIA' => $dados_lancamento['frequencia'],
+			':ID_CONTA' => $dados_lancamento['id_conta'],
+			':ID_CARTAO' => $dados_lancamento['id_cartao'],
+			':ID_CATEGORIA' => $dados_lancamento['id_categoria'],
+            ':STATUS' => 2
+		));
 
-        if($frequencia['frequencia'] == "dias")
-        {
-            Lancamento::criaParcelaFuturaDias($dados_lancamento, $id_usuario, $frequencia);
-        }
-        else
-        {
-            Lancamento::criaParcelaFuturaMeses($dados_lancamento, $id_usuario, $frequencia);
-        }
+		return $results[0]['id_lancamento'];
 
-
-    }
-
-
-	//Analisa frequência em dias ou meses;
-    public static function analisaFrequencia($dados_lancamento)
-    {
-
-        $sql = new Sql();
-
-        if($dados_lancamento['frequencia'] <= 2)
-        {
-
-            $results = $sql->select("SELECT dias FROM frequencia WHERE id_frequencia = :ID_FREQUENCIA", array(
-                ":ID_FREQUENCIA"=>$dados_lancamento['frequencia']
-            ));
-
-            $results[0]['frequencia'] = "dias";
-
-            return $results[0];
-
-        }
-        else
-        {
-
-            $results = $sql->select("SELECT mes FROM frequencia WHERE id_frequencia = :ID_FREQUENCIA", array(
-                ":ID_FREQUENCIA"=>$dados_lancamento['frequencia']
-            ));
-
-            $results[0]['frequencia'] = "meses";
-
-            return $results[0];
-
-        }
+	}
 
 
-    }
+	//=========================================== Altera a parcela com sua data real ========================================//
+
+	//========================================================= DIAS ========================================================//
+	public static function alteraParcelaDia($id_lancamento, $dias)
+	{
+
+		$sql = new Sql();
+
+		$sql->execQuery("UPDATE lancamento SET data_lancamento = date_add(data_lancamento, INTERVAL :DIAS DAY)
+		WHERE id_lancamento = :ID_LANCAMENTO;", array(
+			':ID_LANCAMENTO'=> $id_lancamento,
+			':DIAS'=> $dias
+		));
+
+	}
+
+
+	//========================================================= MESES ========================================================//
+	public static function alteraParcelaMes($id_lancamento, $meses)
+	{
+
+		$sql = new Sql();
+
+		$sql->execQuery("UPDATE lancamento SET data_lancamento = date_add(data_lancamento, INTERVAL :DIAS MONTH)
+		WHERE id_lancamento = :ID_LANCAMENTO;", array(
+			':ID_LANCAMENTO'=> $id_lancamento,
+			':DIAS'=> $meses
+		));
+
+	}
     
-
-	//Cria parcela somando intervalo de dias;
-    public static function criaParcelaFuturaDias($dados_lancamento, $id_usuario, $frequencia)
-    {
-        
-        $sql = new Sql();
-
-        $sql->execQuery("CALL sp_lancamento_parcelado_dias(:ID_USUARIO, :TIPO_LANCAMENTO, :DESCRICAO_LANCAMENTO, :VALOR, :PARCELA_ATUAL, :PARCELA_TOTAL, :DATA_LANCAMENTO, :FREQUENCIA, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :STATUS_LANCAMENTO, :INTERVALO)", array(
-            ":ID_USUARIO"=>$id_usuario,
-            ":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
-            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao_lancamento'],
-            ":VALOR"=>$dados_lancamento['valor'],
-            ":PARCELA_ATUAL"=>$dados_lancamento['parcela_atual'],
-            ":PARCELA_TOTAL"=>$dados_lancamento['parcela_total'],
-            ":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
-            ":FREQUENCIA"=>$dados_lancamento['frequencia'],
-            ":ID_CONTA"=>$dados_lancamento['id_conta'],
-            ":ID_CARTAO"=>$dados_lancamento['id_cartao'],
-            ":ID_CATEGORIA"=>$dados_lancamento['id_categoria'],
-            ":STATUS_LANCAMENTO"=>$dados_lancamento['status_lancamento'],
-            ":INTERVALO"=>$frequencia['dias']
-            ));
-
-    }
-
-
-	//Cria parcela somando intervalo de meses;
-    public static function criaParcelaFuturaMeses($dados_lancamento, $id_usuario, $frequencia)
-    {
-        
-        $sql = new Sql();
-
-        $sql->execQuery("CALL sp_lancamento_parcelado_meses(:ID_USUARIO, :TIPO_LANCAMENTO, :DESCRICAO_LANCAMENTO, :VALOR, :PARCELA_ATUAL, :PARCELA_TOTAL, :DATA_LANCAMENTO, :FREQUENCIA, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :STATUS_LANCAMENTO, :INTERVALO)", array(
-            ":ID_USUARIO"=>$id_usuario,
-            ":TIPO_LANCAMENTO"=>$dados_lancamento['tipo_lancamento'],
-            ":DESCRICAO_LANCAMENTO"=>$dados_lancamento['descricao_lancamento'],
-            ":VALOR"=>$dados_lancamento['valor'],
-            ":PARCELA_ATUAL"=>$dados_lancamento['parcela_atual'],
-            ":PARCELA_TOTAL"=>$dados_lancamento['parcela_total'],
-            ":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
-            ":FREQUENCIA"=>$dados_lancamento['frequencia'],
-            ":ID_CONTA"=>$dados_lancamento['id_conta'],
-            ":ID_CARTAO"=>$dados_lancamento['id_cartao'],
-            ":ID_CATEGORIA"=>$dados_lancamento['id_categoria'],
-            ":STATUS_LANCAMENTO"=>$dados_lancamento['status_lancamento'],
-            ":INTERVALO"=>$frequencia['mes']
-            ));
-
-
-    }
-
 
 	#                                                  ╔═══════════════════════════╗
 	#									 	           ║     VERIFICAÇÃO GERAL     ║
@@ -425,55 +339,6 @@ class Lancamento {
 			Lancamento::atualizaStatusLancamento($lancamentos[$key], $id_usuario);
 		}
 
-	}
-
-
-    #                                                  ╔══════════════════════════════════════════╗
-	#									 	           ║     VERIFICAÇÃO LANÇAMENTO PARCELADO     ║
-	#                                                  ╚══════════════════════════════════════════╝
-
-	//Verificação de lançamentos parcelados futuros;
-	public static function verificaLancamentoParceladoFuturo($id_usuario)
-	{
-
-		$sql = new Sql();
-
-		$lancamentos = $sql->select("SELECT * FROM lancamento WHERE data_lancamento <= current_date() AND status_lancamento = 3 AND id_usuario = :ID_USUARIO", array(
-			":ID_USUARIO"=>$id_usuario
-		));
-
-		foreach($lancamentos as $key => $value)
-		{
-			Lancamento::criaLancamentoParceladoFuturo($lancamentos[$key], $id_usuario);
-
-			Lancamento::atualizaStatusLancamento($lancamentos[$key], $id_usuario);
-		}
-
-	}
-
-
-	//Cria proxima parcela futura;
-	public static function criaLancamentoParceladoFuturo($dados_lancamento, $id_usuario)
-	{
-		if($dados_lancamento['parcela_atual'] != $dados_lancamento['parcela_total'])
-		{
-
-			$dados_lancamento['parcela_atual'] = $dados_lancamento['parcela_atual'] + 1;
-
-			$frequencia = Lancamento::analisaFrequencia($dados_lancamento);
-
-			$dados_lancamento['status_lancamento'] = 3;
-			
-			if($frequencia['frequencia'] == "dias")
-			{
-				Lancamento::criaParcelaFuturaDias($dados_lancamento, $id_usuario, $frequencia);
-			}
-			else
-			{
-				Lancamento::criaParcelaFuturaMeses($dados_lancamento, $id_usuario, $frequencia);
-			}
-
-		}
 	}
 
 
