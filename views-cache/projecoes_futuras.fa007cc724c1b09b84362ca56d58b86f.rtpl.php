@@ -339,7 +339,7 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["janeiro"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["01"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -348,7 +348,7 @@
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["janeiro"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["01"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -357,7 +357,7 @@
                                                             class="bi bi-credit-card-fill text-primary"></i>
                                                         Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["janeiro"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["01"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -402,7 +402,7 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["fevereiro"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["02"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -411,7 +411,7 @@
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["fevereiro"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["02"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -420,7 +420,7 @@
                                                             class="bi bi-credit-card-fill text-primary"></i>
                                                         Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["fevereiro"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["02"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -465,7 +465,7 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["marco"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["03"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -474,7 +474,7 @@
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["marco"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["03"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -483,7 +483,7 @@
                                                             class="bi bi-credit-card-fill text-primary"></i>
                                                         Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["marco"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["03"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -527,7 +527,7 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["abril"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["04"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -536,7 +536,7 @@
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["abril"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["04"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -545,7 +545,7 @@
                                                             class="bi bi-credit-card-fill text-primary"></i>
                                                         Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["abril"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["04"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -590,7 +590,7 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["maio"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["05"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -599,7 +599,7 @@
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["maio"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["05"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -608,7 +608,7 @@
                                                             class="bi bi-credit-card-fill text-primary"></i>
                                                         Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["maio"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["05"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -652,7 +652,7 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["junho"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["06"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -661,7 +661,7 @@
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["junho"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["06"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -670,7 +670,7 @@
                                                             class="bi bi-credit-card-fill text-primary"></i>
                                                         Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["junho"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["06"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -714,7 +714,7 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["julho"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["07"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -723,7 +723,7 @@
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["julho"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["07"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -732,7 +732,7 @@
                                                             class="bi bi-credit-card-fill text-primary"></i>
                                                         Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["julho"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["07"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -776,7 +776,7 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["agosto"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["08"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -785,7 +785,7 @@
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["agosto"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["08"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -794,7 +794,7 @@
                                                             class="bi bi-credit-card-fill text-primary"></i>
                                                         Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["agosto"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["08"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -838,7 +838,7 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["setembro"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["09"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -847,7 +847,7 @@
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["setembro"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["09"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -856,7 +856,7 @@
                                                             class="bi bi-credit-card-fill text-primary"></i>
                                                         Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["setembro"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["09"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -900,7 +900,7 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["outubro"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["10"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -909,7 +909,7 @@
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["outubro"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["10"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -918,7 +918,7 @@
                                                             class="bi bi-credit-card-fill text-primary"></i>
                                                         Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["outubro"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["10"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -962,7 +962,7 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["novembro"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["11"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -971,7 +971,7 @@
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["novembro"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["11"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -980,7 +980,7 @@
                                                             class="bi bi-credit-card-fill text-primary"></i>
                                                         Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["novembro"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["11"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -1024,7 +1024,7 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["dezembro"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["12"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -1033,7 +1033,7 @@
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["dezembro"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["12"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -1042,7 +1042,7 @@
                                                             class="bi bi-credit-card-fill text-primary"></i>
                                                         Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["dezembro"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["12"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">

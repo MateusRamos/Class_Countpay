@@ -25,7 +25,8 @@ $app->get('/projecao', function() {
 
     $id_usuario = User::verifyLogin();
 
-    $dados = Projecoes::coletaDadosMes($id_usuario);
+    $dados_aux = Projecoes::coletaDadosMes($id_usuario);
+    $dados = Projecoes::coletaDadosFixo($dados_aux, $id_usuario);
 
     $page->setTpl("projecoes_futuras", array(
         "dados"=>$dados
