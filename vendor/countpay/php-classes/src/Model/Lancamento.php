@@ -2,9 +2,9 @@
 namespace Countpay\Model;
 
 use \Countpay\DB\Sql;
+use Countpay\Model;
 
-
-class Lancamento {	
+class Lancamento extends Model {	
 
 	#                                                  ╔══════════════════════════╗
 	#									 	           ║     LANÇAMENTO ÚNICO     ║
@@ -403,7 +403,38 @@ class Lancamento {
 
 
 
+	#                                                  ╔═════════════════════════════╗
+	#									 	           ║  FUNÇÕES DE TRANSFERÊNCIA   ║
+	#                                                  ╚═════════════════════════════╝
 
+	//==================================================== TRANSFERÊNCIA =====================================================//
+	public static function lancamentoTransferencia($dados_lancamento, $id_usuario)
+	{
+
+		$sql = new Sql();
+
+		$sql->select("CALL sp_lancamento_transferencia(:DESCRICAO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :ID_CATEGORIA)", array(
+			':DESCRICAO' => 'Transferência para'. $dados_lancamento['id_conta_despesa'],
+			':TIPO_LANCAMENTO' => 'Transferência',
+			':VALOR' => $dados_lancamento['valor'],
+			':DATA_LANCAMENTO' => $dados_lancamento['data_lancamento'],
+			':ID_USUARIO' =>$id_usuario,
+            ':ID_CONTA'=> $dados_lancamento['id_conta_despesa'],
+			':ID_CATEGORIA'=> 'Transferência',
+		));
+
+		$sql->select("CALL sp_lancamento_transferencia(:DESCRICAO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :ID_CATEGORIA)", array(
+			':DESCRICAO' => 'Transferência recebida de'. $dados_lancamento['id_conta_receita'],
+			':TIPO_LANCAMENTO' => 'Transferência',
+			':VALOR' => $dados_lancamento['valor'],
+			':DATA_LANCAMENTO' => $dados_lancamento['data_lancamento'],
+			':ID_USUARIO' =>$id_usuario,
+            ':ID_CONTA'=> $dados_lancamento['id_conta_receita'],
+			':ID_CATEGORIA'=> 'Transferência',
+		));
+
+
+	}
 
 
 

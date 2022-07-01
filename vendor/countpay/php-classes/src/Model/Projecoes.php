@@ -30,11 +30,11 @@ class Projecoes {
 
 		foreach($meses as $key => $value)
 		{
-			if($key == "janeiro" || $key == "marco" || $key == "maio" || $key == "julho" || $key == "agosto" || $key == "outubro" || $key == "dezembro")
+			if($key == "01" || $key == "03" || $key == "05" || $key == "07" || $key == "08" || $key == "10" || $key == "12")
 			{
 				$meses[$key] = Projecoes::coletaDados($id_usuario, $value, "31");  
 			}
-			else if($key == "abril" || $key == "junho" || $key == "setembro" || $key == "novembro")
+			else if($key == "04" || $key == "06" || $key == "09" || $key == "11")
 			{
 				$meses[$key] = Projecoes::coletaDados($id_usuario, $value, "30");
 			}

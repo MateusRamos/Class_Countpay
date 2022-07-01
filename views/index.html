@@ -113,16 +113,12 @@
                                             new ApexCharts(document.querySelector("#columnChart"), {
                                                 series: [{
                                                     name: 'Receitas',
-                                                    data: [{$receita[0].receita}, 55, 57, 56, 61, 58, 63, 60, 66,
-                                                        50,
-                                                        80, 50
-                                                    ]
+                                                    data: [{$grafico[01].receita}, {$grafico[02].receita}, {$grafico[03].receita}, {$grafico[04].receita}, {$grafico[05].receita}, {$grafico[06].receita}, {$grafico[07].receita}, {$grafico[08].receita}, {$grafico[09].receita},
+                                                    {$grafico[10].receita}, {$grafico[11].receita}, {$grafico[12].receita}]
                                                 }, {
                                                     name: 'Despesas',
-                                                    data: [{$despesa[0].despesa}, 85, 101, 98, 87, 105, 91, 114,
-                                                        94,
-                                                        80, 100, 98
-                                                    ]
+                                                    data: [{$grafico[01].despesa}, {$grafico[02].despesa}, {$grafico[03].despesa}, {$grafico[04].despesa}, {$grafico[05].despesa}, {$grafico[06].despesa}, {$grafico[07].despesa}, {$grafico[08].despesa}, {$grafico[09].despesa},
+                                                    {$grafico[10].despesa}, {$grafico[11].despesa}, {$grafico[12].despesa}]
                                                 }, ],
                                                 chart: {
                                                     type: 'bar',

@@ -228,5 +228,7 @@ class Visual {
 
 	}
 
+
+
 }
 ?>

@@ -263,4 +263,26 @@ $app->post('/lancamento/receita/parcelado', function() {
 
 });
 
+
+/*===========================================================|===========================================================\\
+||											    																		 ||
+||										    	    Rotas TRANSFERÊNCIA                                                  ||
+||												    																	 ||
+//===========================================================|===========================================================*/
+
+//------------------------------------------------  GET - TRANSFERÊNCIA  ------------------------------------------------//
+$app->get('/lancamento/transferencia', function() {
+
+    $page = new Page();
+
+    $id_usuario = User::verifyLogin();
+
+    $conta = Carteira::listaApelidoConta($id_usuario);
+
+    $page->setTpl("lancamento_transferencia", array(
+        "conta"=>$conta,
+    ));
+
+});
+
 ?>

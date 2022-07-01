@@ -3,6 +3,7 @@ use \Countpay\Page;
 use \Countpay\Model\User;
 use \Countpay\Model\Visual;
 use \Countpay\Model\Lancamento;
+use \Countpay\Model\Projecoes;
 
 /*===========================================================|===========================================================\\
 ||											    																		 ||
@@ -126,11 +127,15 @@ $app->get('/', function() {
     $receitaUsuario = Visual::calculaReceitaUsuario($id_usuario);
     $despesaUsuario = Visual::calculaDespesaUsuario($id_usuario);
 
+    $dados_aux = Projecoes::coletaDadosMes($id_usuario);
+    $dados = Projecoes::coletaDadosFixo($dados_aux, $id_usuario);
+
 
     $page->setTpl("index", array(
         "dados"=>$ultimos_lancamentos,
         "receita"=>$receitaUsuario,
-        "despesa"=>$despesaUsuario
+        "despesa"=>$despesaUsuario,
+        "grafico"=>$dados
     ));
 
 });

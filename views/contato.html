@@ -40,7 +40,7 @@
             </div>
             <div class="col-xl-6">
                 <div class="card p-4">
-                    <form action="/contato" method="post" class="php-email-form">
+                    <form action="../vendor/countpay/php-classes/src/Phpmailer.php" method="post" class="php-email-form">
                         <div class="row gy-4">
                             <div class="col-md-6"> 
                                 <input type="text" name="nome" class="form-control" placeholder="Seu nome" required="">
@@ -58,6 +58,7 @@
                                 <div class="loading">Carregando</div>
                                 <div class="error-message">Erro ao enviar mensagem!</div>
                                 <div class="sent-message">Sua mensagem foi enviada com sucesso! Agradeçemos o contato.</div> 
+                                <input type="hidden" name="operacao" value="enviar_curriculo">
                                 <button type="submit">Enviar Mensagem</button>
                             </div>
                         </div>
