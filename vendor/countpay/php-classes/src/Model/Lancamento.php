@@ -169,7 +169,19 @@ class Lancamento extends Model {
 		$frequencia = $dados_lancamento['frequencia'];
 		$parcela = $dados_lancamento['parcela_total'];
 
-        for ($i=1; $i < $parcela+1; $i++) {
+		$vencimento = Visual::verificaVencimento($dados_lancamento['data_lancamento']);
+
+		if($vencimento == "amanha")
+		{
+			$i = 1;
+		}
+		else
+		{
+			Lancamento::lancaPrimeiraParcelaPassada($dados_lancamento, $id_usuario);
+			$i = 2;
+		}
+
+        for ($i; $i < $parcela+1; $i++) {
 
             $id_lancamento = Lancamento::criaParcela($dados_lancamento, $i, $id_usuario);
 
@@ -184,6 +196,31 @@ class Lancamento extends Model {
 
             }
         }
+
+	}
+
+	public static function lancaPrimeiraParcelaPassada($dados_lancamento, $id_usuario)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("CALL sp_lancamento_parcelado(:ID_USUARIO, :TIPO_LANCAMENTO, :DESCRICAO, :VALOR, :PARCELA, :PARCELA_ATUAL, :DATA_LANCAMENTO, :FREQUENCIA, :ID_CONTA, :ID_CARTAO, :ID_CATEGORIA, :STATUS)", array(
+			':ID_USUARIO' => $id_usuario,
+			':TIPO_LANCAMENTO' => $dados_lancamento['tipo_lancamento'],
+			':DESCRICAO' => $dados_lancamento['descricao_lancamento'],
+			':VALOR' => $dados_lancamento['valor'],
+			':PARCELA' =>$dados_lancamento['parcela_total'],
+            ':PARCELA_ATUAL'=>1,
+			':DATA_LANCAMENTO' => $dados_lancamento['data_lancamento'],
+			':FREQUENCIA' => $dados_lancamento['frequencia'],
+			':ID_CONTA' => $dados_lancamento['id_conta'],
+			':ID_CARTAO' => $dados_lancamento['id_cartao'],
+			':ID_CATEGORIA' => $dados_lancamento['id_categoria'],
+            ':STATUS' => 0
+		));
+
+		Carteira::atualizaSaldoConta($dados_lancamento);
+		Meta::analisaMeta($dados_lancamento);
 
 	}
 
@@ -245,7 +282,6 @@ class Lancamento extends Model {
 
 
 	//=========================================== Altera a parcela com sua data real ========================================//
-
 	//========================================================= DIAS ========================================================//
 	public static function alteraParcelaDia($id_lancamento, $dias)
 	{
@@ -275,6 +311,72 @@ class Lancamento extends Model {
 
 	}
     
+
+	#                                                  ╔══════════════════════════╗
+	#									 	           ║     LANÇAMENTO ÚNICO     ║
+	#                                                  ╚══════════════════════════╝
+
+	public static function iniciaLancamentoTransferencia($dados_lancamento, $id_usuario)
+	{
+
+		$sql = new Sql();
+
+		$conta_receita = $sql->select("SELECT apelido FROM conta WHERE id_conta = :ID_CONTA", array(":ID_CONTA"=>$dados_lancamento['id_conta_receita']));
+		$conta_despesa = $sql->select("SELECT apelido FROM conta WHERE id_conta = :ID_CONTA", array(":ID_CONTA"=>$dados_lancamento['id_conta_despesa']));
+
+		$vencimento = Visual::verificaVencimento($dados_lancamento['data_lancamento']);
+
+		if($vencimento == "amanha")
+		{
+			$status_lancamento = 2;
+		}
+		else
+		{
+			$status_lancamento = 0;
+		}
+
+		$sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, status_lancamento)
+						 VALUES (:DESCRICAO_LANCAMENTO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :STATUS_LANCAMENTO)", array(
+							":DESCRICAO_LANCAMENTO"=>"Transferencia para ".$conta_receita[0]["apelido"],
+							":TIPO_LANCAMENTO"=>"Despesa",
+							":VALOR"=>$dados_lancamento['valor'],
+							":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
+							":ID_USUARIO"=>$id_usuario,
+							":ID_CONTA"=>$dados_lancamento['id_conta_despesa'],
+							":STATUS_LANCAMENTO"=>$status_lancamento
+						 ));
+
+
+		$sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, status_lancamento)
+						 VALUES (:DESCRICAO_LANCAMENTO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :STATUS_LANCAMENTO)", array(
+							":DESCRICAO_LANCAMENTO"=>"Transferencia de ".$conta_despesa[0]["apelido"],
+							":TIPO_LANCAMENTO"=>"Receita",
+							":VALOR"=>$dados_lancamento['valor'],
+							":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
+							":ID_USUARIO"=>$id_usuario,
+							":ID_CONTA"=>$dados_lancamento['id_conta_receita'],
+							":STATUS_LANCAMENTO"=>$status_lancamento
+						));
+
+
+		//Atualizando saldos:
+		if($status_lancamento == 0)
+		{
+			//Despesa:
+			$sql->execQuery("UPDATE conta SET saldo = ( (SELECT saldo FROM conta WHERE id_conta = :ID_CONTA) - :ENTRADA ) WHERE id_conta = :ID_CONTA", array(
+				":ID_CONTA" => $dados_lancamento['id_conta_despesa'],
+				":ENTRADA" => $dados_lancamento['valor']
+			));
+
+			//Receita:
+			$sql->execQuery("UPDATE conta SET saldo = ( (SELECT saldo FROM conta WHERE id_conta = :ID_CONTA) + :ENTRADA ) WHERE id_conta = :ID_CONTA", array(
+				":ID_CONTA" => $dados_lancamento['id_conta_receita'],
+				":ENTRADA" => $dados_lancamento['valor']
+			));
+		}
+		
+
+	}
 
 	#                                                  ╔═══════════════════════════╗
 	#									 	           ║     VERIFICAÇÃO GERAL     ║

@@ -285,4 +285,15 @@ $app->get('/lancamento/transferencia', function() {
 
 });
 
+
+$app->post('/lancamento/transferencia', function() {
+
+    $id_usuario = User::verifyLogin();
+
+    Lancamento::iniciaLancamentoTransferencia($_POST, $id_usuario);
+
+    Visual::mostraMensagem('Transferência realizada com sucesso!', '/lancamento/historico');
+
+});
+
 ?>

@@ -1,4 +1,4 @@
-<!-- Inicio do Conteúdo da Pagina -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Inicio do Conteúdo da Pagina -->
 <main id="main" class="main">
 
     <!-- Inicio Título da Pagina -->
@@ -30,18 +30,18 @@
                                 <div class="col-md-10">
                                     <label for="id_conta_despesa" class="form-label">Conta que transferiu</label>
                                     <select class="form-select" name="id_conta_despesa" id="id_conta_despesa" required>
-                                        {loop="$conta"}
-                                        <option value="{$value.id_conta}">{$value.apelido}</option>
-                                        {/loop}
+                                        <?php $counter1=-1;  if( isset($conta) && ( is_array($conta) || $conta instanceof Traversable ) && sizeof($conta) ) foreach( $conta as $key1 => $value1 ){ $counter1++; ?>
+                                        <option value="<?php echo htmlspecialchars( $value1["id_conta"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
 
                                 <div class="col-md-10">
                                     <label for="id_conta_receita" class="form-label">Conta que recebeu</label>
                                     <select class="form-select" name="id_conta_receita" id="id_conta_receita" required>
-                                        {loop="$conta"}
-                                        <option value="{$value.id_conta}">{$value.apelido}</option>
-                                        {/loop}
+                                        <?php $counter1=-1;  if( isset($conta) && ( is_array($conta) || $conta instanceof Traversable ) && sizeof($conta) ) foreach( $conta as $key1 => $value1 ){ $counter1++; ?>
+                                        <option value="<?php echo htmlspecialchars( $value1["id_conta"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["apelido"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
 

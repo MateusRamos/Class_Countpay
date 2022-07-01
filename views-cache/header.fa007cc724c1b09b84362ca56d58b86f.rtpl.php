@@ -84,49 +84,6 @@
 
         <li class="nav-item dropdown">
 
-          <!-- Inicio Icone de Notificações -->
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a>
-          <!-- Fim Icone de Notificações -->
-
-          <!-- Inicio das Notificações com Dropdown -->
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              <div> Você possui   novas notificações</div>
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Ver todas</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4></h4>
-                <p>Faltam 3 dias para a renovação da sua...</p>
-                <p>30 min. atrás</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Mostrar todas notificações</a>
-            </li>
-
-          </ul>
-          <!-- Fim das Notificações com Dropdown -->
-
-        </li>
-        <!-- Fim das Notificações -->
-
 
         <!-- Inicio Perfil -->
         <li class="nav-item dropdown pe-3">
@@ -296,25 +253,6 @@
       </li>
       <!-- Fim Metas -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bx bxs-file-doc"></i><span>Relatórios</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="geral_relatorio.html">
-              <i class="bx bxs-chevron-right"></i><span>Relatório Geral</span>
-            </a>
-          </li>
-          <li>
-            <a href="calendario_relatorio.html">
-              <i class="bx bxs-chevron-right"></i><span>Calendário</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Tables Nav -->
-
-
       <li>
         <hr class="dropdown-divider text-secondary">
       </li>
@@ -329,15 +267,6 @@
         </a>
       </li>
       <!-- Fim Perfil -->
-
-      <!-- Inicio Suporte -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
-          <i class="bx bxs-help-circle"></i>
-          <span>Suporte Online</span>
-        </a>
-      </li>
-      <!-- Fim Suporte -->
 
       <!-- Inicio Contato -->
       <li class="nav-item">

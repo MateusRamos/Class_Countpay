@@ -80,7 +80,7 @@
                               </select>
                           </div>
 
-                            <div class="col-md-5 mb-3">
+                            <div class="col-md-10 mb-3">
                                 <label for="categoria_despesa" class="form-label">Categoria</label>
                                 <select class="form-select" name="id_categoria" id="categoria_despesa" required>
                                   <?php $counter1=-1;  if( isset($categoria) && ( is_array($categoria) || $categoria instanceof Traversable ) && sizeof($categoria) ) foreach( $categoria as $key1 => $value1 ){ $counter1++; ?>

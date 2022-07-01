@@ -18,7 +18,7 @@ class Carteira {
 
 		if($tipo_lancamento == "Receita" && isset($dados_lancamento['id_conta']))
 		{
-
+			
 			$sql->execQuery("UPDATE conta SET saldo = ( (SELECT saldo FROM conta WHERE id_conta = :ID_CONTA) + :ENTRADA ) WHERE id_conta = :ID_CONTA", array(
 				":ID_CONTA" => $dados_lancamento['id_conta'],
 				":ENTRADA" => $dados_lancamento['valor']
