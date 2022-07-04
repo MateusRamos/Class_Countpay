@@ -19,7 +19,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="../res/site/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+              <img src="../res/site/assets/img/perfil.png" alt="Profile" class="rounded-circle">
               <h2><?php echo htmlspecialchars( $dados["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $dados["sobrenome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
               <h3><?php echo htmlspecialchars( $dados["ocupacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
               </h3>

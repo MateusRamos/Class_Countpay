@@ -335,26 +335,28 @@ class Lancamento extends Model {
 			$status_lancamento = 0;
 		}
 
-		$sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, status_lancamento)
-						 VALUES (:DESCRICAO_LANCAMENTO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :STATUS_LANCAMENTO)", array(
+		$sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_categoria, status_lancamento)
+						 VALUES (:DESCRICAO_LANCAMENTO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :ID_CATEGORIA, :STATUS_LANCAMENTO)", array(
 							":DESCRICAO_LANCAMENTO"=>"Transferencia para ".$conta_receita[0]["apelido"],
 							":TIPO_LANCAMENTO"=>"Despesa",
 							":VALOR"=>$dados_lancamento['valor'],
 							":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
 							":ID_USUARIO"=>$id_usuario,
 							":ID_CONTA"=>$dados_lancamento['id_conta_despesa'],
+							":ID_CATEGORIA"=>31,
 							":STATUS_LANCAMENTO"=>$status_lancamento
 						 ));
 
 
-		$sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, status_lancamento)
-						 VALUES (:DESCRICAO_LANCAMENTO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :STATUS_LANCAMENTO)", array(
+		$sql->execQuery("INSERT INTO lancamento (descricao_lancamento, tipo_lancamento, valor, data_lancamento, id_usuario, id_conta, id_categoria, status_lancamento)
+						 VALUES (:DESCRICAO_LANCAMENTO, :TIPO_LANCAMENTO, :VALOR, :DATA_LANCAMENTO, :ID_USUARIO, :ID_CONTA, :ID_CATEGORIA, :STATUS_LANCAMENTO)", array(
 							":DESCRICAO_LANCAMENTO"=>"Transferencia de ".$conta_despesa[0]["apelido"],
 							":TIPO_LANCAMENTO"=>"Receita",
 							":VALOR"=>$dados_lancamento['valor'],
 							":DATA_LANCAMENTO"=>$dados_lancamento['data_lancamento'],
 							":ID_USUARIO"=>$id_usuario,
 							":ID_CONTA"=>$dados_lancamento['id_conta_receita'],
+							":ID_CATEGORIA"=>31,
 							":STATUS_LANCAMENTO"=>$status_lancamento
 						));
 

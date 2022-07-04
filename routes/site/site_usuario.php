@@ -126,6 +126,7 @@ $app->get('/', function() {
     $ultimos_lancamentos = Visual::listaUltimosLancamentos($id_usuario);
     $receitaUsuario = Visual::calculaReceitaUsuario($id_usuario);
     $despesaUsuario = Visual::calculaDespesaUsuario($id_usuario);
+    $transferencia = Visual::calculaTransferenciaUsuario($id_usuario);
 
     $dados_aux = Projecoes::coletaDadosMes($id_usuario);
     $dados = Projecoes::coletaDadosFixo($dados_aux, $id_usuario);
@@ -135,7 +136,8 @@ $app->get('/', function() {
         "dados"=>$ultimos_lancamentos,
         "receita"=>$receitaUsuario,
         "despesa"=>$despesaUsuario,
-        "grafico"=>$dados
+        "grafico"=>$dados,
+        "transferencia"=>$transferencia
     ));
 
 });

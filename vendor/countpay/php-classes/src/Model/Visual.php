@@ -126,6 +126,19 @@ class Visual {
 	}
 
 
+	//Retorna o total de valor (receita) do usuário;
+	public static function calculaTransferenciaUsuario($id_usuario)
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT SUM(valor) 'transferencia' FROM lancamento WHERE id_usuario = :ID_USUARIO AND id_categoria = 31 ", array(
+			":ID_USUARIO"=>$id_usuario
+		));
+
+	}
+
+
 	//Retorna o total de usuários do sistema (normais e adm);
 	public static function calculaTotalUsuarios()
 	{

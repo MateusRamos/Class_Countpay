@@ -42,7 +42,15 @@
                                                             </div>
 
                                                             <div class="rating pt-5 text-black">
-                                                                <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
+
+                                                                <p>
+                                                                    <b>Receita:</b> R$<?php echo htmlspecialchars( $dados["01"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br> 
+                                                                    <b>Despesa:</b> R$<?php echo htmlspecialchars( $dados["01"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br>
+                                                                    <b>Saldo:</b> R$<?php echo htmlspecialchars( $dados["01"]["receita"] - $dados["01"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?><b></b>
+                                                                </p>
+
                                                             </div>
 
                                                             <div class="button d-flex justify-content-center">
@@ -66,7 +74,15 @@
                                                             </div>
 
                                                             <div class="rating pt-5 text-black">
-                                                                <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
+
+                                                                <p>
+                                                                    <b>Receita:</b> R$<?php echo htmlspecialchars( $dados["02"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br> 
+                                                                    <b>Despesa:</b> R$<?php echo htmlspecialchars( $dados["02"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br>
+                                                                    <b>Saldo:</b> R$<?php echo htmlspecialchars( $dados["02"]["receita"] - $dados["02"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?><b></b>
+                                                                </p>
+
                                                             </div>
 
                                                             <div class="button d-flex justify-content-center">
@@ -90,7 +106,15 @@
                                                             </div>
 
                                                             <div class="rating pt-5 text-black">
-                                                                <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
+
+                                                                <p>
+                                                                    <b>Receita:</b> R$<?php echo htmlspecialchars( $dados["03"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br> 
+                                                                    <b>Despesa:</b> R$<?php echo htmlspecialchars( $dados["03"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br>
+                                                                    <b>Saldo:</b> R$<?php echo htmlspecialchars( $dados["03"]["receita"] - $dados["03"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?><b></b>
+                                                                </p>
+
                                                             </div>
 
                                                             <div class="button d-flex justify-content-center">
@@ -113,7 +137,15 @@
                                                             </div>
 
                                                             <div class="rating pt-5 text-black">
-                                                                <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
+
+                                                                <p>
+                                                                    <b>Receita:</b> R$<?php echo htmlspecialchars( $dados["04"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br> 
+                                                                    <b>Despesa:</b> R$<?php echo htmlspecialchars( $dados["04"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br>
+                                                                    <b>Saldo:</b> R$<?php echo htmlspecialchars( $dados["04"]["receita"] - $dados["04"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?><b></b>
+                                                                </p>
+
                                                             </div>
 
                                                             <div class="button d-flex justify-content-center">
@@ -136,7 +168,15 @@
                                                             </div>
 
                                                             <div class="rating pt-5 text-black">
-                                                                <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
+
+                                                                <p>
+                                                                    <b>Receita:</b> R$<?php echo htmlspecialchars( $dados["05"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br> 
+                                                                    <b>Despesa:</b> R$<?php echo htmlspecialchars( $dados["05"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br>
+                                                                    <b>Saldo:</b> R$<?php echo htmlspecialchars( $dados["05"]["receita"] - $dados["05"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?><b></b>
+                                                                </p>
+
                                                             </div>
 
                                                             <div class="button d-flex justify-content-center">
@@ -159,7 +199,15 @@
                                                             </div>
 
                                                             <div class="rating pt-5 text-black">
-                                                                <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
+
+                                                                <p>
+                                                                    <b>Receita:</b> R$<?php echo htmlspecialchars( $dados["06"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br> 
+                                                                    <b>Despesa:</b> R$<?php echo htmlspecialchars( $dados["06"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br>
+                                                                    <b>Saldo:</b> R$<?php echo htmlspecialchars( $dados["06"]["receita"] - $dados["06"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?><b></b>
+                                                                </p>
+
                                                             </div>
 
                                                             <div class="button d-flex justify-content-center">
@@ -182,7 +230,15 @@
                                                             </div>
 
                                                             <div class="rating pt-5 text-black">
-                                                                <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
+
+                                                                <p>
+                                                                    <b>Receita:</b> R$<?php echo htmlspecialchars( $dados["07"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br> 
+                                                                    <b>Despesa:</b> R$<?php echo htmlspecialchars( $dados["07"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br>
+                                                                    <b>Saldo:</b> R$<?php echo htmlspecialchars( $dados["07"]["receita"] - $dados["07"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?><b></b>
+                                                                </p>
+
                                                             </div>
 
                                                             <div class="button d-flex justify-content-center">
@@ -205,7 +261,15 @@
                                                             </div>
 
                                                             <div class="rating pt-5 text-black">
-                                                                <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
+
+                                                                <p>
+                                                                    <b>Receita:</b> R$<?php echo htmlspecialchars( $dados["08"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br> 
+                                                                    <b>Despesa:</b> R$<?php echo htmlspecialchars( $dados["08"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br>
+                                                                    <b>Saldo:</b> R$<?php echo htmlspecialchars( $dados["08"]["receita"] - $dados["08"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?><b></b>
+                                                                </p>
+
                                                             </div>
 
                                                             <div class="button d-flex justify-content-center">
@@ -228,7 +292,15 @@
                                                             </div>
 
                                                             <div class="rating pt-5 text-black">
-                                                                <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
+
+                                                                <p>
+                                                                    <b>Receita:</b> R$<?php echo htmlspecialchars( $dados["09"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br> 
+                                                                    <b>Despesa:</b> R$<?php echo htmlspecialchars( $dados["09"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br>
+                                                                    <b>Saldo:</b> R$<?php echo htmlspecialchars( $dados["09"]["receita"] - $dados["09"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?><b></b>
+                                                                </p>
+
                                                             </div>
 
                                                             <div class="button d-flex justify-content-center">
@@ -251,7 +323,15 @@
                                                             </div>
 
                                                             <div class="rating pt-5 text-black">
-                                                                <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
+
+                                                                <p>
+                                                                    <b>Receita:</b> R$<?php echo htmlspecialchars( $dados["10"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br> 
+                                                                    <b>Despesa:</b> R$<?php echo htmlspecialchars( $dados["10"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br>
+                                                                    <b>Saldo:</b> R$<?php echo htmlspecialchars( $dados["10"]["receita"] - $dados["10"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?><b></b>
+                                                                </p>
+
                                                             </div>
 
                                                             <div class="button d-flex justify-content-center">
@@ -274,7 +354,15 @@
                                                             </div>
 
                                                             <div class="rating pt-5 text-black">
-                                                                <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
+
+                                                                <p>
+                                                                    <b>Receita:</b> R$<?php echo htmlspecialchars( $dados["11"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br> 
+                                                                    <b>Despesa:</b> R$<?php echo htmlspecialchars( $dados["11"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br>
+                                                                    <b>Saldo:</b> R$<?php echo htmlspecialchars( $dados["11"]["receita"] - $dados["11"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?><b></b>
+                                                                </p>
+
                                                             </div>
 
                                                             <div class="button d-flex justify-content-center">
@@ -297,7 +385,15 @@
                                                             </div>
 
                                                             <div class="rating pt-5 text-black">
-                                                                <p><b>Receita:</b> R$500<b> </br> Despesa:</b> R$600</p>
+
+                                                                <p>
+                                                                    <b>Receita:</b> R$<?php echo htmlspecialchars( $dados["12"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br> 
+                                                                    <b>Despesa:</b> R$<?php echo htmlspecialchars( $dados["12"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                                                    </br>
+                                                                    <b>Saldo:</b> R$<?php echo htmlspecialchars( $dados["12"]["receita"] - $dados["12"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?><b></b>
+                                                                </p>
+
                                                             </div>
 
                                                             <div class="button d-flex justify-content-center">
@@ -339,9 +435,7 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["01"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -350,20 +444,16 @@
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["01"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bi bi-credit-card-fill text-primary"></i>
-                                                        Cartão:</label>
+                                                        Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["01"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -372,9 +462,7 @@
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Inicial:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="01/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="01/01/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
@@ -383,9 +471,7 @@
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Final:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="31/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="31/01/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                             </form>
@@ -412,50 +498,43 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["02"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["02"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bi bi-credit-card-fill text-primary"></i>
-                                                        Cartão:</label>
+                                                        Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["02"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Inicial:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="01/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="01/02/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Final:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="31/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="28/02/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                             </form>
@@ -482,54 +561,46 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["03"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["03"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bi bi-credit-card-fill text-primary"></i>
-                                                        Cartão:</label>
+                                                        Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["03"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Inicial:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="01/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="01/03/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Final:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="31/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="31/03/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                             </form>
-
                                         </div>
 
                                     </div>
@@ -552,50 +623,43 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["04"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["04"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bi bi-credit-card-fill text-primary"></i>
-                                                        Cartão:</label>
+                                                        Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["04"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Inicial:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="01/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="01/04/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Final:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="31/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="30/04/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                             </form>
@@ -622,30 +686,25 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["05"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["05"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bi bi-credit-card-fill text-primary"></i>
-                                                        Cartão:</label>
+                                                        Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["05"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -653,19 +712,16 @@
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Inicial:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="01/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="01/05/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Final:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="31/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="31/05/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                             </form>
@@ -692,30 +748,25 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["06"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["06"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bi bi-credit-card-fill text-primary"></i>
-                                                        Cartão:</label>
+                                                        Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["06"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -723,19 +774,16 @@
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Inicial:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="01/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="01/06/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Final:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="31/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="30/06/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                             </form>
@@ -762,30 +810,25 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["07"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["07"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bi bi-credit-card-fill text-primary"></i>
-                                                        Cartão:</label>
+                                                        Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["07"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -793,19 +836,16 @@
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Inicial:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="01/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="01/07/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Final:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="31/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="31/07/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                             </form>
@@ -832,30 +872,25 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["08"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["08"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bi bi-credit-card-fill text-primary"></i>
-                                                        Cartão:</label>
+                                                        Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["08"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -863,19 +898,16 @@
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Inicial:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="01/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="01/08/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Final:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="31/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="30/08/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                             </form>
@@ -902,30 +934,25 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["09"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["09"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bi bi-credit-card-fill text-primary"></i>
-                                                        Cartão:</label>
+                                                        Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["09"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -933,19 +960,16 @@
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Inicial:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="01/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="01/09/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Final:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="31/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="31/09/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                             </form>
@@ -972,30 +996,25 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["10"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["10"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bi bi-credit-card-fill text-primary"></i>
-                                                        Cartão:</label>
+                                                        Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["10"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -1003,19 +1022,16 @@
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Inicial:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="01/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="01/10/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Final:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="31/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="30/10/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                             </form>
@@ -1042,30 +1058,25 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["11"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["11"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bi bi-credit-card-fill text-primary"></i>
-                                                        Cartão:</label>
+                                                        Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["11"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -1073,19 +1084,16 @@
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Inicial:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="01/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="01/11/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Final:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="31/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="31/11/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                             </form>
@@ -1112,30 +1120,25 @@
                                                             class="bx bxs-dollar-circle text-success"></i>
                                                         Receita:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["12"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bx bxs-dollar-circle text-danger"></i>
                                                         Despesa:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["12"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="bi bi-credit-card-fill text-primary"></i>
-                                                        Cartão:</label>
+                                                        Fatura total:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="R$150,00"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="R$ <?php echo htmlspecialchars( $dados["12"]["fatura"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -1143,23 +1146,19 @@
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Inicial:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="01/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="01/12/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="staticEmail" class="col-md-4 col-form-label"><i
                                                             class="ri-calendar-event-fill text-secondary"></i> Data
                                                         Final:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" readonly class="form-control-plaintext"
-                                                            id="staticEmail" value="31/01/2022"
-                                                            style="font-family: 'Overpass', sans-serif;">
+                                                        <input readonly class="form-control-plaintext" value="30/12/2022" style="font-family: 'Overpass', sans-serif;">
                                                     </div>
                                                 </div>
                                             </form>
-
                                         </div>
 
                                     </div>

@@ -25,7 +25,7 @@
                         <div class="card info-card sales-card">
 
                             <div class="card-body">
-                                <h5 class="card-title">Receita </br> <span>Este mês</span></h5>
+                                <h5 class="card-title">Receita </br> <span>Total do ano</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <a href="lancamentos_receita.html">
@@ -51,7 +51,7 @@
                         <div class="card info-card revenue-card">
 
                             <div class="card-body">
-                                <h5 class="card-title">Despesa </br> <span>Este mês</span></h5>
+                                <h5 class="card-title">Despesa </br> <span>Total do ano</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <a href="lancamento_despesa.html">
@@ -78,7 +78,7 @@
                         <div class="card info-card customers-card">
 
                             <div class="card-body">
-                                <h5 class="card-title">Transferência</br><span>Este mês</span></h5>
+                                <h5 class="card-title">Transferência</br><span>Total do ano</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <a href="#">
@@ -88,7 +88,7 @@
                                         </div>
                                     </a>
                                     <div class="ps-3">
-                                        <h6>R$10.450,00</h6>
+                                        <h6>R$<?php echo htmlspecialchars( $transferencia["0"]["transferencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h6>
                                         <span class="text-muted small pt-2 ps-1">Valor transferido</span>
 
                                     </div>
@@ -113,16 +113,12 @@
                                             new ApexCharts(document.querySelector("#columnChart"), {
                                                 series: [{
                                                     name: 'Receitas',
-                                                    data: [<?php echo htmlspecialchars( $receita["0"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, 55, 57, 56, 61, 58, 63, 60, 66,
-                                                        50,
-                                                        80, 50
-                                                    ]
+                                                    data: [<?php echo htmlspecialchars( $grafico["01"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["02"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["03"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["04"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["05"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["06"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["07"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["08"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["09"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>,
+                                                    <?php echo htmlspecialchars( $grafico["10"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["11"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["12"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>]
                                                 }, {
                                                     name: 'Despesas',
-                                                    data: [<?php echo htmlspecialchars( $despesa["0"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, 85, 101, 98, 87, 105, 91, 114,
-                                                        94,
-                                                        80, 100, 98
-                                                    ]
+                                                    data: [<?php echo htmlspecialchars( $grafico["01"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["02"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["03"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["04"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["05"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["06"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["07"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["08"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["09"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>,
+                                                    <?php echo htmlspecialchars( $grafico["10"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["11"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["12"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>]
                                                 }, ],
                                                 chart: {
                                                     type: 'bar',
