@@ -44,7 +44,7 @@
                                         <td style="width:25vh">
                                             <a href="#" class="btn btn-success" style="line-height: 0.5;background-color: #26A234;"><i class="bx bx-play-circle"></i></a>
                                             <a href="#" class="btn btn-info text-light" style="line-height: 0.5;background-color: #0AA8D0;"><i class="bx bx-pause-circle"></i></a>
-                                            <a href="#" onclick="return ConfirmDelete()" class="btn btn-danger" style="line-height: 0.5; background-color: #E54640;"><i class="bx bxs-trash"></i></a>
+                                            <a href="/meta/<?php echo htmlspecialchars( $value1["id_meta"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return ConfirmDelete()" class="btn btn-danger" style="line-height: 0.5; background-color: #E54640;"><i class="bx bxs-trash"></i></a>
                                         </td>
                                     </tr>
                                     <?php } ?>

@@ -3,7 +3,7 @@
         'name' => 'lucasheideric/countpay',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '2af8449f2998c1480cea0117fb335cbced844b74',
+        'reference' => 'bdaf1d11744f7e0676338ccdfb5e286cc56ffaa5',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'lucasheideric/countpay' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '2af8449f2998c1480cea0117fb335cbced844b74',
+            'reference' => 'bdaf1d11744f7e0676338ccdfb5e286cc56ffaa5',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

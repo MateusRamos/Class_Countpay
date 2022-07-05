@@ -4,7 +4,6 @@ use \Countpay\Model\User;
 use \Countpay\Model\Meta;
 use \Countpay\Model\Visual;
 use \Countpay\Model\Carteira;
-use \Countpay\Model\Lancamento;
 
 
 /*===========================================================|===========================================================\\
@@ -56,7 +55,7 @@ $app->post('/metas/criar', function() {
 
     Meta::criaGuardando($_POST, $id_usuario);
 
-    Visual::mostraMensagem('Meta criada com sucesso!', '/');
+    Visual::mostraMensagem('Meta criada com sucesso!', '/minhasmetas');
 
 });
 
@@ -96,6 +95,27 @@ $app->post('/metas/alterar', function() {
     $id_usuario = User::verifyLogin();
 
     Meta::alteraGuardandoUmaGrana($_POST, $id_usuario);
+
+});
+
+
+
+//-----------------------------------------------  GET - EXCLUIR META  ------------------------------------------------//
+$app->get('/meta/:id_cartao/delete', function($id_meta) {
+
+    $id_usuario = User::verifyLogin();
+
+    $verificacao = Meta::verifyDeleteMeta($id_usuario, $id_meta);
+
+    if($verificacao == 1)
+    {
+        Meta::deletaMeta($id_meta);
+        Visual::mostraMensagem('Meta excluído com sucesso!','/minhasmetas');
+    }
+    else
+    {
+        Visual::mostraMensagem('Essa meta não pertence a este usuário!','/minhasmetas');
+    }
 
 });
 

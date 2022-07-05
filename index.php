@@ -30,6 +30,7 @@ require_once("routes\site\site_meta.php");
 //Require rotas site - Projeções:
 require_once("routes\site\site_projecoes.php");
 
+require_once("routes\site\site_email.php");
 
 $app->run();
 

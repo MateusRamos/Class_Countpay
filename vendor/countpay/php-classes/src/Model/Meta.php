@@ -251,6 +251,43 @@ class Meta {
         ));
 
     }
+
+
+    //Verifica se a meta deletado pertence mesmo ao usuário;
+	public static function verifyDeleteMeta($id_usuario, $id_meta)
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM meta WHERE id_usuario = :ID_USUARIO AND id_meta = :ID_META", array(
+			"ID_USUARIO"=>$id_usuario,
+			":ID_META"=>$id_meta
+		));
+
+		
+		if(count($results) > 0)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+
+	}
+
+
+    //Deleta cartão pelo id_meta;
+	public static function deletaMeta($id_meta)
+	{
+
+		$sql = new Sql();
+
+		$sql->execQuery("DELETE FROM meta WHERE id_meta = :ID_META", array(
+			':ID_META'=>$id_meta
+		));
+	
+	}
     
 
 }
