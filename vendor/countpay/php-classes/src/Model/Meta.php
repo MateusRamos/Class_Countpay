@@ -240,14 +240,13 @@ class Meta {
         }
 
 
-        $sql->execQuery("UPDATE meta SET nome = :NOME, objetivo = :OBJETIVO, valor = :VALOR, valor_atual = :VALOR_ATUAL, data_inicial = :DATA_INICIAL, data_final = :DATA_FINAL, id_conta = :ID_CONTA", array(
+        $sql->execQuery("UPDATE meta SET nome = :NOME, objetivo = :OBJETIVO, valor = :VALOR_ATUAL, data_inicial = :DATA_INICIAL, data_final = :DATA_FINAL WHERE id_meta = :ID_META", array(
             ":NOME"=>$dados_meta['nome'],
             ":OBJETIVO"=>$dados_meta['objetivo'],
-            ":VALOR"=>$dados_meta['valor'],
-            ":VALOR_ATUAL"=>$valor_atual,
+            ":VALOR_ATUAL"=>$dados_meta['valor'],
             ":DATA_INICIAL"=>$dados_meta['data_inicial'],
             ":DATA_FINAL"=>$dados_meta['data_final'],
-            ":ID_CONTA"=>$dados_meta['id_conta']
+            ":ID_META"=>$dados_meta['id_meta']
         ));
 
     }

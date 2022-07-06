@@ -29,6 +29,7 @@
                                     <tr>
                                         <th scope="col">Título</th>
                                         <th scope="col">Objetivo</th>
+                                        <th scope="col">Valor Atual</th>
                                         <th scope="col">Valor</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Ações</th>
@@ -39,6 +40,7 @@
                                     <tr class="clickable" onclick="window.location='/metas/{$value.id_meta}'">
                                         <td>{$value.nome}</td>
                                         <td>{$value.objetivo}</td>
+                                        <td>{$value.valor_atual}</td>
                                         <td>{$value.valor}</td>
                                         <td  class="text-capitalize" >{$value.status}</td>
                                         <td style="width:25vh">

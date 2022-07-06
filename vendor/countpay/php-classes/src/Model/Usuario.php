@@ -51,7 +51,7 @@ use \Countpay\Model;
 		public function delete()
 		{
 			$sql = new sql();
-			$sql->query("CALL sp_users_delete(:iduser)", array(
+			$sql->execQuery("CALL sp_users_delete(:iduser)", array(
 				":iduser"=>$this->getiduser()
 			));
 		}
