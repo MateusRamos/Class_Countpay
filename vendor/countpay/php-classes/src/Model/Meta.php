@@ -254,7 +254,7 @@ class Meta {
 
 
     //Verifica se a meta deletado pertence mesmo ao usuário;
-	public static function verifyDeleteMeta($id_usuario, $id_meta)
+	public static function verificaPosseMeta($id_usuario, $id_meta)
 	{
 
 		$sql = new Sql();
@@ -289,6 +289,71 @@ class Meta {
 	
 	}
     
+
+    public static function verificaSeMetaEstaAtiva($id_meta)
+    {
+
+        $sql = new Sql();
+
+        $results = $sql->select("SELECT status FROM meta WHERE id_meta = :ID_META", array(
+            ":ID_META"=>$id_meta
+        ));
+
+        return $results[0]['status'];
+
+    }
+
+
+    public static function pausaMeta($id_meta)
+    {
+
+        $sql = new Sql();
+
+        $results = $sql->execQuery("UPDATE meta SET status = 'pausado' WHERE id_meta = :ID_META", array(
+            ":ID_META"=>$id_meta
+        ));
+
+    }
+
+
+    public static function buscaIdContaDaMeta($id_meta)
+    {
+
+        $sql = new Sql();
+
+        $results = $sql->select("SELECT id_conta FROM meta WHERE id_meta = :ID_META", array(
+            ":ID_META"=>$id_meta
+        ));
+
+        return $results[0]['id_conta'];
+
+    }
+
+
+    public static function pausaMetaAtiva($id_conta)
+    {
+
+        $sql = new Sql();
+
+        $sql->execQuery("UPDATE meta SET status = 'pausado' WHERE id_conta = :ID_CONTA AND status = 'ativo'", array(
+            ":ID_CONTA"=>$id_conta
+        ));
+
+    }
+    
+
+    public static function ativaMeta($id_meta)
+    {
+
+        $sql = new Sql();
+
+        $sql->execQuery("UPDATE meta SET status = 'ativo' WHERE id_meta = :ID_META", array(
+            ":ID_META"=>$id_meta
+        ));
+
+    }
+
+
 
 }
 ?>

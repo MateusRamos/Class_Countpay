@@ -99,13 +99,77 @@ $app->post('/metas/alterar', function() {
 });
 
 
+//-----------------------------------------------  GET - PAUSAR META  ------------------------------------------------//
+
+$app->get('/meta/:id_meta/pausar', function($id_meta) {
+    
+    $id_usuario = User::verifyLogin();
+
+    $verificaPosse = Meta::verificaPosseMeta($id_usuario, $id_meta);
+    $verificaAtiva = Meta::verificaSeMetaEstaAtiva($id_meta);
+
+    if($verificaPosse == 1 && $verificaAtiva == "ativo")
+    {
+        Meta::pausaMeta($id_meta);
+
+                
+        header('Location: /minhasmetas');
+        exit;
+    }
+    else if($verificaPosse == 1 && $verificaAtiva != "ativo")
+    {
+        Visual::mostraMensagem('A meta precisa estar ativa para ser pausada!', '/minhasmetas');
+    }
+    else
+    {
+        Visual::mostraMensagem('Esta meta não te pertençe!', '/minhasmetas');
+    }
+
+});
+
+
+//-----------------------------------------------  GET - PAUSAR META  ------------------------------------------------//
+
+$app->get('/meta/:id_meta/ativar', function($id_meta) {
+    
+    $id_usuario = User::verifyLogin();
+
+    $verificaPosse = Meta::verificaPosseMeta($id_usuario, $id_meta);
+    $verificaAtiva = Meta::verificaSeMetaEstaAtiva($id_meta);
+    $id_conta = Meta::buscaIdContaDaMeta($id_meta);
+
+    if($verificaPosse == 1 && $verificaAtiva == "pausado")
+    {
+
+        Meta::pausaMetaAtiva($id_conta);
+
+        Meta::ativaMeta($id_meta);
+                
+        header('Location: /minhasmetas');
+        exit;
+    }
+    else if($verificaPosse == 1 && $verificaAtiva == "ativo")
+    {
+        Visual::mostraMensagem('Essa meta já está ativa!', '/minhasmetas');
+    }
+    else if($verificaPosse == 1 && $verificaAtiva == "concluido")
+    {
+        Visual::mostraMensagem('Essa meta já foi concluída!', '/minhasmetas');
+    }
+    else
+    {
+        Visual::mostraMensagem('Esta meta não te pertençe!', '/minhasmetas');
+    }
+
+});
+
 
 //-----------------------------------------------  GET - EXCLUIR META  ------------------------------------------------//
-$app->get('/meta/:id_cartao/delete', function($id_meta) {
+$app->get('/meta/:id_meta/delete', function($id_meta) {
 
     $id_usuario = User::verifyLogin();
 
-    $verificacao = Meta::verifyDeleteMeta($id_usuario, $id_meta);
+    $verificacao = Meta::verificaPosseMeta($id_usuario, $id_meta);
 
     if($verificacao == 1)
     {
