@@ -96,6 +96,9 @@ $app->post('/metas/alterar', function() {
 
     Meta::alteraGuardandoUmaGrana($_POST, $id_usuario);
 
+    header('Location: /minhasmetas');
+    exit;
+
 });
 
 
