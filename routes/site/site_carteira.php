@@ -183,9 +183,8 @@ $app->get('/conta/:id_conta', function($id_conta) {
 //================================================  POST - ALTERAR CONTA  ===============================================//
 $app->post('/conta/alterar', function() {       //Erro front
 
-    $instituicao = Carteira::buscaInstituicao($_POST);
 
-    Carteira::alteraConta($_POST, $instituicao);
+    Carteira::alteraConta($_POST);
 
     Visual::mostraMensagem('Alteração realizada com sucesso!', '/conta');
 
@@ -196,7 +195,7 @@ $app->get('/conta/:id_conta/delete', function($id_conta) {
 
     $id_usuario = User::verifyLogin();
 
-    $verificacao = User::verifyDeleteCartao($id_usuario, $id_conta);
+    $verificacao = User::verifyDeleteConta($id_usuario, $id_conta);
 
     if($verificacao == 1)
     {

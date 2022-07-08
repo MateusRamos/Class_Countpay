@@ -211,7 +211,7 @@ class User {
 
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * FROM conta WHERE id_usuario = :ID_USUARIO AND id_cartao = :ID_CONTA", array(
+		$results = $sql->select("SELECT * FROM conta WHERE id_usuario = :ID_USUARIO AND id_conta = :ID_CONTA", array(
 			"ID_USUARIO"=>$id_usuario,
 			":ID_CONTA"=>$id_conta
 		));

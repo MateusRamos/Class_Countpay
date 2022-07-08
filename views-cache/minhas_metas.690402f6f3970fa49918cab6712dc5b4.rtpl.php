@@ -29,6 +29,7 @@
                                     <tr>
                                         <th scope="col">Título</th>
                                         <th scope="col">Objetivo</th>
+                                        <th scope="col">Valor Atual</th>
                                         <th scope="col">Valor</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Ações</th>
@@ -39,11 +40,12 @@
                                     <tr class="clickable" onclick="window.location='/metas/<?php echo htmlspecialchars( $value1["id_meta"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'">
                                         <td><?php echo htmlspecialchars( $value1["nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["objetivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["valor_atual"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td  class="text-capitalize" ><?php echo htmlspecialchars( $value1["status"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td style="width:25vh">
-                                            <a href="#" class="btn btn-success" style="line-height: 0.5;background-color: #26A234;"><i class="bx bx-play-circle"></i></a>
-                                            <a href="#" class="btn btn-info text-light" style="line-height: 0.5;background-color: #0AA8D0;"><i class="bx bx-pause-circle"></i></a>
+                                            <a href="/meta/<?php echo htmlspecialchars( $value1["id_meta"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/ativar" class="btn btn-success" style="line-height: 0.5;background-color: #26A234;"><i class="bx bx-play-circle"></i></a>
+                                            <a href="/meta/<?php echo htmlspecialchars( $value1["id_meta"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/pausar" class="btn btn-info text-light" style="line-height: 0.5;background-color: #0AA8D0;"><i class="bx bx-pause-circle"></i></a>
                                             <a href="/meta/<?php echo htmlspecialchars( $value1["id_meta"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/delete" onclick="return ConfirmDelete()" class="btn btn-danger" style="line-height: 0.5; background-color: #E54640;"><i class="bx bxs-trash"></i></a>
                                         </td>
                                     </tr>

@@ -23,7 +23,13 @@
           
           <div class="col-md-6" style="position: absolute;">
           <!-- Início do Fomrulário -->
-          <form action="/metas/guardando/alterar" method="post" class="row g-3 pt-5">
+          <form action="/metas/alterar" method="post" class="row g-3 pt-5">
+
+            <!-- Box Nome -->
+            <div class="col-md-12"> 
+              <label for="nome_meta" class="form-label">ID</label>
+              <input type="text" class="form-control" id="id_meta" name="id_meta" value="<?php echo htmlspecialchars( $meta["id_meta"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" required>
+            </div>
 
             <!-- Box Nome -->
             <div class="col-md-12"> 
