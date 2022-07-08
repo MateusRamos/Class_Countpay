@@ -11,6 +11,15 @@ $email = $_POST['email'];
 $assunto = $_POST['assunto'];
 $mensagem = $_POST['mensagem'];
 
+
+$mensagemConcatenada = '<h1>E-mail recebido do Usuário: '.'<b>'.$nome .'</b></h1>'; 
+$mensagemConcatenada .= '---------------------------------------------<br/>';
+$mensagemConcatenada .= '<b>Nome: </b>'. $nome .'<br/>'; 
+$mensagemConcatenada .= '<b>E-mail: </b>'. $email .'<br/>'; 
+$mensagemConcatenada .= '<b>Assunto: </b>'. $assunto .'<br/>'; 
+$mensagemConcatenada .= '<b>Mensagem: </b>'. $mensagem .'<br/>'; 
+$mensagemConcatenada .= '---------------------------------------------<br/><br/>';
+
 //Create a new PHPMailer instance
 $mail = new PHPMailer();
 
@@ -62,19 +71,11 @@ $mail->setFrom('suporte.countpay@gmail.com', 'Equipe Countpay');
 $mail->addAddress('suporte.countpay@gmail.com', 'Usuário Site - Contato');
 
 //Set the subject line
-$mail->Subject = $assunto;
+$mail->Subject = 'Contato Countpay'. ' - ' .$assunto;
 
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
-$mail->msgHTML("
-
-    '<b>Recebemos um novo E-mail</b>'.'</br>'
-    '================================' .'</br>'.
-    'Nome: ' .$nome. '</br>'.
-    'E-mail: ' .$email. '</br>'. 
-    'Assunto: ' .$assunto. '</br>'. 
-    'Mensagem: ' .$mensagem. '</br>'
-");
+$mail->msgHTML("$mensagemConcatenada");
 
 //Replace the plain text body with one created manually
 $mail->AltBody = $assunto;
