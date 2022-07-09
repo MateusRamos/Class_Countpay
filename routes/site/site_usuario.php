@@ -131,7 +131,6 @@ $app->get('/', function() {
     $dados_aux = Projecoes::coletaDadosMes($id_usuario);
     $dados = Projecoes::coletaDadosFixo($dados_aux, $id_usuario);
 
-
     $page->setTpl("index", array(
         "dados"=>$ultimos_lancamentos,
         "receita"=>$receitaUsuario,

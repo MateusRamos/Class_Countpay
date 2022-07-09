@@ -34,6 +34,7 @@ $app->get('/minhasmetas', function() {
 ||												    																	 ||
 //===========================================================|===========================================================*/
 
+//-----------------------------------------------  GET - CRIAR META  ------------------------------------------------//
 $app->get('/metas/criar', function() {
 
     $page = new Page();
@@ -60,6 +61,7 @@ $app->post('/metas/criar', function() {
 });
 
 
+//-----------------------------------------------  GET - ALTERAR META  ------------------------------------------------//
 $app->get('/metas/:id_meta', function($id_meta) {
 
     $page = new Page();
@@ -90,6 +92,7 @@ $app->get('/metas/:id_meta', function($id_meta) {
 });
 
 
+
 $app->post('/metas/alterar', function() {
 
     $id_usuario = User::verifyLogin();
@@ -103,7 +106,6 @@ $app->post('/metas/alterar', function() {
 
 
 //-----------------------------------------------  GET - PAUSAR META  ------------------------------------------------//
-
 $app->get('/meta/:id_meta/pausar', function($id_meta) {
     
     $id_usuario = User::verifyLogin();
@@ -132,7 +134,6 @@ $app->get('/meta/:id_meta/pausar', function($id_meta) {
 
 
 //-----------------------------------------------  GET - PAUSAR META  ------------------------------------------------//
-
 $app->get('/meta/:id_meta/ativar', function($id_meta) {
     
     $id_usuario = User::verifyLogin();

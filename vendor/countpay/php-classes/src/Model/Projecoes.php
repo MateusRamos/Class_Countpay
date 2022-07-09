@@ -100,6 +100,8 @@ class Projecoes {
 				}
 			}
 		}
+		echo json_encode($data_final);
+
 
 		return $dados;
 
@@ -122,13 +124,13 @@ class Projecoes {
 		foreach($meses_aux as $key => $value)
 		{
 
-			if($key == $mes_atual['atual'])
+			if($key == date("m"))
 			{
 				$meses[$key]['receita'] = $meses_aux[$key]['receita'] + $mes_atual['receita'];
 				$meses[$key]['despesa'] = $meses_aux[$key]['despesa'] + $mes_atual['despesa'];
 				$meses[$key]['fatura'] = $meses_aux[$key]['fatura'] + $mes_atual['fatura'];
 			}
-			else if($key > $mes_atual['atual'])
+			else if($key > date("m"))
 			{
 				$meses[$key]['receita'] = $meses_aux[$key]['receita'] + $mes_futuro['receita'];
 				$meses[$key]['despesa'] = $meses_aux[$key]['despesa'] + $mes_futuro['despesa'];
