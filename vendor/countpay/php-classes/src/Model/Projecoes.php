@@ -109,11 +109,7 @@ class Projecoes {
 	public static function coletaDadosFixo($meses_aux, $id_usuario)
 	{
 
-		$mes_atual = Projecoes::buscaFixoMesAtual($id_usuario);
-
-		$mes_futuro = Projecoes::buscaFixoFuturo($id_usuario, $mes_atual);
-
-		$meses = array(
+		$fixo_passado = array(
 			"receita"=>0,
 			"despesa"=>0,
 			"fatura"=>0
@@ -122,91 +118,41 @@ class Projecoes {
 		foreach($meses_aux as $key => $value)
 		{
 
-			if($key == date("m"))
-			{
-				$meses[$key]['receita'] = $meses_aux[$key]['receita'] + $mes_atual['receita'];
-				$meses[$key]['despesa'] = $meses_aux[$key]['despesa'] + $mes_atual['despesa'];
-				$meses[$key]['fatura'] = $meses_aux[$key]['fatura'] + $mes_atual['fatura'];
-			}
-			else if($key > date("m"))
-			{
-				$meses[$key]['receita'] = $meses_aux[$key]['receita'] + $mes_futuro['receita'];
-				$meses[$key]['despesa'] = $meses_aux[$key]['despesa'] + $mes_futuro['despesa'];
-				$meses[$key]['fatura'] = $meses_aux[$key]['fatura'] + $mes_futuro['fatura'];
-			}
-			else
-			{
-				$meses[$key]['receita'] = $meses_aux[$key]['receita'];
-				$meses[$key]['despesa'] = $meses_aux[$key]['despesa'];
-				$meses[$key]['fatura'] = $meses_aux[$key]['fatura'];
-			}
+			$fixo_atual = Projecoes::buscaFixoMesAtual($id_usuario, $key);
+
+			$meses_aux[$key]['receita'] = $meses_aux[$key]['receita'] + $fixo_atual['receita'] + $fixo_passado['receita'];
+			$meses_aux[$key]['despesa'] = $meses_aux[$key]['despesa'] + $fixo_atual['despesa'] + $fixo_passado['despesa'];
+			$meses_aux[$key]['fatura'] = $meses_aux[$key]['fatura'] + $fixo_atual['fatura'] + $fixo_passado['fatura'];
+			
+			$fixo_passado['receita'] = $fixo_passado['receita'] + $fixo_atual['receita'];
+			$fixo_passado['despesa'] = $fixo_passado['despesa'] + $fixo_atual['despesa'];
+			$fixo_passado['fatura'] = $fixo_passado['fatura'] + $fixo_atual['fatura'];
 
 		}
 
-		return $meses;
+		return $meses_aux;
+
 	}
 
-/*	public static function coletaDadosFixo($meses_aux, $id_usuario)
-	{
 
-		$mes_atual = Projecoes::buscaFixoMesAtual($id_usuario);
-
-		$mes_futuro = Projecoes::buscaFixoFuturo($id_usuario, $mes_atual);
-
-		$meses = array(
-			"receita"=>0,
-			"despesa"=>0,
-			"fatura"=>0
-		);
-
-		foreach($meses_aux as $key => $value)
-		{
-
-			if($key == date("m"))
-			{
-				$meses[$key]['receita'] = $meses_aux[$key]['receita'] + $mes_atual['receita'];
-				$meses[$key]['despesa'] = $meses_aux[$key]['despesa'] + $mes_atual['despesa'];
-				$meses[$key]['fatura'] = $meses_aux[$key]['fatura'] + $mes_atual['fatura'];
-			}
-			else if($key > date("m"))
-			{
-				$meses[$key]['receita'] = $meses_aux[$key]['receita'] + $mes_futuro['receita'];
-				$meses[$key]['despesa'] = $meses_aux[$key]['despesa'] + $mes_futuro['despesa'];
-				$meses[$key]['fatura'] = $meses_aux[$key]['fatura'] + $mes_futuro['fatura'];
-			}
-			else
-			{
-				$meses[$key]['receita'] = $meses_aux[$key]['receita'];
-				$meses[$key]['despesa'] = $meses_aux[$key]['despesa'];
-				$meses[$key]['fatura'] = $meses_aux[$key]['fatura'];
-			}
-
-		}
-
-		return $meses;
-	}*/
-
-
-	public static function buscaFixoMesAtual($id_usuario)
+	public static function buscaFixoMesAtual($id_usuario, $mes)
 	{
 
 		$sql = new Sql();
 
-		$data_atual = date("Y-m-");
-		$data_inicial_atual = $data_atual . "01";
-		$data_final_atual = date("Y-m-t", strtotime($data_inicial_atual));
+		$data_inicial = date("Y") . "-" . $mes . "-01";
+		$data_final = date("Y-m-t", strtotime($data_inicial));
 
 		$results = $sql->select("CALL sp_coleta_dados_fixo(:ID_USUARIO, :DATA_INICIAL, :DATA_FINAL)", array(
 			":ID_USUARIO"=>$id_usuario,
-			":DATA_INICIAL"=>$data_inicial_atual,
-			":DATA_FINAL"=>$data_final_atual
+			":DATA_INICIAL"=>$data_inicial,
+			":DATA_FINAL"=>$data_final
 		));
 
 		$mes_atual = array(
 			"receita"=>0,
 			"despesa"=>0,
-			"fatura"=>0,
-			"atual"=>0
+			"fatura"=>0
 		);
 		
 		if(count($results) > 0)
@@ -230,59 +176,9 @@ class Projecoes {
 				}
 			}
 
-			$mes_atual['atual'] = date("m");
 		}
 
 		return $mes_atual;
-	}
-
-
-	public static function buscaFixoFuturo($id_usuario, $mes_atual)
-	{
-		$data_atual = date("Y-m-d");
-		$data_final = date("Y-m-t", strtotime($data_atual));
-
-		$sql = new Sql();
-
-		$results = $sql->select("SELECT  tipo_lancamento, valor, id_cartao FROM lancamento WHERE status_lancamento = 1 AND id_usuario = :ID_USUARIO AND data_lancamento > :DATA_FINAL", array(
-			":DATA_FINAL"=>$data_final,
-			":ID_USUARIO"=>$id_usuario
-		));
-		
-		$mes_futuro = array(
-			"receita"=>0,
-			"despesa"=>0,
-			"fatura"=>0
-		);
-		
-		if(count($results) > 0)
-		{
-			foreach($results as $key => $value)
-			{
-				$tipo_lancamento = substr($results[$key]['tipo_lancamento'], 0, 7);
-	
-				if($tipo_lancamento == "Receita")
-				{
-					$mes_futuro['receita'] = $mes_futuro['receita'] + $results[$key]['valor'];
-				}
-				else
-				{
-					$mes_futuro['despesa'] = $mes_futuro['despesa'] + $results[$key]['valor'];
-	
-					if($results[$key]['id_cartao'] != NULL)
-					{
-						$mes_futuro['fatura'] = $mes_futuro['fatura'] + $results[$key]['valor'];
-					}
-				}
-			}
-
-			$mes_futuro['receita'] = $mes_futuro['receita'] + $mes_atual['receita'];
-			$mes_futuro['despesa'] = $mes_futuro['despesa'] + $mes_atual['despesa'];
-			$mes_futuro['fatura'] = $mes_futuro['fatura'] + $mes_atual['fatura'];
-		}
-
-		return $mes_futuro;
-
 	}
 
 }
