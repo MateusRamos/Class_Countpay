@@ -100,8 +100,6 @@ class Projecoes {
 				}
 			}
 		}
-		echo json_encode($data_final);
-
 
 		return $dados;
 
@@ -147,6 +145,46 @@ class Projecoes {
 
 		return $meses;
 	}
+
+/*	public static function coletaDadosFixo($meses_aux, $id_usuario)
+	{
+
+		$mes_atual = Projecoes::buscaFixoMesAtual($id_usuario);
+
+		$mes_futuro = Projecoes::buscaFixoFuturo($id_usuario, $mes_atual);
+
+		$meses = array(
+			"receita"=>0,
+			"despesa"=>0,
+			"fatura"=>0
+		);
+
+		foreach($meses_aux as $key => $value)
+		{
+
+			if($key == date("m"))
+			{
+				$meses[$key]['receita'] = $meses_aux[$key]['receita'] + $mes_atual['receita'];
+				$meses[$key]['despesa'] = $meses_aux[$key]['despesa'] + $mes_atual['despesa'];
+				$meses[$key]['fatura'] = $meses_aux[$key]['fatura'] + $mes_atual['fatura'];
+			}
+			else if($key > date("m"))
+			{
+				$meses[$key]['receita'] = $meses_aux[$key]['receita'] + $mes_futuro['receita'];
+				$meses[$key]['despesa'] = $meses_aux[$key]['despesa'] + $mes_futuro['despesa'];
+				$meses[$key]['fatura'] = $meses_aux[$key]['fatura'] + $mes_futuro['fatura'];
+			}
+			else
+			{
+				$meses[$key]['receita'] = $meses_aux[$key]['receita'];
+				$meses[$key]['despesa'] = $meses_aux[$key]['despesa'];
+				$meses[$key]['fatura'] = $meses_aux[$key]['fatura'];
+			}
+
+		}
+
+		return $meses;
+	}*/
 
 
 	public static function buscaFixoMesAtual($id_usuario)
