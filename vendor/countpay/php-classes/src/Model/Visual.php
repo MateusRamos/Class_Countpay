@@ -107,7 +107,7 @@ class Visual {
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT SUM(valor) 'receita' FROM lancamento WHERE id_usuario = :ID_USUARIO AND tipo_lancamento LIKE '%Receita%' ", array(
+		return $sql->select("SELECT SUM(valor) 'receita' FROM lancamento WHERE id_usuario = :ID_USUARIO AND status_lancamento = 0 AND tipo_lancamento LIKE '%Receita%' ", array(
 			":ID_USUARIO"=>$id_usuario
 		));
 
@@ -119,7 +119,7 @@ class Visual {
 
 		$sql = new Sql();
 
-		return $sql->select("SELECT SUM(valor) 'despesa' FROM lancamento WHERE id_usuario = :ID_USUARIO AND tipo_lancamento LIKE '%Despesa%' ", array(
+		return $sql->select("SELECT SUM(valor) 'despesa' FROM lancamento WHERE id_usuario = :ID_USUARIO AND status_lancamento = 0 AND tipo_lancamento LIKE '%Despesa%' ", array(
 			":ID_USUARIO"=>$id_usuario
 		));
 
@@ -242,6 +242,100 @@ class Visual {
 	}
 
 
+	#                                                  ╔══════════════════════╗
+	#									 	           ║  VISUAL DO DASHBOARD ║
+	#                                                  ╚══════════════════════╝
+
+
+	public static function coletaDadosMes($id_usuario)
+	{
+
+		$meses = array(
+			"01"=>"01",
+			"02"=>"02",
+			"03"=>"03",
+			"04"=>"04",
+			"05"=>"05",
+			"06"=>"06",
+			"07"=>"07",
+			"08"=>"08",
+			"09"=>"09",
+			"10"=>"10",
+			"11"=>"11",
+			"12"=>"12"
+		);
+
+		foreach($meses as $key => $value)
+		{
+			if($key == "01" || $key == "03" || $key == "05" || $key == "07" || $key == "08" || $key == "10" || $key == "12")
+			{
+				$meses[$key] = Projecoes::coletaDados($id_usuario, $value, "31");  
+			}
+			else if($key == "04" || $key == "06" || $key == "09" || $key == "11")
+			{
+				$meses[$key] = Projecoes::coletaDados($id_usuario, $value, "30");
+			}
+			else
+			{
+				$ano = date("Y");
+
+				if(($ano % 400 == 0) || ($ano % 4 == 0) && ($ano % 100 != 0))
+				{
+					$meses[$key] = Projecoes::coletaDados($id_usuario, $value, "29");
+				}
+				else
+				{
+					$meses[$key] = Projecoes::coletaDados($id_usuario, $value, "28");
+				}
+			}
+		}
+
+		return $meses;
+
+	}
+
+
+
+	public static function coletaDados($id_usuario, $mes, $dia_final)
+	{
+
+		$sql = new Sql();
+
+		$ano = date("Y");
+
+		$data_inicial = $ano ."-". $mes ."-01";
+		$data_final = $ano ."-". $mes ."-". $dia_final;
+		$status_lancamento = 0;
+
+		$results = $sql->select("CALL sp_coleta_dados_status (:ID_USUARIO, :DATA_INICIAL, :DATA_FINAL, :STATUS)", array(
+			":ID_USUARIO"=>$id_usuario,
+			":DATA_INICIAL"=>$data_inicial,
+			":DATA_FINAL"=>$data_final,
+			":STATUS"=>$status_lancamento
+		));
+
+		
+		$dados = array(
+			"receita"=>0,
+			"despesa"=>0
+		);
+
+		foreach($results as $key => $value)
+		{
+			$tipo_lancamento = substr($results[$key]['tipo_lancamento'], 0, 7);
+
+			if($tipo_lancamento == "Receita")
+			{
+				$dados['receita'] = $dados['receita'] + $results[$key]['valor'];
+			}
+			else
+			{
+				$dados['despesa'] = $dados['despesa'] + $results[$key]['valor'];
+			}
+		}
+
+		return $dados;
+	}
 
 }
 ?>
