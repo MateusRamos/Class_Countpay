@@ -1,4 +1,4 @@
-<!-- Inicio do Conteúdo da Pagina -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Inicio do Conteúdo da Pagina -->
 <main id="main" class="main">
 
     <!-- Inicio Título da Pagina -->
@@ -35,7 +35,7 @@
                                         </div>
                                     </a>
                                     <div class="ps-3">
-                                        <h6>+R${$receita[0].receita}</h6>
+                                        <h6>+R$<?php echo htmlspecialchars( $receita["0"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h6>
                                         <span class="text-muted small pt-2 ps-1">Entrada atual</span>
 
                                     </div>
@@ -61,7 +61,7 @@
                                         </div>
                                     </a>
                                     <div class="ps-3">
-                                        <h6>-R${$despesa[0].despesa}</h6>
+                                        <h6>-R$<?php echo htmlspecialchars( $despesa["0"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h6>
                                         <span class="text-muted small pt-2 ps-1">Saída atual</span>
 
                                     </div>
@@ -88,7 +88,7 @@
                                         </div>
                                     </a>
                                     <div class="ps-3">
-                                        <h6>R${$transferencia[0].transferencia}</h6>
+                                        <h6>R$<?php echo htmlspecialchars( $transferencia["0"]["transferencia"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h6>
                                         <span class="text-muted small pt-2 ps-1">Valor transferido</span>
 
                                     </div>
@@ -113,12 +113,12 @@
                                             new ApexCharts(document.querySelector("#columnChart"), {
                                                 series: [{
                                                     name: 'Receitas',
-                                                    data: [{$grafico[01].receita}, {$grafico[02].receita}, {$grafico[03].receita}, {$grafico[04].receita}, {$grafico[05].receita}, {$grafico[06].receita}, {$grafico[07].receita}, {$grafico[08].receita}, {$grafico[09].receita},
-                                                    {$grafico[10].receita}, {$grafico[11].receita}, {$grafico[12].receita}]
+                                                    data: [<?php echo htmlspecialchars( $grafico["01"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["02"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["03"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["04"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["05"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["06"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["07"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["08"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["09"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>,
+                                                    <?php echo htmlspecialchars( $grafico["10"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["11"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["12"]["receita"], ENT_COMPAT, 'UTF-8', FALSE ); ?>]
                                                 }, {
                                                     name: 'Despesas',
-                                                    data: [{$grafico[01].despesa}, {$grafico[02].despesa}, {$grafico[03].despesa}, {$grafico[04].despesa}, {$grafico[05].despesa}, {$grafico[06].despesa}, {$grafico[07].despesa}, {$grafico[08].despesa}, {$grafico[09].despesa},
-                                                    {$grafico[10].despesa}, {$grafico[11].despesa}, {$grafico[12].despesa}]
+                                                    data: [<?php echo htmlspecialchars( $grafico["01"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["02"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["03"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["04"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["05"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["06"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["07"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["08"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["09"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>,
+                                                    <?php echo htmlspecialchars( $grafico["10"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["11"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $grafico["12"]["despesa"], ENT_COMPAT, 'UTF-8', FALSE ); ?>]
                                                 }, ],
                                                 chart: {
                                                     type: 'bar',
@@ -194,61 +194,61 @@
                         <div class="activity">
 
                             <div class="activity-item d-flex">
-                                <div class="activite-label">{$dados[0].tempo}</div>
-                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: {$dados[0].cor};'></i>
+                                <div class="activite-label"><?php echo htmlspecialchars( $dados["0"]["tempo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
+                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["0"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
                                     <a href="#" class="link-dark">
-                                        <b>{$dados[0].tipo_lancamento}</b> {$dados[0].descricao_lancamento}{$dados[0].valor}
+                                        <b><?php echo htmlspecialchars( $dados["0"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> <?php echo htmlspecialchars( $dados["0"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $dados["0"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                     </a>
                                 </div>
                             </div><!-- End activity item-->
 
                             <div class="activity-item d-flex">
-                                <div class="activite-label">{$dados[1].tempo}</div>
-                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: {$dados[1].cor};'></i>
+                                <div class="activite-label"><?php echo htmlspecialchars( $dados["1"]["tempo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
+                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["1"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
                                     <a href="#" class="link-dark">
-                                        <b>{$dados[1].tipo_lancamento}</b> {$dados[1].descricao_lancamento}{$dados[1].valor}
+                                        <b><?php echo htmlspecialchars( $dados["1"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> <?php echo htmlspecialchars( $dados["1"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $dados["1"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                     </a>
                                 </div>
                             </div><!-- End activity item-->
 
                             <div class="activity-item d-flex">
-                                <div class="activite-label">{$dados[2].tempo}</div>
-                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: {$dados[2].cor};'></i>
+                                <div class="activite-label"><?php echo htmlspecialchars( $dados["2"]["tempo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
+                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["2"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
                                     <a href="#" class="link-dark">
-                                        <b>{$dados[2].tipo_lancamento}</b> {$dados[2].descricao_lancamento}{$dados[2].valor}
+                                        <b><?php echo htmlspecialchars( $dados["2"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> <?php echo htmlspecialchars( $dados["2"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $dados["2"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                     </a>
                                 </div>
                             </div><!-- End activity item-->
 
                             <div class="activity-item d-flex">
-                                <div class="activite-label">{$dados[3].tempo}</div>
-                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: {$dados[3].cor};'></i>
+                                <div class="activite-label"><?php echo htmlspecialchars( $dados["3"]["tempo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
+                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["3"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
                                     <a href="#" class="link-dark">
-                                        <b>{$dados[3].tipo_lancamento}</b> {$dados[3].descricao_lancamento}{$dados[3].valor}
+                                        <b><?php echo htmlspecialchars( $dados["3"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> <?php echo htmlspecialchars( $dados["3"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $dados["3"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                     </a>
                                 </div>
                             </div><!-- End activity item-->
 
                             <div class="activity-item d-flex">
-                                <div class="activite-label">{$dados[4].tempo}</div>
-                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: {$dados[4].cor};'></i>
+                                <div class="activite-label"><?php echo htmlspecialchars( $dados["4"]["tempo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
+                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["4"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
                                     <a href="#" class="link-dark">
-                                        <b>{$dados[4].tipo_lancamento}</b> {$dados[4].descricao_lancamento}{$dados[4].valor}
+                                        <b><?php echo htmlspecialchars( $dados["4"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> <?php echo htmlspecialchars( $dados["4"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $dados["4"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                     </a>
                                 </div>
                             </div><!-- End activity item-->
 
                             <div class="activity-item d-flex">
-                                <div class="activite-label">{$dados[5].tempo}</div>
-                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: {$dados[5].cor};'></i>
+                                <div class="activite-label"><?php echo htmlspecialchars( $dados["5"]["tempo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></div>
+                                <i class='bi bi-circle-fill activity-badge align-self-start' style='color: <?php echo htmlspecialchars( $dados["5"]["cor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>;'></i>
                                 <div class="activity-content">
                                     <a href="#" class="link-dark">
-                                        <b>{$dados[5].tipo_lancamento}</b> {$dados[5].descricao_lancamento}{$dados[5].valor}
+                                        <b><?php echo htmlspecialchars( $dados["5"]["tipo_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b> <?php echo htmlspecialchars( $dados["5"]["descricao_lancamento"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php echo htmlspecialchars( $dados["5"]["valor"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                     </a>
                                 </div>
                             </div><!-- End activity item-->

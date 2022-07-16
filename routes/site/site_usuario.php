@@ -128,10 +128,8 @@ $app->get('/', function() {
     $despesaUsuario = Visual::calculaDespesaUsuario($id_usuario);
     $transferencia = Visual::calculaTransferenciaUsuario($id_usuario);
 
-    $dados_aux = Projecoes::coletaDadosMes($id_usuario);
-    $dados = Projecoes::coletaDadosFixo($dados_aux, $id_usuario);
+    $dados = Visual::coletaDadosMes($id_usuario);
 
-    echo json_encode($dados);
 
     $page->setTpl("index", array(
         "dados"=>$ultimos_lancamentos,
